@@ -1,0 +1,169 @@
+---
+author: admin
+comments: true
+date: 2010-08-14 08:09:03+00:00
+layout: post
+slug: iind
+title: '#After ubuntu installation requirements Part II'
+wordpress_id: 27
+categories:
+- Technology
+tag:
+- Linux
+- Ubuntu
+---
+
+11 – Graphical web browser
+
+Windows equivalent : Internet explorer, firefox, opera
+
+Ubuntu equivalent : Firefox, opera, chromium
+
+Opera
+
+sudo apt-get install opera
+
+Firefox (installed by default intrepid)
+
+sudo apt-get install firefox
+
+Chromium (open source equivalent of Google Chrome)
+
+sudo apt-get install chromium-browser
+
+12 – Download Manager
+
+Windows equivalent : Free download manager
+
+Ubuntu equivalent : Multiget
+
+MultiGet is a http/ftp downloader with a nice GUI for linux desktop  users. It can run on almost all desktops without any configuration. It  has many powerful functions comparing to others.
+
+sudo apt-get install multiget
+
+Access it through Applications → Internet → MultiGet .
+
+13 – Graphical Email client
+
+Windows equivalent : Outlook
+
+Ubuntu equivalent : Evolution, Thunderbird
+
+Evolution (installed by default in intrepid)
+
+sudo apt-get install evolution
+
+Access it through Applications → Internet → Evolution Mail .
+
+Thunderbird
+
+sudo apt-get install thunderbird
+
+Access it through Applications → Internet → Mozilla Thunderbird Mail/News .
+
+14 – Instant Messanging protocal clients
+
+Windows equivalent : MSN messenger, Yahoo messenger, QQ, AIM, Gtalk, ICQ,IRC
+
+Ubuntu equivalent : Empathy, Pidgin, emesene
+
+Empathy IM Client (installed by default)
+
+sudo apt-get install empathy telepathy-mission-control-5  telepathy-gabble telepathy-butterfly telepathy-haze telepathy-idle  telepathy-salut telepathy-sofiasip python-msn empathy-megaphone-applet  libtelepathy-farsight0 python-tpfarsight galago-eds-feed python-galago  python-galago-gtk msn-pecan
+
+Access it through Applications → Internet → Empathy IM Client .
+
+Pidgin
+
+Pidgin is an easy to use and free chat client used by millions.  Connect to AIM, MSN, Yahoo, and more chat networks all at once.  Supported chat networks: AIM, Bonjour, Gadu-Gadu, Google Talk,  Groupwise, ICQ, IRC, MSN, MySpaceIM, QQ, SILC, SIMPLE, Sametime, XMPP,  Yahoo!, Zephyr
+
+sudo apt-get install pidgin pidgin-data pidgin-lastfm  pidgin-guifications msn-pecan pidgin-musictracker pidgin-plugin-pack  pidgin-themes
+
+Access it through Applications → Internet → Pidgin Internet Messenger .
+
+Emesene only for MSN Messenger.
+
+sudo apt-get install emesene
+
+Access it through Applications → Internet → Emesene .
+
+15 – VOIP
+
+Windows equivalent : skype
+
+Ubuntu equivalent : skype
+
+Skype
+
+sudo apt-get install skype
+
+Access it through Applications → Internet → Skype.
+
+16 – Viewing PDF files
+
+Windows equivalent : Adobe Reader
+
+Ubuntu equivalent : Adobe Reader
+
+Adobe Reader
+
+sudo apt-get install acroread acroread-fonts
+
+Access it through Applications → Office → Adobe Reader.
+
+17– Adobe Air
+
+wget http://airdownload.adobe.com/air/lin/download/latest/AdobeAIRInstaller.bin
+chmod +x ./AdobeAIRInstaller.bin
+
+./AdobeAIRInstaller.bin
+
+Access it through Applications → Accessories → Adobe Air Application Installer.
+
+18 – Music / MP3 / OGG Players
+
+Windows equivalent : iTunes, Winamp
+
+Ubuntu equivalent : Rhythmbox, Banshee, Amarok
+
+Rhythmbox
+
+sudo apt-get install rhythmbox
+
+Access it through Applications → Sound & Video → Rhythmbox Music Player.
+
+Banshee
+
+sudo apt-get install banshee banshee-extension-lyrics banshee-extension-mirage
+
+Access it through Applications → Sound & Video → Banshee Media Player.
+
+Amarok
+
+sudo apt-get install amarok amarok-engine-xine amarok-engine-yauap amarok-engines amarok-common
+
+Access it through Applications → Sound & Video → Amarok.
+
+19– Hard Disk Partitions Manager
+
+Windows equivalent : Symanted Partition Magic
+
+Ubuntu equivalent : GParted
+
+GParted
+
+sudo apt-get install gparted ntfsprogs menu ntfs-config
+
+Access it through System → Administration → Partition Editor.
+
+20 – Vector Graphics Editor
+
+Windows equivalent : Adobe Illustrator
+
+Ubuntu equivalent : Inkscape
+
+Inkscape
+
+sudo apt-get install inkscape
+
+Access it through Applications → Graphics → Inkscape Vector Graphics Editor.

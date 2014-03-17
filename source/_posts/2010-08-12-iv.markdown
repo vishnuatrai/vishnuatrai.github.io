@@ -1,0 +1,125 @@
+---
+author: admin
+comments: true
+date: 2010-08-12 08:12:18+00:00
+layout: post
+slug: iv
+title: '#After ubuntu installation requirements Part IV'
+wordpress_id: 34
+categories:
+- Technology
+tag:
+- Linux
+- Ubuntu
+---
+
+31 – Programs for CD burning with GUI
+
+Windows equivalent : Nero, Roxio Easy CD Creator
+
+Ubuntu equivalent : K3b, Brasero
+
+K3b
+
+Nero is available for linux,but its not free.A trial is available for  1 month usage and later it asks or activation code.But K3B is as good  as Nero.Have a good feature set as Nero.
+
+sudo apt-get install k3b k3b-data k3b-i18n libk3b3
+
+Access it through Applications → Sound & Video → K3B.
+
+Brasero (installed by default in Intrepid)
+
+sudo apt-get install brasero
+
+Access it through Applications → Sound & Video → Brasero Disc Burning .
+
+32 – Mountings ISO files
+
+Windows equivalent : Alcohol
+
+Ubuntu equivalent : acetoneiso
+
+Acetoneiso
+
+The best one for linux ACETONEISO, which is similar to ALCOHOL in windows
+
+its supports almost all formats. AcetoneISO is CD/DVD image  manipulator for Linux.Using this tool it is very easy to Mount and  Unmount ISO,MDF,NRG Images . I dont think its available in ubuntu  repository.
+
+sudo apt-get install libksba8 libenca0 libtwolame0 fuseiso kommander  p7zip-full gnupg-agent gnupg2 pinentry-qt mencoder cdrdao &&  wget  http://darkstar.ist.utl.pt/getdeb/ubuntu/jaunty/ac/acetoneiso_2.1.1-1~getdeb1_i386.deb  && sudo dpkg -i acetoneiso_2.1.1-1~getdeb1_i386.deb
+
+33 – Install Vista like gadgets.
+
+Windows equivalent : Vista Sidebar
+
+Ubuntu equivalent : google-gadgets
+
+Google gadgets
+
+wget  http://neacm.fe.up.pt/pub/getdeb/ubuntu/jaunty/go/google-gadgets_0.11.1-1~getdeb1_i386.deb  && sudo dpkg -i google-gadgets_0.11.1-1~getdeb1_i386.deb
+
+This will complete the installation.
+
+Now press Alt+F2, and type “ggl-gtk” to start them. You should see a  small icon show up in your system tray, and a sidebar. Right click on  any of them and select ‘Add Gadgets’ to show a menu. If you’d like to  have Google Gadgets start automatically, go to System – Preferences –  Session, click ‘Add’, paste ‘Google Gadgets’ for the name and ‘ggl-gtk’  for the command. Click OK and Close, and you’re good to go.
+
+34 – Google Desktop
+
+Google Desktop allows one to full text search of a user’s e-mail,  computer files, music, photos, chat, and Web pages viewed,OpenOffice  documents , PDF files and more .
+
+Now similar tools already existed on Linux like beagle (supported by  novell ) , meta tracker etc . However Google Desktop search is not based  on any of these tools and uses its proprietary algorithms to search for  files on the computer ,also being 1.0 release and more stable then  these products it could be preferred over tools like beagle .
+
+To install Google Desktop Search type the following command in the terminal window : -
+
+sudo apt-get install google-desktop-linux
+
+Access it through Applications → Google Desktop → Google Desktop
+
+Now after choosing appropriate option through Applications → Google  Desktop → Google Desktop Preferences, you would find Google Desktop icon  in the bar at the top of the screen , now it would automatically scan  and index files on computer and store it in local database which could  be searched using web browser .
+
+35 – Photo Management
+
+Google Picasa
+
+Google Picasa is an extremely professional good looking photo  management application available on Windows ,Linux and Mac OS (??) . Now  Google Picasa has a number of features that many photo management  software on Linux dont have further Google Picasa looks very user  friendly as compared to similar open source application available on  linux . Now Google Picasa for Linux is not a native linux application  but runs on Linux thru application layer called wine which allows many  windows application to run flawlessly on Linux.
+
+Now to install Google – Picasa type the following command in the terminal window
+
+sudo apt-get install picasa
+
+Access it through Applications → Graphics → Picasa → Picasa
+
+36 – Map Viewing and Management
+
+Google Earth
+
+To install Google Earth type the following command in the Terminal Window.
+
+sudo aptitude install googleearth
+
+After downloading is over you will get a screen like this press ¨Yes¨  to accept the license agreement and complete software installation.
+
+Now you can launch Google Earth from Application → Internet → Google Earth
+
+37 – Gmail Notification
+
+Checkgmail
+
+If you would like to get notified when you have a new mail in your  google mail account, checkgmail is for you. To install Checkgmail type  the following command in the Terminal Window.
+
+sudo apt-get install checkgmail
+
+Now you can launch it from Application → Internet → CheckGmail
+
+38 – Configure Firewall
+If you are concern about your security, then it is pertinent that you  activate the firewall and prevent any unauthorized access to your  computer.
+
+UFW is installed by default, but if you need a graphical interface, install GUFW.
+
+sudo apt-get install gufw
+
+39– Gnome Do
+
+Gnome Do is a small application that allows you to search and do  things faster and more efficiently in your Ubuntu machine. It is similar  to QuickSilver in Mac and Launchy in Windows. For those who have not  tried Gnome Do before, it might take some time for you to get used to  it. But once you’re hooked to it, there will be no turning back for  you.Gnome Do also comes with a dock interface that you can use it like  any other docks.
+
+sudo apt-get install gnome-do
+
+Now you can launch it from Application → Accessories → Gnome Do
