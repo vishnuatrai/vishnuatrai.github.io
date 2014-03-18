@@ -1,23 +1,45 @@
-{% capture root_url %}{{ site.root | strip_slash }}{% endcapture %}
-{% include head.html %}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width; initial-scale=1.0, maximum-scale=1">
+    <link href="http://gmpg.org/xfn/11" rel="profile">
 
-<body>
-	<div class="container">
-		<div class="left-col">
-			<div class="intrude-less">
-			<header id="header" class="inner">{% include header.html %}</header>
-			</div>
-		</div>
-		<div class="mid-col">
-			{% unless page.banner == false %}
-				{% include banner.html %}
-			{% endunless %}
-			<div class="mid-col-container">
-				<div id="content" class="article-inner">{{ content | expand_urls: root_url }}</div>
-			</div>
-			<footer id="footer" class="inner">{% include footer.html %}</footer>
-			{% include after_footer.html %}
-		</div>
-	</div>
-</body>
+    <title>
+      {% if page.title %}{{ page.title }} &middot; {% endif %}
+      {{ site.tagline }}
+    </title>
+    {% if page.title %}
+    <meta name="description" content="{{ page.title }}">
+    {% endif %}
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/stylesheets/screen.css">
+    <link rel="stylesheet" href="/stylesheets/hyde.css">
+    <link rel="stylesheet" href="/stylesheets/pygments.css">
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400italic,400,600,700|Abril+Fatface">
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+  </head>
+  <body>
+
+    <header class="masthead">
+      <div class="masthead-inner">
+        <h2><a href="/">@vishnuatrai</a></h2>
+        <p class="lead">Ruby on Rails contributor developer</p>
+
+        <div class="colophon">
+          <p>&copy; 2014. All rights reserved.</p>
+        </div>
+
+      </div>
+    </header>
+
+    <div class="content container">
+      {{ content }}
+    </div>
+
+  </body>
 </html>
