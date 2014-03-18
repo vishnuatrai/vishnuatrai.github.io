@@ -1,6 +1,7 @@
 <hgroup>
-  <h1><a href="{{ root_url }}/">{{ site.title }}</a></h1>
-  {% if site.subtitle %}
-    <h2>{{ site.subtitle }}</h2>
-  {% endif %}
+ <p class="site-subtitle" style="font-size:10px;">
+  Copyright &copy; {{ site.time | date: "%Y" }} - {{ site.author }} 
+  <br />
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+ </p>
 </hgroup>
