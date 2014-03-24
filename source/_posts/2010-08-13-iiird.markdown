@@ -1,0 +1,168 @@
+---
+author: admin
+comments: true
+date: 2010-08-13 08:10:57+00:00
+layout: post
+slug: iiird
+title: '#After ubuntu installation requirements Part III'
+wordpress_id: 30
+categories:
+- Technology
+tag:
+- Linux
+- Ubuntu
+---
+
+21 – Image Editor
+
+Windows equivalent : Adobe Photoshop
+
+Ubuntu equivalent : GIMP
+
+GIMP
+
+sudo apt-get install gimp gimp-data gimp-plugin-registry
+
+Access it through Applications → Graphics → GIMP Image Editor.
+
+22 – 3D Graphics Applications
+
+Windows equivalent : 3D Studio MAX
+
+Ubuntu equivalent : Blender
+
+Blender
+
+sudo apt-get install blender
+
+Access it through Applications → Graphics → Blender (windowed).
+
+23 – Simple Yet Advanced Text Editor
+
+Windows equivalent : Notepad ++
+
+Ubuntu equivalent : GEdit
+
+GEdit
+
+sudo apt-get install gedit gedit-plugins
+
+Access it through Applications → Accessories → Text Editor.
+
+24 – Office Applications
+
+Windows equivalent : Microsoft Office
+
+Ubuntu equivalent : OpenOffice
+
+OpenOffice
+
+sudo apt-get install openoffice.org
+
+Access it through Applications → Office
+
+25 – Microsoft Visio
+
+Windows equivalent : Microsoft Visio
+
+Ubuntu equivalent : Dia
+
+Dia
+
+sudo apt-get install dia
+
+Access it through Applications → Graphics → Dia Diagram Editor
+
+26 – Microsoft Project
+
+Windows equivalent : Microsoft Project
+
+Ubuntu equivalent : OpenProj
+
+OpenProj
+
+wget http://nchc.dl.sourceforge.net/sourceforge/openproj/openproj_1.4-2.deb && sudo dpkg -i openproj_1.4-2.deb
+
+Access it through Applications → Office → OpenProj
+
+27 – Development IDE
+
+Windows equivalent : Dreamweaver
+
+Ubuntu equivalent : Quanta, Kompozer, NetBeans
+
+Quanta
+
+sudo apt-get install quanta
+
+Access it through Applications → Programming → Quanta Plus
+
+Komposer
+
+sudo apt-get install kompozer nvu
+
+Access it through Applications → Internet → Kompozer
+
+NetBeans
+
+sudo apt-get install netbeans
+
+Access it through Applications → Programming → NetBeans IDE
+
+28 – Source Control Management
+
+Windows equivalent : TortoiseSVN
+
+Ubuntu equivalent : RabbitVCS
+
+RabbitVCS
+sudo apt-get install python-nautilus meld python-svn python-configobj ipython
+wget  http://rabbitvcs.googlecode.com/files/rabbitvcs-core_0.13-1~karmic_all.deb  && sudo dpkg -i rabbitvcs-core_0.13-1~karmic_all.deb
+wget  http://rabbitvcs.googlecode.com/files/rabbitvcs-nautilus_0.13-1~intrepid_all.deb  && sudo dpkg -i rabbitvcs-nautilus_0.13-1~intrepid_all.deb
+killall nautilus
+
+Right Click on any folder or file and access the RabbitVCS submenu
+
+29 – Graphical FTP clients
+
+Windows equivalent : CuteFTP, SmartFTP
+
+Ubuntu equivalent : FileZilla
+
+FileZilla
+
+This is great FTP program, very complete, in my opinion, the best one for linux.
+
+On the terminal type:
+
+sudo apt-get install filezilla filezilla-common
+
+Access it through Applications → Internet → FileZilla FTP Client.
+
+30 – P2P Clients / Servers, File Sharing
+
+Windows equivalent : utorrent, azureus, emule
+
+Ubuntu equivalent : Deluge, azureus, amule
+
+Bittorent clients
+
+Deluge (written in python)
+
+sudo apt-get install deluge-torrent
+
+Access it through Applications → Internet → Deluge Torrent.
+
+Azureus: Uses Java to run, very complete but a bit heavy
+
+sudo apt-get install azureus
+
+Access it through Applications → Internet → Azureus.
+
+Emule Donkey Clients
+
+Amule
+
+sudo apt-get install amule
+
+Access it through Applications → Internet → aMule.

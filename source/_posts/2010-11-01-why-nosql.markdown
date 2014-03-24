@@ -1,0 +1,47 @@
+---
+author: admin
+comments: true
+date: 2010-11-01 15:27:27+00:00
+layout: post
+slug: why-nosql
+title: Why NoSQL?
+wordpress_id: 132
+categories:
+- Technology
+tag:
+- CouchDB
+- MomgoDB
+- NoSQL
+---
+
+**Why NoSQL?**
+
+**NoSQL** term is supposed to stand for “Not Only SQL.” . This term is used to designated DBMS that differ from classic RDBMS in some way. These DBMS may not require fixed table schemas, and usually avoid join operations and typically scale horizontally.
+
+**Architecture**
+
+NOSQL databases tend to have two key attributes across the board. One is that they’re non-relational, so they’re not doing joins on the server. And second, they have light transactional semantics. So complex, long-running, serialized transactions are not part of any of these NoSQL products. Those two differences, put together, allow you to take a very different approach to how databases are created, which means you can make horizontally scalable databases — the kind that run across large clusters of machines.
+
+RDBMS have shown poor performance on certain data-intensive applications, including indexing a large number of documents, serving pages on high-traffic websites, and delivering streaming media.  Typical RDBMS implementations are tuned either for small but frequent read/write transactions or for large batch transactions with rare write accesses. NoSQL on the other hand, services heavy read/write workloads
+
+NoSQL architectures often provide weak consistency guarantees, such as eventual consistency, or transactions restricted to single data items. Some systems, however, provide full ACID guarantees, in some instances by adding a supplementary middleware layer (e.g., CloudTPS).
+
+**Core NoSQL Systems**
+
+**Wide Column Store/Column Families**
+
+1.Cassandra
+2.Cloudera
+3.Amazon SimpleDB
+
+**Document Store**
+
+1. CouchDB
+2. MongoDB
+3. OrientDB
+
+**Key Value/ Tuple Store**
+
+1.Redis
+2.MemcacheDB
+3.Tokyo Cabibnet
