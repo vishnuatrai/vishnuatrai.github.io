@@ -1,0 +1,285 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>MySql DB Indexing - @vishnuatrai</title>
+	<meta name="author" content="vishnuatrai.com">
+
+	
+	<meta name="description" content="MySql DB Indexing Sep 20th, 2010 Working with a online tutorial with a huge amount of data, product owners always used to  raise issues for &hellip;">
+	
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="@vishnuatrai" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://vatrai.github.io/blog/2010/09/20/indexing-basic-mysql-queries/">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+	<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><nav id="main-nav"><ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/about">About</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+</nav>
+<!-- <nav id="sub-nav">
+	<div class="social">
+		
+		
+		<a class="google" href="https://plus.google.com/102433220410072726105" rel="author" title="Google+">Google+</a>
+		
+		
+		<a class="twitter" href="http://twitter.com/vishnuatrai" title="Twitter">Twitter</a>
+		
+		
+		<a class="github" href="https://github.com/vatrai" title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+	</div>
+</nav> -->
+<div class="profile-container">
+  <div class="profilepic">
+    <script src="/javascripts/md5.js"></script>
+    <script type="text/javascript">
+$(function(){
+  $('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("me@vishnuatrai.com") + "?s=160' alt='Profile Picture' style='width: 160px;' />");
+});
+    </script>
+  </div>
+  <hgroup>
+  <h1 class="site-title"><a href="/">@vishnuatrai</a></h1>
+  
+  <p class="site-subtitle">Ruby on Rails contributor developer</p>
+  
+  </hgroup>
+  
+<hgroup>
+  <nav id="sub-nav">
+    <div class="social" style="margin-bottom:60px; margin-right:0px;">
+        
+      
+        <a class="google" href="https://plus.google.com/102433220410072726105" rel="author" title="Google+">Google</a>
+        
+
+      
+        <a class="twitter" href="http://twitter.com/vishnuatrai" title="Twitter">Twitter</a>
+      
+      
+        <a class="github" href="https://github.com/vatrai" title="GitHub">GitHub</a>
+      
+      
+      
+      
+      
+      
+      
+        <a class="rss" href="/atom.xml" title="RSS" target='_blank'>RSS</a>
+      
+    </div>  
+  </nav>
+</hgroup>
+
+<hgroup>
+ <p class="site-subtitle" style="font-size:10px;">
+  Copyright &copy; 2014 - vishnuatrai.com 
+  <br />
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+ </p>
+ </hgroup>
+
+
+</div>
+</header>
+			</div>
+		</div>
+		<div class="mid-col">
+			
+				
+			
+			<div class="mid-col-container">
+				<div id="content" class="article-inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  
+	<h1 class="title" itemprop="name">MySql DB Indexing</h1>
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+  <div class="post-date"><time datetime="2010-09-20T19:33:35+05:30" data-updated="true" itemprop="datePublished">Sep 20<span>th</span>, 2010</time></div>
+	<div class="entry-content" itemprop="articleBody"><p>Working with a online tutorial with a huge amount of data, product owners always used to  raise issues for application performance. After looking in to different scenerios like apache configurations, hardware, network issues, and mysql performance as a backend server, we got to know that there are a lot of opportunities to improve mysql db performance. To see why db performance slow I turned on slow quiry logging in my.cnf:</p>
+
+<p>log-slow-queries
+long_query_time = 5</p>
+
+<p>The slow quesies log file became huge in size in Gigs after only two or three days, and queries was like:</p>
+
+<h1>Query_time:   5        Lock_time:   0       Rows_sent:   1        Rows_examined:   40508</h1>
+
+<p>SELECT quize_id as total_quizes FROM student_quizes WHERE exam_id IN(1,2,3,11)</p>
+
+<p>In abouve example its whowing that “Rows_sent:   1    Rows_examined: 40508”. So, after examining 40508 and returning just 1 row is not a good job done by db server. If there are 200 visitors using the application then multiply this figure with 200, in this case MySQL is examining 8,101,600 rows! Then the Mysql performance is in misurable situation.</p>
+
+<p>To see why MySQL queries are too slow we can explain them:</p>
+
+<pre><code>   mysql&gt; EXPLAIN
+       -&gt; SELECT quize_id as total_quizes FROM student_quizes
+       -&gt; WHERE exam_id IN (1, 2, 3, 11);
+   +-------------------+-------+---------------+-------------------+---------+------+-------+--------------------------+
+   | table             | type  | possible_keys | key               | key_len | ref  | rows  | Extra                    |
+   +-------------------+-------+---------------+-------------------+---------+------+-------+--------------------------+
+   | student_quizes    | index | NULL          | quize_id_exam_id  |       6 | NULL | 40508 | Using where; Using index |
+   +-------------------+-------+---------------+-------------------+---------+------+-------+--------------------------+
+</code></pre>
+
+<p>Here MySQL telling us    there&rsquo;s no possible keys but it&rsquo;s using key quize_id_exam_id? And if it&rsquo;s using a key then why does it suspect it    will have to examine 40508 rows (by performing a full index scan, denoted by &ldquo;type: index&rdquo;)? It seems there&rsquo;s a    problem with the keys so we must now understand them:</p>
+
+<pre><code>mysql&gt; DESCRIBE student_quizes;
+   +-------------+-----------------------+------+-----+---------+-------+
+   | Field       | Type                  | Null | Key | Default | Extra |
+   +-------------+-----------------------+------+-----+---------+-------+
+   | quize_id    | mediumint(8) unsigned |      | MUL | 0       |       |
+   | exam_id     | mediumint(8) unsigned |      |     | 0       |       |
+   | created_at  | datetime              |      |     | 0       |       |
+   | updated_at  | datetime              |      |     | 0       |       |
+   +-------------+-----------------------+------+-----+---------+-------+
+
+   mysql&gt; SHOW INDEX FROM student_quizes;
+   +-------------------+------------+-----------------------+--------------+-------------+-----------+-------------+
+   | Table             | Non_unique | Key_name              | Seq_in_index | Column_name | Collation | Cardinality |
+   +-------------------+------------+-----------------------+--------------+-------------+-----------+-------------+
+   | student_quizes    |          1 | quize_id_exam_id      |            1 | quize_id    | A         |       40508 |
+   | student_quizes    |          1 | exam_id_quize_id      |            2 | exam_id     | A         |       40508 |
+   +-------------------+------------+-----------------------+--------------+-------------+-----------+-------------+
+</code></pre>
+
+<p>Understanding indexes is two part: Understanding the structure of the table <em>then</em> understanding the indexes. You can&rsquo;t just slap an index on a table and think everything will be wonderful. In this    example it looks like everything should be wonderful with key quize_id_exam_id. Given that the SELECT statement is    selecting quize_id and exam_id and that&rsquo;s just what this key indexes, so why isn&rsquo;t it working? It is working, just not    how we&rsquo;re intending; it&rsquo;s working for MySQL which is why in EXPLAIN it says &ldquo;Using index.&rdquo; When MySQL says this    in &ldquo;Extra&rdquo; is means &ldquo;The column information is retrieved from the table using only information in the index tree     without having to do an additional seek to read the actual row.&rdquo; In other words: It finds and returns matching    columns from the index in memory not the table on disk, which is a good thing, unless it&rsquo;s doing this 12 million    times for 1 matching column.</p>
+
+<p>How very annoying: MySQL is using the index but still in effect examing every row of the table. The reason why in    this example deals with how MySQL uses multiple column indexes. From DESCRIBE we see &ldquo;MUL&rdquo; for multi-column    index, and from SHOW INDEX we see quize_id_exam_id twice, first for quize_id second for exam_id. A multiple    column index acts like a single column index if the columns were put end-to-end in the order specified by    &ldquo;Seq_in_index&rdquo; from SHOW INDEX. In this example if quize_id were 100 and exam_id were 200 this is indexed as    &ldquo;100 200&rdquo;. Throw this in the mix: MySQL will only use a multi-column index if a value    is specified for the first column in the index. In this example the first column in the index is quize_id and    we&rsquo;re not specifying a value for this column which is why MySQL won&rsquo;t use the index like we want it to. What    MySQL does do, and why it&rsquo;s able to use the index at all,  is use any value for quize_id and the values we gave    it for exam_id. In effect it looks for &lsquo;<em>  1&rsquo;, &lsquo;</em>  2&rsquo;, &lsquo;<em>   3&rsquo;, &lsquo;</em>   11&rsquo;. Since quize_id is unique MySQL really does have to look at every single one, all 40,00+. While doing that if it    comes across one with a matching exam_id lucky for us. I hope you see the obvious and simple solution: Swap    the order of columns in the key, exam_id then quize_id. Later we&rsquo;ll do this but first it&rsquo;s good learning    to examine another possibility.</p>
+
+<p>If exam_id is what we&rsquo;re matching rows on, just index exam_id. The command would be &ldquo;CREATE INDEX    test_index ON student_quizes (exam_id);&rdquo;. Then EXPLAIN the exact same slow query again:</p>
+
+<pre><code>   mysql&gt; EXPLAIN
+       -&gt; SELECT quize_id as total_quizes FROM student_quizes
+       -&gt; WHERE exam_id IN (1,2,3,11);
+   +-------------------+-------+---------------+------------+---------+------+------+-------------+
+   | table             | type  | possible_keys | key        | key_len | ref  | rows | Extra       |
+   +-------------------+-------+---------------+------------+---------+------+------+-------------+
+   | student_quizes    | range | test_index    | test_index |       3 | NULL |    5 | Using where |
+   +-------------------+-------+---------------+------------+---------+------+------+-------------+
+</code></pre>
+
+<p>That output speaks volumes: 5 rows to examine. This is the index that saved the server. I have not seen the server&rsquo;s    load go above 4 and the website is running faster with more users at once. The difference was night and day. But    why stop there? The query is no longer slow but it could be better. Notice how MySQL is not &ldquo;Using index&rdquo; anymore.    This is because quize_id is not in the index its using. Whereas it&rsquo;s in the quize_id_exam_id index MySQL has    wisely chosen to examine fewer rows at the cost of doing a few disk seeks. The solution is a multiple column index    on both exam_id and quize_id, with exam_id first.</p>
+
+<pre><code>   mysql&gt; CREATE INDEX exam_id_quize_id ON student_quizes (exam_id, quize_id);
+   Query OK, 40508 rows affected (0.53 sec)
+   Records: 40508  Duplicates: 0  Warnings: 0
+
+   mysql&gt; EXPLAIN
+       -&gt; SELECT quize_id as total_quizes FROM student_quizes
+       -&gt; WHERE exam_id IN (1,2,3,11);
+   +-------------------+-------+------------------------------+-------------------+---------+------+------+--------------------------+
+   | table             | type  | possible_keys                | key               | key_len | ref  | rows | Extra                    |
+   +-------------------+-------+------------------------------+-------------------+---------+------+------+--------------------------+
+   | student_quizes    | range | test_index,exam_id_quize_id  | exam_id_quize_id  |       3 | NULL |    5 | Using where; Using index |
+   +-------------------+-------+------------------------------+-------------------+---------+------+------+--------------------------+
+</code></pre>
+
+<p>As we can see MySQL still considers the test_index key but chooses exam_id_quize_id because doing so will allow    it to get matching quize_id from the index instead of the disk. A simple swap of column orders in the index made    all the difference. As the saying goes, it takes one tree to make a thousand matches and one match to burn a    thousand trees down.</p>
+</div>
+
+</article>
+
+	<div class="share">
+    <div class="share_icon_group addthis_toolbox addthis_default_style addthis_32x32_style">
+        
+            <a class="share_icon addthis_button_preferred_1"></a>
+        
+        
+            <a class="share_icon addthis_button_preferred_2" fb:like:layout="button_count"></a>
+        
+        
+            <a class="share_icon addthis_button_preferred_3" g:plusone:size="medium"></a>
+        
+        <a class="share_icon addthis_button_preferred_4"></a>
+    </div>
+    <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<section id="comment">
+    <h1 class="title">Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+			</div>
+			<footer id="footer" class="inner">
+</footer>
+			<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'vishnuatrai';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://vatrai.github.io/blog/2010/09/20/indexing-basic-mysql-queries/';
+        var disqus_url = 'http://vatrai.github.io/blog/2010/09/20/indexing-basic-mysql-queries/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+		</div>
+	</div>
+</body>
+</html>

@@ -1,16 +1,1489 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[My Octopress Blog]]></title>
+  <title><![CDATA[@vishnuatrai]]></title>
   <link href="http://vatrai.github.io/atom.xml" rel="self"/>
   <link href="http://vatrai.github.io/"/>
-  <updated>2014-03-24T22:21:51+05:30</updated>
+  <updated>2014-03-24T22:26:53+05:30</updated>
   <id>http://vatrai.github.io/</id>
   <author>
-    <name><![CDATA[Your Name]]></name>
-    
+    <name><![CDATA[vishnuatrai.com]]></name>
+    <email><![CDATA[me@vishnuatrai.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Jasmine: Ajax and Spies]]></title>
+    <link href="http://vatrai.github.io/blog/2012/04/06/jasmine-ajax-and-spies/"/>
+    <updated>2012-04-06T11:12:46+05:30</updated>
+    <id>http://vatrai.github.io/blog/2012/04/06/jasmine-ajax-and-spies</id>
+    <content type="html"><![CDATA[<p>In continuation of previous post for Jasmine, here I want to share my experience with Jasmine and Ajax. I want to show how cool it is with jasmine to test ajax calls in javascript. Jasmine spies can be used for mock the ajax call with fake data. Spy replaces the function it is spying on. For example my javascript function have an ajax call &ndash;</p>
+
+<pre><code>function myprofiledetails(){
+    $.ajax({
+      type: "GET",
+      url: "http://vishnuatrai.com/aboutme.php",
+      success: function(json){
+        $('#infodiv').html("Ruby On Rails development with jasmine");
+      }
+   });
+}
+</code></pre>
+
+<p>In spec file I can spy the ajax call in beforeEach function. And so it won&rsquo;t make a server call and return the fake data.</p>
+
+<pre><code>describe("mock about me", function() {
+
+  beforeEach(function() {
+    //mocking ajax call with Jasmine Spies
+    var fakeData = "Hi, I am doing Ruby On Rails development with jasmine";
+    spyOn($, "ajax").andCallFake(function(params) {
+      params.success(fakeData);
+    });
+  });
+
+  it("Should have a Happy Face", function() {
+    myprofiledetails();
+    expect($('#infodiv')).toHaveText("Ruby On Rails development with jasmine");
+  });
+});
+</code></pre>
+
+<p>Jasmine provides some useful methods to support spies.</p>
+
+<pre><code>&lt;b&gt;expect(x).toHaveBeenCalled() &lt;/b&gt; 
+passes if x is a spy and was called
+
+&lt;b&gt;expect(x).toHaveBeenCalledWith(arguments)&lt;/b&gt;   
+passes if x is a spy and was called with the specified arguments
+
+&lt;b&gt;expect(x).not.toHaveBeenCalled() &lt;/b&gt;                       
+passes if x is a spy and was not called
+
+&lt;b&gt;expect(x).not.toHaveBeenCalledWith(arguments) &lt;/b&gt;   
+passes if x is a spy and was not called with the specified arguments
+</code></pre>
+
+<p>Spies can be trained to respond in a variety of ways when invoked:</p>
+
+<pre><code>&lt;b&gt;spyOn(x, 'method').andCallThrough():&lt;/b&gt;
+spies on AND calls the original function spied on
+
+&lt;b&gt;spyOn(x, 'method').andReturn(arguments):&lt;/b&gt;
+returns passed arguments when spy is called
+
+&lt;b&gt;spyOn(x, 'method').andThrow(exception): &lt;/b&gt;
+throws passed exception when spy is called
+
+&lt;b&gt;spyOn(x, 'method').andCallFake(function): &lt;/b&gt;
+calls passed function when spy is called
+</code></pre>
+
+<p>There is a detailed wiki page for spices on github <a href="https://github.com/pivotal/jasmine/wiki/Spies.">https://github.com/pivotal/jasmine/wiki/Spies.</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Jasmine: BDD for Javascript]]></title>
+    <link href="http://vatrai.github.io/blog/2012/03/12/jasmine-bdd-for-javascript/"/>
+    <updated>2012-03-12T14:24:24+05:30</updated>
+    <id>http://vatrai.github.io/blog/2012/03/12/jasmine-bdd-for-javascript</id>
+    <content type="html"><![CDATA[<p>In web development, if we are doing web 2.0 and modern web concepts, we have to write a lot of javascript and ajax calls and that will increase client side javascript day by day. We have lot of good javascript libraries for implementation. For faster delivery of features we need to cover the client side javascript with test cases. Jasmine is a tool to do BDD for javascript. It can mock ajax calls and you can use some static templates as a result. Jasmine also can be useful for TDD with javascript.</p>
+
+<h4>1. Setting up a project</h4>
+
+<p>To set up a project for javascript BDD, first of all you need to add <strong>&lsquo;jasmine&rsquo;</strong> to your gem file. Then after bundle install you will have to run a generator {<strong>rails g jasmine:install</strong>} to generate jasmine defaults. Now you can run command <strong>rake jasmine</strong> to see your spec on browser. The server run default on 8888 port. You can see your specs by browsing <a href="http://localhost:8888.">http://localhost:8888.</a> To write specs you can add a .js file in spec/javascripts/my_javascript_spec.js.</p>
+
+<h4>2. Syntax</h4>
+
+<p>Jasmine is very similar with rSpec in terms of syntax. It has methods like <strong>describe</strong> and <strong>it</strong>. Both functions take two arguments, first a string to show the context and second function to test the results. <strong>describe</strong> can be used for grouping related specs.</p>
+
+<pre><code>describe('addition', function () {  
+    it('adds two numbers', function () {  
+        expect(5 + 5).toEqual(10);  
+    });  
+}); 
+</code></pre>
+
+<h4>3. Setup and Tear-down</h4>
+
+<p>Jasmine provides function <strong>beforeEach</strong> for setup the spec context and <strong>afterEach</strong> to clear the context.</p>
+
+<pre><code>describe("Spec setup and tear-down", function() {
+  var number;
+  beforeEach(function() {
+    number = 0;
+    number += 1;
+  });
+
+  afterEach(function() {
+    number = 0;
+  });
+
+  it("first assertion", function() {
+    expect(number).toEqual(1);              #green
+  });
+
+  it("second assertion", function() {
+    expect(number).toEqual(1);              #green
+  });
+});
+</code></pre>
+
+<h4>4. Matchers</h4>
+
+<p>Given few of the matches you can use for assertions &ndash;</p>
+
+<pre><code>&lt;b&gt;toContain&lt;/b&gt;
+   expect(["linux", "mac", "windows"]).toContain("linux");  
+&lt;b&gt;toMatch&lt;/b&gt;
+   expect(1050.50).toMatch(/\$\d*.\d\d/);
+&lt;b&gt;toBeLessThan&lt;/b&gt;
+   expect(1).toBeLessThan(2);  
+&lt;b&gt;toBeGreaterThan&lt;/b&gt;
+   expect(2).toBeGreaterThan(1);
+&lt;b&gt;toBeTruthy&lt;/b&gt;
+  expect(true).toBeTruthy(); 
+&lt;b&gt;toBeFalsy&lt;/b&gt;
+  expect(false).toBeFalsy();  
+
+and a lot many.
+</code></pre>
+
+<h4>5. Custom Matchers</h4>
+
+<p>We can write our own custom matcher using <strong>this.addMatchers</strong> in beforeEach call.</p>
+
+<pre><code>beforeEach(function () {  
+  this.addMatchers({  
+    toBeBetween: function (floor, ceiling) {  
+      return this.actual &gt; floor &amp;&amp; this.actual &lt; ceiling;  
+    }  
+  });  
+});  
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Moving to Ruby and Rails Edge]]></title>
+    <link href="http://vatrai.github.io/blog/2012/01/18/moving-to-ruby-and-rails-edge/"/>
+    <updated>2012-01-18T15:25:34+05:30</updated>
+    <id>http://vatrai.github.io/blog/2012/01/18/moving-to-ruby-and-rails-edge</id>
+    <content type="html"><![CDATA[<p>Since our team always works with technology edge whether it is rails or ruby, from last week we started moving to ruby 1.9.3 and rails 3.1.3. I am sharing our experiences we found during migrating our product to rails and ruby latest release.</p>
+
+<h5>Ruby-1.9.3 Upgrade</h5>
+
+<p>Compare to ruby 1.8.7 in ruby 1.9.3 there are lot of changes, newly introduced, and things taken away, some of them are here &ndash;</p>
+
+<h4>1) Load path not including the working directory</h4>
+
+<pre><code>require_relative or require './file'
+</code></pre>
+
+<h4>2)New Hash syntax – without hash-rockets(=>)</h4>
+
+<pre><code>{ name: 'vishnu', age: '26'}
+</code></pre>
+
+<h4>3)Character Encoding – more encoding support for other char-sets</h4>
+
+<p>cp950, cp951, UTF-16, and UTF-32 etc.</p>
+
+<h4>4)Array – to_s no longer joins elements, but returns and inspect style representation</h4>
+
+<p>choice method goes to sample method
+method nitems removed</p>
+
+<h4>5)Procs and Lambdas – proc {} creates a Proc object instead lambda</h4>
+
+<pre><code> proc {}.lambda?          #=&gt; false
+ lambda {}.lambda?        #=&gt; true
+</code></pre>
+
+<p>source_location method gives file_name, line_number of proc</p>
+
+<h4>6)Time – Time standard library changed</h4>
+
+<p>Time.parse uses dd/mm/yyyy format instead of mm/dd/yyyy
+Time monday?, tuesday?, wednesday?, thursday?, friday?, saturday? sunday? Available to check a day</p>
+
+<h4>7)New in Standard Library1.9.3</h4>
+
+<p>json, to_json and JSON.load(data) method is available with objects
+minitest MiniTest and MiniTest::Spec
+prime – Prime number library</p>
+
+<pre><code>7.prime?          #=&gt; true
+6.prime?          #=&gt; false
+</code></pre>
+
+<h4>8)Removed from Standard Library 1.9.3</h4>
+
+<p>soap/wsdlDriver, date2, ftools,jcode(removed because now encoding support), parsedate, rubyunit</p>
+
+<h5>Rails-3.1.3 Upgrade</h5>
+
+<p>In order to upgrade to Rails 3.1.3 version with ruby 1.9.3 here are some points, those can help you &ndash;</p>
+
+<h4>1)To support special characters in your ruby code</h4>
+
+<p>Put {# &ndash;<em>&ndash; coding: utf-8 &ndash;</em>&ndash;} beginning of the file and
+configuration in application.rb for default encoding. config.encoding = &ldquo;utf-8&rdquo;</p>
+
+<h4>2)Capybara should upgrade to 1.1.2 version and cucumber with 1.1.2 version</h4>
+
+<p>regenerate cucumber environment with required options</p>
+
+<pre><code>bundle exec rails g cucumber:install --capybara –rspec
+</code></pre>
+
+<h4>3)By default ActiveResource uses JSON format</h4>
+
+<p>To make default XML format specify format in initializers</p>
+
+<pre><code>ActiveResource::Base.format = ActiveResource::Formats::XmlFormat
+</code></pre>
+
+<h4>4)To load all helpers in each controller/action specify config</h4>
+
+<pre><code>config.action_controller.include_all_helpers = true   in application.rb
+instead
+helpers :all in application_controller.rb
+</code></pre>
+
+<h4>5)To load test_helper.rb in all test specs, use</h4>
+
+<pre><code>require './test/test_helper'
+instead
+require File.dirname(__FILE__) + '/../test_helper'
+</code></pre>
+
+<h4>6)RJS template fix</h4>
+
+<p>RJS template and rjs code in controller is not supported, changed to .html.js template. For a quick fix you can use prototype-rails gem in Gemfile</p>
+
+<pre><code>gem 'prototype-rails'     #Gemfile
+</code></pre>
+
+<p>prototype-rails do not use prototype.js it provides helper methods to support rjs templates. later on you can migrate all .rjs to .js</p>
+
+<h4>7) Enable assets pipeline</h4>
+
+<p>To enable assets pipeline, an import feature of rails 3.1, you need to set application.rb with configurations-</p>
+
+<pre><code>config.assets.enabled = true
+config.assets.initialize_on_precompile = false
+</code></pre>
+
+<p>and production.rb with configurations &ndash;</p>
+
+<pre><code>config.assets.compress = true
+config.assets.compile = true
+config.assets.digest = false
+config.assets.js_compressor  = :uglifier
+</code></pre>
+
+<p>and gemfile should have a group :assets and should include saas-rails, coffee-rails, uglifier gems.</p>
+
+<pre><code>group :assets do
+  gem 'sass-rails',   "~&gt; 3.1.0"
+  gem 'coffee-rails', "~&gt; 3.1.0"
+  gem 'uglifier'
+end
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rails::Railtie – Hook Everything]]></title>
+    <link href="http://vatrai.github.io/blog/2011/07/31/railsrailtie-e28093-hook-everything/"/>
+    <updated>2011-07-31T17:33:44+05:30</updated>
+    <id>http://vatrai.github.io/blog/2011/07/31/railsrailtie-e28093-hook-everything</id>
+    <content type="html"><![CDATA[<p>After Rails 3 released I have been trying to find major and important changes in rails framework over 2.x version. The change I like most is Rails Railtie. Using Railtie you can configure your own gem or plugin in a rails application according to your choice in boot process.  If you are a plugin developer, you can use Railtie class that is capable of loading generators, tasks, middlewares and adding subscribers.</p>
+
+<p>Rails::Engine is nothing more than a Railtie and it has some initializers already set and Rails::Application and Rails::Plugin are also engines. Any subclass of Railtie can be use to initialize rails application, so your plugin can be a first class member of rails application.</p>
+
+<p>Here is sample plugin Railtie that will be loaded when your rails application boots.</p>
+
+<pre><code>require 'rails'
+class MyPlugin &lt; Rails::Railtie
+  # railtie code goes here
+end
+</code></pre>
+
+<p>Here I will give you some examples of Railtie methods, how to customize and extend your rails application using your plugin or gem library.</p>
+
+<h4>1) generators</h4>
+
+<p>Rails will require any generators if you have require generator path in your Railtie class within generators block.</p>
+
+<pre><code>generators do
+  require 'lib/to/generator.rb'
+end
+</code></pre>
+
+<h4>2) rake_tasks</h4>
+
+<p>You can ship rake tasks of your plugin in rails application if you require in Railtie</p>
+
+<pre><code>rake_tasks do 
+  require 'lib/to/rake_task.rb'
+end
+</code></pre>
+
+<h4>3) initializer</h4>
+
+<p>Railtie initializer method can create initializers that can run during the Rails boot process. It has the options to run a initializer before or after a specific initializer.</p>
+
+<pre><code>initializer "plugin_railtie.boot_plugin" do
+  Plugin.boot(NewPlugin)
+end
+
+initializer "new_plugin_railtie.boot_new_plugin", :before =&gt; "plugin_railtie.boot_plugin" do
+    NewPlugin.boot!
+end
+</code></pre>
+
+<h4>4) console</h4>
+
+<p>console method allows to add code that will run when Rails console starts.</p>
+
+<pre><code> console do
+   puts "my plugin loaded."
+ end
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rails 3 – ActiveModel Basics]]></title>
+    <link href="http://vatrai.github.io/blog/2011/03/17/rails-3-e28093-activemodel/"/>
+    <updated>2011-03-17T22:55:31+05:30</updated>
+    <id>http://vatrai.github.io/blog/2011/03/17/rails-3-e28093-activemodel</id>
+    <content type="html"><![CDATA[<p>Hey Guys,</p>
+
+<p>It is long time to write something, since I was busy with some open-source stuff. Over last two weeks we were migrating an application from rails 2.x version to rails 3.x. In that application we had lot of ActiveResource classes and other classes, and in those classes we need to validate some attributes and also we need to wrap call backs around some methods in ActiveRecord style. In earlier 2.x rails version we had to write some code for validation and  call back that was written us.</p>
+
+<p>During the migration from 2.x version to rails 3, we got to know about ActiveModel module that will give you lot of features in ActiveRecord style.</p>
+
+<p>Here, I am sharing my experiences with ActiveModel &ndash;</p>
+
+<p>ActiveModel is a nice library provided by Rails 3, by using that any ruby object can behave like a ActiveRecord class object. Some of ActiveModel API explained below &ndash;</p>
+
+<h4>1.1 AttributeMethods</h4>
+
+<p>AttributeMethods module can add custom prefixes and suffixes on  methods of a class. It is used by defining the prefixes and suffixes,  which methods on the object will use them.</p>
+
+<pre><code>class Person
+  include ActiveModel::AttributeMethods
+
+  attribute_method_prefix 'reset_'
+  attribute_method_suffix '_highest?'
+  define_attribute_methods ['age']
+
+  attr_accessor :age
+
+private
+  def reset_attribute(attribute)
+    send("#{attribute}=", 0)
+  end
+
+  def attribute_highest?(attribute)
+    send(attribute) &gt; 100 ? true : false
+  end
+
+end
+
+person = Person.new
+person.age = 110
+person.age_highest?  # true
+person.reset_age     # 0
+person.age_highest?  # false
+</code></pre>
+
+<h4>1.2 Callbacks</h4>
+
+<p>Callbacks gives Active Record style callbacks. This provides the  ability to define the callbacks and those will run at appropriate time.  After defining a callbacks you can wrap with before, after and around  custom methods.</p>
+
+<pre><code>class Person
+  extend ActiveModel::Callbacks
+
+  define_model_callbacks :update
+
+  before_update :reset_me
+
+  def update
+    _run_update_callbacks do
+      # This will call when we are trying to call update on object.
+    end
+  end
+
+  def reset_me
+    # This method will call when you are calling update on object as a before_update callback as defined.
+  end
+end
+</code></pre>
+
+<h4>1.3 Conversion</h4>
+
+<p>If a class defines persisted? and id methods then you can include  Conversion module in that class and you can able to call Rails  conversion methods to objects of that class.</p>
+
+<pre><code>class Person
+  include ActiveModel::Conversion
+
+  def persisted?
+    false
+  end
+
+  def id
+    nil
+  end
+end
+
+person = Person.new
+person.to_model == person  #=&gt; true
+person.to_key              #=&gt; nil
+person.to_param            #=&gt; nil
+</code></pre>
+
+<h4>1.4 Dirty</h4>
+
+<p>An object becomes dirty when an object is gone through one or more  changes to its attributes and not yet saved. This gives the ability to  check whether an object has been changed or not. It also has attribute  based accessor methods. Lets consider a Person class with attributes  first_name and last_name</p>
+
+<pre><code>require 'rubygems'
+require 'active_model'
+
+class Person
+  include ActiveModel::Dirty
+  define_attribute_methods [:first_name, :last_name]
+
+  def first_name
+    @first_name
+  end
+
+  def first_name=(value)
+    first_name_will_change!
+    @first_name = value
+  end
+
+  def last_name
+    @last_name
+  end
+
+  def last_name=(value)
+    last_name_will_change!
+    @last_name = value
+  end
+
+  def save
+    @previously_changed = changes
+  end
+
+end
+</code></pre>
+
+<h5>1.4.1 Querying object directly for its list of all changed attributes.</h5>
+
+<pre><code>person = Person.new
+person.first_name = "First Name"
+
+person.first_name #=&gt; "First Name"
+person.first_name = "First Name Changed"
+
+person.changed? #=&gt; true
+
+#returns an list of fields arry which all has been changed before saved.
+person.changed #=&gt; ["first_name"]
+
+#returns a hash of the fields that have changed with their original values.
+person.changed_attributes #=&gt; {"first_name" =&gt; "First Name Changed"}
+
+#returns a hash of changes, with the attribute names as the keys, and the values will be an array of the old and new value for that field.
+person.changes #=&gt; {"first_name" =&gt; ["First Name","First Name Changed"]}
+</code></pre>
+
+<h5>1.4.2 Attribute based accessor methods</h5>
+
+<p>Track whether the particular attribute has been changed or not.</p>
+
+<pre><code>#attr_name_changed?
+person.first_name #=&gt; "First Name"
+
+#assign some other value to first_name attribute
+person.first_name = "First Name 1"
+
+person.first_name_changed? #=&gt; true
+</code></pre>
+
+<p>Track what was the previous value of the attribute.</p>
+
+<pre><code>#attr_name_was accessor
+person.first_name_was  #=&gt; "First Name"
+</code></pre>
+
+<h5>Track  both previous and current value of the changed attribute. Returns an array if changed else returns nil</h5>
+
+<pre><code>#attr_name_change
+person.first_name_change #=&gt; ["First Name", "First Name 1"]
+person.last_name_change #=&gt; nil
+</code></pre>
+
+<h4>1.5 Validations</h4>
+
+<p>Validations module adds the ability to class objects to validate them in Active Record style.</p>
+
+<pre><code>class Person
+  include ActiveModel::Validations
+
+  attr_accessor :name, :email
+
+  validates :name, :presence =&gt; true
+  validates_format_of :email, :with =&gt; /^([^\s]+)((?:[-a-z0-9]\.)[a-z]{2,})$/i 
+
+end
+
+person = Person.new
+person.valid?                        #=&gt; false
+person.name  = 'vishnu'
+person.email  = 'me'
+person.valid?                        #=&gt; false
+person.email = 'me@vishnuatrai.com'
+person.valid?                        #=&gt; true
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[MapReduce: Reduce Analytical Data Processing]]></title>
+    <link href="http://vatrai.github.io/blog/2011/02/16/mapreduce-tool-to-reduce-analytical-data-processing/"/>
+    <updated>2011-02-16T22:54:29+05:30</updated>
+    <id>http://vatrai.github.io/blog/2011/02/16/mapreduce-tool-to-reduce-analytical-data-processing</id>
+    <content type="html"><![CDATA[<p>Today every human being is rapidly increasing online activities and as a result web applications are having a huge amounts of data, now it is a challenge for organizations to quickly analyze the huge amounts of data their customers and audiences generate to better understand and serve them.MapReduce is the tool that is helping those organizations.</p>
+
+<p>MapReduce is a programming framework popularized by Google and used to simplify data processing across massive data sets.</p>
+
+<p>Enterprise implementation of MapReduce can be found in Hadoop, which uses HDFS to store unstructured data (file system) and uses the power of MapReduce to parallelize the processing of this data. Hadoop is suited for non time-sensitive batch jobs involving large-scale datasets.</p>
+
+<p>With MapReduce, computational processing can occur on data stored either in a filesystem (unstructured) or within a database (structured).</p>
+
+<p>There are two fundamental pieces of a MapReduce query:</p>
+
+<h4>Map</h4>
+
+<p>The master node takes the input, chops it up into smaller sub-problems, and distributes those to worker nodes. A worker node may do this again in turn, leading to a multi-level tree structure. The worker node processes that smaller problem, and passes the answer back to its master node.</p>
+
+<h4>Reduce</h4>
+
+<p>The master node then takes the answers to all the sub-problems and combines them in a way to get the output &ndash; the answer to the problem it was originally trying to solve.</p>
+
+<h3>Benefits of MapReduce</h3>
+
+<p>First, the model is easy to use, even for programmers without experience with distributed systems, since it hides the details of parallelization, fault-tolerance, locality optimization, and load balancing. MapReduce allows developers to write applications in their language of choice while handling the details of parallelization behind the scenes.</p>
+
+<p>Second, a large variety of problems are easily expressible as MapReduce computations.
+For example, MapReduce is used for the generation of data for Google&rsquo;s production web search service, for sorting, for data mining, for machine learning, and many other systems.</p>
+
+<p>Third, MapReduce enables scaling of applications across large clusters of machines comprising thousands of nodes, with fault-tolerance built-in for ultra-fast performance.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[MongoDB V/S CouchDB]]></title>
+    <link href="http://vatrai.github.io/blog/2011/01/12/mongodb-vs-couchdb/"/>
+    <updated>2011-01-12T22:44:11+05:30</updated>
+    <id>http://vatrai.github.io/blog/2011/01/12/mongodb-vs-couchdb</id>
+    <content type="html"><![CDATA[<p>Both MongoDB and CouchDB are document oriented databases with JSON style object data storage.  They have their pros and cons in different situations.</p>
+
+<h4>1) Map Reduce</h4>
+
+<p>Mongo uses map reduce for data processing jobs, Couch uses map reduce for build all views.</p>
+
+<h4>2) Atomicity</h4>
+
+<p>Both support concurrent modifications of single documents.  Both forego complex transactions involving large numbers of objects.</p>
+
+<h4>3) Interface</h4>
+
+<p>Couch uses REST as its interface to the database. Mongo relies on language specific database drivers.</p>
+
+<h4>4) Query Expression</h4>
+
+<p>Couch uses index building schemes to generate indexes those support particular queries. Mongo uses traditional dynamic queries and query optimizer to determine whether index exists or not.</p>
+
+<h4>5) Horizontal Scalability</h4>
+
+<p>Couch uses replication as a way to scale, instead Mongo uses sharding as a way to scale that is similar to Google&rsquo;s BigTable.</p>
+
+<h4>6) Storage strategy</h4>
+
+<p>Couch MVCC based, Mongo uses traditional approach and updates an object in place when possible.</p>
+
+<h3>Use cases</h3>
+
+<p>Couch is very good for certain classes of problems:
+   problems which need intense versioning; problems with offline databases that resync later;
+   problems where you want a large amount of master-master replication happening.</p>
+
+<p>Mongo is very good for different kind of problems:</p>
+
+<pre><code>problems requiring high update rates of objects are a great fit; compaction is not necessary.
+</code></pre>
+
+<p>Mongo is more oriented towards master/slave and auto failover configurations than to complex master-master setups.   <br/>
+With MongoDB you should see high write performance, especially for updates.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Why NoSQL?]]></title>
+    <link href="http://vatrai.github.io/blog/2010/11/01/why-nosql/"/>
+    <updated>2010-11-01T20:57:27+05:30</updated>
+    <id>http://vatrai.github.io/blog/2010/11/01/why-nosql</id>
+    <content type="html"><![CDATA[<p><strong>Why NoSQL?</strong></p>
+
+<p><strong>NoSQL</strong> term is supposed to stand for “Not Only SQL.” . This term is used to designated DBMS that differ from classic RDBMS in some way. These DBMS may not require fixed table schemas, and usually avoid join operations and typically scale horizontally.</p>
+
+<p><strong>Architecture</strong></p>
+
+<p>NOSQL databases tend to have two key attributes across the board. One is that they’re non-relational, so they’re not doing joins on the server. And second, they have light transactional semantics. So complex, long-running, serialized transactions are not part of any of these NoSQL products. Those two differences, put together, allow you to take a very different approach to how databases are created, which means you can make horizontally scalable databases — the kind that run across large clusters of machines.</p>
+
+<p>RDBMS have shown poor performance on certain data-intensive applications, including indexing a large number of documents, serving pages on high-traffic websites, and delivering streaming media.  Typical RDBMS implementations are tuned either for small but frequent read/write transactions or for large batch transactions with rare write accesses. NoSQL on the other hand, services heavy read/write workloads</p>
+
+<p>NoSQL architectures often provide weak consistency guarantees, such as eventual consistency, or transactions restricted to single data items. Some systems, however, provide full ACID guarantees, in some instances by adding a supplementary middleware layer (e.g., CloudTPS).</p>
+
+<p><strong>Core NoSQL Systems</strong></p>
+
+<p><strong>Wide Column Store/Column Families</strong></p>
+
+<p>1.Cassandra
+2.Cloudera
+3.Amazon SimpleDB</p>
+
+<p><strong>Document Store</strong></p>
+
+<ol>
+<li>CouchDB</li>
+<li>MongoDB</li>
+<li>OrientDB</li>
+</ol>
+
+
+<p><strong>Key Value/ Tuple Store</strong></p>
+
+<p>1.Redis
+2.MemcacheDB
+3.Tokyo Cabibnet</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rake Migration: Track Rake Tasks with versions]]></title>
+    <link href="http://vatrai.github.io/blog/2010/10/12/managed-rake-tasks-rake-migration/"/>
+    <updated>2010-10-12T15:29:48+05:30</updated>
+    <id>http://vatrai.github.io/blog/2010/10/12/managed-rake-tasks-rake-migration</id>
+    <content type="html"><![CDATA[<p>I have started working on a plugin which helps rails projects to maintain the list of rake tasks.</p>
+
+<p>We are working on a project there are four to six teams at different geo-locations Bangalore, Kolkata, Edmonton etc.For the same project we have different environments like Developemnt, Testing, Staging, QA, QA2, Beta etc.All teams are working with new features, as well as bug fixes.</p>
+
+<p>Many times we found a situation that a specific rake task should be run on a specific environment to fix the data. A lot of time team members forgot to shoot a mail and tell every team about a rake task which will fix a bug on specific environment. As other people update code base and start using the application they got stuck and it take a lot of time to resolve the issue that a specific task was not run because team did not get any information as such.</p>
+
+<p>To resolve this issue we got a idea form rake tasks to migrate database (db:migrate). So if we can manage rake tasks with versions and if we can keep track of tasks those have been run, and yet to run on system. One can generate a ruby file write there any ruby code or invoke any rake task, and upload to repository other people only take update from repo and run a simple commend and the system will update.</p>
+
+<p>Here we don’t have to worry to inform everybody about new task to fix bug or update system.</p>
+
+<p>Here is the URL for plugin</p>
+
+<p><a href="http://github.com/vatrai/rake_migration">http://github.com/vatrai/rake_migration</a></p>
+
+<p>By using generators one can generate blank ruby files prefix with time-stamped version.  Version helps to keep track of tasks that are <strong>Run</strong>, <strong>yet to Run</strong> on the system. One can specify Rails environment in ruby files, specify what data fix should be run on a specified environment using simple <strong>if</strong> condition.</p>
+
+<p>To generate simple ruby file use:</p>
+
+<p><strong> ruby script/generate rake_migration &lt;file_name></strong></p>
+
+<p>This command creates a blank ruby file in<strong> {RAILS_ROOT}/rake/migrate </strong>directory.  Write ruby code or invoke rake task in the generated ruby file.</p>
+
+<p>To run generated files run rake command:</p>
+
+<p><strong>{RAILS_ROOT} rake rake_migration:migrate</strong></p>
+
+<p>This command runs remaining(yet to run) ruby files in <strong>{RAILS_ROOT}/rake/migrate</strong> and saves version in rake_migrations table in database.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[MySql DB Indexing]]></title>
+    <link href="http://vatrai.github.io/blog/2010/09/20/indexing-basic-mysql-queries/"/>
+    <updated>2010-09-20T19:33:35+05:30</updated>
+    <id>http://vatrai.github.io/blog/2010/09/20/indexing-basic-mysql-queries</id>
+    <content type="html"><![CDATA[<p>Working with a online tutorial with a huge amount of data, product owners always used to  raise issues for application performance. After looking in to different scenerios like apache configurations, hardware, network issues, and mysql performance as a backend server, we got to know that there are a lot of opportunities to improve mysql db performance. To see why db performance slow I turned on slow quiry logging in my.cnf:</p>
+
+<p>log-slow-queries
+long_query_time = 5</p>
+
+<p>The slow quesies log file became huge in size in Gigs after only two or three days, and queries was like:</p>
+
+<h1>Query_time:   5        Lock_time:   0       Rows_sent:   1        Rows_examined:   40508</h1>
+
+<p>SELECT quize_id as total_quizes FROM student_quizes WHERE exam_id IN(1,2,3,11)</p>
+
+<p>In abouve example its whowing that “Rows_sent:   1    Rows_examined: 40508”. So, after examining 40508 and returning just 1 row is not a good job done by db server. If there are 200 visitors using the application then multiply this figure with 200, in this case MySQL is examining 8,101,600 rows! Then the Mysql performance is in misurable situation.</p>
+
+<p>To see why MySQL queries are too slow we can explain them:</p>
+
+<pre><code>   mysql&gt; EXPLAIN
+       -&gt; SELECT quize_id as total_quizes FROM student_quizes
+       -&gt; WHERE exam_id IN (1, 2, 3, 11);
+   +-------------------+-------+---------------+-------------------+---------+------+-------+--------------------------+
+   | table             | type  | possible_keys | key               | key_len | ref  | rows  | Extra                    |
+   +-------------------+-------+---------------+-------------------+---------+------+-------+--------------------------+
+   | student_quizes    | index | NULL          | quize_id_exam_id  |       6 | NULL | 40508 | Using where; Using index |
+   +-------------------+-------+---------------+-------------------+---------+------+-------+--------------------------+
+</code></pre>
+
+<p>Here MySQL telling us    there&rsquo;s no possible keys but it&rsquo;s using key quize_id_exam_id? And if it&rsquo;s using a key then why does it suspect it    will have to examine 40508 rows (by performing a full index scan, denoted by &ldquo;type: index&rdquo;)? It seems there&rsquo;s a    problem with the keys so we must now understand them:</p>
+
+<pre><code>mysql&gt; DESCRIBE student_quizes;
+   +-------------+-----------------------+------+-----+---------+-------+
+   | Field       | Type                  | Null | Key | Default | Extra |
+   +-------------+-----------------------+------+-----+---------+-------+
+   | quize_id    | mediumint(8) unsigned |      | MUL | 0       |       |
+   | exam_id     | mediumint(8) unsigned |      |     | 0       |       |
+   | created_at  | datetime              |      |     | 0       |       |
+   | updated_at  | datetime              |      |     | 0       |       |
+   +-------------+-----------------------+------+-----+---------+-------+
+
+   mysql&gt; SHOW INDEX FROM student_quizes;
+   +-------------------+------------+-----------------------+--------------+-------------+-----------+-------------+
+   | Table             | Non_unique | Key_name              | Seq_in_index | Column_name | Collation | Cardinality |
+   +-------------------+------------+-----------------------+--------------+-------------+-----------+-------------+
+   | student_quizes    |          1 | quize_id_exam_id      |            1 | quize_id    | A         |       40508 |
+   | student_quizes    |          1 | exam_id_quize_id      |            2 | exam_id     | A         |       40508 |
+   +-------------------+------------+-----------------------+--------------+-------------+-----------+-------------+
+</code></pre>
+
+<p>Understanding indexes is two part: Understanding the structure of the table <em>then</em> understanding the indexes. You can&rsquo;t just slap an index on a table and think everything will be wonderful. In this    example it looks like everything should be wonderful with key quize_id_exam_id. Given that the SELECT statement is    selecting quize_id and exam_id and that&rsquo;s just what this key indexes, so why isn&rsquo;t it working? It is working, just not    how we&rsquo;re intending; it&rsquo;s working for MySQL which is why in EXPLAIN it says &ldquo;Using index.&rdquo; When MySQL says this    in &ldquo;Extra&rdquo; is means &ldquo;The column information is retrieved from the table using only information in the index tree     without having to do an additional seek to read the actual row.&rdquo; In other words: It finds and returns matching    columns from the index in memory not the table on disk, which is a good thing, unless it&rsquo;s doing this 12 million    times for 1 matching column.</p>
+
+<p>How very annoying: MySQL is using the index but still in effect examing every row of the table. The reason why in    this example deals with how MySQL uses multiple column indexes. From DESCRIBE we see &ldquo;MUL&rdquo; for multi-column    index, and from SHOW INDEX we see quize_id_exam_id twice, first for quize_id second for exam_id. A multiple    column index acts like a single column index if the columns were put end-to-end in the order specified by    &ldquo;Seq_in_index&rdquo; from SHOW INDEX. In this example if quize_id were 100 and exam_id were 200 this is indexed as    &ldquo;100 200&rdquo;. Throw this in the mix: MySQL will only use a multi-column index if a value    is specified for the first column in the index. In this example the first column in the index is quize_id and    we&rsquo;re not specifying a value for this column which is why MySQL won&rsquo;t use the index like we want it to. What    MySQL does do, and why it&rsquo;s able to use the index at all,  is use any value for quize_id and the values we gave    it for exam_id. In effect it looks for &lsquo;<em>  1&rsquo;, &lsquo;</em>  2&rsquo;, &lsquo;<em>   3&rsquo;, &lsquo;</em>   11&rsquo;. Since quize_id is unique MySQL really does have to look at every single one, all 40,00+. While doing that if it    comes across one with a matching exam_id lucky for us. I hope you see the obvious and simple solution: Swap    the order of columns in the key, exam_id then quize_id. Later we&rsquo;ll do this but first it&rsquo;s good learning    to examine another possibility.</p>
+
+<p>If exam_id is what we&rsquo;re matching rows on, just index exam_id. The command would be &ldquo;CREATE INDEX    test_index ON student_quizes (exam_id);&rdquo;. Then EXPLAIN the exact same slow query again:</p>
+
+<pre><code>   mysql&gt; EXPLAIN
+       -&gt; SELECT quize_id as total_quizes FROM student_quizes
+       -&gt; WHERE exam_id IN (1,2,3,11);
+   +-------------------+-------+---------------+------------+---------+------+------+-------------+
+   | table             | type  | possible_keys | key        | key_len | ref  | rows | Extra       |
+   +-------------------+-------+---------------+------------+---------+------+------+-------------+
+   | student_quizes    | range | test_index    | test_index |       3 | NULL |    5 | Using where |
+   +-------------------+-------+---------------+------------+---------+------+------+-------------+
+</code></pre>
+
+<p>That output speaks volumes: 5 rows to examine. This is the index that saved the server. I have not seen the server&rsquo;s    load go above 4 and the website is running faster with more users at once. The difference was night and day. But    why stop there? The query is no longer slow but it could be better. Notice how MySQL is not &ldquo;Using index&rdquo; anymore.    This is because quize_id is not in the index its using. Whereas it&rsquo;s in the quize_id_exam_id index MySQL has    wisely chosen to examine fewer rows at the cost of doing a few disk seeks. The solution is a multiple column index    on both exam_id and quize_id, with exam_id first.</p>
+
+<pre><code>   mysql&gt; CREATE INDEX exam_id_quize_id ON student_quizes (exam_id, quize_id);
+   Query OK, 40508 rows affected (0.53 sec)
+   Records: 40508  Duplicates: 0  Warnings: 0
+
+   mysql&gt; EXPLAIN
+       -&gt; SELECT quize_id as total_quizes FROM student_quizes
+       -&gt; WHERE exam_id IN (1,2,3,11);
+   +-------------------+-------+------------------------------+-------------------+---------+------+------+--------------------------+
+   | table             | type  | possible_keys                | key               | key_len | ref  | rows | Extra                    |
+   +-------------------+-------+------------------------------+-------------------+---------+------+------+--------------------------+
+   | student_quizes    | range | test_index,exam_id_quize_id  | exam_id_quize_id  |       3 | NULL |    5 | Using where; Using index |
+   +-------------------+-------+------------------------------+-------------------+---------+------+------+--------------------------+
+</code></pre>
+
+<p>As we can see MySQL still considers the test_index key but chooses exam_id_quize_id because doing so will allow    it to get matching quize_id from the index instead of the disk. A simple swap of column orders in the index made    all the difference. As the saying goes, it takes one tree to make a thousand matches and one match to burn a    thousand trees down.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[#After ubuntu installation requirements Part I]]></title>
+    <link href="http://vatrai.github.io/blog/2010/08/15/todo-with-ubuntu-installation/"/>
+    <updated>2010-08-15T22:19:56+05:30</updated>
+    <id>http://vatrai.github.io/blog/2010/08/15/todo-with-ubuntu-installation</id>
+    <content type="html"><![CDATA[<p>After installation of Ubuntu you may need to set up your system for some basic requirements. For these requirements you can follow these steps :</p>
+
+<p>1 – Expand the Software Repository List</p>
+
+<p>First of all, lets make Ubuntu “see” more packages. Go to the terminal and edit your sources.list with :</p>
+
+<p>sudo gedit /etc/apt/sources.list</p>
+
+<p>Here is the content of my sources.list which I think is quite complete to have all the necessary applications you could ever need. So delete the whole content of your sources list and replace it with the content of mine</p>
+
+<p>Save it. Now import the necessary repositories keys to avoid “apt-get” crying about some missing keys, go to the terminal and type:</p>
+
+<p>sudo apt-key adv &mdash;recv-keys &mdash;keyserver keyserver.ubuntu.com <key></p>
+
+<p>Get your system up to date with :</p>
+
+<p>sudo apt-get update &amp;&amp; sudo apt-get upgrade</p>
+
+<p>Now all your programs will run on the last version.</p>
+
+<p>2 – Anti-Virus</p>
+
+<p>Windows equivalent : AVG AntiVirus, NAV, TrendMicro, F-Prot, Kaspersky, …</p>
+
+<p>Ubuntu equivalent : ClamAV, Avast</p>
+
+<p>ClamAV</p>
+
+<p>sudo apt-get install clamav clamtk</p>
+
+<p>Access it through System Tools → Virus Scanner .</p>
+
+<p>Avast</p>
+
+<p>wget <a href="http://files.avast.com/files/linux/avast4workstation_1.3.0-2_i386.deb">http://files.avast.com/files/linux/avast4workstation_1.3.0-2_i386.deb</a> &amp;&amp; sudo dpkg -i avast4workstation_1.3.0-2_i386.deb</p>
+
+<p>Access it through Accessories → avast! Antivirus .</p>
+
+<p>3 – Essential tools for compiling from sources</p>
+
+<p>sudo apt-get install build-essential checkinstall cdbs devscripts dh-make fakeroot libxml-parser-perl check avahi-daemon</p>
+
+<p>4 – Java runtime environment</p>
+
+<p>Java is a very important thing to install, now that many programs like Azureus need it to run. So type:</p>
+
+<p>sudo apt-get install sun-java6-jre sun-java6-plugin equivs</p>
+
+<p>5 – Ubuntu Control Panel</p>
+
+<p>Ubuntu Tweak</p>
+
+<p>Ubuntu Tweak allows you to tweak your system settings, all in one place. You can install new applications, customize your desktop settings, configure your startup applications, changing the system filetype association and many more tweaks in this single application.</p>
+
+<p>sudo apt-get install ubuntu-tweak</p>
+
+<p>Then access it through Applications → System Tools → Ubuntu Tweak</p>
+
+<p>App Runner</p>
+
+<p>App Runner is a small open source utility that makes it very easy to run any type of program/executable/script on any distro/OS that uses the nautilus file manager: Debian/Ubuntu/Super OS/Fedora/etc</p>
+
+<p>wget <a href="http://hacktolive.org/files/app_runner/App_Runner_0.2.deb">http://hacktolive.org/files/app_runner/App_Runner_0.2.deb</a> &amp;&amp; sudo dpkg -i App_Runner_0.2.deb</p>
+
+<p>Then right-click the file &ndash;> Scripts &ndash;> Run This App or Run This App (root)</p>
+
+<p>6 – Multimedia</p>
+
+<p>Windows equivalent : windows media player, real player, vlc, mplayer</p>
+
+<p>Ubuntu equivalent : vlc, mplayer, helix player</p>
+
+<p>To have Ubuntu playing all kinds of stuff, you need to install many codecs. So on the Terminal, type:</p>
+
+<ul>
+<li>Installing vlc and mplayer (plays almost everything):</li>
+</ul>
+
+
+<p>sudo apt-get install vlc mplayer</p>
+
+<ul>
+<li>Common packs</li>
+</ul>
+
+
+<p>sudo apt-get install non-free-codecs libxine1-ffmpeg gxine mencoder mpeg2dec vorbis-tools id3v2 mpg321 mpg123 libflac++6 ffmpeg libmp4v2-0 totem-mozilla icedax tagtool easytag id3tool lame nautilus-script-audio-convert mozilla-helix-player helix-player libmad0 libjpeg-progs libmpcdec3 libquicktime1 flac faac faad sox ffmpeg2theora libmpeg2-4 uudeview flac libmpeg3-1 mpeg3-utils mpegdemux liba52-dev</p>
+
+<ul>
+<li>Gstreammer 0.10</li>
+</ul>
+
+
+<p>sudo apt-get install gstreamer0.10-ffmpeg gstreamer0.10-fluendo-mp3 gstreamer0.10-gnonlin gstreamer0.10-pitfdll gstreamer0.10-sdl gstreamer0.10-plugins-bad-multiverse gstreamer0.10-schroedinger gstreamer0.10-plugins-ugly-multiverse totem-gstreamer
+sudo apt-get install python-nautilus meld python-svn python-configobj ipython
+* More programs</p>
+
+<p>sudo apt-get install gstreamer-dbus-media-service gstreamer-tools ubuntu-restricted-extras</p>
+
+<ul>
+<li>Enable dvd support</li>
+</ul>
+
+
+<p>sudo aptitude install libdvdcss2 &amp;&amp; sudo /usr/share/doc/libdvdread4/./install-css.sh</p>
+
+<ul>
+<li>Flash</li>
+</ul>
+
+
+<p>sudo apt-get install gsfonts gsfonts-x11 flashplugin-nonfree</p>
+
+<ol>
+<li>Tweak your eyecandy</li>
+</ol>
+
+
+<p>Ubuntu 9.04 comes with compiz fusion effects OOTB but doesn’t offer a way to customize them.</p>
+
+<p>In a terminal copy/paste this:</p>
+
+<p>sudo apt-get install simple-ccsm</p>
+
+<p>Now navigate to System → Preferences → Simple CompizConfig Settings Manager .</p>
+
+<p>8 – Missing Windows software?? Run Windows softwares in Linux!!!</p>
+
+<p>Run Windows Applications such as 7zip, Google Sketchup, AutoCAD, Dreamwaver, Flash MX, Fireworks MX, IE6, IE7, Safari, Itunes, Windows Media Player and many more…</p>
+
+<p>Play Windows Games in Linux like Age Of Empires, Call Of Duty, Diablo, Fear, Fallout, Far Cry, Grand Theft Auto, Half Life, Halo, Hitman, Max Payne, Need For Speed, Prince Of Persia, Sim City Star Wars, The Simsworld of warcraft , Tomb Raider, Warcraft, World Of Warcraft, Counterstrike and many other can be played.</p>
+
+<p>Install Playonlinux. It’s based on wine. Wine is a compatibility layer for running Windows programs in Linux.</p>
+
+<p>sudo apt-get install wine playonlinux</p>
+
+<p>9 – Clipboard Management</p>
+
+<p>By Default in ubuntu when u copy something from an application and closes the application u will not be able to access it from the clipboard. And also when u copy severals text in serial u only have the last on available to you in the clipboard. To solve that install either of the following but Glipper is better because it supports plugins.</p>
+
+<p>Glipper</p>
+
+<p>sudo apt-get install glipper</p>
+
+<p>Then right click ur panel → Add to Panel then drag Clipboard Manager to ur panel</p>
+
+<p>Parcellite</p>
+
+<p>sudo apt-get install parcellite</p>
+
+<p>10 – Archiver/ Packing software</p>
+
+<p>Windows equivalent : winrar, zip, 7zip</p>
+
+<p>Ubuntu equivalent : tar, unrar, p7zip, arj, unace</p>
+
+<p>It’s bad when you don’t have Internet on your computer/notebook, but you have to pack/unpack something but the file format isn’t recognized by the system. To prevent from this bad situation, you can install a bunch of packing software by typing this on the terminal:</p>
+
+<p>sudo apt-get install unace rar unrar zip unzip p7zip-full p7zip-rar sharutils aish uudeview mpack lha arj cabextract file-roller</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[#After ubuntu installation requirements Part II]]></title>
+    <link href="http://vatrai.github.io/blog/2010/08/14/iind/"/>
+    <updated>2010-08-14T13:39:03+05:30</updated>
+    <id>http://vatrai.github.io/blog/2010/08/14/iind</id>
+    <content type="html"><![CDATA[<p>11 – Graphical web browser</p>
+
+<p>Windows equivalent : Internet explorer, firefox, opera</p>
+
+<p>Ubuntu equivalent : Firefox, opera, chromium</p>
+
+<p>Opera</p>
+
+<p>sudo apt-get install opera</p>
+
+<p>Firefox (installed by default intrepid)</p>
+
+<p>sudo apt-get install firefox</p>
+
+<p>Chromium (open source equivalent of Google Chrome)</p>
+
+<p>sudo apt-get install chromium-browser</p>
+
+<p>12 – Download Manager</p>
+
+<p>Windows equivalent : Free download manager</p>
+
+<p>Ubuntu equivalent : Multiget</p>
+
+<p>MultiGet is a http/ftp downloader with a nice GUI for linux desktop  users. It can run on almost all desktops without any configuration. It  has many powerful functions comparing to others.</p>
+
+<p>sudo apt-get install multiget</p>
+
+<p>Access it through Applications → Internet → MultiGet .</p>
+
+<p>13 – Graphical Email client</p>
+
+<p>Windows equivalent : Outlook</p>
+
+<p>Ubuntu equivalent : Evolution, Thunderbird</p>
+
+<p>Evolution (installed by default in intrepid)</p>
+
+<p>sudo apt-get install evolution</p>
+
+<p>Access it through Applications → Internet → Evolution Mail .</p>
+
+<p>Thunderbird</p>
+
+<p>sudo apt-get install thunderbird</p>
+
+<p>Access it through Applications → Internet → Mozilla Thunderbird Mail/News .</p>
+
+<p>14 – Instant Messanging protocal clients</p>
+
+<p>Windows equivalent : MSN messenger, Yahoo messenger, QQ, AIM, Gtalk, ICQ,IRC</p>
+
+<p>Ubuntu equivalent : Empathy, Pidgin, emesene</p>
+
+<p>Empathy IM Client (installed by default)</p>
+
+<p>sudo apt-get install empathy telepathy-mission-control-5  telepathy-gabble telepathy-butterfly telepathy-haze telepathy-idle  telepathy-salut telepathy-sofiasip python-msn empathy-megaphone-applet  libtelepathy-farsight0 python-tpfarsight galago-eds-feed python-galago  python-galago-gtk msn-pecan</p>
+
+<p>Access it through Applications → Internet → Empathy IM Client .</p>
+
+<p>Pidgin</p>
+
+<p>Pidgin is an easy to use and free chat client used by millions.  Connect to AIM, MSN, Yahoo, and more chat networks all at once.  Supported chat networks: AIM, Bonjour, Gadu-Gadu, Google Talk,  Groupwise, ICQ, IRC, MSN, MySpaceIM, QQ, SILC, SIMPLE, Sametime, XMPP,  Yahoo!, Zephyr</p>
+
+<p>sudo apt-get install pidgin pidgin-data pidgin-lastfm  pidgin-guifications msn-pecan pidgin-musictracker pidgin-plugin-pack  pidgin-themes</p>
+
+<p>Access it through Applications → Internet → Pidgin Internet Messenger .</p>
+
+<p>Emesene only for MSN Messenger.</p>
+
+<p>sudo apt-get install emesene</p>
+
+<p>Access it through Applications → Internet → Emesene .</p>
+
+<p>15 – VOIP</p>
+
+<p>Windows equivalent : skype</p>
+
+<p>Ubuntu equivalent : skype</p>
+
+<p>Skype</p>
+
+<p>sudo apt-get install skype</p>
+
+<p>Access it through Applications → Internet → Skype.</p>
+
+<p>16 – Viewing PDF files</p>
+
+<p>Windows equivalent : Adobe Reader</p>
+
+<p>Ubuntu equivalent : Adobe Reader</p>
+
+<p>Adobe Reader</p>
+
+<p>sudo apt-get install acroread acroread-fonts</p>
+
+<p>Access it through Applications → Office → Adobe Reader.</p>
+
+<p>17– Adobe Air</p>
+
+<p>wget <a href="http://airdownload.adobe.com/air/lin/download/latest/AdobeAIRInstaller.bin">http://airdownload.adobe.com/air/lin/download/latest/AdobeAIRInstaller.bin</a>
+chmod +x ./AdobeAIRInstaller.bin</p>
+
+<p>./AdobeAIRInstaller.bin</p>
+
+<p>Access it through Applications → Accessories → Adobe Air Application Installer.</p>
+
+<p>18 – Music / MP3 / OGG Players</p>
+
+<p>Windows equivalent : iTunes, Winamp</p>
+
+<p>Ubuntu equivalent : Rhythmbox, Banshee, Amarok</p>
+
+<p>Rhythmbox</p>
+
+<p>sudo apt-get install rhythmbox</p>
+
+<p>Access it through Applications → Sound &amp; Video → Rhythmbox Music Player.</p>
+
+<p>Banshee</p>
+
+<p>sudo apt-get install banshee banshee-extension-lyrics banshee-extension-mirage</p>
+
+<p>Access it through Applications → Sound &amp; Video → Banshee Media Player.</p>
+
+<p>Amarok</p>
+
+<p>sudo apt-get install amarok amarok-engine-xine amarok-engine-yauap amarok-engines amarok-common</p>
+
+<p>Access it through Applications → Sound &amp; Video → Amarok.</p>
+
+<p>19– Hard Disk Partitions Manager</p>
+
+<p>Windows equivalent : Symanted Partition Magic</p>
+
+<p>Ubuntu equivalent : GParted</p>
+
+<p>GParted</p>
+
+<p>sudo apt-get install gparted ntfsprogs menu ntfs-config</p>
+
+<p>Access it through System → Administration → Partition Editor.</p>
+
+<p>20 – Vector Graphics Editor</p>
+
+<p>Windows equivalent : Adobe Illustrator</p>
+
+<p>Ubuntu equivalent : Inkscape</p>
+
+<p>Inkscape</p>
+
+<p>sudo apt-get install inkscape</p>
+
+<p>Access it through Applications → Graphics → Inkscape Vector Graphics Editor.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[#After ubuntu installation requirements Part III]]></title>
+    <link href="http://vatrai.github.io/blog/2010/08/13/iiird/"/>
+    <updated>2010-08-13T13:40:57+05:30</updated>
+    <id>http://vatrai.github.io/blog/2010/08/13/iiird</id>
+    <content type="html"><![CDATA[<p>21 – Image Editor</p>
+
+<p>Windows equivalent : Adobe Photoshop</p>
+
+<p>Ubuntu equivalent : GIMP</p>
+
+<p>GIMP</p>
+
+<p>sudo apt-get install gimp gimp-data gimp-plugin-registry</p>
+
+<p>Access it through Applications → Graphics → GIMP Image Editor.</p>
+
+<p>22 – 3D Graphics Applications</p>
+
+<p>Windows equivalent : 3D Studio MAX</p>
+
+<p>Ubuntu equivalent : Blender</p>
+
+<p>Blender</p>
+
+<p>sudo apt-get install blender</p>
+
+<p>Access it through Applications → Graphics → Blender (windowed).</p>
+
+<p>23 – Simple Yet Advanced Text Editor</p>
+
+<p>Windows equivalent : Notepad ++</p>
+
+<p>Ubuntu equivalent : GEdit</p>
+
+<p>GEdit</p>
+
+<p>sudo apt-get install gedit gedit-plugins</p>
+
+<p>Access it through Applications → Accessories → Text Editor.</p>
+
+<p>24 – Office Applications</p>
+
+<p>Windows equivalent : Microsoft Office</p>
+
+<p>Ubuntu equivalent : OpenOffice</p>
+
+<p>OpenOffice</p>
+
+<p>sudo apt-get install openoffice.org</p>
+
+<p>Access it through Applications → Office</p>
+
+<p>25 – Microsoft Visio</p>
+
+<p>Windows equivalent : Microsoft Visio</p>
+
+<p>Ubuntu equivalent : Dia</p>
+
+<p>Dia</p>
+
+<p>sudo apt-get install dia</p>
+
+<p>Access it through Applications → Graphics → Dia Diagram Editor</p>
+
+<p>26 – Microsoft Project</p>
+
+<p>Windows equivalent : Microsoft Project</p>
+
+<p>Ubuntu equivalent : OpenProj</p>
+
+<p>OpenProj</p>
+
+<p>wget <a href="http://nchc.dl.sourceforge.net/sourceforge/openproj/openproj_1.4-2.deb">http://nchc.dl.sourceforge.net/sourceforge/openproj/openproj_1.4-2.deb</a> &amp;&amp; sudo dpkg -i openproj_1.4-2.deb</p>
+
+<p>Access it through Applications → Office → OpenProj</p>
+
+<p>27 – Development IDE</p>
+
+<p>Windows equivalent : Dreamweaver</p>
+
+<p>Ubuntu equivalent : Quanta, Kompozer, NetBeans</p>
+
+<p>Quanta</p>
+
+<p>sudo apt-get install quanta</p>
+
+<p>Access it through Applications → Programming → Quanta Plus</p>
+
+<p>Komposer</p>
+
+<p>sudo apt-get install kompozer nvu</p>
+
+<p>Access it through Applications → Internet → Kompozer</p>
+
+<p>NetBeans</p>
+
+<p>sudo apt-get install netbeans</p>
+
+<p>Access it through Applications → Programming → NetBeans IDE</p>
+
+<p>28 – Source Control Management</p>
+
+<p>Windows equivalent : TortoiseSVN</p>
+
+<p>Ubuntu equivalent : RabbitVCS</p>
+
+<p>RabbitVCS
+sudo apt-get install python-nautilus meld python-svn python-configobj ipython
+wget  <a href="http://rabbitvcs.googlecode.com/files/rabbitvcs-core_0.13-1~karmic_all.deb">http://rabbitvcs.googlecode.com/files/rabbitvcs-core_0.13-1~karmic_all.deb</a>  &amp;&amp; sudo dpkg -i rabbitvcs-core_0.13-1~karmic_all.deb
+wget  <a href="http://rabbitvcs.googlecode.com/files/rabbitvcs-nautilus_0.13-1~intrepid_all.deb">http://rabbitvcs.googlecode.com/files/rabbitvcs-nautilus_0.13-1~intrepid_all.deb</a>  &amp;&amp; sudo dpkg -i rabbitvcs-nautilus_0.13-1~intrepid_all.deb
+killall nautilus</p>
+
+<p>Right Click on any folder or file and access the RabbitVCS submenu</p>
+
+<p>29 – Graphical FTP clients</p>
+
+<p>Windows equivalent : CuteFTP, SmartFTP</p>
+
+<p>Ubuntu equivalent : FileZilla</p>
+
+<p>FileZilla</p>
+
+<p>This is great FTP program, very complete, in my opinion, the best one for linux.</p>
+
+<p>On the terminal type:</p>
+
+<p>sudo apt-get install filezilla filezilla-common</p>
+
+<p>Access it through Applications → Internet → FileZilla FTP Client.</p>
+
+<p>30 – P2P Clients / Servers, File Sharing</p>
+
+<p>Windows equivalent : utorrent, azureus, emule</p>
+
+<p>Ubuntu equivalent : Deluge, azureus, amule</p>
+
+<p>Bittorent clients</p>
+
+<p>Deluge (written in python)</p>
+
+<p>sudo apt-get install deluge-torrent</p>
+
+<p>Access it through Applications → Internet → Deluge Torrent.</p>
+
+<p>Azureus: Uses Java to run, very complete but a bit heavy</p>
+
+<p>sudo apt-get install azureus</p>
+
+<p>Access it through Applications → Internet → Azureus.</p>
+
+<p>Emule Donkey Clients</p>
+
+<p>Amule</p>
+
+<p>sudo apt-get install amule</p>
+
+<p>Access it through Applications → Internet → aMule.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[#After ubuntu installation requirements Part IV]]></title>
+    <link href="http://vatrai.github.io/blog/2010/08/12/iv/"/>
+    <updated>2010-08-12T13:42:18+05:30</updated>
+    <id>http://vatrai.github.io/blog/2010/08/12/iv</id>
+    <content type="html"><![CDATA[<p>31 – Programs for CD burning with GUI</p>
+
+<p>Windows equivalent : Nero, Roxio Easy CD Creator</p>
+
+<p>Ubuntu equivalent : K3b, Brasero</p>
+
+<p>K3b</p>
+
+<p>Nero is available for linux,but its not free.A trial is available for  1 month usage and later it asks or activation code.But K3B is as good  as Nero.Have a good feature set as Nero.</p>
+
+<p>sudo apt-get install k3b k3b-data k3b-i18n libk3b3</p>
+
+<p>Access it through Applications → Sound &amp; Video → K3B.</p>
+
+<p>Brasero (installed by default in Intrepid)</p>
+
+<p>sudo apt-get install brasero</p>
+
+<p>Access it through Applications → Sound &amp; Video → Brasero Disc Burning .</p>
+
+<p>32 – Mountings ISO files</p>
+
+<p>Windows equivalent : Alcohol</p>
+
+<p>Ubuntu equivalent : acetoneiso</p>
+
+<p>Acetoneiso</p>
+
+<p>The best one for linux ACETONEISO, which is similar to ALCOHOL in windows</p>
+
+<p>its supports almost all formats. AcetoneISO is CD/DVD image  manipulator for Linux.Using this tool it is very easy to Mount and  Unmount ISO,MDF,NRG Images . I dont think its available in ubuntu  repository.</p>
+
+<p>sudo apt-get install libksba8 libenca0 libtwolame0 fuseiso kommander  p7zip-full gnupg-agent gnupg2 pinentry-qt mencoder cdrdao &amp;&amp;  wget  <a href="http://darkstar.ist.utl.pt/getdeb/ubuntu/jaunty/ac/acetoneiso_2.1.1-1~getdeb1_i386.deb">http://darkstar.ist.utl.pt/getdeb/ubuntu/jaunty/ac/acetoneiso_2.1.1-1~getdeb1_i386.deb</a>  &amp;&amp; sudo dpkg -i acetoneiso_2.1.1-1~getdeb1_i386.deb</p>
+
+<p>33 – Install Vista like gadgets.</p>
+
+<p>Windows equivalent : Vista Sidebar</p>
+
+<p>Ubuntu equivalent : google-gadgets</p>
+
+<p>Google gadgets</p>
+
+<p>wget  <a href="http://neacm.fe.up.pt/pub/getdeb/ubuntu/jaunty/go/google-gadgets_0.11.1-1~getdeb1_i386.deb">http://neacm.fe.up.pt/pub/getdeb/ubuntu/jaunty/go/google-gadgets_0.11.1-1~getdeb1_i386.deb</a>  &amp;&amp; sudo dpkg -i google-gadgets_0.11.1-1~getdeb1_i386.deb</p>
+
+<p>This will complete the installation.</p>
+
+<p>Now press Alt+F2, and type “ggl-gtk” to start them. You should see a  small icon show up in your system tray, and a sidebar. Right click on  any of them and select ‘Add Gadgets’ to show a menu. If you’d like to  have Google Gadgets start automatically, go to System – Preferences –  Session, click ‘Add’, paste ‘Google Gadgets’ for the name and ‘ggl-gtk’  for the command. Click OK and Close, and you’re good to go.</p>
+
+<p>34 – Google Desktop</p>
+
+<p>Google Desktop allows one to full text search of a user’s e-mail,  computer files, music, photos, chat, and Web pages viewed,OpenOffice  documents , PDF files and more .</p>
+
+<p>Now similar tools already existed on Linux like beagle (supported by  novell ) , meta tracker etc . However Google Desktop search is not based  on any of these tools and uses its proprietary algorithms to search for  files on the computer ,also being 1.0 release and more stable then  these products it could be preferred over tools like beagle .</p>
+
+<p>To install Google Desktop Search type the following command in the terminal window : &ndash;</p>
+
+<p>sudo apt-get install google-desktop-linux</p>
+
+<p>Access it through Applications → Google Desktop → Google Desktop</p>
+
+<p>Now after choosing appropriate option through Applications → Google  Desktop → Google Desktop Preferences, you would find Google Desktop icon  in the bar at the top of the screen , now it would automatically scan  and index files on computer and store it in local database which could  be searched using web browser .</p>
+
+<p>35 – Photo Management</p>
+
+<p>Google Picasa</p>
+
+<p>Google Picasa is an extremely professional good looking photo  management application available on Windows ,Linux and Mac OS (??) . Now  Google Picasa has a number of features that many photo management  software on Linux dont have further Google Picasa looks very user  friendly as compared to similar open source application available on  linux . Now Google Picasa for Linux is not a native linux application  but runs on Linux thru application layer called wine which allows many  windows application to run flawlessly on Linux.</p>
+
+<p>Now to install Google – Picasa type the following command in the terminal window</p>
+
+<p>sudo apt-get install picasa</p>
+
+<p>Access it through Applications → Graphics → Picasa → Picasa</p>
+
+<p>36 – Map Viewing and Management</p>
+
+<p>Google Earth</p>
+
+<p>To install Google Earth type the following command in the Terminal Window.</p>
+
+<p>sudo aptitude install googleearth</p>
+
+<p>After downloading is over you will get a screen like this press ¨Yes¨  to accept the license agreement and complete software installation.</p>
+
+<p>Now you can launch Google Earth from Application → Internet → Google Earth</p>
+
+<p>37 – Gmail Notification</p>
+
+<p>Checkgmail</p>
+
+<p>If you would like to get notified when you have a new mail in your  google mail account, checkgmail is for you. To install Checkgmail type  the following command in the Terminal Window.</p>
+
+<p>sudo apt-get install checkgmail</p>
+
+<p>Now you can launch it from Application → Internet → CheckGmail</p>
+
+<p>38 – Configure Firewall
+If you are concern about your security, then it is pertinent that you  activate the firewall and prevent any unauthorized access to your  computer.</p>
+
+<p>UFW is installed by default, but if you need a graphical interface, install GUFW.</p>
+
+<p>sudo apt-get install gufw</p>
+
+<p>39– Gnome Do</p>
+
+<p>Gnome Do is a small application that allows you to search and do  things faster and more efficiently in your Ubuntu machine. It is similar  to QuickSilver in Mac and Launchy in Windows. For those who have not  tried Gnome Do before, it might take some time for you to get used to  it. But once you’re hooked to it, there will be no turning back for  you.Gnome Do also comes with a dock interface that you can use it like  any other docks.</p>
+
+<p>sudo apt-get install gnome-do</p>
+
+<p>Now you can launch it from Application → Accessories → Gnome Do</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Dell Studio - 1558 ALSA sound problem ubuntu9.4 fix]]></title>
+    <link href="http://vatrai.github.io/blog/2010/06/22/dell-studio-1558-alsa-sound-problem-ubuntu9-4-fix/"/>
+    <updated>2010-06-22T22:06:57+05:30</updated>
+    <id>http://vatrai.github.io/blog/2010/06/22/dell-studio-1558-alsa-sound-problem-ubuntu9-4-fix</id>
+    <content type="html"><![CDATA[<p>I had the problem and the Laptop, Dell Studio 1558:</p>
+
+<p>just exec as root: &ldquo;nano /etc/modprobe.d/alsa-base.conf</p>
+
+<p>&#8220;</p>
+
+<p>and add this line:</p>
+
+<p>options snd-hda-intel model=dell-m6</p>
+
+<p>it works for me. modeprobe.conf files are empty.</p>
+
+<p>if modprob.conf files are not empty then add this line to</p>
+
+<p>options snd-hda-intel model=dell-m6</p>
+
+<p>it will work</p>
+
+<p>I had the problem and the Laptop, Dell Studio 1558:just exec as root: &ldquo;nano /etc/modprobe.d/alsa-base.conf&rdquo;
+and add this line:options snd-hda-intel model=dell-m6
+it works for me. modeprobe.conf files are empty.</p>
+
+<p>if modprob.conf files are not empty then add this line tooptions snd-hda-intel model=dell-m6 it will work</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Blocks in Ruby]]></title>
+    <link href="http://vatrai.github.io/blog/2010/05/10/hello-world/"/>
+    <updated>2010-05-10T12:44:09+05:30</updated>
+    <id>http://vatrai.github.io/blog/2010/05/10/hello-world</id>
+    <content type="html"><![CDATA[<p>Blocks are one of Ruby’s great assets. Block&rsquo;s important quality is good code readability and simplicity.Blocks are the way to create a block of code grouped together. Blocks can take arguments and return values as normal functions. they are not executed where they defined they stored in a veriable passed as argument or return from a function.</p>
+
+<p>For example :&mdash;</p>
+
+<p>[ &ldquo;Ruby&rdquo;, &ldquo;Java&rdquo;, &ldquo;PHP&rdquo;].each { | lang | puts lang }</p>
+
+<p>output &mdash;</p>
+
+<p>Ruby</p>
+
+<p>Java</p>
+
+<p>PHP</p>
+
+<p>in abouve example <strong>each</strong> runs the given block for each element of array.</p>
+
+<p>here <strong>lang</strong> passed as argument in in block with in || bars and processed.</p>
+
+<p>if you want you can pass more then one argument in blocks by comma seperated.</p>
+
+<p>We can get a block from a function</p>
+
+<p>for example &mdash;&mdash;&mdash;&mdash;</p>
+
+<p>def get_block()</p>
+
+<p>any_message = &ldquo;Ruby blocks&rdquo;</p>
+
+<p>return Proc.new{  puts any_message }</p>
+
+<p>end</p>
+
+<p>c = get_block</p>
+
+<p>c.call</p>
+
+<p><strong>output&mdash;&ndash;</strong></p>
+
+<p>Ruby blocks</p>
+]]></content>
+  </entry>
   
 </feed>

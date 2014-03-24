@@ -1,0 +1,328 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Moving to Ruby and Rails Edge - @vishnuatrai</title>
+	<meta name="author" content="vishnuatrai.com">
+
+	
+	<meta name="description" content="Moving to Ruby and Rails Edge Jan 18th, 2012 Since our team always works with technology edge whether it is rails or ruby, from last week we started &hellip;">
+	
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="@vishnuatrai" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://vatrai.github.io/blog/2012/01/18/moving-to-ruby-and-rails-edge/">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+	<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><nav id="main-nav"><ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/about">About</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+</nav>
+<!-- <nav id="sub-nav">
+	<div class="social">
+		
+		
+		<a class="google" href="https://plus.google.com/102433220410072726105" rel="author" title="Google+">Google+</a>
+		
+		
+		<a class="twitter" href="http://twitter.com/vishnuatrai" title="Twitter">Twitter</a>
+		
+		
+		<a class="github" href="https://github.com/vatrai" title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+	</div>
+</nav> -->
+<div class="profile-container">
+  <div class="profilepic">
+    <script src="/javascripts/md5.js"></script>
+    <script type="text/javascript">
+$(function(){
+  $('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("me@vishnuatrai.com") + "?s=160' alt='Profile Picture' style='width: 160px;' />");
+});
+    </script>
+  </div>
+  <hgroup>
+  <h1 class="site-title"><a href="/">@vishnuatrai</a></h1>
+  
+  <p class="site-subtitle">Ruby on Rails contributor developer</p>
+  
+  </hgroup>
+  
+<hgroup>
+  <nav id="sub-nav">
+    <div class="social" style="margin-bottom:60px; margin-right:0px;">
+        
+      
+        <a class="google" href="https://plus.google.com/102433220410072726105" rel="author" title="Google+">Google</a>
+        
+
+      
+        <a class="twitter" href="http://twitter.com/vishnuatrai" title="Twitter">Twitter</a>
+      
+      
+        <a class="github" href="https://github.com/vatrai" title="GitHub">GitHub</a>
+      
+      
+      
+      
+      
+      
+      
+        <a class="rss" href="/atom.xml" title="RSS" target='_blank'>RSS</a>
+      
+    </div>  
+  </nav>
+</hgroup>
+
+<hgroup>
+ <p class="site-subtitle" style="font-size:10px;">
+  Copyright &copy; 2014 - vishnuatrai.com 
+  <br />
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+ </p>
+ </hgroup>
+
+
+</div>
+</header>
+			</div>
+		</div>
+		<div class="mid-col">
+			
+				
+			
+			<div class="mid-col-container">
+				<div id="content" class="article-inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  
+	<h1 class="title" itemprop="name">Moving to Ruby and Rails Edge</h1>
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+  <div class="post-date"><time datetime="2012-01-18T15:25:34+05:30" data-updated="true" itemprop="datePublished">Jan 18<span>th</span>, 2012</time></div>
+	<div class="entry-content" itemprop="articleBody"><p>Since our team always works with technology edge whether it is rails or ruby, from last week we started moving to ruby 1.9.3 and rails 3.1.3. I am sharing our experiences we found during migrating our product to rails and ruby latest release.</p>
+
+<h5>Ruby-1.9.3 Upgrade</h5>
+
+<p>Compare to ruby 1.8.7 in ruby 1.9.3 there are lot of changes, newly introduced, and things taken away, some of them are here &ndash;</p>
+
+<h4>1) Load path not including the working directory</h4>
+
+<pre><code>require_relative or require './file'
+</code></pre>
+
+<h4>2)New Hash syntax – without hash-rockets(=>)</h4>
+
+<pre><code>{ name: 'vishnu', age: '26'}
+</code></pre>
+
+<h4>3)Character Encoding – more encoding support for other char-sets</h4>
+
+<p>cp950, cp951, UTF-16, and UTF-32 etc.</p>
+
+<h4>4)Array – to_s no longer joins elements, but returns and inspect style representation</h4>
+
+<p>choice method goes to sample method
+method nitems removed</p>
+
+<h4>5)Procs and Lambdas – proc {} creates a Proc object instead lambda</h4>
+
+<pre><code> proc {}.lambda?          #=&gt; false
+ lambda {}.lambda?        #=&gt; true
+</code></pre>
+
+<p>source_location method gives file_name, line_number of proc</p>
+
+<h4>6)Time – Time standard library changed</h4>
+
+<p>Time.parse uses dd/mm/yyyy format instead of mm/dd/yyyy
+Time monday?, tuesday?, wednesday?, thursday?, friday?, saturday? sunday? Available to check a day</p>
+
+<h4>7)New in Standard Library1.9.3</h4>
+
+<p>json, to_json and JSON.load(data) method is available with objects
+minitest MiniTest and MiniTest::Spec
+prime – Prime number library</p>
+
+<pre><code>7.prime?          #=&gt; true
+6.prime?          #=&gt; false
+</code></pre>
+
+<h4>8)Removed from Standard Library 1.9.3</h4>
+
+<p>soap/wsdlDriver, date2, ftools,jcode(removed because now encoding support), parsedate, rubyunit</p>
+
+<h5>Rails-3.1.3 Upgrade</h5>
+
+<p>In order to upgrade to Rails 3.1.3 version with ruby 1.9.3 here are some points, those can help you &ndash;</p>
+
+<h4>1)To support special characters in your ruby code</h4>
+
+<p>Put {# &ndash;<em>&ndash; coding: utf-8 &ndash;</em>&ndash;} beginning of the file and
+configuration in application.rb for default encoding. config.encoding = &ldquo;utf-8&rdquo;</p>
+
+<h4>2)Capybara should upgrade to 1.1.2 version and cucumber with 1.1.2 version</h4>
+
+<p>regenerate cucumber environment with required options</p>
+
+<pre><code>bundle exec rails g cucumber:install --capybara –rspec
+</code></pre>
+
+<h4>3)By default ActiveResource uses JSON format</h4>
+
+<p>To make default XML format specify format in initializers</p>
+
+<pre><code>ActiveResource::Base.format = ActiveResource::Formats::XmlFormat
+</code></pre>
+
+<h4>4)To load all helpers in each controller/action specify config</h4>
+
+<pre><code>config.action_controller.include_all_helpers = true   in application.rb
+instead
+helpers :all in application_controller.rb
+</code></pre>
+
+<h4>5)To load test_helper.rb in all test specs, use</h4>
+
+<pre><code>require './test/test_helper'
+instead
+require File.dirname(__FILE__) + '/../test_helper'
+</code></pre>
+
+<h4>6)RJS template fix</h4>
+
+<p>RJS template and rjs code in controller is not supported, changed to .html.js template. For a quick fix you can use prototype-rails gem in Gemfile</p>
+
+<pre><code>gem 'prototype-rails'     #Gemfile
+</code></pre>
+
+<p>prototype-rails do not use prototype.js it provides helper methods to support rjs templates. later on you can migrate all .rjs to .js</p>
+
+<h4>7) Enable assets pipeline</h4>
+
+<p>To enable assets pipeline, an import feature of rails 3.1, you need to set application.rb with configurations-</p>
+
+<pre><code>config.assets.enabled = true
+config.assets.initialize_on_precompile = false
+</code></pre>
+
+<p>and production.rb with configurations &ndash;</p>
+
+<pre><code>config.assets.compress = true
+config.assets.compile = true
+config.assets.digest = false
+config.assets.js_compressor  = :uglifier
+</code></pre>
+
+<p>and gemfile should have a group :assets and should include saas-rails, coffee-rails, uglifier gems.</p>
+
+<pre><code>group :assets do
+  gem 'sass-rails',   "~&gt; 3.1.0"
+  gem 'coffee-rails', "~&gt; 3.1.0"
+  gem 'uglifier'
+end
+</code></pre>
+</div>
+
+</article>
+
+	<div class="share">
+    <div class="share_icon_group addthis_toolbox addthis_default_style addthis_32x32_style">
+        
+            <a class="share_icon addthis_button_preferred_1"></a>
+        
+        
+            <a class="share_icon addthis_button_preferred_2" fb:like:layout="button_count"></a>
+        
+        
+            <a class="share_icon addthis_button_preferred_3" g:plusone:size="medium"></a>
+        
+        <a class="share_icon addthis_button_preferred_4"></a>
+    </div>
+    <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<section id="comment">
+    <h1 class="title">Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+			</div>
+			<footer id="footer" class="inner">
+</footer>
+			<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'vishnuatrai';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://vatrai.github.io/blog/2012/01/18/moving-to-ruby-and-rails-edge/';
+        var disqus_url = 'http://vatrai.github.io/blog/2012/01/18/moving-to-ruby-and-rails-edge/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+		</div>
+	</div>
+</body>
+</html>

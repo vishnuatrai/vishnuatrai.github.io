@@ -1,0 +1,240 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Why NoSQL? - @vishnuatrai</title>
+	<meta name="author" content="vishnuatrai.com">
+
+	
+	<meta name="description" content="Why NoSQL? Nov 1st, 2010 Why NoSQL? NoSQL term is supposed to stand for “Not Only SQL.” . This term is used to designated DBMS that differ from &hellip;">
+	
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="@vishnuatrai" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://vatrai.github.io/blog/2010/11/01/why-nosql/">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+	<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><nav id="main-nav"><ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/about">About</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+</nav>
+<!-- <nav id="sub-nav">
+	<div class="social">
+		
+		
+		<a class="google" href="https://plus.google.com/102433220410072726105" rel="author" title="Google+">Google+</a>
+		
+		
+		<a class="twitter" href="http://twitter.com/vishnuatrai" title="Twitter">Twitter</a>
+		
+		
+		<a class="github" href="https://github.com/vatrai" title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+	</div>
+</nav> -->
+<div class="profile-container">
+  <div class="profilepic">
+    <script src="/javascripts/md5.js"></script>
+    <script type="text/javascript">
+$(function(){
+  $('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("me@vishnuatrai.com") + "?s=160' alt='Profile Picture' style='width: 160px;' />");
+});
+    </script>
+  </div>
+  <hgroup>
+  <h1 class="site-title"><a href="/">@vishnuatrai</a></h1>
+  
+  <p class="site-subtitle">Ruby on Rails contributor developer</p>
+  
+  </hgroup>
+  
+<hgroup>
+  <nav id="sub-nav">
+    <div class="social" style="margin-bottom:60px; margin-right:0px;">
+        
+      
+        <a class="google" href="https://plus.google.com/102433220410072726105" rel="author" title="Google+">Google</a>
+        
+
+      
+        <a class="twitter" href="http://twitter.com/vishnuatrai" title="Twitter">Twitter</a>
+      
+      
+        <a class="github" href="https://github.com/vatrai" title="GitHub">GitHub</a>
+      
+      
+      
+      
+      
+      
+      
+        <a class="rss" href="/atom.xml" title="RSS" target='_blank'>RSS</a>
+      
+    </div>  
+  </nav>
+</hgroup>
+
+<hgroup>
+ <p class="site-subtitle" style="font-size:10px;">
+  Copyright &copy; 2014 - vishnuatrai.com 
+  <br />
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+ </p>
+ </hgroup>
+
+
+</div>
+</header>
+			</div>
+		</div>
+		<div class="mid-col">
+			
+				
+			
+			<div class="mid-col-container">
+				<div id="content" class="article-inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  
+	<h1 class="title" itemprop="name">Why NoSQL?</h1>
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+  <div class="post-date"><time datetime="2010-11-01T20:57:27+05:30" data-updated="true" itemprop="datePublished">Nov 1<span>st</span>, 2010</time></div>
+	<div class="entry-content" itemprop="articleBody"><p><strong>Why NoSQL?</strong></p>
+
+<p><strong>NoSQL</strong> term is supposed to stand for “Not Only SQL.” . This term is used to designated DBMS that differ from classic RDBMS in some way. These DBMS may not require fixed table schemas, and usually avoid join operations and typically scale horizontally.</p>
+
+<p><strong>Architecture</strong></p>
+
+<p>NOSQL databases tend to have two key attributes across the board. One is that they’re non-relational, so they’re not doing joins on the server. And second, they have light transactional semantics. So complex, long-running, serialized transactions are not part of any of these NoSQL products. Those two differences, put together, allow you to take a very different approach to how databases are created, which means you can make horizontally scalable databases — the kind that run across large clusters of machines.</p>
+
+<p>RDBMS have shown poor performance on certain data-intensive applications, including indexing a large number of documents, serving pages on high-traffic websites, and delivering streaming media.  Typical RDBMS implementations are tuned either for small but frequent read/write transactions or for large batch transactions with rare write accesses. NoSQL on the other hand, services heavy read/write workloads</p>
+
+<p>NoSQL architectures often provide weak consistency guarantees, such as eventual consistency, or transactions restricted to single data items. Some systems, however, provide full ACID guarantees, in some instances by adding a supplementary middleware layer (e.g., CloudTPS).</p>
+
+<p><strong>Core NoSQL Systems</strong></p>
+
+<p><strong>Wide Column Store/Column Families</strong></p>
+
+<p>1.Cassandra
+2.Cloudera
+3.Amazon SimpleDB</p>
+
+<p><strong>Document Store</strong></p>
+
+<ol>
+<li>CouchDB</li>
+<li>MongoDB</li>
+<li>OrientDB</li>
+</ol>
+
+
+<p><strong>Key Value/ Tuple Store</strong></p>
+
+<p>1.Redis
+2.MemcacheDB
+3.Tokyo Cabibnet</p>
+</div>
+
+</article>
+
+	<div class="share">
+    <div class="share_icon_group addthis_toolbox addthis_default_style addthis_32x32_style">
+        
+            <a class="share_icon addthis_button_preferred_1"></a>
+        
+        
+            <a class="share_icon addthis_button_preferred_2" fb:like:layout="button_count"></a>
+        
+        
+            <a class="share_icon addthis_button_preferred_3" g:plusone:size="medium"></a>
+        
+        <a class="share_icon addthis_button_preferred_4"></a>
+    </div>
+    <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<section id="comment">
+    <h1 class="title">Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+			</div>
+			<footer id="footer" class="inner">
+</footer>
+			<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'vishnuatrai';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://vatrai.github.io/blog/2010/11/01/why-nosql/';
+        var disqus_url = 'http://vatrai.github.io/blog/2010/11/01/why-nosql/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+		</div>
+	</div>
+</body>
+</html>

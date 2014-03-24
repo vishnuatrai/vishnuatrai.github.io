@@ -1,0 +1,259 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Rails::Railtie – Hook Everything - @vishnuatrai</title>
+	<meta name="author" content="vishnuatrai.com">
+
+	
+	<meta name="description" content="Rails::Railtie – Hook Everything Jul 31st, 2011 After Rails 3 released I have been trying to find major and important changes in rails framework &hellip;">
+	
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="@vishnuatrai" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://vatrai.github.io/blog/2011/07/31/railsrailtie-e28093-hook-everything/">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+	<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><nav id="main-nav"><ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/about">About</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+</nav>
+<!-- <nav id="sub-nav">
+	<div class="social">
+		
+		
+		<a class="google" href="https://plus.google.com/102433220410072726105" rel="author" title="Google+">Google+</a>
+		
+		
+		<a class="twitter" href="http://twitter.com/vishnuatrai" title="Twitter">Twitter</a>
+		
+		
+		<a class="github" href="https://github.com/vatrai" title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+	</div>
+</nav> -->
+<div class="profile-container">
+  <div class="profilepic">
+    <script src="/javascripts/md5.js"></script>
+    <script type="text/javascript">
+$(function(){
+  $('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("me@vishnuatrai.com") + "?s=160' alt='Profile Picture' style='width: 160px;' />");
+});
+    </script>
+  </div>
+  <hgroup>
+  <h1 class="site-title"><a href="/">@vishnuatrai</a></h1>
+  
+  <p class="site-subtitle">Ruby on Rails contributor developer</p>
+  
+  </hgroup>
+  
+<hgroup>
+  <nav id="sub-nav">
+    <div class="social" style="margin-bottom:60px; margin-right:0px;">
+        
+      
+        <a class="google" href="https://plus.google.com/102433220410072726105" rel="author" title="Google+">Google</a>
+        
+
+      
+        <a class="twitter" href="http://twitter.com/vishnuatrai" title="Twitter">Twitter</a>
+      
+      
+        <a class="github" href="https://github.com/vatrai" title="GitHub">GitHub</a>
+      
+      
+      
+      
+      
+      
+      
+        <a class="rss" href="/atom.xml" title="RSS" target='_blank'>RSS</a>
+      
+    </div>  
+  </nav>
+</hgroup>
+
+<hgroup>
+ <p class="site-subtitle" style="font-size:10px;">
+  Copyright &copy; 2014 - vishnuatrai.com 
+  <br />
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+ </p>
+ </hgroup>
+
+
+</div>
+</header>
+			</div>
+		</div>
+		<div class="mid-col">
+			
+				
+			
+			<div class="mid-col-container">
+				<div id="content" class="article-inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  
+	<h1 class="title" itemprop="name">Rails::Railtie – Hook Everything</h1>
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+  <div class="post-date"><time datetime="2011-07-31T17:33:44+05:30" data-updated="true" itemprop="datePublished">Jul 31<span>st</span>, 2011</time></div>
+	<div class="entry-content" itemprop="articleBody"><p>After Rails 3 released I have been trying to find major and important changes in rails framework over 2.x version. The change I like most is Rails Railtie. Using Railtie you can configure your own gem or plugin in a rails application according to your choice in boot process.  If you are a plugin developer, you can use Railtie class that is capable of loading generators, tasks, middlewares and adding subscribers.</p>
+
+<p>Rails::Engine is nothing more than a Railtie and it has some initializers already set and Rails::Application and Rails::Plugin are also engines. Any subclass of Railtie can be use to initialize rails application, so your plugin can be a first class member of rails application.</p>
+
+<p>Here is sample plugin Railtie that will be loaded when your rails application boots.</p>
+
+<pre><code>require 'rails'
+class MyPlugin &lt; Rails::Railtie
+  # railtie code goes here
+end
+</code></pre>
+
+<p>Here I will give you some examples of Railtie methods, how to customize and extend your rails application using your plugin or gem library.</p>
+
+<h4>1) generators</h4>
+
+<p>Rails will require any generators if you have require generator path in your Railtie class within generators block.</p>
+
+<pre><code>generators do
+  require 'lib/to/generator.rb'
+end
+</code></pre>
+
+<h4>2) rake_tasks</h4>
+
+<p>You can ship rake tasks of your plugin in rails application if you require in Railtie</p>
+
+<pre><code>rake_tasks do 
+  require 'lib/to/rake_task.rb'
+end
+</code></pre>
+
+<h4>3) initializer</h4>
+
+<p>Railtie initializer method can create initializers that can run during the Rails boot process. It has the options to run a initializer before or after a specific initializer.</p>
+
+<pre><code>initializer "plugin_railtie.boot_plugin" do
+  Plugin.boot(NewPlugin)
+end
+
+initializer "new_plugin_railtie.boot_new_plugin", :before =&gt; "plugin_railtie.boot_plugin" do
+    NewPlugin.boot!
+end
+</code></pre>
+
+<h4>4) console</h4>
+
+<p>console method allows to add code that will run when Rails console starts.</p>
+
+<pre><code> console do
+   puts "my plugin loaded."
+ end
+</code></pre>
+</div>
+
+</article>
+
+	<div class="share">
+    <div class="share_icon_group addthis_toolbox addthis_default_style addthis_32x32_style">
+        
+            <a class="share_icon addthis_button_preferred_1"></a>
+        
+        
+            <a class="share_icon addthis_button_preferred_2" fb:like:layout="button_count"></a>
+        
+        
+            <a class="share_icon addthis_button_preferred_3" g:plusone:size="medium"></a>
+        
+        <a class="share_icon addthis_button_preferred_4"></a>
+    </div>
+    <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<section id="comment">
+    <h1 class="title">Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+			</div>
+			<footer id="footer" class="inner">
+</footer>
+			<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'vishnuatrai';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://vatrai.github.io/blog/2011/07/31/railsrailtie-e28093-hook-everything/';
+        var disqus_url = 'http://vatrai.github.io/blog/2011/07/31/railsrailtie-e28093-hook-everything/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+		</div>
+	</div>
+</body>
+</html>

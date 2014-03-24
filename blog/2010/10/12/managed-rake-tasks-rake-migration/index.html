@@ -1,0 +1,233 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Rake Migration: Track Rake Tasks with versions - @vishnuatrai</title>
+	<meta name="author" content="vishnuatrai.com">
+
+	
+	<meta name="description" content="Rake Migration: Track Rake Tasks With Versions Oct 12th, 2010 I have started working on a plugin which helps rails projects to maintain the list of &hellip;">
+	
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="@vishnuatrai" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://vatrai.github.io/blog/2010/10/12/managed-rake-tasks-rake-migration/">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+	<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><nav id="main-nav"><ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/about">About</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+</nav>
+<!-- <nav id="sub-nav">
+	<div class="social">
+		
+		
+		<a class="google" href="https://plus.google.com/102433220410072726105" rel="author" title="Google+">Google+</a>
+		
+		
+		<a class="twitter" href="http://twitter.com/vishnuatrai" title="Twitter">Twitter</a>
+		
+		
+		<a class="github" href="https://github.com/vatrai" title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+	</div>
+</nav> -->
+<div class="profile-container">
+  <div class="profilepic">
+    <script src="/javascripts/md5.js"></script>
+    <script type="text/javascript">
+$(function(){
+  $('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("me@vishnuatrai.com") + "?s=160' alt='Profile Picture' style='width: 160px;' />");
+});
+    </script>
+  </div>
+  <hgroup>
+  <h1 class="site-title"><a href="/">@vishnuatrai</a></h1>
+  
+  <p class="site-subtitle">Ruby on Rails contributor developer</p>
+  
+  </hgroup>
+  
+<hgroup>
+  <nav id="sub-nav">
+    <div class="social" style="margin-bottom:60px; margin-right:0px;">
+        
+      
+        <a class="google" href="https://plus.google.com/102433220410072726105" rel="author" title="Google+">Google</a>
+        
+
+      
+        <a class="twitter" href="http://twitter.com/vishnuatrai" title="Twitter">Twitter</a>
+      
+      
+        <a class="github" href="https://github.com/vatrai" title="GitHub">GitHub</a>
+      
+      
+      
+      
+      
+      
+      
+        <a class="rss" href="/atom.xml" title="RSS" target='_blank'>RSS</a>
+      
+    </div>  
+  </nav>
+</hgroup>
+
+<hgroup>
+ <p class="site-subtitle" style="font-size:10px;">
+  Copyright &copy; 2014 - vishnuatrai.com 
+  <br />
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+ </p>
+ </hgroup>
+
+
+</div>
+</header>
+			</div>
+		</div>
+		<div class="mid-col">
+			
+				
+			
+			<div class="mid-col-container">
+				<div id="content" class="article-inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  
+	<h1 class="title" itemprop="name">Rake Migration: Track Rake Tasks With Versions</h1>
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+  <div class="post-date"><time datetime="2010-10-12T15:29:48+05:30" data-updated="true" itemprop="datePublished">Oct 12<span>th</span>, 2010</time></div>
+	<div class="entry-content" itemprop="articleBody"><p>I have started working on a plugin which helps rails projects to maintain the list of rake tasks.</p>
+
+<p>We are working on a project there are four to six teams at different geo-locations Bangalore, Kolkata, Edmonton etc.For the same project we have different environments like Developemnt, Testing, Staging, QA, QA2, Beta etc.All teams are working with new features, as well as bug fixes.</p>
+
+<p>Many times we found a situation that a specific rake task should be run on a specific environment to fix the data. A lot of time team members forgot to shoot a mail and tell every team about a rake task which will fix a bug on specific environment. As other people update code base and start using the application they got stuck and it take a lot of time to resolve the issue that a specific task was not run because team did not get any information as such.</p>
+
+<p>To resolve this issue we got a idea form rake tasks to migrate database (db:migrate). So if we can manage rake tasks with versions and if we can keep track of tasks those have been run, and yet to run on system. One can generate a ruby file write there any ruby code or invoke any rake task, and upload to repository other people only take update from repo and run a simple commend and the system will update.</p>
+
+<p>Here we don’t have to worry to inform everybody about new task to fix bug or update system.</p>
+
+<p>Here is the URL for plugin</p>
+
+<p><a href="http://github.com/vatrai/rake_migration">http://github.com/vatrai/rake_migration</a></p>
+
+<p>By using generators one can generate blank ruby files prefix with time-stamped version.  Version helps to keep track of tasks that are <strong>Run</strong>, <strong>yet to Run</strong> on the system. One can specify Rails environment in ruby files, specify what data fix should be run on a specified environment using simple <strong>if</strong> condition.</p>
+
+<p>To generate simple ruby file use:</p>
+
+<p><strong> ruby script/generate rake_migration &lt;file_name></strong></p>
+
+<p>This command creates a blank ruby file in<strong> {RAILS_ROOT}/rake/migrate </strong>directory.  Write ruby code or invoke rake task in the generated ruby file.</p>
+
+<p>To run generated files run rake command:</p>
+
+<p><strong>{RAILS_ROOT} rake rake_migration:migrate</strong></p>
+
+<p>This command runs remaining(yet to run) ruby files in <strong>{RAILS_ROOT}/rake/migrate</strong> and saves version in rake_migrations table in database.</p>
+</div>
+
+</article>
+
+	<div class="share">
+    <div class="share_icon_group addthis_toolbox addthis_default_style addthis_32x32_style">
+        
+            <a class="share_icon addthis_button_preferred_1"></a>
+        
+        
+            <a class="share_icon addthis_button_preferred_2" fb:like:layout="button_count"></a>
+        
+        
+            <a class="share_icon addthis_button_preferred_3" g:plusone:size="medium"></a>
+        
+        <a class="share_icon addthis_button_preferred_4"></a>
+    </div>
+    <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<section id="comment">
+    <h1 class="title">Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+			</div>
+			<footer id="footer" class="inner">
+</footer>
+			<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'vishnuatrai';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://vatrai.github.io/blog/2010/10/12/managed-rake-tasks-rake-migration/';
+        var disqus_url = 'http://vatrai.github.io/blog/2010/10/12/managed-rake-tasks-rake-migration/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+		</div>
+	</div>
+</body>
+</html>
