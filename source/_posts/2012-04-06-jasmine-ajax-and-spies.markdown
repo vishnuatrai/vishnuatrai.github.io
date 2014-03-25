@@ -14,8 +14,7 @@ tag:
 - Javascript
 ---
 
-In continuation of previous post for Jasmine, here I want to share my experience with Jasmine and Ajax. I want to show how cool it is with jasmine to test ajax calls in javascript. Jasmine spies can be used for mock the ajax call with fake data. Spy replaces the function it is spying on. For example my javascript function have an ajax call - 
-
+In continuation of previous post for Jasmine, here I want to share my experience with Jasmine and Ajax. I want to show how cool it is with jasmine to test ajax calls in javascript. <!--more--> Jasmine spies can be used for mock the ajax call with fake data. Spy replaces the function it is spying on. For example my javascript function have an ajax call -
     
     
     function myprofiledetails(){

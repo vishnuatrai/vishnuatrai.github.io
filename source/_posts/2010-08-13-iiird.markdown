@@ -21,7 +21,7 @@ Ubuntu equivalent : GIMP
 
 GIMP
 
-sudo apt-get install gimp gimp-data gimp-plugin-registry
+sudo apt-get install gimp gimp-data gimp-plugin-registry  <!--more-->
 
 Access it through Applications → Graphics → GIMP Image Editor.
 

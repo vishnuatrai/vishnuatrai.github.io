@@ -17,7 +17,7 @@ tag:
 
 Hey Guys,
 
-It is long time to write something, since I was busy with some open-source stuff. Over last two weeks we were migrating an application from rails 2.x version to rails 3.x. In that application we had lot of ActiveResource classes and other classes, and in those classes we need to validate some attributes and also we need to wrap call backs around some methods in ActiveRecord style. In earlier 2.x rails version we had to write some code for validation and  call back that was written us.
+It is long time to write something, since I was busy with some open-source stuff. Over last two weeks we were migrating an application from rails 2.x version to rails 3.x. In that application we had lot of ActiveResource classes and other classes, and in those classes we need to validate some attributes and also we need to wrap call backs around some methods in ActiveRecord style. <!--more--> In earlier 2.x rails version we had to write some code for validation and  call back that was written us.
 
 During the migration from 2.x version to rails 3, we got to know about ActiveModel module that will give you lot of features in ActiveRecord style.
 

@@ -15,7 +15,7 @@ tag:
 - RubyOnRails
 ---
 
-In web development, if we are doing web 2.0 and modern web concepts, we have to write a lot of javascript and ajax calls and that will increase client side javascript day by day. We have lot of good javascript libraries for implementation. For faster delivery of features we need to cover the client side javascript with test cases. Jasmine is a tool to do BDD for javascript. It can mock ajax calls and you can use some static templates as a result. Jasmine also can be useful for TDD with javascript.
+In web development, if we are doing web 2.0 and modern web concepts, we have to write a lot of javascript and ajax calls and that will increase client side javascript day by day. <!--more--> We have lot of good javascript libraries for implementation. For faster delivery of features we need to cover the client side javascript with test cases. Jasmine is a tool to do BDD for javascript. It can mock ajax calls and you can use some static templates as a result. Jasmine also can be useful for TDD with javascript.
 
 
 

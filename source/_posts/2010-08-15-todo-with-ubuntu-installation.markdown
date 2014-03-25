@@ -13,7 +13,7 @@ tag:
 - Ubuntu
 ---
 
-After installation of Ubuntu you may need to set up your system for some basic requirements. For these requirements you can follow these steps :
+After installation of Ubuntu you may need to set up your system for some basic requirements. For these requirements you can follow these steps :<!--more-->
 
 1 – Expand the Software Repository List
 

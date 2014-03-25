@@ -19,7 +19,7 @@ Windows equivalent : Internet explorer, firefox, opera
 
 Ubuntu equivalent : Firefox, opera, chromium
 
-Opera
+Opera      <!--more-->
 
 sudo apt-get install opera
 

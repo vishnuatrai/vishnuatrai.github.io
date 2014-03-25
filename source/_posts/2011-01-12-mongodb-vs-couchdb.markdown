@@ -14,7 +14,7 @@ tag:
 - NoSQL
 ---
 
-Both MongoDB and CouchDB are document oriented databases with JSON style object data storage.  They have their pros and cons in different situations.
+Both MongoDB and CouchDB are document oriented databases with JSON style object data storage.  They have their pros and cons in different situations.<!--more-->
 
 
 #### 1) Map Reduce

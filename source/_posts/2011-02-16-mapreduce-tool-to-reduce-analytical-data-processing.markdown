@@ -13,7 +13,7 @@ tag:
 - MapReduce
 ---
 
-Today every human being is rapidly increasing online activities and as a result web applications are having a huge amounts of data, now it is a challenge for organizations to quickly analyze the huge amounts of data their customers and audiences generate to better understand and serve them.MapReduce is the tool that is helping those organizations.
+Today every human being is rapidly increasing online activities and as a result web applications are having a huge amounts of data, now it is a challenge for organizations to quickly analyze the huge amounts of data their customers and audiences generate to better understand and serve them.<!--more--> MapReduce is the tool that is helping those organizations.
   
 
 MapReduce is a programming framework popularized by Google and used to simplify data processing across massive data sets.

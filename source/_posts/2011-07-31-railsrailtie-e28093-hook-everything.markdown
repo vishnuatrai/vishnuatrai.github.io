@@ -14,7 +14,7 @@ tag:
 - RubyOnRails
 ---
 
-After Rails 3 released I have been trying to find major and important changes in rails framework over 2.x version. The change I like most is Rails Railtie. Using Railtie you can configure your own gem or plugin in a rails application according to your choice in boot process.  If you are a plugin developer, you can use Railtie class that is capable of loading generators, tasks, middlewares and adding subscribers.
+After Rails 3 released I have been trying to find major and important changes in rails framework over 2.x version. The change I like most is Rails Railtie. Using Railtie you can configure your own gem or plugin in a rails application according to your choice in boot process. <!--more-->  If you are a plugin developer, you can use Railtie class that is capable of loading generators, tasks, middlewares and adding subscribers.
 
 Rails::Engine is nothing more than a Railtie and it has some initializers already set and Rails::Application and Rails::Plugin are also engines. Any subclass of Railtie can be use to initialize rails application, so your plugin can be a first class member of rails application.
 

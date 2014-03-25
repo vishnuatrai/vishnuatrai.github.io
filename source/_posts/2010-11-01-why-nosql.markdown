@@ -16,7 +16,7 @@ tag:
 
 **Why NoSQL?**
 
-**NoSQL** term is supposed to stand for “Not Only SQL.” . This term is used to designated DBMS that differ from classic RDBMS in some way. These DBMS may not require fixed table schemas, and usually avoid join operations and typically scale horizontally.
+**NoSQL** term is supposed to stand for “Not Only SQL.” . This term is used to designated DBMS that differ from classic RDBMS in some way. These DBMS may not require fixed table schemas, and usually avoid join operations and typically scale horizontally.<!--more-->
 
 **Architecture**
 

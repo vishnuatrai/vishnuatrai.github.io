@@ -12,7 +12,7 @@ tag:
 - MySql
 ---
 
-Working with a online tutorial with a huge amount of data, product owners always used to  raise issues for application performance. After looking in to different scenerios like apache configurations, hardware, network issues, and mysql performance as a backend server, we got to know that there are a lot of opportunities to improve mysql db performance. To see why db performance slow I turned on slow quiry logging in my.cnf:
+Working with a online tutorial with a huge amount of data, product owners always used to  raise issues for application performance. After looking in to different scenerios like apache configurations, hardware, network issues, and mysql performance as a backend server, we got to know that there are a lot of opportunities to improve mysql db performance. <!--more--> To see why db performance slow I turned on slow quiry logging in my.cnf:
 
 log-slow-queries
 long_query_time = 5 

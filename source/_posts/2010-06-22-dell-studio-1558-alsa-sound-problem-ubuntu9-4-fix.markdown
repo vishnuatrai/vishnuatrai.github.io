@@ -14,57 +14,20 @@ tag:
 ---
 
 I had the problem and the Laptop, Dell Studio 1558:
-
-
-
-
 just exec as root: "nano /etc/modprobe.d/alsa-base.conf
-
-
-
-
-
-
-
-"
-
-
-
 
 and add this line:
 
-
-
-
 options snd-hda-intel model=dell-m6
-
-
-
-
-
-
 
 it works for me. modeprobe.conf files are empty.
-
-
-
-
 if modprob.conf files are not empty then add this line to
-
-
-
-
 options snd-hda-intel model=dell-m6
 
-
-
-
 it will work
-
 
 I had the problem and the Laptop, Dell Studio 1558:just exec as root: "nano /etc/modprobe.d/alsa-base.conf"
 and add this line:options snd-hda-intel model=dell-m6
 it works for me. modeprobe.conf files are empty.
-
 
 if modprob.conf files are not empty then add this line tooptions snd-hda-intel model=dell-m6 it will work
