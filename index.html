@@ -107,72 +107,9 @@ $(function(){
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
 	<h1 class="title" itemprop="name"><a href="/blog/2012/04/06/jasmine-ajax-and-spies/" itemprop="url">Jasmine: Ajax and Spies</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		<p>In continuation of previous post for Jasmine, here I want to share my experience with Jasmine and Ajax. I want to show how cool it is with jasmine to test ajax calls in javascript. Jasmine spies can be used for mock the ajax call with fake data. Spy replaces the function it is spying on. For example my javascript function have an ajax call &ndash;</p>
-
-<pre><code>function myprofiledetails(){
-    $.ajax({
-      type: "GET",
-      url: "http://vishnuatrai.com/aboutme.php",
-      success: function(json){
-        $('#infodiv').html("Ruby On Rails development with jasmine");
-      }
-   });
-}
-</code></pre>
-
-<p>In spec file I can spy the ajax call in beforeEach function. And so it won&rsquo;t make a server call and return the fake data.</p>
-
-<pre><code>describe("mock about me", function() {
-
-  beforeEach(function() {
-    //mocking ajax call with Jasmine Spies
-    var fakeData = "Hi, I am doing Ruby On Rails development with jasmine";
-    spyOn($, "ajax").andCallFake(function(params) {
-      params.success(fakeData);
-    });
-  });
-
-  it("Should have a Happy Face", function() {
-    myprofiledetails();
-    expect($('#infodiv')).toHaveText("Ruby On Rails development with jasmine");
-  });
-});
-</code></pre>
-
-<p>Jasmine provides some useful methods to support spies.</p>
-
-<pre><code>&lt;b&gt;expect(x).toHaveBeenCalled() &lt;/b&gt; 
-passes if x is a spy and was called
-
-&lt;b&gt;expect(x).toHaveBeenCalledWith(arguments)&lt;/b&gt;   
-passes if x is a spy and was called with the specified arguments
-
-&lt;b&gt;expect(x).not.toHaveBeenCalled() &lt;/b&gt;                       
-passes if x is a spy and was not called
-
-&lt;b&gt;expect(x).not.toHaveBeenCalledWith(arguments) &lt;/b&gt;   
-passes if x is a spy and was not called with the specified arguments
-</code></pre>
-
-<p>Spies can be trained to respond in a variety of ways when invoked:</p>
-
-<pre><code>&lt;b&gt;spyOn(x, 'method').andCallThrough():&lt;/b&gt;
-spies on AND calls the original function spied on
-
-&lt;b&gt;spyOn(x, 'method').andReturn(arguments):&lt;/b&gt;
-returns passed arguments when spy is called
-
-&lt;b&gt;spyOn(x, 'method').andThrow(exception): &lt;/b&gt;
-throws passed exception when spy is called
-
-&lt;b&gt;spyOn(x, 'method').andCallFake(function): &lt;/b&gt;
-calls passed function when spy is called
-</code></pre>
-
-<p>There is a detailed wiki page for spices on github <a href="https://github.com/pivotal/jasmine/wiki/Spies.">https://github.com/pivotal/jasmine/wiki/Spies.</a></p>
-
+		<p>In continuation of previous post for Jasmine, here I want to share my experience with Jasmine and Ajax. I want to show how cool it is with jasmine to test ajax calls in javascript. 
 		
-		
+		<a href="/blog/2012/04/06/jasmine-ajax-and-spies/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>
@@ -181,83 +118,44 @@ calls passed function when spy is called
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
 	<h1 class="title" itemprop="name"><a href="/blog/2012/03/12/jasmine-bdd-for-javascript/" itemprop="url">Jasmine: BDD for Javascript</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		<p>In web development, if we are doing web 2.0 and modern web concepts, we have to write a lot of javascript and ajax calls and that will increase client side javascript day by day. We have lot of good javascript libraries for implementation. For faster delivery of features we need to cover the client side javascript with test cases. Jasmine is a tool to do BDD for javascript. It can mock ajax calls and you can use some static templates as a result. Jasmine also can be useful for TDD with javascript.</p>
-
-<h4>1. Setting up a project</h4>
-
-<p>To set up a project for javascript BDD, first of all you need to add <strong>&lsquo;jasmine&rsquo;</strong> to your gem file. Then after bundle install you will have to run a generator {<strong>rails g jasmine:install</strong>} to generate jasmine defaults. Now you can run command <strong>rake jasmine</strong> to see your spec on browser. The server run default on 8888 port. You can see your specs by browsing <a href="http://localhost:8888.">http://localhost:8888.</a> To write specs you can add a .js file in spec/javascripts/my_javascript_spec.js.</p>
-
-<h4>2. Syntax</h4>
-
-<p>Jasmine is very similar with rSpec in terms of syntax. It has methods like <strong>describe</strong> and <strong>it</strong>. Both functions take two arguments, first a string to show the context and second function to test the results. <strong>describe</strong> can be used for grouping related specs.</p>
-
-<pre><code>describe('addition', function () {  
-    it('adds two numbers', function () {  
-        expect(5 + 5).toEqual(10);  
-    });  
-}); 
-</code></pre>
-
-<h4>3. Setup and Tear-down</h4>
-
-<p>Jasmine provides function <strong>beforeEach</strong> for setup the spec context and <strong>afterEach</strong> to clear the context.</p>
-
-<pre><code>describe("Spec setup and tear-down", function() {
-  var number;
-  beforeEach(function() {
-    number = 0;
-    number += 1;
-  });
-
-  afterEach(function() {
-    number = 0;
-  });
-
-  it("first assertion", function() {
-    expect(number).toEqual(1);              #green
-  });
-
-  it("second assertion", function() {
-    expect(number).toEqual(1);              #green
-  });
-});
-</code></pre>
-
-<h4>4. Matchers</h4>
-
-<p>Given few of the matches you can use for assertions &ndash;</p>
-
-<pre><code>&lt;b&gt;toContain&lt;/b&gt;
-   expect(["linux", "mac", "windows"]).toContain("linux");  
-&lt;b&gt;toMatch&lt;/b&gt;
-   expect(1050.50).toMatch(/\$\d*.\d\d/);
-&lt;b&gt;toBeLessThan&lt;/b&gt;
-   expect(1).toBeLessThan(2);  
-&lt;b&gt;toBeGreaterThan&lt;/b&gt;
-   expect(2).toBeGreaterThan(1);
-&lt;b&gt;toBeTruthy&lt;/b&gt;
-  expect(true).toBeTruthy(); 
-&lt;b&gt;toBeFalsy&lt;/b&gt;
-  expect(false).toBeFalsy();  
-
-and a lot many.
-</code></pre>
-
-<h4>5. Custom Matchers</h4>
-
-<p>We can write our own custom matcher using <strong>this.addMatchers</strong> in beforeEach call.</p>
-
-<pre><code>beforeEach(function () {  
-  this.addMatchers({  
-    toBeBetween: function (floor, ceiling) {  
-      return this.actual &gt; floor &amp;&amp; this.actual &lt; ceiling;  
-    }  
-  });  
-});  
-</code></pre>
-
+		<p>In web development, if we are doing web 2.0 and modern web concepts, we have to write a lot of javascript and ajax calls and that will increase client side javascript day by day. 
 		
+		<a href="/blog/2012/03/12/jasmine-bdd-for-javascript/" class="more-link">Read on &rarr;</a>
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name"><a href="/blog/2012/01/18/moving-to-ruby-and-rails-edge/" itemprop="url">Moving to Ruby and Rails Edge</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Since our team always works with technology edge whether it is rails or ruby, from last week we started moving to ruby 1.9.3 and rails 3.1.3. I am sharing our experiences we found during migrating our product to rails and ruby latest release.
 		
+		<a href="/blog/2012/01/18/moving-to-ruby-and-rails-edge/" class="more-link">Read on &rarr;</a>
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name"><a href="/blog/2011/07/31/railsrailtie-e28093-hook-everything/" itemprop="url">Rails::Railtie – Hook Everything</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>After Rails 3 released I have been trying to find major and important changes in rails framework over 2.x version. The change I like most is Rails Railtie. Using Railtie you can configure your own gem or plugin in a rails application according to your choice in boot process. 
+		
+		<a href="/blog/2011/07/31/railsrailtie-e28093-hook-everything/" class="more-link">Read on &rarr;</a>
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name"><a href="/blog/2011/03/17/rails-3-e28093-activemodel/" itemprop="url">Rails 3 – ActiveModel Basics</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Hey Guys,</p>
+
+<p>It is long time to write something, since I was busy with some open-source stuff. Over last two weeks we were migrating an application from rails 2.x version to rails 3.x. In that application we had lot of ActiveResource classes and other classes, and in those classes we need to validate some attributes and also we need to wrap call backs around some methods in ActiveRecord style. 
+		
+		<a href="/blog/2011/03/17/rails-3-e28093-activemodel/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>

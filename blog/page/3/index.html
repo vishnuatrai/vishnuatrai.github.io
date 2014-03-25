@@ -7,7 +7,7 @@
 	<meta name="author" content="vishnuatrai.com">
 
 	
-	<meta name="description" content="Rails 3 – ActiveModel Basics Hey Guys, It is long time to write something, since I was busy with some open-source stuff. Over last two weeks we were &hellip;">
+	<meta name="description" content="#After Ubuntu Installation Requirements Part I After installation of Ubuntu you may need to set up your system for some basic requirements. For &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -105,235 +105,90 @@ $(function(){
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<h1 class="title" itemprop="name"><a href="/blog/2011/03/17/rails-3-e28093-activemodel/" itemprop="url">Rails 3 – ActiveModel Basics</a></h1>
+	<h1 class="title" itemprop="name"><a href="/blog/2010/08/15/todo-with-ubuntu-installation/" itemprop="url">#After Ubuntu Installation Requirements Part I</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		<p>Hey Guys,</p>
-
-<p>It is long time to write something, since I was busy with some open-source stuff. Over last two weeks we were migrating an application from rails 2.x version to rails 3.x. In that application we had lot of ActiveResource classes and other classes, and in those classes we need to validate some attributes and also we need to wrap call backs around some methods in ActiveRecord style. In earlier 2.x rails version we had to write some code for validation and  call back that was written us.</p>
-
-<p>During the migration from 2.x version to rails 3, we got to know about ActiveModel module that will give you lot of features in ActiveRecord style.</p>
-
-<p>Here, I am sharing my experiences with ActiveModel &ndash;</p>
-
-<p>ActiveModel is a nice library provided by Rails 3, by using that any ruby object can behave like a ActiveRecord class object. Some of ActiveModel API explained below &ndash;</p>
-
-<h4>1.1 AttributeMethods</h4>
-
-<p>AttributeMethods module can add custom prefixes and suffixes on  methods of a class. It is used by defining the prefixes and suffixes,  which methods on the object will use them.</p>
-
-<pre><code>class Person
-  include ActiveModel::AttributeMethods
-
-  attribute_method_prefix 'reset_'
-  attribute_method_suffix '_highest?'
-  define_attribute_methods ['age']
-
-  attr_accessor :age
-
-private
-  def reset_attribute(attribute)
-    send("#{attribute}=", 0)
-  end
-
-  def attribute_highest?(attribute)
-    send(attribute) &gt; 100 ? true : false
-  end
-
-end
-
-person = Person.new
-person.age = 110
-person.age_highest?  # true
-person.reset_age     # 0
-person.age_highest?  # false
-</code></pre>
-
-<h4>1.2 Callbacks</h4>
-
-<p>Callbacks gives Active Record style callbacks. This provides the  ability to define the callbacks and those will run at appropriate time.  After defining a callbacks you can wrap with before, after and around  custom methods.</p>
-
-<pre><code>class Person
-  extend ActiveModel::Callbacks
-
-  define_model_callbacks :update
-
-  before_update :reset_me
-
-  def update
-    _run_update_callbacks do
-      # This will call when we are trying to call update on object.
-    end
-  end
-
-  def reset_me
-    # This method will call when you are calling update on object as a before_update callback as defined.
-  end
-end
-</code></pre>
-
-<h4>1.3 Conversion</h4>
-
-<p>If a class defines persisted? and id methods then you can include  Conversion module in that class and you can able to call Rails  conversion methods to objects of that class.</p>
-
-<pre><code>class Person
-  include ActiveModel::Conversion
-
-  def persisted?
-    false
-  end
-
-  def id
-    nil
-  end
-end
-
-person = Person.new
-person.to_model == person  #=&gt; true
-person.to_key              #=&gt; nil
-person.to_param            #=&gt; nil
-</code></pre>
-
-<h4>1.4 Dirty</h4>
-
-<p>An object becomes dirty when an object is gone through one or more  changes to its attributes and not yet saved. This gives the ability to  check whether an object has been changed or not. It also has attribute  based accessor methods. Lets consider a Person class with attributes  first_name and last_name</p>
-
-<pre><code>require 'rubygems'
-require 'active_model'
-
-class Person
-  include ActiveModel::Dirty
-  define_attribute_methods [:first_name, :last_name]
-
-  def first_name
-    @first_name
-  end
-
-  def first_name=(value)
-    first_name_will_change!
-    @first_name = value
-  end
-
-  def last_name
-    @last_name
-  end
-
-  def last_name=(value)
-    last_name_will_change!
-    @last_name = value
-  end
-
-  def save
-    @previously_changed = changes
-  end
-
-end
-</code></pre>
-
-<h5>1.4.1 Querying object directly for its list of all changed attributes.</h5>
-
-<pre><code>person = Person.new
-person.first_name = "First Name"
-
-person.first_name #=&gt; "First Name"
-person.first_name = "First Name Changed"
-
-person.changed? #=&gt; true
-
-#returns an list of fields arry which all has been changed before saved.
-person.changed #=&gt; ["first_name"]
-
-#returns a hash of the fields that have changed with their original values.
-person.changed_attributes #=&gt; {"first_name" =&gt; "First Name Changed"}
-
-#returns a hash of changes, with the attribute names as the keys, and the values will be an array of the old and new value for that field.
-person.changes #=&gt; {"first_name" =&gt; ["First Name","First Name Changed"]}
-</code></pre>
-
-<h5>1.4.2 Attribute based accessor methods</h5>
-
-<p>Track whether the particular attribute has been changed or not.</p>
-
-<pre><code>#attr_name_changed?
-person.first_name #=&gt; "First Name"
-
-#assign some other value to first_name attribute
-person.first_name = "First Name 1"
-
-person.first_name_changed? #=&gt; true
-</code></pre>
-
-<p>Track what was the previous value of the attribute.</p>
-
-<pre><code>#attr_name_was accessor
-person.first_name_was  #=&gt; "First Name"
-</code></pre>
-
-<h5>Track  both previous and current value of the changed attribute. Returns an array if changed else returns nil</h5>
-
-<pre><code>#attr_name_change
-person.first_name_change #=&gt; ["First Name", "First Name 1"]
-person.last_name_change #=&gt; nil
-</code></pre>
-
-<h4>1.5 Validations</h4>
-
-<p>Validations module adds the ability to class objects to validate them in Active Record style.</p>
-
-<pre><code>class Person
-  include ActiveModel::Validations
-
-  attr_accessor :name, :email
-
-  validates :name, :presence =&gt; true
-  validates_format_of :email, :with =&gt; /^([^\s]+)((?:[-a-z0-9]\.)[a-z]{2,})$/i 
-
-end
-
-person = Person.new
-person.valid?                        #=&gt; false
-person.name  = 'vishnu'
-person.email  = 'me'
-person.valid?                        #=&gt; false
-person.email = 'me@vishnuatrai.com'
-person.valid?                        #=&gt; true
-</code></pre>
-
+		<p>After installation of Ubuntu you may need to set up your system for some basic requirements. For these requirements you can follow these steps :
 		
-		
+		<a href="/blog/2010/08/15/todo-with-ubuntu-installation/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<h1 class="title" itemprop="name"><a href="/blog/2011/02/16/mapreduce-tool-to-reduce-analytical-data-processing/" itemprop="url">MapReduce: Reduce Analytical Data Processing</a></h1>
+	<h1 class="title" itemprop="name"><a href="/blog/2010/08/14/iind/" itemprop="url">#After Ubuntu Installation Requirements Part II</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		<p>Today every human being is rapidly increasing online activities and as a result web applications are having a huge amounts of data, now it is a challenge for organizations to quickly analyze the huge amounts of data their customers and audiences generate to better understand and serve them.MapReduce is the tool that is helping those organizations.</p>
+		<p>11 – Graphical web browser</p>
 
-<p>MapReduce is a programming framework popularized by Google and used to simplify data processing across massive data sets.</p>
+<p>Windows equivalent : Internet explorer, firefox, opera</p>
 
-<p>Enterprise implementation of MapReduce can be found in Hadoop, which uses HDFS to store unstructured data (file system) and uses the power of MapReduce to parallelize the processing of this data. Hadoop is suited for non time-sensitive batch jobs involving large-scale datasets.</p>
+<p>Ubuntu equivalent : Firefox, opera, chromium</p>
 
-<p>With MapReduce, computational processing can occur on data stored either in a filesystem (unstructured) or within a database (structured).</p>
+<p>Opera      
+		
+		<a href="/blog/2010/08/14/iind/" class="more-link">Read on &rarr;</a>
+	</div>
 
-<p>There are two fundamental pieces of a MapReduce query:</p>
+</article>
 
-<h4>Map</h4>
 
-<p>The master node takes the input, chops it up into smaller sub-problems, and distributes those to worker nodes. A worker node may do this again in turn, leading to a multi-level tree structure. The worker node processes that smaller problem, and passes the answer back to its master node.</p>
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name"><a href="/blog/2010/08/13/iiird/" itemprop="url">#After Ubuntu Installation Requirements Part III</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>21 – Image Editor</p>
 
-<h4>Reduce</h4>
+<p>Windows equivalent : Adobe Photoshop</p>
 
-<p>The master node then takes the answers to all the sub-problems and combines them in a way to get the output &ndash; the answer to the problem it was originally trying to solve.</p>
+<p>Ubuntu equivalent : GIMP</p>
 
-<h3>Benefits of MapReduce</h3>
+<p>GIMP</p>
 
-<p>First, the model is easy to use, even for programmers without experience with distributed systems, since it hides the details of parallelization, fault-tolerance, locality optimization, and load balancing. MapReduce allows developers to write applications in their language of choice while handling the details of parallelization behind the scenes.</p>
+<p>sudo apt-get install gimp gimp-data gimp-plugin-registry  
+		
+		<a href="/blog/2010/08/13/iiird/" class="more-link">Read on &rarr;</a>
+	</div>
 
-<p>Second, a large variety of problems are easily expressible as MapReduce computations.
-For example, MapReduce is used for the generation of data for Google&rsquo;s production web search service, for sorting, for data mining, for machine learning, and many other systems.</p>
+</article>
 
-<p>Third, MapReduce enables scaling of applications across large clusters of machines comprising thousands of nodes, with fault-tolerance built-in for ultra-fast performance.</p>
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name"><a href="/blog/2010/08/12/iv/" itemprop="url">#After Ubuntu Installation Requirements Part IV</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>31 – Programs for CD burning with GUI</p>
+
+<p>Windows equivalent : Nero, Roxio Easy CD Creator</p>
+
+<p>Ubuntu equivalent : K3b, Brasero</p>
+
+<p>K3b          
+		
+		<a href="/blog/2010/08/12/iv/" class="more-link">Read on &rarr;</a>
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name"><a href="/blog/2010/06/22/dell-studio-1558-alsa-sound-problem-ubuntu9-4-fix/" itemprop="url">Dell Studio - 1558 ALSA Sound Problem ubuntu9.4 Fix</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>I had the problem and the Laptop, Dell Studio 1558:
+just exec as root: &ldquo;nano /etc/modprobe.d/alsa-base.conf</p>
+
+<p>and add this line:</p>
+
+<p>options snd-hda-intel model=dell-m6</p>
+
+<p>it works for me. modeprobe.conf files are empty.
+if modprob.conf files are not empty then add this line to
+options snd-hda-intel model=dell-m6</p>
+
+<p>it will work</p>
+
+<p>I had the problem and the Laptop, Dell Studio 1558:just exec as root: &ldquo;nano /etc/modprobe.d/alsa-base.conf&rdquo;
+and add this line:options snd-hda-intel model=dell-m6
+it works for me. modeprobe.conf files are empty.</p>
+
+<p>if modprob.conf files are not empty then add this line tooptions snd-hda-intel model=dell-m6 it will work</p>
 
 		
 		
@@ -346,8 +201,6 @@ For example, MapReduce is used for the generation of data for Google&rsquo;s pro
     
         <a href="/blog/page/2/" class="prev">Prev</a>
     
-    
-        <a href="/blog/page/4/" class="next">Next</a>
     
     <div class="center"><a href="/blog/archives">Blog Archives</a></div>
 </nav>
