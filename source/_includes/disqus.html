@@ -7,7 +7,7 @@
 
         // var disqus_developer = 1;
         {% if page.wordpress_id %}
-            var disqus_identifier = '{{ page.wordpress_id }} {{ site.url }}/?p={{ page.wordpress_id }}';
+            var disqus_identifier = '{{ site.url }}/?page_id={{ page.wordpress_id }}';
         {% else %}
             var disqus_identifier = '{{ site.url }}{{ page.url }}';
         {% endif %}
