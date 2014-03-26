@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[@vishnuatrai]]></title>
-  <link href="http://vatrai.github.io/atom.xml" rel="self"/>
-  <link href="http://vatrai.github.io/"/>
-  <updated>2014-03-26T15:49:24+05:30</updated>
-  <id>http://vatrai.github.io/</id>
+  <link href="http://vishnuatrai.com/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.com/"/>
+  <updated>2014-03-26T16:08:31+05:30</updated>
+  <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
     <email><![CDATA[me@vishnuatrai.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Jasmine: Ajax and Spies]]></title>
-    <link href="http://vatrai.github.io/blog/2012/04/06/jasmine-ajax-and-spies/"/>
+    <link href="http://vishnuatrai.com/blog/2012/04/06/jasmine-ajax-and-spies/"/>
     <updated>2012-04-06T11:12:46+05:30</updated>
-    <id>http://vatrai.github.io/blog/2012/04/06/jasmine-ajax-and-spies</id>
+    <id>http://vishnuatrai.com/blog/2012/04/06/jasmine-ajax-and-spies</id>
     <content type="html"><![CDATA[<p>In continuation of previous post for Jasmine, here I want to share my experience with Jasmine and Ajax. I want to show how cool it is with jasmine to test ajax calls in javascript. <!--more--> Jasmine spies can be used for mock the ajax call with fake data. Spy replaces the function it is spying on. For example my javascript function have an ajax call &ndash;</p>
 
 <pre><code>function myprofiledetails(){
@@ -86,9 +86,9 @@ calls passed function when spy is called
   
   <entry>
     <title type="html"><![CDATA[Jasmine: BDD for Javascript]]></title>
-    <link href="http://vatrai.github.io/blog/2012/03/12/jasmine-bdd-for-javascript/"/>
+    <link href="http://vishnuatrai.com/blog/2012/03/12/jasmine-bdd-for-javascript/"/>
     <updated>2012-03-12T14:24:24+05:30</updated>
-    <id>http://vatrai.github.io/blog/2012/03/12/jasmine-bdd-for-javascript</id>
+    <id>http://vishnuatrai.com/blog/2012/03/12/jasmine-bdd-for-javascript</id>
     <content type="html"><![CDATA[<p>In web development, if we are doing web 2.0 and modern web concepts, we have to write a lot of javascript and ajax calls and that will increase client side javascript day by day. <!--more--> We have lot of good javascript libraries for implementation. For faster delivery of features we need to cover the client side javascript with test cases. Jasmine is a tool to do BDD for javascript. It can mock ajax calls and you can use some static templates as a result. Jasmine also can be useful for TDD with javascript.</p>
 
 <h4>1. Setting up a project</h4>
@@ -168,9 +168,9 @@ and a lot many.
   
   <entry>
     <title type="html"><![CDATA[Moving to Ruby and Rails Edge]]></title>
-    <link href="http://vatrai.github.io/blog/2012/01/18/moving-to-ruby-and-rails-edge/"/>
+    <link href="http://vishnuatrai.com/blog/2012/01/18/moving-to-ruby-and-rails-edge/"/>
     <updated>2012-01-18T15:25:34+05:30</updated>
-    <id>http://vatrai.github.io/blog/2012/01/18/moving-to-ruby-and-rails-edge</id>
+    <id>http://vishnuatrai.com/blog/2012/01/18/moving-to-ruby-and-rails-edge</id>
     <content type="html"><![CDATA[<p>Since our team always works with technology edge whether it is rails or ruby, from last week we started moving to ruby 1.9.3 and rails 3.1.3. I am sharing our experiences we found during migrating our product to rails and ruby latest release.<!--more--></p>
 
 <h5>Ruby-1.9.3 Upgrade</h5>
@@ -298,9 +298,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Rails::Railtie – Hook Everything]]></title>
-    <link href="http://vatrai.github.io/blog/2011/07/31/railsrailtie-e28093-hook-everything/"/>
+    <link href="http://vishnuatrai.com/blog/2011/07/31/railsrailtie-e28093-hook-everything/"/>
     <updated>2011-07-31T17:33:44+05:30</updated>
-    <id>http://vatrai.github.io/blog/2011/07/31/railsrailtie-e28093-hook-everything</id>
+    <id>http://vishnuatrai.com/blog/2011/07/31/railsrailtie-e28093-hook-everything</id>
     <content type="html"><![CDATA[<p>After Rails 3 released I have been trying to find major and important changes in rails framework over 2.x version. The change I like most is Rails Railtie. Using Railtie you can configure your own gem or plugin in a rails application according to your choice in boot process. <!--more-->  If you are a plugin developer, you can use Railtie class that is capable of loading generators, tasks, middlewares and adding subscribers.</p>
 
 <p>Rails::Engine is nothing more than a Railtie and it has some initializers already set and Rails::Application and Rails::Plugin are also engines. Any subclass of Railtie can be use to initialize rails application, so your plugin can be a first class member of rails application.</p>
@@ -359,9 +359,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Rails 3 – ActiveModel Basics]]></title>
-    <link href="http://vatrai.github.io/blog/2011/03/17/rails-3-e28093-activemodel/"/>
+    <link href="http://vishnuatrai.com/blog/2011/03/17/rails-3-e28093-activemodel/"/>
     <updated>2011-03-17T22:55:31+05:30</updated>
-    <id>http://vatrai.github.io/blog/2011/03/17/rails-3-e28093-activemodel</id>
+    <id>http://vishnuatrai.com/blog/2011/03/17/rails-3-e28093-activemodel</id>
     <content type="html"><![CDATA[<p>Hey Guys,</p>
 
 <p>It is long time to write something, since I was busy with some open-source stuff. Over last two weeks we were migrating an application from rails 2.x version to rails 3.x. In that application we had lot of ActiveResource classes and other classes, and in those classes we need to validate some attributes and also we need to wrap call backs around some methods in ActiveRecord style. <!--more--> In earlier 2.x rails version we had to write some code for validation and  call back that was written us.</p>
@@ -557,9 +557,9 @@ person.valid?                        #=&gt; true
   
   <entry>
     <title type="html"><![CDATA[MapReduce: Reduce Analytical Data Processing]]></title>
-    <link href="http://vatrai.github.io/blog/2011/02/16/mapreduce-tool-to-reduce-analytical-data-processing/"/>
+    <link href="http://vishnuatrai.com/blog/2011/02/16/mapreduce-tool-to-reduce-analytical-data-processing/"/>
     <updated>2011-02-16T22:54:29+05:30</updated>
-    <id>http://vatrai.github.io/blog/2011/02/16/mapreduce-tool-to-reduce-analytical-data-processing</id>
+    <id>http://vishnuatrai.com/blog/2011/02/16/mapreduce-tool-to-reduce-analytical-data-processing</id>
     <content type="html"><![CDATA[<p>Today every human being is rapidly increasing online activities and as a result web applications are having a huge amounts of data, now it is a challenge for organizations to quickly analyze the huge amounts of data their customers and audiences generate to better understand and serve them.<!--more--> MapReduce is the tool that is helping those organizations.</p>
 
 <p>MapReduce is a programming framework popularized by Google and used to simplify data processing across massive data sets.</p>
@@ -591,9 +591,9 @@ For example, MapReduce is used for the generation of data for Google&rsquo;s pro
   
   <entry>
     <title type="html"><![CDATA[MongoDB V/S CouchDB]]></title>
-    <link href="http://vatrai.github.io/blog/2011/01/12/mongodb-vs-couchdb/"/>
+    <link href="http://vishnuatrai.com/blog/2011/01/12/mongodb-vs-couchdb/"/>
     <updated>2011-01-12T22:44:11+05:30</updated>
-    <id>http://vatrai.github.io/blog/2011/01/12/mongodb-vs-couchdb</id>
+    <id>http://vishnuatrai.com/blog/2011/01/12/mongodb-vs-couchdb</id>
     <content type="html"><![CDATA[<p>Both MongoDB and CouchDB are document oriented databases with JSON style object data storage.  They have their pros and cons in different situations.<!--more--></p>
 
 <h4>1) Map Reduce</h4>
@@ -638,9 +638,9 @@ With MongoDB you should see high write performance, especially for updates.</p>
   
   <entry>
     <title type="html"><![CDATA[Why NoSQL?]]></title>
-    <link href="http://vatrai.github.io/blog/2010/11/01/why-nosql/"/>
+    <link href="http://vishnuatrai.com/blog/2010/11/01/why-nosql/"/>
     <updated>2010-11-01T20:57:27+05:30</updated>
-    <id>http://vatrai.github.io/blog/2010/11/01/why-nosql</id>
+    <id>http://vishnuatrai.com/blog/2010/11/01/why-nosql</id>
     <content type="html"><![CDATA[<p><strong>Why NoSQL?</strong></p>
 
 <p><strong>NoSQL</strong> term is supposed to stand for “Not Only SQL.” . This term is used to designated DBMS that differ from classic RDBMS in some way. These DBMS may not require fixed table schemas, and usually avoid join operations and typically scale horizontally.<!--more--></p>
@@ -680,9 +680,9 @@ With MongoDB you should see high write performance, especially for updates.</p>
   
   <entry>
     <title type="html"><![CDATA[Rake Migration: Track Rake Tasks with versions]]></title>
-    <link href="http://vatrai.github.io/blog/2010/10/12/managed-rake-tasks-rake-migration/"/>
+    <link href="http://vishnuatrai.com/blog/2010/10/12/managed-rake-tasks-rake-migration/"/>
     <updated>2010-10-12T15:29:48+05:30</updated>
-    <id>http://vatrai.github.io/blog/2010/10/12/managed-rake-tasks-rake-migration</id>
+    <id>http://vishnuatrai.com/blog/2010/10/12/managed-rake-tasks-rake-migration</id>
     <content type="html"><![CDATA[<p>I have started working on a plugin which helps rails projects to maintain the list of rake tasks.</p>
 
 <p>We are working on a project there are four to six teams at different geo-locations Bangalore, Kolkata, Edmonton etc.For the same project we have different environments like Developemnt, Testing, Staging, QA, QA2, Beta etc.All teams are working with new features, as well as bug fixes.<!--more--></p>
@@ -715,9 +715,9 @@ With MongoDB you should see high write performance, especially for updates.</p>
   
   <entry>
     <title type="html"><![CDATA[MySql DB Indexing]]></title>
-    <link href="http://vatrai.github.io/blog/2010/09/20/indexing-basic-mysql-queries/"/>
+    <link href="http://vishnuatrai.com/blog/2010/09/20/indexing-basic-mysql-queries/"/>
     <updated>2010-09-20T19:33:35+05:30</updated>
-    <id>http://vatrai.github.io/blog/2010/09/20/indexing-basic-mysql-queries</id>
+    <id>http://vishnuatrai.com/blog/2010/09/20/indexing-basic-mysql-queries</id>
     <content type="html"><![CDATA[<p>Working with a online tutorial with a huge amount of data, product owners always used to  raise issues for application performance. After looking in to different scenerios like apache configurations, hardware, network issues, and mysql performance as a backend server, we got to know that there are a lot of opportunities to improve mysql db performance. <!--more--> To see why db performance slow I turned on slow quiry logging in my.cnf:</p>
 
 <p>log-slow-queries
@@ -802,9 +802,9 @@ long_query_time = 5</p>
   
   <entry>
     <title type="html"><![CDATA[#After ubuntu installation requirements Part I]]></title>
-    <link href="http://vatrai.github.io/blog/2010/08/15/todo-with-ubuntu-installation/"/>
+    <link href="http://vishnuatrai.com/blog/2010/08/15/todo-with-ubuntu-installation/"/>
     <updated>2010-08-15T22:19:56+05:30</updated>
-    <id>http://vatrai.github.io/blog/2010/08/15/todo-with-ubuntu-installation</id>
+    <id>http://vishnuatrai.com/blog/2010/08/15/todo-with-ubuntu-installation</id>
     <content type="html"><![CDATA[<p>After installation of Ubuntu you may need to set up your system for some basic requirements. For these requirements you can follow these steps :<!--more--></p>
 
 <p>1 – Expand the Software Repository List</p>
@@ -969,9 +969,9 @@ sudo apt-get install python-nautilus meld python-svn python-configobj ipython
   
   <entry>
     <title type="html"><![CDATA[#After ubuntu installation requirements Part II]]></title>
-    <link href="http://vatrai.github.io/blog/2010/08/14/iind/"/>
+    <link href="http://vishnuatrai.com/blog/2010/08/14/iind/"/>
     <updated>2010-08-14T13:39:03+05:30</updated>
-    <id>http://vatrai.github.io/blog/2010/08/14/iind</id>
+    <id>http://vishnuatrai.com/blog/2010/08/14/iind</id>
     <content type="html"><![CDATA[<p>11 – Graphical web browser</p>
 
 <p>Windows equivalent : Internet explorer, firefox, opera</p>
@@ -1131,9 +1131,9 @@ chmod +x ./AdobeAIRInstaller.bin</p>
   
   <entry>
     <title type="html"><![CDATA[#After ubuntu installation requirements Part III]]></title>
-    <link href="http://vatrai.github.io/blog/2010/08/13/iiird/"/>
+    <link href="http://vishnuatrai.com/blog/2010/08/13/iiird/"/>
     <updated>2010-08-13T13:40:57+05:30</updated>
-    <id>http://vatrai.github.io/blog/2010/08/13/iiird</id>
+    <id>http://vishnuatrai.com/blog/2010/08/13/iiird</id>
     <content type="html"><![CDATA[<p>21 – Image Editor</p>
 
 <p>Windows equivalent : Adobe Photoshop</p>
@@ -1292,9 +1292,9 @@ killall nautilus</p>
   
   <entry>
     <title type="html"><![CDATA[#After ubuntu installation requirements Part IV]]></title>
-    <link href="http://vatrai.github.io/blog/2010/08/12/iv/"/>
+    <link href="http://vishnuatrai.com/blog/2010/08/12/iv/"/>
     <updated>2010-08-12T13:42:18+05:30</updated>
-    <id>http://vatrai.github.io/blog/2010/08/12/iv</id>
+    <id>http://vishnuatrai.com/blog/2010/08/12/iv</id>
     <content type="html"><![CDATA[<p>31 – Programs for CD burning with GUI</p>
 
 <p>Windows equivalent : Nero, Roxio Easy CD Creator</p>
@@ -1410,9 +1410,9 @@ If you are concern about your security, then it is pertinent that you  activate 
   
   <entry>
     <title type="html"><![CDATA[Dell Studio - 1558 ALSA sound problem ubuntu9.4 fix]]></title>
-    <link href="http://vatrai.github.io/blog/2010/06/22/dell-studio-1558-alsa-sound-problem-ubuntu9-4-fix/"/>
+    <link href="http://vishnuatrai.com/blog/2010/06/22/dell-studio-1558-alsa-sound-problem-ubuntu9-4-fix/"/>
     <updated>2010-06-22T22:06:57+05:30</updated>
-    <id>http://vatrai.github.io/blog/2010/06/22/dell-studio-1558-alsa-sound-problem-ubuntu9-4-fix</id>
+    <id>http://vishnuatrai.com/blog/2010/06/22/dell-studio-1558-alsa-sound-problem-ubuntu9-4-fix</id>
     <content type="html"><![CDATA[<p>I had the problem and the Laptop, Dell Studio 1558:
 just exec as root: &ldquo;nano /etc/modprobe.d/alsa-base.conf</p>
 
