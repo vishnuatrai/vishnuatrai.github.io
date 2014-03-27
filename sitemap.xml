@@ -65,12 +65,16 @@
         <lastmod>2014-03-26T15:00:17+05:30</lastmod>
     </url>
     <url>
+        <loc>http://vishnuatrai.com/blog/2014/03/27/octopress-programmer-friendly-blogging/</loc>
+        <lastmod>2014-03-27T14:31:19+05:30</lastmod>
+    </url>
+    <url>
         <loc>http://vishnuatrai.com/robots.txt</loc>
         <lastmod>2014-03-26T12:15:09+05:30</lastmod>
     </url>
     <url>
         <loc>http://vishnuatrai.com/blog/archives/</loc>
-        <lastmod>2014-03-26T12:15:09+05:30</lastmod>
+        <lastmod>2014-03-27T14:31:19+05:30</lastmod>
     </url>
     <url>
         <loc>http://vishnuatrai.com/about/</loc>
@@ -78,6 +82,6 @@
     </url>
     <url>
         <loc>http://vishnuatrai.com/</loc>
-        <lastmod>2014-03-26T12:15:09+05:30</lastmod>
+        <lastmod>2014-03-27T14:31:19+05:30</lastmod>
     </url>
 </urlset>
