@@ -4,6 +4,8 @@ title: "Octopress: Programmer Friendly Blogging"
 date: 2014-03-27 13:39:53 +0530
 comments: true
 categories: 
+  Technology
+  Blogging
 ---
 
 Nowadays blogs I am reading are mostly running with jekyll and using octopress to publish. Lot of my friends migrated from WordPress to Octopress. I was curious why they are doing so and what is the advantege with Octopress over WordPress. As an experiment I started developing a gihub pages application using Octopress and I found it very simple and easy to write. <!--more-->Good fit for my blog application.
