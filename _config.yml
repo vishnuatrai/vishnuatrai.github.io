@@ -72,6 +72,9 @@ github_skip_forks: true
 twitter_user: vishnuatrai
 twitter_tweet_button: true
 
+#linkedin
+linkedin_user: vishnuatrai
+
 # Google +1
 google_plus_one: true
 google_plus_one_size: medium
