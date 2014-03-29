@@ -8,4 +8,10 @@ title: Who I am?
 wordpress_id: 2
 ---
 
-### comming soon
+I'm Vishnu Sharma and I am a software developer who specializes in building web applications in various domains(ie. Financial, Online tutorial, HR solution, ERP, Social Networking etc). I have been in the field for nearly 8.5 years, and have been loving every minute of it. I am a blogger, designer and developer. 
+
+I am using Ruby on Rails framework to develop web apps, earlier I was using CoreJava and JSP for web development. Experimentally I use python, node.js frameworks to develop web apps. I love open source technologies, frameworks, libraries etc.
+
+I actively contribute to ruby libraries whenever I get a chance. I have done few contribution to Ruby on Rails framework itself. http://contributors.rubyonrails.org/contributors/vishnu-atrai/commits
+
+
