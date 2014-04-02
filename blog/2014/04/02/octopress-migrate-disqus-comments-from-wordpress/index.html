@@ -3,12 +3,11 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Dell Studio - 1558 ALSA sound problem ubuntu9.4 fix - @vishnuatrai</title>
+	<title>Octopress: Migrate Disqus Comments from WordPress - @vishnuatrai</title>
 	<meta name="author" content="vishnuatrai.com">
 
 	
-	<meta name="description" content="Dell Studio - 1558 ALSA Sound Problem ubuntu9.4 Fix Jun 22nd, 2010 I had the problem and the Laptop, Dell Studio 1558:
-just exec as root: &ldquo; &hellip;">
+	<meta name="description" content="Octopress: Migrate Disqus Comments From WordPress Apr 2nd, 2014 Last week I migrated my blog from WordPress to Octopress and find it very cool &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +17,7 @@ just exec as root: &ldquo; &hellip;">
 
 	<link href="/atom.xml" rel="alternate" title="@vishnuatrai" type="application/atom+xml">
 	
-	<link rel="canonical" href="http://vishnuatrai.com/blog/2010/06/22/dell-studio-1558-alsa-sound-problem-ubuntu9-4-fix/">
+	<link rel="canonical" href="http://vishnuatrai.com/blog/2014/04/02/octopress-migrate-disqus-comments-from-wordpress/">
   <link href="/favicon.gif" rel="shortcut icon" type="image/x-icon" >
   <link rel="icon" href="/favicon.gif" type="image/x-icon">
 
@@ -107,7 +106,7 @@ $(function(){
 			<div class="mid-col-container">
 				<div id="content" class="article-inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   
-	<h1 class="title" itemprop="name">Dell Studio - 1558 ALSA Sound Problem ubuntu9.4 Fix</h1>
+	<h1 class="title" itemprop="name">Octopress: Migrate Disqus Comments From WordPress</h1>
   
 
 
@@ -121,25 +120,25 @@ $(function(){
 
 
 
-  <div class="post-date"><time datetime="2010-06-22T22:06:57+05:30" data-updated="true" itemprop="datePublished">Jun 22<span>nd</span>, 2010</time></div>
-	<div class="entry-content" itemprop="articleBody"><p>I had the problem and the Laptop, Dell Studio 1558:
-just exec as root: &ldquo;nano /etc/modprobe.d/alsa-base.conf</p>
+  <div class="post-date"><time datetime="2014-04-02T12:08:35+05:30" data-updated="true" itemprop="datePublished">Apr 2<span>nd</span>, 2014</time></div>
+	<div class="entry-content" itemprop="articleBody"><p>Last week I migrated my blog from WordPress to Octopress and find it very cool blogging engine. Though, migraiton of posts and pages was quite easy but migration or you can say linking of Disqus comments from WorlPress pages to Octopress was difficult. I tried lot of different options but could not relink the Disqus comments.<!--more--></p>
 
-<p>and add this line:</p>
+<p>Then I read the Disqus documentation and advanced migration options, and I found a options using that we can relink our comments properly to new bloging urls.</p>
 
-<p>options snd-hda-intel model=dell-m6 <!--more--></p>
+<p>If you read Tools option under Discussion tab, you will find a option &ldquo;Upload a URL Map&rdquo;. There it says if your blog urls or slug was changed you can provide a CSV file which maps your old urls to new urls.( Left side old urls, Right side new urls)
+In my case CSV file format was similar to given below format.</p>
 
-<p>it works for me. modeprobe.conf files are empty.
-if modprob.conf files are not empty then add this line to
-options snd-hda-intel model=dell-m6</p>
+<pre><code>http://vishnuatrai.com/?page_id=2, http://vishnuatrai.com/about/index.html
+http://vishnuatrai.com/?p=115, http://vishnuatrai.com/blog/2010/10/12/managed-rake-tasks-rake-migration
+http://vishnuatrai.com/?p=132, http://vishnuatrai.com/blog/2010/11/01/why-nosql
+http://vishnuatrai.com/?p=12, http://vishnuatrai.com/blog/2010/11/01/why-nosql
+</code></pre>
 
-<p>it will work</p>
+<p>The Disqus Crawler runs and relink your comments to new urls.</p>
 
-<p>I had the problem and the Laptop, Dell Studio 1558:just exec as root: &ldquo;nano /etc/modprobe.d/alsa-base.conf&rdquo;
-and add this line:options snd-hda-intel model=dell-m6
-it works for me. modeprobe.conf files are empty.</p>
+<h3>Reference</h3>
 
-<p>if modprob.conf files are not empty then add this line tooptions snd-hda-intel model=dell-m6 it will work</p>
+<p><a href="http://help.disqus.com/customer/portal/articles/286778-using-the-migration-tools">http://help.disqus.com/customer/portal/articles/286778-using-the-migration-tools</a></p>
 </div>
 
 </article>
@@ -186,10 +185,10 @@ it works for me. modeprobe.conf files are empty.</p>
 
         // var disqus_developer = 1;
         
-            var disqus_identifier = 'http://vishnuatrai.com/?page_id=9';
+            var disqus_identifier = 'http://vishnuatrai.com/blog/2014/04/02/octopress-migrate-disqus-comments-from-wordpress/';
         
 
-        var disqus_url = 'http://vishnuatrai.com/blog/2010/06/22/dell-studio-1558-alsa-sound-problem-ubuntu9-4-fix/';
+        var disqus_url = 'http://vishnuatrai.com/blog/2014/04/02/octopress-migrate-disqus-comments-from-wordpress/';
         var disqus_script = 'embed.js';
       
     (function () {

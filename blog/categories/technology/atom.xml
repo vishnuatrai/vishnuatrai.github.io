@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Technology | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/blog/categories/technology/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2014-03-29T18:23:27+05:30</updated>
+  <updated>2014-04-02T12:36:51+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -12,6 +12,32 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress: Migrate Disqus Comments From WordPress]]></title>
+    <link href="http://vishnuatrai.com/blog/2014/04/02/octopress-migrate-disqus-comments-from-wordpress/"/>
+    <updated>2014-04-02T12:08:35+05:30</updated>
+    <id>http://vishnuatrai.com/blog/2014/04/02/octopress-migrate-disqus-comments-from-wordpress</id>
+    <content type="html"><![CDATA[<p>Last week I migrated my blog from WordPress to Octopress and find it very cool blogging engine. Though, migraiton of posts and pages was quite easy but migration or you can say linking of Disqus comments from WorlPress pages to Octopress was difficult. I tried lot of different options but could not relink the Disqus comments.<!--more--></p>
+
+<p>Then I read the Disqus documentation and advanced migration options, and I found a options using that we can relink our comments properly to new bloging urls.</p>
+
+<p>If you read Tools option under Discussion tab, you will find a option &ldquo;Upload a URL Map&rdquo;. There it says if your blog urls or slug was changed you can provide a CSV file which maps your old urls to new urls.( Left side old urls, Right side new urls)
+In my case CSV file format was similar to given below format.</p>
+
+<pre><code>http://vishnuatrai.com/?page_id=2, http://vishnuatrai.com/about/index.html
+http://vishnuatrai.com/?p=115, http://vishnuatrai.com/blog/2010/10/12/managed-rake-tasks-rake-migration
+http://vishnuatrai.com/?p=132, http://vishnuatrai.com/blog/2010/11/01/why-nosql
+http://vishnuatrai.com/?p=12, http://vishnuatrai.com/blog/2010/11/01/why-nosql
+</code></pre>
+
+<p>The Disqus Crawler runs and relink your comments to new urls.</p>
+
+<h3>Reference</h3>
+
+<p><a href="http://help.disqus.com/customer/portal/articles/286778-using-the-migration-tools">http://help.disqus.com/customer/portal/articles/286778-using-the-migration-tools</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Octopress: Programmer Friendly Blogging]]></title>
@@ -329,67 +355,6 @@ config.assets.js_compressor  = :uglifier
   gem 'coffee-rails', "~&gt; 3.1.0"
   gem 'uglifier'
 end
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rails::Railtie – Hook Everything]]></title>
-    <link href="http://vishnuatrai.com/blog/2011/07/31/railsrailtie-e28093-hook-everything/"/>
-    <updated>2011-07-31T17:33:44+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2011/07/31/railsrailtie-e28093-hook-everything</id>
-    <content type="html"><![CDATA[<p>After Rails 3 released I have been trying to find major and important changes in rails framework over 2.x version. The change I like most is Rails Railtie. Using Railtie you can configure your own gem or plugin in a rails application according to your choice in boot process. <!--more-->  If you are a plugin developer, you can use Railtie class that is capable of loading generators, tasks, middlewares and adding subscribers.</p>
-
-<p>Rails::Engine is nothing more than a Railtie and it has some initializers already set and Rails::Application and Rails::Plugin are also engines. Any subclass of Railtie can be use to initialize rails application, so your plugin can be a first class member of rails application.</p>
-
-<p>Here is sample plugin Railtie that will be loaded when your rails application boots.</p>
-
-<pre><code>require 'rails'
-class MyPlugin &lt; Rails::Railtie
-  # railtie code goes here
-end
-</code></pre>
-
-<p>Here I will give you some examples of Railtie methods, how to customize and extend your rails application using your plugin or gem library.</p>
-
-<h4>1) generators</h4>
-
-<p>Rails will require any generators if you have require generator path in your Railtie class within generators block.</p>
-
-<pre><code>generators do
-  require 'lib/to/generator.rb'
-end
-</code></pre>
-
-<h4>2) rake_tasks</h4>
-
-<p>You can ship rake tasks of your plugin in rails application if you require in Railtie</p>
-
-<pre><code>rake_tasks do 
-  require 'lib/to/rake_task.rb'
-end
-</code></pre>
-
-<h4>3) initializer</h4>
-
-<p>Railtie initializer method can create initializers that can run during the Rails boot process. It has the options to run a initializer before or after a specific initializer.</p>
-
-<pre><code>initializer "plugin_railtie.boot_plugin" do
-  Plugin.boot(NewPlugin)
-end
-
-initializer "new_plugin_railtie.boot_new_plugin", :before =&gt; "plugin_railtie.boot_plugin" do
-    NewPlugin.boot!
-end
-</code></pre>
-
-<h4>4) console</h4>
-
-<p>console method allows to add code that will run when Rails console starts.</p>
-
-<pre><code> console do
-   puts "my plugin loaded."
- end
 </code></pre>
 ]]></content>
   </entry>
