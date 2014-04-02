@@ -18,7 +18,7 @@ just exec as root: "nano /etc/modprobe.d/alsa-base.conf
 
 and add this line:
 
-options snd-hda-intel model=dell-m6
+options snd-hda-intel model=dell-m6 <!--more-->
 
 it works for me. modeprobe.conf files are empty.
 if modprob.conf files are not empty then add this line to
