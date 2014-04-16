@@ -4,6 +4,10 @@ title: "Critical Heartbleed fix for SSL"
 date: 2014-04-11 15:30:33 +0530
 comments: true
 categories: 
+  Technology
+  OpenSSL
+  Valunability
+
 ---
 
 OpenSSL heartbleed bug allows hackers to untraceably read server traffic and some server memory. This implementation mistake leads to the leak of memory information from the server to the client and from the client to the server. 
