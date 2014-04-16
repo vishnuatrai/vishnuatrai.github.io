@@ -7,7 +7,7 @@
 	<meta name="author" content="vishnuatrai.com">
 
 	
-	<meta name="description" content="Octopress: Migrate Disqus Comments From WordPress Last week I migrated my blog from WordPress to Octopress and find it very cool blogging engine. &hellip;">
+	<meta name="description" content="Critical Heartbleed Fix for SSL OpenSSL heartbleed bug allows hackers to untraceably read server traffic and some server memory. This implementation &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -109,6 +109,21 @@ $(function(){
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name"><a href="/blog/2014/04/11/critical-heartbleed-fix-for-ssl/" itemprop="url">Critical Heartbleed Fix for SSL</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>OpenSSL heartbleed bug allows hackers to untraceably read server traffic and some server memory. This implementation mistake leads to the leak of memory information from the server to the client and from the client to the server.</p>
+
+<p>For my Ruby on Rails application deployed on AWS, the minimal steps I took to upgrade fixed OpenSSL version given below &ndash;</p>
+
+<p>  1) Update OpenSSL to 1.0.1g 
+		
+		<a href="/blog/2014/04/11/critical-heartbleed-fix-for-ssl/" class="more-link">Read on &rarr;</a>
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
 	<h1 class="title" itemprop="name"><a href="/blog/2014/04/02/octopress-migrate-disqus-comments-from-wordpress/" itemprop="url">Octopress: Migrate Disqus Comments From WordPress</a></h1>
 	<div class="entry-content" itemprop="articleBody">
 		<p>Last week I migrated my blog from WordPress to Octopress and find it very cool blogging engine. Though, migraiton of posts and pages was quite easy but migration or you can say linking of Disqus comments from WorlPress pages to Octopress was difficult. I tried lot of different options but could not relink the Disqus comments.
@@ -147,17 +162,6 @@ $(function(){
 		<p>In web development, if we are doing web 2.0 and modern web concepts, we have to write a lot of javascript and ajax calls and that will increase client side javascript day by day. 
 		
 		<a href="/blog/2012/03/12/jasmine-bdd-for-javascript/" class="more-link">Read on &rarr;</a>
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<h1 class="title" itemprop="name"><a href="/blog/2012/01/18/moving-to-ruby-and-rails-edge/" itemprop="url">Moving to Ruby and Rails Edge</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>Since our team always works with technology edge whether it is rails or ruby, from last week we started moving to ruby 1.9.3 and rails 3.1.3. I am sharing our experiences we found during migrating our product to rails and ruby latest release.
-		
-		<a href="/blog/2012/01/18/moving-to-ruby-and-rails-edge/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>
