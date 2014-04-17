@@ -83,17 +83,17 @@ Given few of the matches you can use for assertions -
 
     
     
-    <b>toContain</b>
+    toContain
        expect(["linux", "mac", "windows"]).toContain("linux");  
-    <b>toMatch</b>
+    toMatch
        expect(1050.50).toMatch(/\$\d*.\d\d/);
-    <b>toBeLessThan</b>
+    toBeLessThan
        expect(1).toBeLessThan(2);  
-    <b>toBeGreaterThan</b>
+    toBeGreaterThan
        expect(2).toBeGreaterThan(1);
-    <b>toBeTruthy</b>
+    toBeTruthy
       expect(true).toBeTruthy(); 
-    <b>toBeFalsy</b>
+    toBeFalsy
       expect(false).toBeFalsy();  
     
     and a lot many.

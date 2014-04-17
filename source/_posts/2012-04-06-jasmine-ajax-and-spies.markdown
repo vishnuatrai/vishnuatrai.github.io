@@ -57,16 +57,16 @@ Jasmine provides some useful methods to support spies.
 
     
     
-    <b>expect(x).toHaveBeenCalled() </b> 
+    expect(x).toHaveBeenCalled()
     passes if x is a spy and was called
     
-    <b>expect(x).toHaveBeenCalledWith(arguments)</b>   
+    expect(x).toHaveBeenCalledWith(arguments)
     passes if x is a spy and was called with the specified arguments
     
-    <b>expect(x).not.toHaveBeenCalled() </b>                       
+    expect(x).not.toHaveBeenCalled()                       
     passes if x is a spy and was not called
     
-    <b>expect(x).not.toHaveBeenCalledWith(arguments) </b>   
+    expect(x).not.toHaveBeenCalledWith(arguments)   
     passes if x is a spy and was not called with the specified arguments
     
 
@@ -77,16 +77,16 @@ Spies can be trained to respond in a variety of ways when invoked:
 
     
     
-    <b>spyOn(x, 'method').andCallThrough():</b>
+    spyOn(x, 'method').andCallThrough():
     spies on AND calls the original function spied on
     
-    <b>spyOn(x, 'method').andReturn(arguments):</b>
+    spyOn(x, 'method').andReturn(arguments):
     returns passed arguments when spy is called
     
-    <b>spyOn(x, 'method').andThrow(exception): </b>
+    spyOn(x, 'method').andThrow(exception):
     throws passed exception when spy is called
     
-    <b>spyOn(x, 'method').andCallFake(function): </b>
+    spyOn(x, 'method').andCallFake(function): 
     calls passed function when spy is called
     
 
