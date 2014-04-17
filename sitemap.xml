@@ -65,6 +65,20 @@
         <lastmod>2014-04-17T13:10:32+05:30</lastmod>
     </url>
     <url>
+        <loc>http://vishnuatrai.com/blog/2013/06/24/rails-4-activesupport-concern/</loc>
+        <lastmod>2014-04-17T18:36:50+05:30</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://vishnuatrai.com/blog/2013/08/02/multi-tenant-soa-platform-on-ruby-on-rails/
+        </loc>
+        <lastmod>2014-04-17T14:16:33+05:30</lastmod>
+    </url>
+    <url>
+        <loc>http://vishnuatrai.com/blog/2013/10/15/javascript-object-oriented-programming/</loc>
+        <lastmod>2014-04-17T14:17:53+05:30</lastmod>
+    </url>
+    <url>
         <loc>http://vishnuatrai.com/blog/2014/03/27/octopress-programmer-friendly-blogging/</loc>
         <lastmod>2014-03-29T18:13:29+05:30</lastmod>
     </url>
@@ -80,7 +94,7 @@
     </url>
     <url>
         <loc>http://vishnuatrai.com/blog/archives/</loc>
-        <lastmod>2014-04-17T13:12:18+05:30</lastmod>
+        <lastmod>2014-04-17T18:36:50+05:30</lastmod>
     </url>
     <url>
         <loc>http://vishnuatrai.com/about/</loc>
@@ -92,6 +106,6 @@
     </url>
     <url>
         <loc>http://vishnuatrai.com/</loc>
-        <lastmod>2014-04-17T13:12:18+05:30</lastmod>
+        <lastmod>2014-04-17T18:36:50+05:30</lastmod>
     </url>
 </urlset>

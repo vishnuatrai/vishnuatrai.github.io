@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Javascript | @vishnuatrai]]></title>
+  <link href="http://vishnuatrai.com/blog/categories/javascript/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.com/"/>
+  <updated>2014-04-17T14:18:51+05:30</updated>
+  <id>http://vishnuatrai.com/</id>
+  <author>
+    <name><![CDATA[vishnuatrai.com]]></name>
+    <email><![CDATA[me@vishnuatrai.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Javascript Object Oriented Programming]]></title>
+    <link href="http://vishnuatrai.com/blog/2013/10/15/javascript-object-oriented-programming/"/>
+    <updated>2013-10-15T18:00:18+05:30</updated>
+    <id>http://vishnuatrai.com/blog/2013/10/15/javascript-object-oriented-programming</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+</feed>

@@ -4,7 +4,7 @@
   <title><![CDATA[@vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2014-04-17T13:12:58+05:30</updated>
+  <updated>2014-04-17T14:18:51+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -118,6 +118,33 @@ http://vishnuatrai.com/?p=132, http://vishnuatrai.com/blog/2010/11/01/why-nosql/
 <p>  <a href="http://everythingisgray.com/2013/06/15/on-migrating-from-wordpress-to-octopress">http://everythingisgray.com/2013/06/15/on-migrating-from-wordpress-to-octopress</a></p>
 
 <p>  <a href="http://zhen.org/blog/migrating-40000-posts-from-wordpress-to-octopress/">http://zhen.org/blog/migrating-40000-posts-from-wordpress-to-octopress/</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Javascript Object Oriented Programming]]></title>
+    <link href="http://vishnuatrai.com/blog/2013/10/15/javascript-object-oriented-programming/"/>
+    <updated>2013-10-15T18:00:18+05:30</updated>
+    <id>http://vishnuatrai.com/blog/2013/10/15/javascript-object-oriented-programming</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Multi-tenant SOA platform on Ruby On Rails]]></title>
+    <link href="http://vishnuatrai.com/blog/2013/08/02/multi-tenant-soa-platform-on-ruby-on-rails/"/>
+    <updated>2013-08-02T18:03:45+05:30</updated>
+    <id>http://vishnuatrai.com/blog/2013/08/02/multi-tenant-soa-platform-on-ruby-on-rails</id>
+    <content type="html"><![CDATA[
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rails 4 - ActiveSupport::Concern]]></title>
+    <link href="http://vishnuatrai.com/blog/2013/06/24/rails-4-activesupport-concern/"/>
+    <updated>2013-06-24T18:00:23+05:30</updated>
+    <id>http://vishnuatrai.com/blog/2013/06/24/rails-4-activesupport-concern</id>
+    <content type="html"><![CDATA[
 ]]></content>
   </entry>
   
@@ -1513,32 +1540,6 @@ If you are concern about your security, then it is pertinent that you  activate 
 <p>sudo apt-get install gnome-do</p>
 
 <p>Now you can launch it from Application → Accessories → Gnome Do</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Dell Studio - 1558 ALSA sound problem ubuntu9.4 fix]]></title>
-    <link href="http://vishnuatrai.com/blog/2010/06/22/dell-studio-1558-alsa-sound-problem-ubuntu9-4-fix/"/>
-    <updated>2010-06-22T22:06:57+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2010/06/22/dell-studio-1558-alsa-sound-problem-ubuntu9-4-fix</id>
-    <content type="html"><![CDATA[<p>I had the problem and the Laptop, Dell Studio 1558:
-just exec as root: &ldquo;nano /etc/modprobe.d/alsa-base.conf</p>
-
-<p>and add this line:</p>
-
-<p>options snd-hda-intel model=dell-m6 <!--more--></p>
-
-<p>it works for me. modeprobe.conf files are empty.
-if modprob.conf files are not empty then add this line to
-options snd-hda-intel model=dell-m6</p>
-
-<p>it will work</p>
-
-<p>I had the problem and the Laptop, Dell Studio 1558:just exec as root: &ldquo;nano /etc/modprobe.d/alsa-base.conf&rdquo;
-and add this line:options snd-hda-intel model=dell-m6
-it works for me. modeprobe.conf files are empty.</p>
-
-<p>if modprob.conf files are not empty then add this line tooptions snd-hda-intel model=dell-m6 it will work</p>
 ]]></content>
   </entry>
   
