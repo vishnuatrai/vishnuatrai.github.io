@@ -155,31 +155,31 @@ $(function(){
 
 <p>Jasmine provides some useful methods to support spies.</p>
 
-<pre><code>&lt;b&gt;expect(x).toHaveBeenCalled() &lt;/b&gt; 
+<pre><code>expect(x).toHaveBeenCalled()
 passes if x is a spy and was called
 
-&lt;b&gt;expect(x).toHaveBeenCalledWith(arguments)&lt;/b&gt;   
+expect(x).toHaveBeenCalledWith(arguments)
 passes if x is a spy and was called with the specified arguments
 
-&lt;b&gt;expect(x).not.toHaveBeenCalled() &lt;/b&gt;                       
+expect(x).not.toHaveBeenCalled()                       
 passes if x is a spy and was not called
 
-&lt;b&gt;expect(x).not.toHaveBeenCalledWith(arguments) &lt;/b&gt;   
+expect(x).not.toHaveBeenCalledWith(arguments)   
 passes if x is a spy and was not called with the specified arguments
 </code></pre>
 
 <p>Spies can be trained to respond in a variety of ways when invoked:</p>
 
-<pre><code>&lt;b&gt;spyOn(x, 'method').andCallThrough():&lt;/b&gt;
+<pre><code>spyOn(x, 'method').andCallThrough():
 spies on AND calls the original function spied on
 
-&lt;b&gt;spyOn(x, 'method').andReturn(arguments):&lt;/b&gt;
+spyOn(x, 'method').andReturn(arguments):
 returns passed arguments when spy is called
 
-&lt;b&gt;spyOn(x, 'method').andThrow(exception): &lt;/b&gt;
+spyOn(x, 'method').andThrow(exception):
 throws passed exception when spy is called
 
-&lt;b&gt;spyOn(x, 'method').andCallFake(function): &lt;/b&gt;
+spyOn(x, 'method').andCallFake(function): 
 calls passed function when spy is called
 </code></pre>
 

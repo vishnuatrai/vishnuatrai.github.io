@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Technology | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/blog/categories/technology/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2014-04-16T22:54:36+05:30</updated>
+  <updated>2014-04-17T13:12:58+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -160,31 +160,31 @@ http://vishnuatrai.com/?p=132, http://vishnuatrai.com/blog/2010/11/01/why-nosql/
 
 <p>Jasmine provides some useful methods to support spies.</p>
 
-<pre><code>&lt;b&gt;expect(x).toHaveBeenCalled() &lt;/b&gt; 
+<pre><code>expect(x).toHaveBeenCalled()
 passes if x is a spy and was called
 
-&lt;b&gt;expect(x).toHaveBeenCalledWith(arguments)&lt;/b&gt;   
+expect(x).toHaveBeenCalledWith(arguments)
 passes if x is a spy and was called with the specified arguments
 
-&lt;b&gt;expect(x).not.toHaveBeenCalled() &lt;/b&gt;                       
+expect(x).not.toHaveBeenCalled()                       
 passes if x is a spy and was not called
 
-&lt;b&gt;expect(x).not.toHaveBeenCalledWith(arguments) &lt;/b&gt;   
+expect(x).not.toHaveBeenCalledWith(arguments)   
 passes if x is a spy and was not called with the specified arguments
 </code></pre>
 
 <p>Spies can be trained to respond in a variety of ways when invoked:</p>
 
-<pre><code>&lt;b&gt;spyOn(x, 'method').andCallThrough():&lt;/b&gt;
+<pre><code>spyOn(x, 'method').andCallThrough():
 spies on AND calls the original function spied on
 
-&lt;b&gt;spyOn(x, 'method').andReturn(arguments):&lt;/b&gt;
+spyOn(x, 'method').andReturn(arguments):
 returns passed arguments when spy is called
 
-&lt;b&gt;spyOn(x, 'method').andThrow(exception): &lt;/b&gt;
+spyOn(x, 'method').andThrow(exception):
 throws passed exception when spy is called
 
-&lt;b&gt;spyOn(x, 'method').andCallFake(function): &lt;/b&gt;
+spyOn(x, 'method').andCallFake(function): 
 calls passed function when spy is called
 </code></pre>
 
@@ -243,17 +243,17 @@ calls passed function when spy is called
 
 <p>Given few of the matches you can use for assertions &ndash;</p>
 
-<pre><code>&lt;b&gt;toContain&lt;/b&gt;
+<pre><code>toContain
    expect(["linux", "mac", "windows"]).toContain("linux");  
-&lt;b&gt;toMatch&lt;/b&gt;
+toMatch
    expect(1050.50).toMatch(/\$\d*.\d\d/);
-&lt;b&gt;toBeLessThan&lt;/b&gt;
+toBeLessThan
    expect(1).toBeLessThan(2);  
-&lt;b&gt;toBeGreaterThan&lt;/b&gt;
+toBeGreaterThan
    expect(2).toBeGreaterThan(1);
-&lt;b&gt;toBeTruthy&lt;/b&gt;
+toBeTruthy
   expect(true).toBeTruthy(); 
-&lt;b&gt;toBeFalsy&lt;/b&gt;
+toBeFalsy
   expect(false).toBeFalsy();  
 
 and a lot many.
