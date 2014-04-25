@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Technology | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/blog/categories/technology/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2014-04-25T14:20:12+05:30</updated>
+  <updated>2014-04-25T14:30:36+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -18,11 +18,11 @@
     <link href="http://vishnuatrai.com/blog/2014/04/11/critical-heartbleed-fix-for-ssl/"/>
     <updated>2014-04-11T15:30:33+05:30</updated>
     <id>http://vishnuatrai.com/blog/2014/04/11/critical-heartbleed-fix-for-ssl</id>
-    <content type="html"><![CDATA[<p>OpenSSL heartbleed bug allows hackers to untraceably read server traffic and some server memory. This implementation mistake leads to the leak of memory information from the server to the client and from the client to the server.</p>
+    <content type="html"><![CDATA[<p>OpenSSL heartbleed bug allows hackers to untraceably read server traffic and some server memory. This implementation mistake leads to the leak of memory information from the server to the client and from the client to the server. <!--more--></p>
 
 <p>For my Ruby on Rails application deployed on AWS, the minimal steps I took to upgrade fixed OpenSSL version given below &ndash;</p>
 
-<p>  1) Update OpenSSL to 1.0.1g <!--more--></p>
+<p>  1) Update OpenSSL to 1.0.1g</p>
 
 <pre><code>download source from here http://www.openssl.org/source/openssl-1.0.1g.tar.gz
 tar -zxf openssl-1.0.1g.tar.gz 
@@ -64,7 +64,7 @@ ln -s /usr/local/ssl/bin/openssl /usr/bin/openssl
     <link href="http://vishnuatrai.com/blog/2014/04/02/octopress-migrate-disqus-comments-from-wordpress/"/>
     <updated>2014-04-02T12:08:35+05:30</updated>
     <id>http://vishnuatrai.com/blog/2014/04/02/octopress-migrate-disqus-comments-from-wordpress</id>
-    <content type="html"><![CDATA[<p>Last week I migrated my blog from WordPress to Octopress and find it very cool blogging engine. Though, migraiton of posts and pages was quite easy but migration or you can say linking of Disqus comments from WorlPress pages to Octopress was difficult. I tried lot of different options but could not relink the Disqus comments.<!--more--></p>
+    <content type="html"><![CDATA[<p>Last week I migrated my blog from WordPress to Octopress and find it very cool blogging engine. Though, migraiton of posts and pages was quite easy but migration or you can say linking of Disqus comments from WorlPress pages to Octopress was difficult.<!--more--> I tried lot of different options but could not relink the Disqus comments.</p>
 
 <p>Then I read the Disqus documentation and advanced migration options, and I found a options using that we can relink our comments properly to new bloging urls.</p>
 
@@ -89,7 +89,7 @@ http://vishnuatrai.com/?p=132, http://vishnuatrai.com/blog/2010/11/01/why-nosql/
     <link href="http://vishnuatrai.com/blog/2014/03/27/octopress-programmer-friendly-blogging/"/>
     <updated>2014-03-27T13:39:53+05:30</updated>
     <id>http://vishnuatrai.com/blog/2014/03/27/octopress-programmer-friendly-blogging</id>
-    <content type="html"><![CDATA[<p>Nowadays blogs I am reading are mostly running with jekyll and using octopress to publish. Lot of my friends migrated from WordPress to Octopress. I was curious why they are doing so and what is the advantege with Octopress over WordPress. As an experiment I started developing a gihub pages application using Octopress and I found it very simple and easy to write. <!--more-->Good fit for my blog application.</p>
+    <content type="html"><![CDATA[<p>Nowadays blogs I am reading are mostly running with jekyll and using octopress to publish. Lot of my friends migrated from WordPress to Octopress. I was curious why they are doing so and what is the advantege with Octopress over WordPress.<!--more--> As an experiment I started developing a gihub pages application using Octopress and I found it very simple and easy to write. Good fit for my blog application.</p>
 
 <h3>Why I like?</h3>
 
