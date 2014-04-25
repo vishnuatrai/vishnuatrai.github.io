@@ -10,12 +10,12 @@ categories:
 
 ---
 
-OpenSSL heartbleed bug allows hackers to untraceably read server traffic and some server memory. This implementation mistake leads to the leak of memory information from the server to the client and from the client to the server. 
+OpenSSL heartbleed bug allows hackers to untraceably read server traffic and some server memory. This implementation mistake leads to the leak of memory information from the server to the client and from the client to the server. <!--more--> 
 
 
 For my Ruby on Rails application deployed on AWS, the minimal steps I took to upgrade fixed OpenSSL version given below - 
 
-  1) Update OpenSSL to 1.0.1g <!--more-->
+  1) Update OpenSSL to 1.0.1g
 
     download source from here http://www.openssl.org/source/openssl-1.0.1g.tar.gz
     tar -zxf openssl-1.0.1g.tar.gz 

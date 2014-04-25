@@ -12,9 +12,9 @@ categories:
 
 After cloud computing, Multi-tenancy and SOA become a buzzword for tech companies those provide B2B solutions. 
 
-Multi-tenancy will reduce the cost and simplifies the release management. 
+Multi-tenancy will reduce the cost and simplifies the release management.<!--more--> 
 
-On the other hand, SOA is to divide single monolithic application to multiple loosely coupled self contained independent applications aka services. SOA will benefit to develop new functions rapidly and scale platform in specific areas.<!--more-->
+On the other hand, SOA is to divide single monolithic application to multiple loosely coupled self contained independent applications aka services. SOA will benefit to develop new functions rapidly and scale platform in specific areas.
 
 ### Tools & Tips for Multi-tenancy 
 
