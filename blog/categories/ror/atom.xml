@@ -4,7 +4,7 @@
   <title><![CDATA[Category: RoR | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/blog/categories/ror/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2014-04-24T16:40:58+05:30</updated>
+  <updated>2014-04-25T14:20:12+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -14,11 +14,41 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Multi-tenant SOA Platform on Ruby on Rails]]></title>
+    <title type="html"><![CDATA[Ruby Tools for Multi-tenant SOA Platform]]></title>
     <link href="http://vishnuatrai.com/blog/2013/08/02/multi-tenant-soa-platform-on-ruby-on-rails/"/>
     <updated>2013-08-02T18:03:45+05:30</updated>
     <id>http://vishnuatrai.com/blog/2013/08/02/multi-tenant-soa-platform-on-ruby-on-rails</id>
-    <content type="html"><![CDATA[
+    <content type="html"><![CDATA[<p>After cloud computing, Multi-tenancy and SOA become a buzzword for tech companies those provide B2B solutions.</p>
+
+<p>Multi-tenancy will reduce the cost and simplifies the release management.</p>
+
+<p>On the other hand, SOA is to divide single monolithic application to multiple loosely coupled self contained independent applications aka services. SOA will benefit to develop new functions rapidly and scale platform in specific areas.<!--more--></p>
+
+<h3>Tools &amp; Tips for Multi-tenancy</h3>
+
+<p>Database seperation for each client we are using apartment gem. That gives very easy interface
+to manage seperate databases for different clients. To run background tasks we are using
+apartment-sidekiq gem. That will automatically take care of database connection for a background
+job initiated.</p>
+
+<p>You add these gems in your Gemfile and good to go.</p>
+
+<pre><code>gem 'apartment'
+gem 'apartment-sidekiq'
+</code></pre>
+
+<h3>Tools and Tips for SOA (Service Oriented Architucture)</h3>
+
+<p>To expose APIs you can use ruby lightwaight framework sinatra. ActiveRecord for ORM to backend
+You can use rspec for testing framework. Sometimes you make multiple requests to different
+services for a action, in these scenerios you can make parallel requests using typhoeus gem.
+That will make a block call, get the response from different services, process those
+responses and give back the result to end user. In your Gemfile you can add typhoeus.</p>
+
+<pre><code>gem 'typhoeus'
+</code></pre>
+
+<p>You can use JSON responses for all your APIs.</p>
 ]]></content>
   </entry>
   

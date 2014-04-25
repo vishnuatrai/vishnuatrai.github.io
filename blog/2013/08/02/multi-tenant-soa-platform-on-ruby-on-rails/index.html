@@ -3,11 +3,11 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Multi-tenant SOA platform on Ruby On Rails - @vishnuatrai</title>
+	<title>Ruby Tools for Multi-tenant SOA platform - @vishnuatrai</title>
 	<meta name="author" content="vishnuatrai.com">
 
 	
-	<meta name="description" content=" Multi-tenant SOA Platform on Ruby on Rails Aug 2nd, 2013 Please enable JavaScript to view the comments powered by Disqus. ">
+	<meta name="description" content="Ruby Tools for Multi-tenant SOA Platform Aug 2nd, 2013 After cloud computing, Multi-tenancy and SOA become a buzzword for tech companies those &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -106,7 +106,7 @@ $(function(){
 			<div class="mid-col-container">
 				<div id="content" class="article-inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   
-	<h1 class="title" itemprop="name">Multi-tenant SOA Platform on Ruby on Rails</h1>
+	<h1 class="title" itemprop="name">Ruby Tools for Multi-tenant SOA Platform</h1>
   
 
 
@@ -121,7 +121,37 @@ $(function(){
 
 
   <div class="post-date"><time datetime="2013-08-02T18:03:45+05:30" data-updated="true" itemprop="datePublished">Aug 2<span>nd</span>, 2013</time></div>
-	<div class="entry-content" itemprop="articleBody">
+	<div class="entry-content" itemprop="articleBody"><p>After cloud computing, Multi-tenancy and SOA become a buzzword for tech companies those provide B2B solutions.</p>
+
+<p>Multi-tenancy will reduce the cost and simplifies the release management.</p>
+
+<p>On the other hand, SOA is to divide single monolithic application to multiple loosely coupled self contained independent applications aka services. SOA will benefit to develop new functions rapidly and scale platform in specific areas.<!--more--></p>
+
+<h3>Tools &amp; Tips for Multi-tenancy</h3>
+
+<p>Database seperation for each client we are using apartment gem. That gives very easy interface
+to manage seperate databases for different clients. To run background tasks we are using
+apartment-sidekiq gem. That will automatically take care of database connection for a background
+job initiated.</p>
+
+<p>You add these gems in your Gemfile and good to go.</p>
+
+<pre><code>gem 'apartment'
+gem 'apartment-sidekiq'
+</code></pre>
+
+<h3>Tools and Tips for SOA (Service Oriented Architucture)</h3>
+
+<p>To expose APIs you can use ruby lightwaight framework sinatra. ActiveRecord for ORM to backend
+You can use rspec for testing framework. Sometimes you make multiple requests to different
+services for a action, in these scenerios you can make parallel requests using typhoeus gem.
+That will make a block call, get the response from different services, process those
+responses and give back the result to end user. In your Gemfile you can add typhoeus.</p>
+
+<pre><code>gem 'typhoeus'
+</code></pre>
+
+<p>You can use JSON responses for all your APIs.</p>
 </div>
 
 </article>
