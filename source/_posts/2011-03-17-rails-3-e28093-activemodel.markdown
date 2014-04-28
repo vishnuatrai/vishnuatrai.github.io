@@ -7,8 +7,6 @@ slug: rails-3-%e2%80%93-activemodel
 title: Rails 3 – ActiveModel Basics
 wordpress_id: 147
 categories:
-- Technology
-tag:
 - Rails3
 - RoR
 - Ruby

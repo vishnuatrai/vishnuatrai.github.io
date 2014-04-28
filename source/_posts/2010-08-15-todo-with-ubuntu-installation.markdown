@@ -7,8 +7,6 @@ slug: todo-with-ubuntu-installation
 title: '#After ubuntu installation requirements Part I'
 wordpress_id: 12
 categories:
-- Technology
-tag:
 - Linux
 - Ubuntu
 ---

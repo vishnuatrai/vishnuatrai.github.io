@@ -4,9 +4,8 @@ title: "Octopress: Migrate Disqus Comments from WordPress"
 date: 2014-04-02 12:08:35 +0530
 comments: true
 categories:
-  Blogging
-  Technology 
-
+  Octopress
+  Jekyll
 ---
 
 Last week I migrated my blog from WordPress to Octopress and find it very cool blogging engine. Though, migraiton of posts and pages was quite easy but migration or you can say linking of Disqus comments from WorlPress pages to Octopress was difficult.<!--more--> I tried lot of different options but could not relink the Disqus comments.

@@ -7,9 +7,9 @@ slug: indexing-basic-mysql-queries
 title: MySql DB Indexing
 wordpress_id: 59
 categories:
-- Technology
-tag:
 - MySql
+- Indexing
+- Performance
 ---
 
 Working with a online tutorial with a huge amount of data, product owners always used to  raise issues for application performance. After looking in to different scenerios like apache configurations, hardware, network issues, and mysql performance as a backend server, we got to know that there are a lot of opportunities to improve mysql db performance. <!--more--> To see why db performance slow I turned on slow quiry logging in my.cnf:

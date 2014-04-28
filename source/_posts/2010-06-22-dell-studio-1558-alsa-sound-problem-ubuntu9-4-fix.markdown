@@ -7,8 +7,6 @@ slug: dell-studio-1558-alsa-sound-problem-ubuntu9-4-fix
 title: Dell Studio - 1558 ALSA sound problem ubuntu9.4 fix
 wordpress_id: 9
 categories:
-- Technology
-tag:
 - Linux
 - Ubuntu
 ---

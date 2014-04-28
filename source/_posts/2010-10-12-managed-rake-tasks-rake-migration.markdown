@@ -7,9 +7,9 @@ slug: managed-rake-tasks-rake-migration
 title: 'Rake Migration: Track Rake Tasks with versions'
 wordpress_id: 115
 categories:
-- Technology
-tag:
 - Ruby
+- Rake Task
+- Migration
 ---
 
 I have started working on a plugin which helps rails projects to maintain the list of rake tasks.

@@ -7,8 +7,6 @@ slug: why-nosql
 title: Why NoSQL?
 wordpress_id: 132
 categories:
-- Technology
-tag:
 - CouchDB
 - MomgoDB
 - NoSQL

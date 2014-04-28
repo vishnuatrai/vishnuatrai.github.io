@@ -7,8 +7,6 @@ slug: mongodb-vs-couchdb
 title: MongoDB V/S CouchDB
 wordpress_id: 139
 categories:
-- Technology
-tag:
 - CouchDB
 - MongoDb
 - NoSQL

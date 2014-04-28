@@ -7,8 +7,6 @@ slug: jasmine-ajax-and-spies
 title: 'Jasmine: Ajax and Spies'
 wordpress_id: 328
 categories:
-- Technology
-tag:
 - BDD
 - jasmine
 - Javascript

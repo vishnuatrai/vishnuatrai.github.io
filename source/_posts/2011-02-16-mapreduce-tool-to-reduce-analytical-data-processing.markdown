@@ -7,8 +7,6 @@ slug: mapreduce-tool-to-reduce-analytical-data-processing
 title: 'MapReduce: Reduce Analytical Data Processing'
 wordpress_id: 142
 categories:
-- Technology
-tag:
 - Big Data
 - MapReduce
 ---

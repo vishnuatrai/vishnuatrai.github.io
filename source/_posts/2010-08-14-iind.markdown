@@ -7,8 +7,6 @@ slug: iind
 title: '#After ubuntu installation requirements Part II'
 wordpress_id: 27
 categories:
-- Technology
-tag:
 - Linux
 - Ubuntu
 ---
