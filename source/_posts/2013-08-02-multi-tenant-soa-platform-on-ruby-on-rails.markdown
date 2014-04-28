@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Ruby Tools for Multi-tenant SOA platform"
+title: "Ruby for Multi-tenant SOA platform"
 date: 2013-08-02 18:03:45 +0530
 comments: true
 categories:
@@ -36,6 +36,8 @@ services for a action, in these scenerios you can make parallel requests using t
 That will make a block call, get the response from different services, process those 
 responses and give back the result to end user. In your Gemfile you can add typhoeus.
 
+    gem 'sinatra'
+    gem 'activerecord'
     gem 'typhoeus'
 
 You can use JSON responses for all your APIs.

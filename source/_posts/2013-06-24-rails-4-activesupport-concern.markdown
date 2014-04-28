@@ -11,7 +11,7 @@ categories:
 
 Rails 4 ActiveSupport::Concern is a very cool feature to organize your module in such a way 
 that when you include module in a class you don't need to write extra callbacks to extend or 
-include methods in your class. This feature is a great way to keep your code organized and DRY. This will also handles module dependencies.
+include methods in your class. This feature is a great way to keep your code organized and DRY. This handles module dependencies also.
 <!--more-->
 You just need to require activesupport/concern and need to extend your module with ActiveSupport::Concern. 
 When you include your module in a class, included block will be executed with in class 
