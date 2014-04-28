@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Javascript | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/blog/categories/javascript/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2014-04-28T18:16:35+05:30</updated>
+  <updated>2014-04-28T23:07:44+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -18,7 +18,7 @@
     <link href="http://vishnuatrai.com/blog/2013/10/15/javascript-object-oriented-programming/"/>
     <updated>2013-10-15T18:00:18+05:30</updated>
     <id>http://vishnuatrai.com/blog/2013/10/15/javascript-object-oriented-programming</id>
-    <content type="html"><![CDATA[<p>JavaScript is an object-based language based on prototypes in which behaviour reuse
+    <content type="html"><![CDATA[<p>JavaScript is an prototype-based OOP language in which behaviour reuse
 (inheritance) is achieved using existing objects which serve as prototypes. Whenever you
 assign a object as prototype of other object, properties and methods will be available to
 that object. <!--more-->You can override method or property in child object.</p>
