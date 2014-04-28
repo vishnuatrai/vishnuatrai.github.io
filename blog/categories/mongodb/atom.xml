@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: MongoDb | @vishnuatrai]]></title>
+  <link href="http://vishnuatrai.com/blog/categories/mongodb/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.com/"/>
+  <updated>2014-04-28T23:31:55+05:30</updated>
+  <id>http://vishnuatrai.com/</id>
+  <author>
+    <name><![CDATA[vishnuatrai.com]]></name>
+    <email><![CDATA[me@vishnuatrai.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[MongoDB v/s CouchDB]]></title>
+    <link href="http://vishnuatrai.com/blog/2011/01/12/mongodb-vs-couchdb/"/>
+    <updated>2011-01-12T22:44:11+05:30</updated>
+    <id>http://vishnuatrai.com/blog/2011/01/12/mongodb-vs-couchdb</id>
+    <content type="html"><![CDATA[<p>Both MongoDB and CouchDB are document oriented databases with JSON style object data storage.  They have their pros and cons in different situations.<!--more--></p>
+
+<h4>1) Map Reduce</h4>
+
+<p>Mongo uses map reduce for data processing jobs, Couch uses map reduce for build all views.</p>
+
+<h4>2) Atomicity</h4>
+
+<p>Both support concurrent modifications of single documents.  Both forego complex transactions involving large numbers of objects.</p>
+
+<h4>3) Interface</h4>
+
+<p>Couch uses REST as its interface to the database. Mongo relies on language specific database drivers.</p>
+
+<h4>4) Query Expression</h4>
+
+<p>Couch uses index building schemes to generate indexes those support particular queries. Mongo uses traditional dynamic queries and query optimizer to determine whether index exists or not.</p>
+
+<h4>5) Horizontal Scalability</h4>
+
+<p>Couch uses replication as a way to scale, instead Mongo uses sharding as a way to scale that is similar to Google&rsquo;s BigTable.</p>
+
+<h4>6) Storage strategy</h4>
+
+<p>Couch MVCC based, Mongo uses traditional approach and updates an object in place when possible.</p>
+
+<h3>Use cases</h3>
+
+<p>Couch is very good for certain classes of problems:
+   problems which need intense versioning; problems with offline databases that resync later;
+   problems where you want a large amount of master-master replication happening.</p>
+
+<p>Mongo is very good for different kind of problems:</p>
+
+<pre><code>problems requiring high update rates of objects are a great fit; compaction is not necessary.
+</code></pre>
+
+<p>Mongo is more oriented towards master/slave and auto failover configurations than to complex master-master setups.   <br/>
+With MongoDB you should see high write performance, especially for updates.</p>
+]]></content>
+  </entry>
+  
+</feed>

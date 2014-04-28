@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: MomgoDB | @vishnuatrai]]></title>
+  <link href="http://vishnuatrai.com/blog/categories/momgodb/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.com/"/>
+  <updated>2014-04-28T23:31:55+05:30</updated>
+  <id>http://vishnuatrai.com/</id>
+  <author>
+    <name><![CDATA[vishnuatrai.com]]></name>
+    <email><![CDATA[me@vishnuatrai.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Why NoSQL?]]></title>
+    <link href="http://vishnuatrai.com/blog/2010/11/01/why-nosql/"/>
+    <updated>2010-11-01T20:57:27+05:30</updated>
+    <id>http://vishnuatrai.com/blog/2010/11/01/why-nosql</id>
+    <content type="html"><![CDATA[<p><strong>Why NoSQL?</strong></p>
+
+<p><strong>NoSQL</strong> term is supposed to stand for “Not Only SQL.” . This term is used to designated DBMS that differ from classic RDBMS in some way. These DBMS may not require fixed table schemas, and usually avoid join operations and typically scale horizontally.<!--more--></p>
+
+<p><strong>Architecture</strong></p>
+
+<p>NOSQL databases tend to have two key attributes across the board. One is that they’re non-relational, so they’re not doing joins on the server. And second, they have light transactional semantics. So complex, long-running, serialized transactions are not part of any of these NoSQL products. Those two differences, put together, allow you to take a very different approach to how databases are created, which means you can make horizontally scalable databases — the kind that run across large clusters of machines.</p>
+
+<p>RDBMS have shown poor performance on certain data-intensive applications, including indexing a large number of documents, serving pages on high-traffic websites, and delivering streaming media.  Typical RDBMS implementations are tuned either for small but frequent read/write transactions or for large batch transactions with rare write accesses. NoSQL on the other hand, services heavy read/write workloads</p>
+
+<p>NoSQL architectures often provide weak consistency guarantees, such as eventual consistency, or transactions restricted to single data items. Some systems, however, provide full ACID guarantees, in some instances by adding a supplementary middleware layer (e.g., CloudTPS).</p>
+
+<p><strong>Core NoSQL Systems</strong></p>
+
+<p><strong>Wide Column Store/Column Families</strong></p>
+
+<p>1.Cassandra
+2.Cloudera
+3.Amazon SimpleDB</p>
+
+<p><strong>Document Store</strong></p>
+
+<ol>
+<li>CouchDB</li>
+<li>MongoDB</li>
+<li>OrientDB</li>
+</ol>
+
+
+<p><strong>Key Value/ Tuple Store</strong></p>
+
+<p>1.Redis
+2.MemcacheDB
+3.Tokyo Cabibnet</p>
+]]></content>
+  </entry>
+  
+</feed>
