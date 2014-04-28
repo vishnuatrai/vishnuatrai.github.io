@@ -4,7 +4,7 @@
   <title><![CDATA[@vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2014-04-25T14:31:39+05:30</updated>
+  <updated>2014-04-28T13:27:19+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -131,7 +131,7 @@ http://vishnuatrai.com/?p=132, http://vishnuatrai.com/blog/2010/11/01/why-nosql/
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[Ruby Tools for Multi-tenant SOA platform]]></title>
+    <title type="html"><![CDATA[Ruby for Multi-tenant SOA platform]]></title>
     <link href="http://vishnuatrai.com/blog/2013/08/02/multi-tenant-soa-platform-on-ruby-on-rails/"/>
     <updated>2013-08-02T18:03:45+05:30</updated>
     <id>http://vishnuatrai.com/blog/2013/08/02/multi-tenant-soa-platform-on-ruby-on-rails</id>
@@ -162,7 +162,9 @@ services for a action, in these scenerios you can make parallel requests using t
 That will make a block call, get the response from different services, process those
 responses and give back the result to end user. In your Gemfile you can add typhoeus.</p>
 
-<pre><code>gem 'typhoeus'
+<pre><code>gem 'sinatra'
+gem 'activerecord'
+gem 'typhoeus'
 </code></pre>
 
 <p>You can use JSON responses for all your APIs.</p>
@@ -176,7 +178,7 @@ responses and give back the result to end user. In your Gemfile you can add typh
     <id>http://vishnuatrai.com/blog/2013/06/24/rails-4-activesupport-concern</id>
     <content type="html"><![CDATA[<p>Rails 4 ActiveSupport::Concern is a very cool feature to organize your module in such a way
 that when you include module in a class you don&rsquo;t need to write extra callbacks to extend or
-include methods in your class. This feature is a great way to keep your code organized and DRY. This will also handles module dependencies.</p>
+include methods in your class. This feature is a great way to keep your code organized and DRY. This handles module dependencies also.</p>
 
 <!--more-->
 

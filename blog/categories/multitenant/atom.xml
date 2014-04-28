@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Multitenant | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/blog/categories/multitenant/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2014-04-25T14:31:39+05:30</updated>
+  <updated>2014-04-28T13:27:19+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Ruby Tools for Multi-tenant SOA Platform]]></title>
+    <title type="html"><![CDATA[Ruby for Multi-tenant SOA Platform]]></title>
     <link href="http://vishnuatrai.com/blog/2013/08/02/multi-tenant-soa-platform-on-ruby-on-rails/"/>
     <updated>2013-08-02T18:03:45+05:30</updated>
     <id>http://vishnuatrai.com/blog/2013/08/02/multi-tenant-soa-platform-on-ruby-on-rails</id>
@@ -45,7 +45,9 @@ services for a action, in these scenerios you can make parallel requests using t
 That will make a block call, get the response from different services, process those
 responses and give back the result to end user. In your Gemfile you can add typhoeus.</p>
 
-<pre><code>gem 'typhoeus'
+<pre><code>gem 'sinatra'
+gem 'activerecord'
+gem 'typhoeus'
 </code></pre>
 
 <p>You can use JSON responses for all your APIs.</p>
