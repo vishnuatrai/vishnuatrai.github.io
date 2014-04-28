@@ -8,7 +8,7 @@ categories:
   OOJS 
 ---
 
-JavaScript is an object-based language based on prototypes in which behaviour reuse 
+JavaScript is an prototype-based OOP language in which behaviour reuse 
 (inheritance) is achieved using existing objects which serve as prototypes. Whenever you 
 assign a object as prototype of other object, properties and methods will be available to 
 that object. <!--more-->You can override method or property in child object.
