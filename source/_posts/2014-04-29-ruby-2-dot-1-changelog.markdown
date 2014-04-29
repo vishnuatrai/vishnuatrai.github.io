@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "What's new in Ruby 2.1"
+title: "Ruby 2.1 Changelog"
 date: 2014-04-29 12:01:04 +0530
 comments: true
 categories: 
