@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ruby 2.0.0 | @vishnuatrai]]></title>
+  <link href="http://vishnuatrai.com/blog/categories/ruby-2-dot-0-0/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.com/"/>
+  <updated>2014-05-02T16:26:40+05:30</updated>
+  <id>http://vishnuatrai.com/</id>
+  <author>
+    <name><![CDATA[vishnuatrai.com]]></name>
+    <email><![CDATA[me@vishnuatrai.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby 2.0.0 Changelog]]></title>
+    <link href="http://vishnuatrai.com/blog/2013/04/05/ruby-2-dot-0-0-changelog/"/>
+    <updated>2013-04-05T12:43:25+05:30</updated>
+    <id>http://vishnuatrai.com/blog/2013/04/05/ruby-2-dot-0-0-changelog</id>
+    <content type="html"><![CDATA[<p>Error in migration from wordpress</p>
+]]></content>
+  </entry>
+  
+</feed>

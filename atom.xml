@@ -4,7 +4,7 @@
   <title><![CDATA[@vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2014-04-28T23:31:55+05:30</updated>
+  <updated>2014-05-02T16:26:40+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -12,6 +12,101 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby 2.1 Changelog]]></title>
+    <link href="http://vishnuatrai.com/blog/2014/04/29/ruby-2-dot-1-changelog/"/>
+    <updated>2014-04-29T12:01:04+05:30</updated>
+    <id>http://vishnuatrai.com/blog/2014/04/29/ruby-2-dot-1-changelog</id>
+    <content type="html"><![CDATA[<p>If you have question in your mind, what&rsquo;s new in ruby 2.1.0. Below list of new
+features introduced in ruby 2.1.0.</p>
+
+<h3>1) def&rsquo;s return value <!--more--></h3>
+
+<p>In earlier versions it was nil but in ruby 2.1 it will return a symbol.</p>
+
+<pre><code>irb(main):002:0&gt; def my_method
+irb(main):003:1&gt; end
+=&gt; :my_method
+</code></pre>
+
+<h3>2) Rational Number and Complex Number Literals</h3>
+
+<p>Earlier version you will have to use core classes to use relational and complex numbers,
+ruby 2.1 gives r and i suffix for them. Older version will give error for these literals.</p>
+
+<pre><code>irb(main):003:0&gt; (2+3i) + Complex(5, 4i)
+=&gt; (3+3i)
+</code></pre>
+
+<h3>3) Required Keyword arguments</h3>
+
+<p>Keyword arguments introduced by ruby 2.0 and there was no way to make them required.
+In ruby 2.1 for missing keyword arguments it will raise
+ArgumentError: missing keyword: keyword</p>
+
+<pre><code>def permaliinkify(str:, delimiter: "-")
+  str.downcase.split.join(delimiter)
+end
+
+irb(main):002:0&gt; permalinkify(delimiter: "-lol-")
+ArgumentError: missing keyword: str
+from (irb):LN
+from /.rvm/2.1.0/bin/irb:11:in `&lt;main&gt;'
+</code></pre>
+
+<h3>4) Restricted Generational Garbage Collector (RGenGC)</h3>
+
+<p>Ruby 2.1 introduced faster garbage collector RGenGC. That will make mark and sweep faster.
+RGenGC design of garbage collector leverages the fact that most objects collected
+by the garbage collector were the objects most recently created.</p>
+
+<h3>5) Exception#cause</h3>
+
+<p>Ruby 2.1 provides a way to have an exception carry a &ldquo;cause&rdquo; along with it.</p>
+
+<pre><code>begin
+  begin
+    raise "Error!"
+  rescue =&gt; e
+    raise StandardError, "take the cause"
+  end
+rescue Exception =&gt; e
+  puts "Caused by  : #{e.cause.message} [#{e.cause.class}]"
+end
+=&gt; Caused by  : Error! [RuntimeError]
+</code></pre>
+
+<h3>6) Refinements</h3>
+
+<p>In ruby 2.1, Refinements provide an alternate way to scope our modifications in
+ruby open classes or modules.</p>
+
+<pre><code>module Permalinker
+  refine String do
+    def permalinkify
+      downcase.split.join("-")
+    end
+  end
+end
+
+class Post
+  using Permalinker
+  def initialize(title)
+    @title = title
+  end
+  def permalink
+    @title.permalinkify
+  end
+end
+irb(main):002:0&gt; post = Post.new("Ruby on Rails")
+irb(main):002:0&gt; post.permalink
+=&gt; "ruby-on-rails"
+irb(main):023:0&gt; "ruby on rails".permalinkify
+NoMethodError: undefined method `permalinkify' for "ruby on rails":String
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Critical Heartbleed fix for SSL]]></title>
@@ -275,6 +370,15 @@ p.comments
 p.comment_titles
 p.comment_users
 </code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby 2.0.0 Changelog]]></title>
+    <link href="http://vishnuatrai.com/blog/2013/04/05/ruby-2-dot-0-0-changelog/"/>
+    <updated>2013-04-05T12:43:25+05:30</updated>
+    <id>http://vishnuatrai.com/blog/2013/04/05/ruby-2-dot-0-0-changelog</id>
+    <content type="html"><![CDATA[<p>Error in migration from wordpress</p>
 ]]></content>
   </entry>
   
@@ -558,6 +662,15 @@ config.assets.js_compressor  = :uglifier
   gem 'uglifier'
 end
 </code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby 1.9.3 Changelog]]></title>
+    <link href="http://vishnuatrai.com/blog/2011/11/05/ruby-1-dot-9-3-changelog/"/>
+    <updated>2011-11-05T12:52:27+05:30</updated>
+    <id>http://vishnuatrai.com/blog/2011/11/05/ruby-1-dot-9-3-changelog</id>
+    <content type="html"><![CDATA[<p>Error in migration from wordpress</p>
 ]]></content>
   </entry>
   
@@ -1229,447 +1342,6 @@ sudo apt-get install python-nautilus meld python-svn python-configobj ipython
 <p>It’s bad when you don’t have Internet on your computer/notebook, but you have to pack/unpack something but the file format isn’t recognized by the system. To prevent from this bad situation, you can install a bunch of packing software by typing this on the terminal:</p>
 
 <p>sudo apt-get install unace rar unrar zip unzip p7zip-full p7zip-rar sharutils aish uudeview mpack lha arj cabextract file-roller</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[#After ubuntu installation requirements Part II]]></title>
-    <link href="http://vishnuatrai.com/blog/2010/08/14/iind/"/>
-    <updated>2010-08-14T13:39:03+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2010/08/14/iind</id>
-    <content type="html"><![CDATA[<p>11 – Graphical web browser</p>
-
-<p>Windows equivalent : Internet explorer, firefox, opera</p>
-
-<p>Ubuntu equivalent : Firefox, opera, chromium</p>
-
-<p>Opera      <!--more--></p>
-
-<p>sudo apt-get install opera</p>
-
-<p>Firefox (installed by default intrepid)</p>
-
-<p>sudo apt-get install firefox</p>
-
-<p>Chromium (open source equivalent of Google Chrome)</p>
-
-<p>sudo apt-get install chromium-browser</p>
-
-<p>12 – Download Manager</p>
-
-<p>Windows equivalent : Free download manager</p>
-
-<p>Ubuntu equivalent : Multiget</p>
-
-<p>MultiGet is a http/ftp downloader with a nice GUI for linux desktop  users. It can run on almost all desktops without any configuration. It  has many powerful functions comparing to others.</p>
-
-<p>sudo apt-get install multiget</p>
-
-<p>Access it through Applications → Internet → MultiGet .</p>
-
-<p>13 – Graphical Email client</p>
-
-<p>Windows equivalent : Outlook</p>
-
-<p>Ubuntu equivalent : Evolution, Thunderbird</p>
-
-<p>Evolution (installed by default in intrepid)</p>
-
-<p>sudo apt-get install evolution</p>
-
-<p>Access it through Applications → Internet → Evolution Mail .</p>
-
-<p>Thunderbird</p>
-
-<p>sudo apt-get install thunderbird</p>
-
-<p>Access it through Applications → Internet → Mozilla Thunderbird Mail/News .</p>
-
-<p>14 – Instant Messanging protocal clients</p>
-
-<p>Windows equivalent : MSN messenger, Yahoo messenger, QQ, AIM, Gtalk, ICQ,IRC</p>
-
-<p>Ubuntu equivalent : Empathy, Pidgin, emesene</p>
-
-<p>Empathy IM Client (installed by default)</p>
-
-<p>sudo apt-get install empathy telepathy-mission-control-5  telepathy-gabble telepathy-butterfly telepathy-haze telepathy-idle  telepathy-salut telepathy-sofiasip python-msn empathy-megaphone-applet  libtelepathy-farsight0 python-tpfarsight galago-eds-feed python-galago  python-galago-gtk msn-pecan</p>
-
-<p>Access it through Applications → Internet → Empathy IM Client .</p>
-
-<p>Pidgin</p>
-
-<p>Pidgin is an easy to use and free chat client used by millions.  Connect to AIM, MSN, Yahoo, and more chat networks all at once.  Supported chat networks: AIM, Bonjour, Gadu-Gadu, Google Talk,  Groupwise, ICQ, IRC, MSN, MySpaceIM, QQ, SILC, SIMPLE, Sametime, XMPP,  Yahoo!, Zephyr</p>
-
-<p>sudo apt-get install pidgin pidgin-data pidgin-lastfm  pidgin-guifications msn-pecan pidgin-musictracker pidgin-plugin-pack  pidgin-themes</p>
-
-<p>Access it through Applications → Internet → Pidgin Internet Messenger .</p>
-
-<p>Emesene only for MSN Messenger.</p>
-
-<p>sudo apt-get install emesene</p>
-
-<p>Access it through Applications → Internet → Emesene .</p>
-
-<p>15 – VOIP</p>
-
-<p>Windows equivalent : skype</p>
-
-<p>Ubuntu equivalent : skype</p>
-
-<p>Skype</p>
-
-<p>sudo apt-get install skype</p>
-
-<p>Access it through Applications → Internet → Skype.</p>
-
-<p>16 – Viewing PDF files</p>
-
-<p>Windows equivalent : Adobe Reader</p>
-
-<p>Ubuntu equivalent : Adobe Reader</p>
-
-<p>Adobe Reader</p>
-
-<p>sudo apt-get install acroread acroread-fonts</p>
-
-<p>Access it through Applications → Office → Adobe Reader.</p>
-
-<p>17– Adobe Air</p>
-
-<p>wget <a href="http://airdownload.adobe.com/air/lin/download/latest/AdobeAIRInstaller.bin">http://airdownload.adobe.com/air/lin/download/latest/AdobeAIRInstaller.bin</a>
-chmod +x ./AdobeAIRInstaller.bin</p>
-
-<p>./AdobeAIRInstaller.bin</p>
-
-<p>Access it through Applications → Accessories → Adobe Air Application Installer.</p>
-
-<p>18 – Music / MP3 / OGG Players</p>
-
-<p>Windows equivalent : iTunes, Winamp</p>
-
-<p>Ubuntu equivalent : Rhythmbox, Banshee, Amarok</p>
-
-<p>Rhythmbox</p>
-
-<p>sudo apt-get install rhythmbox</p>
-
-<p>Access it through Applications → Sound &amp; Video → Rhythmbox Music Player.</p>
-
-<p>Banshee</p>
-
-<p>sudo apt-get install banshee banshee-extension-lyrics banshee-extension-mirage</p>
-
-<p>Access it through Applications → Sound &amp; Video → Banshee Media Player.</p>
-
-<p>Amarok</p>
-
-<p>sudo apt-get install amarok amarok-engine-xine amarok-engine-yauap amarok-engines amarok-common</p>
-
-<p>Access it through Applications → Sound &amp; Video → Amarok.</p>
-
-<p>19– Hard Disk Partitions Manager</p>
-
-<p>Windows equivalent : Symanted Partition Magic</p>
-
-<p>Ubuntu equivalent : GParted</p>
-
-<p>GParted</p>
-
-<p>sudo apt-get install gparted ntfsprogs menu ntfs-config</p>
-
-<p>Access it through System → Administration → Partition Editor.</p>
-
-<p>20 – Vector Graphics Editor</p>
-
-<p>Windows equivalent : Adobe Illustrator</p>
-
-<p>Ubuntu equivalent : Inkscape</p>
-
-<p>Inkscape</p>
-
-<p>sudo apt-get install inkscape</p>
-
-<p>Access it through Applications → Graphics → Inkscape Vector Graphics Editor.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[#After ubuntu installation requirements Part III]]></title>
-    <link href="http://vishnuatrai.com/blog/2010/08/13/iiird/"/>
-    <updated>2010-08-13T13:40:57+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2010/08/13/iiird</id>
-    <content type="html"><![CDATA[<p>21 – Image Editor</p>
-
-<p>Windows equivalent : Adobe Photoshop</p>
-
-<p>Ubuntu equivalent : GIMP</p>
-
-<p>GIMP</p>
-
-<p>sudo apt-get install gimp gimp-data gimp-plugin-registry  <!--more--></p>
-
-<p>Access it through Applications → Graphics → GIMP Image Editor.</p>
-
-<p>22 – 3D Graphics Applications</p>
-
-<p>Windows equivalent : 3D Studio MAX</p>
-
-<p>Ubuntu equivalent : Blender</p>
-
-<p>Blender</p>
-
-<p>sudo apt-get install blender</p>
-
-<p>Access it through Applications → Graphics → Blender (windowed).</p>
-
-<p>23 – Simple Yet Advanced Text Editor</p>
-
-<p>Windows equivalent : Notepad ++</p>
-
-<p>Ubuntu equivalent : GEdit</p>
-
-<p>GEdit</p>
-
-<p>sudo apt-get install gedit gedit-plugins</p>
-
-<p>Access it through Applications → Accessories → Text Editor.</p>
-
-<p>24 – Office Applications</p>
-
-<p>Windows equivalent : Microsoft Office</p>
-
-<p>Ubuntu equivalent : OpenOffice</p>
-
-<p>OpenOffice</p>
-
-<p>sudo apt-get install openoffice.org</p>
-
-<p>Access it through Applications → Office</p>
-
-<p>25 – Microsoft Visio</p>
-
-<p>Windows equivalent : Microsoft Visio</p>
-
-<p>Ubuntu equivalent : Dia</p>
-
-<p>Dia</p>
-
-<p>sudo apt-get install dia</p>
-
-<p>Access it through Applications → Graphics → Dia Diagram Editor</p>
-
-<p>26 – Microsoft Project</p>
-
-<p>Windows equivalent : Microsoft Project</p>
-
-<p>Ubuntu equivalent : OpenProj</p>
-
-<p>OpenProj</p>
-
-<p>wget <a href="http://nchc.dl.sourceforge.net/sourceforge/openproj/openproj_1.4-2.deb">http://nchc.dl.sourceforge.net/sourceforge/openproj/openproj_1.4-2.deb</a> &amp;&amp; sudo dpkg -i openproj_1.4-2.deb</p>
-
-<p>Access it through Applications → Office → OpenProj</p>
-
-<p>27 – Development IDE</p>
-
-<p>Windows equivalent : Dreamweaver</p>
-
-<p>Ubuntu equivalent : Quanta, Kompozer, NetBeans</p>
-
-<p>Quanta</p>
-
-<p>sudo apt-get install quanta</p>
-
-<p>Access it through Applications → Programming → Quanta Plus</p>
-
-<p>Komposer</p>
-
-<p>sudo apt-get install kompozer nvu</p>
-
-<p>Access it through Applications → Internet → Kompozer</p>
-
-<p>NetBeans</p>
-
-<p>sudo apt-get install netbeans</p>
-
-<p>Access it through Applications → Programming → NetBeans IDE</p>
-
-<p>28 – Source Control Management</p>
-
-<p>Windows equivalent : TortoiseSVN</p>
-
-<p>Ubuntu equivalent : RabbitVCS</p>
-
-<p>RabbitVCS
-sudo apt-get install python-nautilus meld python-svn python-configobj ipython
-wget  <a href="http://rabbitvcs.googlecode.com/files/rabbitvcs-core_0.13-1~karmic_all.deb">http://rabbitvcs.googlecode.com/files/rabbitvcs-core_0.13-1~karmic_all.deb</a>  &amp;&amp; sudo dpkg -i rabbitvcs-core_0.13-1~karmic_all.deb
-wget  <a href="http://rabbitvcs.googlecode.com/files/rabbitvcs-nautilus_0.13-1~intrepid_all.deb">http://rabbitvcs.googlecode.com/files/rabbitvcs-nautilus_0.13-1~intrepid_all.deb</a>  &amp;&amp; sudo dpkg -i rabbitvcs-nautilus_0.13-1~intrepid_all.deb
-killall nautilus</p>
-
-<p>Right Click on any folder or file and access the RabbitVCS submenu</p>
-
-<p>29 – Graphical FTP clients</p>
-
-<p>Windows equivalent : CuteFTP, SmartFTP</p>
-
-<p>Ubuntu equivalent : FileZilla</p>
-
-<p>FileZilla</p>
-
-<p>This is great FTP program, very complete, in my opinion, the best one for linux.</p>
-
-<p>On the terminal type:</p>
-
-<p>sudo apt-get install filezilla filezilla-common</p>
-
-<p>Access it through Applications → Internet → FileZilla FTP Client.</p>
-
-<p>30 – P2P Clients / Servers, File Sharing</p>
-
-<p>Windows equivalent : utorrent, azureus, emule</p>
-
-<p>Ubuntu equivalent : Deluge, azureus, amule</p>
-
-<p>Bittorent clients</p>
-
-<p>Deluge (written in python)</p>
-
-<p>sudo apt-get install deluge-torrent</p>
-
-<p>Access it through Applications → Internet → Deluge Torrent.</p>
-
-<p>Azureus: Uses Java to run, very complete but a bit heavy</p>
-
-<p>sudo apt-get install azureus</p>
-
-<p>Access it through Applications → Internet → Azureus.</p>
-
-<p>Emule Donkey Clients</p>
-
-<p>Amule</p>
-
-<p>sudo apt-get install amule</p>
-
-<p>Access it through Applications → Internet → aMule.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[#After ubuntu installation requirements Part IV]]></title>
-    <link href="http://vishnuatrai.com/blog/2010/08/12/iv/"/>
-    <updated>2010-08-12T13:42:18+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2010/08/12/iv</id>
-    <content type="html"><![CDATA[<p>31 – Programs for CD burning with GUI</p>
-
-<p>Windows equivalent : Nero, Roxio Easy CD Creator</p>
-
-<p>Ubuntu equivalent : K3b, Brasero</p>
-
-<p>K3b          <!--more--></p>
-
-<p>Nero is available for linux,but its not free.A trial is available for  1 month usage and later it asks or activation code.But K3B is as good  as Nero.Have a good feature set as Nero.</p>
-
-<p>sudo apt-get install k3b k3b-data k3b-i18n libk3b3</p>
-
-<p>Access it through Applications → Sound &amp; Video → K3B.</p>
-
-<p>Brasero (installed by default in Intrepid)</p>
-
-<p>sudo apt-get install brasero</p>
-
-<p>Access it through Applications → Sound &amp; Video → Brasero Disc Burning .</p>
-
-<p>32 – Mountings ISO files</p>
-
-<p>Windows equivalent : Alcohol</p>
-
-<p>Ubuntu equivalent : acetoneiso</p>
-
-<p>Acetoneiso</p>
-
-<p>The best one for linux ACETONEISO, which is similar to ALCOHOL in windows</p>
-
-<p>its supports almost all formats. AcetoneISO is CD/DVD image  manipulator for Linux.Using this tool it is very easy to Mount and  Unmount ISO,MDF,NRG Images . I dont think its available in ubuntu  repository.</p>
-
-<p>sudo apt-get install libksba8 libenca0 libtwolame0 fuseiso kommander  p7zip-full gnupg-agent gnupg2 pinentry-qt mencoder cdrdao &amp;&amp;  wget  <a href="http://darkstar.ist.utl.pt/getdeb/ubuntu/jaunty/ac/acetoneiso_2.1.1-1~getdeb1_i386.deb">http://darkstar.ist.utl.pt/getdeb/ubuntu/jaunty/ac/acetoneiso_2.1.1-1~getdeb1_i386.deb</a>  &amp;&amp; sudo dpkg -i acetoneiso_2.1.1-1~getdeb1_i386.deb</p>
-
-<p>33 – Install Vista like gadgets.</p>
-
-<p>Windows equivalent : Vista Sidebar</p>
-
-<p>Ubuntu equivalent : google-gadgets</p>
-
-<p>Google gadgets</p>
-
-<p>wget  <a href="http://neacm.fe.up.pt/pub/getdeb/ubuntu/jaunty/go/google-gadgets_0.11.1-1~getdeb1_i386.deb">http://neacm.fe.up.pt/pub/getdeb/ubuntu/jaunty/go/google-gadgets_0.11.1-1~getdeb1_i386.deb</a>  &amp;&amp; sudo dpkg -i google-gadgets_0.11.1-1~getdeb1_i386.deb</p>
-
-<p>This will complete the installation.</p>
-
-<p>Now press Alt+F2, and type “ggl-gtk” to start them. You should see a  small icon show up in your system tray, and a sidebar. Right click on  any of them and select ‘Add Gadgets’ to show a menu. If you’d like to  have Google Gadgets start automatically, go to System – Preferences –  Session, click ‘Add’, paste ‘Google Gadgets’ for the name and ‘ggl-gtk’  for the command. Click OK and Close, and you’re good to go.</p>
-
-<p>34 – Google Desktop</p>
-
-<p>Google Desktop allows one to full text search of a user’s e-mail,  computer files, music, photos, chat, and Web pages viewed,OpenOffice  documents , PDF files and more .</p>
-
-<p>Now similar tools already existed on Linux like beagle (supported by  novell ) , meta tracker etc . However Google Desktop search is not based  on any of these tools and uses its proprietary algorithms to search for  files on the computer ,also being 1.0 release and more stable then  these products it could be preferred over tools like beagle .</p>
-
-<p>To install Google Desktop Search type the following command in the terminal window : &ndash;</p>
-
-<p>sudo apt-get install google-desktop-linux</p>
-
-<p>Access it through Applications → Google Desktop → Google Desktop</p>
-
-<p>Now after choosing appropriate option through Applications → Google  Desktop → Google Desktop Preferences, you would find Google Desktop icon  in the bar at the top of the screen , now it would automatically scan  and index files on computer and store it in local database which could  be searched using web browser .</p>
-
-<p>35 – Photo Management</p>
-
-<p>Google Picasa</p>
-
-<p>Google Picasa is an extremely professional good looking photo  management application available on Windows ,Linux and Mac OS (??) . Now  Google Picasa has a number of features that many photo management  software on Linux dont have further Google Picasa looks very user  friendly as compared to similar open source application available on  linux . Now Google Picasa for Linux is not a native linux application  but runs on Linux thru application layer called wine which allows many  windows application to run flawlessly on Linux.</p>
-
-<p>Now to install Google – Picasa type the following command in the terminal window</p>
-
-<p>sudo apt-get install picasa</p>
-
-<p>Access it through Applications → Graphics → Picasa → Picasa</p>
-
-<p>36 – Map Viewing and Management</p>
-
-<p>Google Earth</p>
-
-<p>To install Google Earth type the following command in the Terminal Window.</p>
-
-<p>sudo aptitude install googleearth</p>
-
-<p>After downloading is over you will get a screen like this press ¨Yes¨  to accept the license agreement and complete software installation.</p>
-
-<p>Now you can launch Google Earth from Application → Internet → Google Earth</p>
-
-<p>37 – Gmail Notification</p>
-
-<p>Checkgmail</p>
-
-<p>If you would like to get notified when you have a new mail in your  google mail account, checkgmail is for you. To install Checkgmail type  the following command in the Terminal Window.</p>
-
-<p>sudo apt-get install checkgmail</p>
-
-<p>Now you can launch it from Application → Internet → CheckGmail</p>
-
-<p>38 – Configure Firewall
-If you are concern about your security, then it is pertinent that you  activate the firewall and prevent any unauthorized access to your  computer.</p>
-
-<p>UFW is installed by default, but if you need a graphical interface, install GUFW.</p>
-
-<p>sudo apt-get install gufw</p>
-
-<p>39– Gnome Do</p>
-
-<p>Gnome Do is a small application that allows you to search and do  things faster and more efficiently in your Ubuntu machine. It is similar  to QuickSilver in Mac and Launchy in Windows. For those who have not  tried Gnome Do before, it might take some time for you to get used to  it. But once you’re hooked to it, there will be no turning back for  you.Gnome Do also comes with a dock interface that you can use it like  any other docks.</p>
-
-<p>sudo apt-get install gnome-do</p>
-
-<p>Now you can launch it from Application → Accessories → Gnome Do</p>
 ]]></content>
   </entry>
   
