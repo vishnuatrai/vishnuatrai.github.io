@@ -7,3 +7,5 @@ categories:
 - Ruby
 - Ruby 2.0.0
 ---
+
+Error in migration from wordpress
