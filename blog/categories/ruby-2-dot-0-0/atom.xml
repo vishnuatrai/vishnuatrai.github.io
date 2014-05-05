@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby 2.0.0 | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/blog/categories/ruby-2-dot-0-0/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2014-05-05T11:52:50+05:30</updated>
+  <updated>2014-05-05T12:48:57+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -18,7 +18,28 @@
     <link href="http://vishnuatrai.com/blog/2013/04/05/ruby-2-dot-0-0-changelog/"/>
     <updated>2013-04-05T12:43:25+05:30</updated>
     <id>http://vishnuatrai.com/blog/2013/04/05/ruby-2-dot-0-0-changelog</id>
-    <content type="html"><![CDATA[<p>Error in migration from wordpress</p>
+    <content type="html"><![CDATA[<p>Ruby 2.0 is released now question is, what’s new in ruby 2.0. Below list of new features
+introduced in ruby 2.0.</p>
+
+<h3>1) Keyword arguments <!--more--></h3>
+
+<h3>2) Module#prepend</h3>
+
+<h3>3) Enumerable#lazy</h3>
+
+<h3>4) Refinements</h3>
+
+<h3>5) %i and %I symbol array literal</h3>
+
+<h3>6) Array#bsearch and Range#bsearch</h3>
+
+<h3>7) Garbage collection improvements</h3>
+
+<h3>8) Default UTF-8 encoding</h3>
+
+<h3>9) <strong>DIR</strong> Keyword</h3>
+
+<h3>10) TracePoint</h3>
 ]]></content>
   </entry>
   

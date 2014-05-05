@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2014-05-05T11:52:50+05:30</updated>
+  <updated>2014-05-05T12:48:57+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -113,7 +113,28 @@ NoMethodError: undefined method `permalinkify' for "ruby on rails":String
     <link href="http://vishnuatrai.com/blog/2013/04/05/ruby-2-dot-0-0-changelog/"/>
     <updated>2013-04-05T12:43:25+05:30</updated>
     <id>http://vishnuatrai.com/blog/2013/04/05/ruby-2-dot-0-0-changelog</id>
-    <content type="html"><![CDATA[<p>Error in migration from wordpress</p>
+    <content type="html"><![CDATA[<p>Ruby 2.0 is released now question is, what’s new in ruby 2.0. Below list of new features
+introduced in ruby 2.0.</p>
+
+<h3>1) Keyword arguments <!--more--></h3>
+
+<h3>2) Module#prepend</h3>
+
+<h3>3) Enumerable#lazy</h3>
+
+<h3>4) Refinements</h3>
+
+<h3>5) %i and %I symbol array literal</h3>
+
+<h3>6) Array#bsearch and Range#bsearch</h3>
+
+<h3>7) Garbage collection improvements</h3>
+
+<h3>8) Default UTF-8 encoding</h3>
+
+<h3>9) <strong>DIR</strong> Keyword</h3>
+
+<h3>10) TracePoint</h3>
 ]]></content>
   </entry>
   
@@ -252,7 +273,33 @@ end
     <link href="http://vishnuatrai.com/blog/2011/11/05/ruby-1-dot-9-3-changelog/"/>
     <updated>2011-11-05T12:52:27+05:30</updated>
     <id>http://vishnuatrai.com/blog/2011/11/05/ruby-1-dot-9-3-changelog</id>
-    <content type="html"><![CDATA[<p>Error in migration from wordpress</p>
+    <content type="html"><![CDATA[<p>Ruby 1.9.3 is released now question is, what’s new in ruby 1.9.3. Below list of new
+features introduced in ruby 1.9.3.</p>
+
+<h3>1) Objects hieararchy <!--more--></h3>
+
+<h3>2) Fibers</h3>
+
+<h3>3) New character encodings</h3>
+
+<h3>4) Faster loading &ndash; the load.c patch</h3>
+
+<h3>5) Hashes syntax</h3>
+
+<h3>6) Improved GC performance with a lazy garbage collector</h3>
+
+<h3>7) A &lsquo;better strategy&rsquo; for the GIL / GVL</h3>
+
+<h3>8) Test/unit supports parallel testing</h3>
+
+<h3>9) Random.rand tweaks (and rand() now accepts ranges)</h3>
+
+<h3>10) Main changes</h3>
+
+<p>The other main areas where changes were introduced: symbols, arrays,
+hashes and blocks.</p>
+
+<p>New method tap has been released to improve chain methods.</p>
 ]]></content>
   </entry>
   
