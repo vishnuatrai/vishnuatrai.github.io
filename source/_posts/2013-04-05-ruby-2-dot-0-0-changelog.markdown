@@ -8,7 +8,7 @@ categories:
 - Ruby 2.0.0
 ---
 
-Ruby 2.0 is released now question is, what’s new in ruby 2.0. Below list of new features 
+Ruby 2.0 has been released now question is, what’s new in ruby 2.0. Below list of new features 
 introduced in ruby 2.0.
 
 ###1) Keyword arguments <!--more-->

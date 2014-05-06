@@ -8,7 +8,7 @@ categories:
 - Ruby 1.9.3
 ---
 
-Ruby 1.9.3 is released now question is, what’s new in ruby 1.9.3. Below list of new 
+Ruby 1.9.3 has been released now question is, what’s new in ruby 1.9.3. Below list of new 
 features introduced in ruby 1.9.3.
 
 ###1) Objects hieararchy <!--more-->

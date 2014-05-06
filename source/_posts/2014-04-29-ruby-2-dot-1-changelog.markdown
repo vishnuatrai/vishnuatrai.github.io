@@ -8,7 +8,7 @@ categories:
 - Ruby 2.1
 ---
 
-Ruby 2.1.0 is released now question is, what's new in ruby 2.1.0. Below list of new 
+Ruby 2.1.0 has been released now question is, what's new in ruby 2.1.0. Below list of new 
 features introduced in ruby 2.1.0.
 ### 1) def's return value <!--more-->
 In earlier versions it was nil but in ruby 2.1 it will return a symbol.
