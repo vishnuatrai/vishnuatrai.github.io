@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ubuntu | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/blog/categories/ubuntu/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2014-05-06T12:30:17+05:30</updated>
+  <updated>2014-05-13T13:58:53+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[#After Ubuntu Installation Requirements Part I]]></title>
+    <title type="html"><![CDATA[#After Ubuntu Installation Part I]]></title>
     <link href="http://vishnuatrai.com/blog/2010/08/15/todo-with-ubuntu-installation/"/>
     <updated>2010-08-15T22:19:56+05:30</updated>
     <id>http://vishnuatrai.com/blog/2010/08/15/todo-with-ubuntu-installation</id>
@@ -181,7 +181,7 @@ sudo apt-get install python-nautilus meld python-svn python-configobj ipython
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[#After Ubuntu Installation Requirements Part II]]></title>
+    <title type="html"><![CDATA[#After Ubuntu Installation Part II]]></title>
     <link href="http://vishnuatrai.com/blog/2010/08/14/iind/"/>
     <updated>2010-08-14T13:39:03+05:30</updated>
     <id>http://vishnuatrai.com/blog/2010/08/14/iind</id>
@@ -343,7 +343,7 @@ chmod +x ./AdobeAIRInstaller.bin</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[#After Ubuntu Installation Requirements Part III]]></title>
+    <title type="html"><![CDATA[#After Ubuntu Installation Part III]]></title>
     <link href="http://vishnuatrai.com/blog/2010/08/13/iiird/"/>
     <updated>2010-08-13T13:40:57+05:30</updated>
     <id>http://vishnuatrai.com/blog/2010/08/13/iiird</id>
@@ -504,7 +504,7 @@ killall nautilus</p>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[#After Ubuntu Installation Requirements Part IV]]></title>
+    <title type="html"><![CDATA[#After Ubuntu Installation Part IV]]></title>
     <link href="http://vishnuatrai.com/blog/2010/08/12/iv/"/>
     <updated>2010-08-12T13:42:18+05:30</updated>
     <id>http://vishnuatrai.com/blog/2010/08/12/iv</id>
