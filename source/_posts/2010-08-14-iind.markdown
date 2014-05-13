@@ -4,7 +4,7 @@ comments: true
 date: 2010-08-14 08:09:03+00:00
 layout: post
 slug: iind
-title: '#After ubuntu installation requirements Part II'
+title: '#After ubuntu installation Part II'
 wordpress_id: 27
 categories:
 - Linux

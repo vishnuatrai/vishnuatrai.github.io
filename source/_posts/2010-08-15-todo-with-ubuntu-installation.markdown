@@ -4,7 +4,7 @@ comments: true
 date: 2010-08-15 16:49:56+00:00
 layout: post
 slug: todo-with-ubuntu-installation
-title: '#After ubuntu installation requirements Part I'
+title: '#After ubuntu installation Part I'
 wordpress_id: 12
 categories:
 - Linux
