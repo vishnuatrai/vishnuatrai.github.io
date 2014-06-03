@@ -4,7 +4,7 @@
   <title><![CDATA[Category: RoR | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/blog/categories/ror/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2014-06-03T18:27:13+05:30</updated>
+  <updated>2014-06-03T18:53:33+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -126,7 +126,54 @@ gem 'typhoeus'
     <link href="http://vishnuatrai.com/blog/2013/07/18/what-is-new-in-rails-4-dot-0/"/>
     <updated>2013-07-18T19:58:40+05:30</updated>
     <id>http://vishnuatrai.com/blog/2013/07/18/what-is-new-in-rails-4-dot-0</id>
-    <content type="html"><![CDATA[
+    <content type="html"><![CDATA[<p>Rails 4.0 and newer version will support ruby 1.9.3+ only. It wont work with lessor
+version then ruby 1.9.3. Major developments are below &ndash;</p>
+
+<h3>Ruby 2.0 preferred; 1.9.3+ required</h3>
+
+<h3>Strong Parameters</h3>
+
+<h3>Turbolinks</h3>
+
+<h3>Russian Doll Caching</h3>
+
+<h3>Live Streaming</h3>
+
+<h3>Rails Queue</h3>
+
+<h3>Asynchronous Action Mailer</h3>
+
+<h3>Barebone Models &ndash; ActiveModel::Model</h3>
+
+<h3>Http PATCH</h3>
+
+<h3>Custom Flash Types</h3>
+
+<h3>Flush content_for blocks</h3>
+
+<h3>Rounting Concerns</h3>
+
+<h3>Multiple Route Files</h3>
+
+<h3>PostgreSQL Array Support</h3>
+
+<h3>Page and Action Caching</h3>
+
+<h3>Cache Digest</h3>
+
+<h3>Controller Wise ETags</h3>
+
+<h3>where.not and Chainable relation.none and Relation._!</h3>
+
+<h3>Action Callbacks Renamed</h3>
+
+<h3>Default Index Page</h3>
+
+<h3>HTML5 Input Helpers</h3>
+
+<h3>Models Concerns</h3>
+
+<h3>vendor/plugins and Ruby 1.9.3 Lesser Banned!</h3>
 ]]></content>
   </entry>
   
