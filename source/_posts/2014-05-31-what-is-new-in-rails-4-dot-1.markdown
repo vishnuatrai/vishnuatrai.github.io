@@ -60,5 +60,6 @@ signs messages with a key derived from secret_key_base and the given message ver
 
 ###References
 http://weblog.rubyonrails.org/2014/4/8/Rails-4-1/
+
 http://edgeguides.rubyonrails.org/4_1_release_notes.html
 
