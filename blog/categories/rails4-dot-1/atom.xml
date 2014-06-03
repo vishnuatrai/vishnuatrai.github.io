@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Rails | @vishnuatrai]]></title>
-  <link href="http://vishnuatrai.com/blog/categories/rails/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Rails4.1 | @vishnuatrai]]></title>
+  <link href="http://vishnuatrai.com/blog/categories/rails4-dot-1/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
   <updated>2014-06-03T18:27:13+05:30</updated>
   <id>http://vishnuatrai.com/</id>
@@ -77,75 +77,6 @@ Rails.application.message_verifier(:remember_me).verify(tampered_token)
 
 <p><a href="http://weblog.rubyonrails.org/2014/4/8/Rails-4-1/">http://weblog.rubyonrails.org/2014/4/8/Rails-4-1/</a>
 <a href="http://edgeguides.rubyonrails.org/4_1_release_notes.html">http://edgeguides.rubyonrails.org/4_1_release_notes.html</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[What Is New in Rails 4.0]]></title>
-    <link href="http://vishnuatrai.com/blog/2013/07/18/what-is-new-in-rails-4-dot-0/"/>
-    <updated>2013-07-18T19:58:40+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2013/07/18/what-is-new-in-rails-4-dot-0</id>
-    <content type="html"><![CDATA[
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rails 4 - ActiveSupport::Concern]]></title>
-    <link href="http://vishnuatrai.com/blog/2013/06/24/rails-4-activesupport-concern/"/>
-    <updated>2013-06-24T18:00:23+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2013/06/24/rails-4-activesupport-concern</id>
-    <content type="html"><![CDATA[<p>Rails 4 ActiveSupport::Concern is a very cool feature to organize your module in such a way
-that when you include module in a class you don&rsquo;t need to write extra callbacks to extend or
-include methods in your class. This feature is a great way to keep your code organized and DRY. This handles module dependencies also.</p>
-
-<!--more-->
-
-
-<p>You just need to require activesupport/concern and need to extend your module with ActiveSupport::Concern.
-When you include your module in a class, included block will be executed with in class
-context, ClassMethods block will be added to class itself and methods inside will become
-class methods, other methods outside included and ClassMethods block will be included as
-instance methods. eg.</p>
-
-<pre><code>module Commentable
-  extend ActiveSupport::Concern
-
-  included do         # This block will be executed within class itself
-    has_many :comments, as: :commentable, dependent: :destroy
-    scope :with_comments, -&gt;{ joins(:comments) }
-  end 
-
-  module ClassMethods # Methods within this black will be added to class methods
-    def comment_search(params)
-      .....
-    end
-  end
-
-  def comment_titles  # This method will be added to instance methods
-    comments.map(&amp;:title) 
-  end      
-  def comment_users   # This method will be added to instance methods
-    comments.map(&amp;:username)
-  end
-
-end
-</code></pre>
-
-<p>This should be your module structure and when you include your module in class it will work.
-No method will break. eg.</p>
-
-<pre><code>Class Post
-  include Commentable
-end
-
-Post.with_comments  
-Post.comment_search({}) 
-
-p = Post.find(1)
-p.comments
-p.comment_titles
-p.comment_users
-</code></pre>
 ]]></content>
   </entry>
   

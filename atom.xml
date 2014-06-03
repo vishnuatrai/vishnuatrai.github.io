@@ -4,7 +4,7 @@
   <title><![CDATA[@vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2014-05-24T21:32:54+05:30</updated>
+  <updated>2014-06-03T18:27:13+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -12,6 +12,73 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[What is new in Rails 4.1]]></title>
+    <link href="http://vishnuatrai.com/blog/2014/05/31/what-is-new-in-rails-4-dot-1/"/>
+    <updated>2014-05-31T19:59:28+05:30</updated>
+    <id>http://vishnuatrai.com/blog/2014/05/31/what-is-new-in-rails-4-dot-1</id>
+    <content type="html"><![CDATA[<p>Rails 4.1 is a minor release but includes interesting features below &ndash;</p>
+
+<h3>Spring</h3>
+
+<p>Spring is new application preloader(like spork and zeous) available by default<!--more-->
+to rails app. Tests, rake and generators will be running much faster on large apps.</p>
+
+<h3>Secrets</h3>
+
+<p>New file config/secrets.yml for your sensitive data. It contains rails app default
+secrets but you can add your secret keys here.</p>
+
+<h3>Action Pack Variants</h3>
+
+<p>Render different views, allows to have different templates and action responses for
+the same mime type (say, HTML), even behave differently for phones, tablets and
+desktop browsers. You can now have individual templates for the desktop, tablet,
+and phone views while sharing all the same controller logic.</p>
+
+<h3>ActionMailer Previews</h3>
+
+<p>Sort of like LetterOpener and MailPreview, provide a way to visually see how emails
+look by visiting a special URL that renders them. The preview is available in ie.
+<a href="http://localhost:3000/rails/mailers/notifier/welcome,">http://localhost:3000/rails/mailers/notifier/welcome,</a> and a list of them in
+<a href="http://localhost:3000/rails/mailers.">http://localhost:3000/rails/mailers.</a> By default, these preview classes live in
+test/mailers/previews. This can be configured using the preview_path option.</p>
+
+<h3>ActiveRecord enums</h3>
+
+<p>Declare an enum attribute where the values map to integers in the database, but can
+be queried by name. The good: Faster! Probably. It stores integers instead of strings.
+You won&rsquo;t notice.</p>
+
+<pre><code>class Conversation &lt; ActiveRecord::Base
+  enum status: [ :active, :archived ]
+end
+
+conversation.archived!
+Conversation.statuses # =&gt; { "active" =&gt; 0, "archived" =&gt; 1 }    
+</code></pre>
+
+<h3>Message Verifiers</h3>
+
+<p>Message verifiers can be used to generate and verify signed messages. This can be
+useful to safely transport sensitive data like remember-me tokens and friends.
+The method Rails.application.message_verifier returns a new message verifier that
+signs messages with a key derived from secret_key_base and the given message verifier name:</p>
+
+<pre><code>signed_token = Rails.application.message_verifier(:remember_me).generate(token)
+Rails.application.message_verifier(:remember_me).verify(signed_token) # =&gt; token
+
+Rails.application.message_verifier(:remember_me).verify(tampered_token)
+# raises ActiveSupport::MessageVerifier::InvalidSignature
+</code></pre>
+
+<h3>References</h3>
+
+<p><a href="http://weblog.rubyonrails.org/2014/4/8/Rails-4-1/">http://weblog.rubyonrails.org/2014/4/8/Rails-4-1/</a>
+<a href="http://edgeguides.rubyonrails.org/4_1_release_notes.html">http://edgeguides.rubyonrails.org/4_1_release_notes.html</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby 2.1 Changelog]]></title>
@@ -310,6 +377,15 @@ gem 'typhoeus'
 </code></pre>
 
 <p>You can use JSON responses for all your APIs.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[What is new in Rails 4.0]]></title>
+    <link href="http://vishnuatrai.com/blog/2013/07/18/what-is-new-in-rails-4-dot-0/"/>
+    <updated>2013-07-18T19:58:40+05:30</updated>
+    <id>http://vishnuatrai.com/blog/2013/07/18/what-is-new-in-rails-4-dot-0</id>
+    <content type="html"><![CDATA[
 ]]></content>
   </entry>
   
@@ -1135,260 +1211,6 @@ With MongoDB you should see high write performance, especially for updates.</p>
 <p><strong>{RAILS_ROOT} rake rake_migration:migrate</strong></p>
 
 <p>This command runs remaining(yet to run) ruby files in <strong>{RAILS_ROOT}/rake/migrate</strong> and saves version in rake_migrations table in database.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[MySql DB Indexing]]></title>
-    <link href="http://vishnuatrai.com/blog/2010/09/20/indexing-basic-mysql-queries/"/>
-    <updated>2010-09-20T19:33:35+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2010/09/20/indexing-basic-mysql-queries</id>
-    <content type="html"><![CDATA[<p>Working with a online tutorial with a huge amount of data, product owners always used to  raise issues for application performance. After looking in to different scenerios like apache configurations, hardware, network issues, and mysql performance as a backend server, we got to know that there are a lot of opportunities to improve mysql db performance. <!--more--> To see why db performance slow I turned on slow quiry logging in my.cnf:</p>
-
-<p>log-slow-queries
-long_query_time = 5</p>
-
-<p>The slow quesies log file became huge in size in Gigs after only two or three days, and queries was like:</p>
-
-<h1>Query_time:   5        Lock_time:   0       Rows_sent:   1        Rows_examined:   40508</h1>
-
-<p>SELECT quize_id as total_quizes FROM student_quizes WHERE exam_id IN(1,2,3,11)</p>
-
-<p>In abouve example its whowing that “Rows_sent:   1    Rows_examined: 40508”. So, after examining 40508 and returning just 1 row is not a good job done by db server. If there are 200 visitors using the application then multiply this figure with 200, in this case MySQL is examining 8,101,600 rows! Then the Mysql performance is in misurable situation.</p>
-
-<p>To see why MySQL queries are too slow we can explain them:</p>
-
-<pre><code>   mysql&gt; EXPLAIN
-       -&gt; SELECT quize_id as total_quizes FROM student_quizes
-       -&gt; WHERE exam_id IN (1, 2, 3, 11);
-   +-------------------+-------+---------------+-------------------+---------+------+-------+--------------------------+
-   | table             | type  | possible_keys | key               | key_len | ref  | rows  | Extra                    |
-   +-------------------+-------+---------------+-------------------+---------+------+-------+--------------------------+
-   | student_quizes    | index | NULL          | quize_id_exam_id  |       6 | NULL | 40508 | Using where; Using index |
-   +-------------------+-------+---------------+-------------------+---------+------+-------+--------------------------+
-</code></pre>
-
-<p>Here MySQL telling us    there&rsquo;s no possible keys but it&rsquo;s using key quize_id_exam_id? And if it&rsquo;s using a key then why does it suspect it    will have to examine 40508 rows (by performing a full index scan, denoted by &ldquo;type: index&rdquo;)? It seems there&rsquo;s a    problem with the keys so we must now understand them:</p>
-
-<pre><code>mysql&gt; DESCRIBE student_quizes;
-   +-------------+-----------------------+------+-----+---------+-------+
-   | Field       | Type                  | Null | Key | Default | Extra |
-   +-------------+-----------------------+------+-----+---------+-------+
-   | quize_id    | mediumint(8) unsigned |      | MUL | 0       |       |
-   | exam_id     | mediumint(8) unsigned |      |     | 0       |       |
-   | created_at  | datetime              |      |     | 0       |       |
-   | updated_at  | datetime              |      |     | 0       |       |
-   +-------------+-----------------------+------+-----+---------+-------+
-
-   mysql&gt; SHOW INDEX FROM student_quizes;
-   +-------------------+------------+-----------------------+--------------+-------------+-----------+-------------+
-   | Table             | Non_unique | Key_name              | Seq_in_index | Column_name | Collation | Cardinality |
-   +-------------------+------------+-----------------------+--------------+-------------+-----------+-------------+
-   | student_quizes    |          1 | quize_id_exam_id      |            1 | quize_id    | A         |       40508 |
-   | student_quizes    |          1 | exam_id_quize_id      |            2 | exam_id     | A         |       40508 |
-   +-------------------+------------+-----------------------+--------------+-------------+-----------+-------------+
-</code></pre>
-
-<p>Understanding indexes is two part: Understanding the structure of the table <em>then</em> understanding the indexes. You can&rsquo;t just slap an index on a table and think everything will be wonderful. In this    example it looks like everything should be wonderful with key quize_id_exam_id. Given that the SELECT statement is    selecting quize_id and exam_id and that&rsquo;s just what this key indexes, so why isn&rsquo;t it working? It is working, just not    how we&rsquo;re intending; it&rsquo;s working for MySQL which is why in EXPLAIN it says &ldquo;Using index.&rdquo; When MySQL says this    in &ldquo;Extra&rdquo; is means &ldquo;The column information is retrieved from the table using only information in the index tree     without having to do an additional seek to read the actual row.&rdquo; In other words: It finds and returns matching    columns from the index in memory not the table on disk, which is a good thing, unless it&rsquo;s doing this 12 million    times for 1 matching column.</p>
-
-<p>How very annoying: MySQL is using the index but still in effect examing every row of the table. The reason why in    this example deals with how MySQL uses multiple column indexes. From DESCRIBE we see &ldquo;MUL&rdquo; for multi-column    index, and from SHOW INDEX we see quize_id_exam_id twice, first for quize_id second for exam_id. A multiple    column index acts like a single column index if the columns were put end-to-end in the order specified by    &ldquo;Seq_in_index&rdquo; from SHOW INDEX. In this example if quize_id were 100 and exam_id were 200 this is indexed as    &ldquo;100 200&rdquo;. Throw this in the mix: MySQL will only use a multi-column index if a value    is specified for the first column in the index. In this example the first column in the index is quize_id and    we&rsquo;re not specifying a value for this column which is why MySQL won&rsquo;t use the index like we want it to. What    MySQL does do, and why it&rsquo;s able to use the index at all,  is use any value for quize_id and the values we gave    it for exam_id. In effect it looks for &lsquo;<em>  1&rsquo;, &lsquo;</em>  2&rsquo;, &lsquo;<em>   3&rsquo;, &lsquo;</em>   11&rsquo;. Since quize_id is unique MySQL really does have to look at every single one, all 40,00+. While doing that if it    comes across one with a matching exam_id lucky for us. I hope you see the obvious and simple solution: Swap    the order of columns in the key, exam_id then quize_id. Later we&rsquo;ll do this but first it&rsquo;s good learning    to examine another possibility.</p>
-
-<p>If exam_id is what we&rsquo;re matching rows on, just index exam_id. The command would be &ldquo;CREATE INDEX    test_index ON student_quizes (exam_id);&rdquo;. Then EXPLAIN the exact same slow query again:</p>
-
-<pre><code>   mysql&gt; EXPLAIN
-       -&gt; SELECT quize_id as total_quizes FROM student_quizes
-       -&gt; WHERE exam_id IN (1,2,3,11);
-   +-------------------+-------+---------------+------------+---------+------+------+-------------+
-   | table             | type  | possible_keys | key        | key_len | ref  | rows | Extra       |
-   +-------------------+-------+---------------+------------+---------+------+------+-------------+
-   | student_quizes    | range | test_index    | test_index |       3 | NULL |    5 | Using where |
-   +-------------------+-------+---------------+------------+---------+------+------+-------------+
-</code></pre>
-
-<p>That output speaks volumes: 5 rows to examine. This is the index that saved the server. I have not seen the server&rsquo;s    load go above 4 and the website is running faster with more users at once. The difference was night and day. But    why stop there? The query is no longer slow but it could be better. Notice how MySQL is not &ldquo;Using index&rdquo; anymore.    This is because quize_id is not in the index its using. Whereas it&rsquo;s in the quize_id_exam_id index MySQL has    wisely chosen to examine fewer rows at the cost of doing a few disk seeks. The solution is a multiple column index    on both exam_id and quize_id, with exam_id first.</p>
-
-<pre><code>   mysql&gt; CREATE INDEX exam_id_quize_id ON student_quizes (exam_id, quize_id);
-   Query OK, 40508 rows affected (0.53 sec)
-   Records: 40508  Duplicates: 0  Warnings: 0
-
-   mysql&gt; EXPLAIN
-       -&gt; SELECT quize_id as total_quizes FROM student_quizes
-       -&gt; WHERE exam_id IN (1,2,3,11);
-   +-------------------+-------+------------------------------+-------------------+---------+------+------+--------------------------+
-   | table             | type  | possible_keys                | key               | key_len | ref  | rows | Extra                    |
-   +-------------------+-------+------------------------------+-------------------+---------+------+------+--------------------------+
-   | student_quizes    | range | test_index,exam_id_quize_id  | exam_id_quize_id  |       3 | NULL |    5 | Using where; Using index |
-   +-------------------+-------+------------------------------+-------------------+---------+------+------+--------------------------+
-</code></pre>
-
-<p>As we can see MySQL still considers the test_index key but chooses exam_id_quize_id because doing so will allow    it to get matching quize_id from the index instead of the disk. A simple swap of column orders in the index made    all the difference. As the saying goes, it takes one tree to make a thousand matches and one match to burn a    thousand trees down.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[#After ubuntu installation Part I]]></title>
-    <link href="http://vishnuatrai.com/blog/2010/08/15/todo-with-ubuntu-installation/"/>
-    <updated>2010-08-15T22:19:56+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2010/08/15/todo-with-ubuntu-installation</id>
-    <content type="html"><![CDATA[<p>After installation of Ubuntu you may need to set up your system for some basic requirements. For these requirements you can follow these steps :<!--more--></p>
-
-<p>1 – Expand the Software Repository List</p>
-
-<p>First of all, lets make Ubuntu “see” more packages. Go to the terminal and edit your sources.list with :</p>
-
-<p>sudo gedit /etc/apt/sources.list</p>
-
-<p>Here is the content of my sources.list which I think is quite complete to have all the necessary applications you could ever need. So delete the whole content of your sources list and replace it with the content of mine</p>
-
-<p>Save it. Now import the necessary repositories keys to avoid “apt-get” crying about some missing keys, go to the terminal and type:</p>
-
-<p>sudo apt-key adv &mdash;recv-keys &mdash;keyserver keyserver.ubuntu.com <key></p>
-
-<p>Get your system up to date with :</p>
-
-<p>sudo apt-get update &amp;&amp; sudo apt-get upgrade</p>
-
-<p>Now all your programs will run on the last version.</p>
-
-<p>2 – Anti-Virus</p>
-
-<p>Windows equivalent : AVG AntiVirus, NAV, TrendMicro, F-Prot, Kaspersky, …</p>
-
-<p>Ubuntu equivalent : ClamAV, Avast</p>
-
-<p>ClamAV</p>
-
-<p>sudo apt-get install clamav clamtk</p>
-
-<p>Access it through System Tools → Virus Scanner .</p>
-
-<p>Avast</p>
-
-<p>wget <a href="http://files.avast.com/files/linux/avast4workstation_1.3.0-2_i386.deb">http://files.avast.com/files/linux/avast4workstation_1.3.0-2_i386.deb</a> &amp;&amp; sudo dpkg -i avast4workstation_1.3.0-2_i386.deb</p>
-
-<p>Access it through Accessories → avast! Antivirus .</p>
-
-<p>3 – Essential tools for compiling from sources</p>
-
-<p>sudo apt-get install build-essential checkinstall cdbs devscripts dh-make fakeroot libxml-parser-perl check avahi-daemon</p>
-
-<p>4 – Java runtime environment</p>
-
-<p>Java is a very important thing to install, now that many programs like Azureus need it to run. So type:</p>
-
-<p>sudo apt-get install sun-java6-jre sun-java6-plugin equivs</p>
-
-<p>5 – Ubuntu Control Panel</p>
-
-<p>Ubuntu Tweak</p>
-
-<p>Ubuntu Tweak allows you to tweak your system settings, all in one place. You can install new applications, customize your desktop settings, configure your startup applications, changing the system filetype association and many more tweaks in this single application.</p>
-
-<p>sudo apt-get install ubuntu-tweak</p>
-
-<p>Then access it through Applications → System Tools → Ubuntu Tweak</p>
-
-<p>App Runner</p>
-
-<p>App Runner is a small open source utility that makes it very easy to run any type of program/executable/script on any distro/OS that uses the nautilus file manager: Debian/Ubuntu/Super OS/Fedora/etc</p>
-
-<p>wget <a href="http://hacktolive.org/files/app_runner/App_Runner_0.2.deb">http://hacktolive.org/files/app_runner/App_Runner_0.2.deb</a> &amp;&amp; sudo dpkg -i App_Runner_0.2.deb</p>
-
-<p>Then right-click the file &ndash;> Scripts &ndash;> Run This App or Run This App (root)</p>
-
-<p>6 – Multimedia</p>
-
-<p>Windows equivalent : windows media player, real player, vlc, mplayer</p>
-
-<p>Ubuntu equivalent : vlc, mplayer, helix player</p>
-
-<p>To have Ubuntu playing all kinds of stuff, you need to install many codecs. So on the Terminal, type:</p>
-
-<ul>
-<li>Installing vlc and mplayer (plays almost everything):</li>
-</ul>
-
-
-<p>sudo apt-get install vlc mplayer</p>
-
-<ul>
-<li>Common packs</li>
-</ul>
-
-
-<p>sudo apt-get install non-free-codecs libxine1-ffmpeg gxine mencoder mpeg2dec vorbis-tools id3v2 mpg321 mpg123 libflac++6 ffmpeg libmp4v2-0 totem-mozilla icedax tagtool easytag id3tool lame nautilus-script-audio-convert mozilla-helix-player helix-player libmad0 libjpeg-progs libmpcdec3 libquicktime1 flac faac faad sox ffmpeg2theora libmpeg2-4 uudeview flac libmpeg3-1 mpeg3-utils mpegdemux liba52-dev</p>
-
-<ul>
-<li>Gstreammer 0.10</li>
-</ul>
-
-
-<p>sudo apt-get install gstreamer0.10-ffmpeg gstreamer0.10-fluendo-mp3 gstreamer0.10-gnonlin gstreamer0.10-pitfdll gstreamer0.10-sdl gstreamer0.10-plugins-bad-multiverse gstreamer0.10-schroedinger gstreamer0.10-plugins-ugly-multiverse totem-gstreamer
-sudo apt-get install python-nautilus meld python-svn python-configobj ipython
-* More programs</p>
-
-<p>sudo apt-get install gstreamer-dbus-media-service gstreamer-tools ubuntu-restricted-extras</p>
-
-<ul>
-<li>Enable dvd support</li>
-</ul>
-
-
-<p>sudo aptitude install libdvdcss2 &amp;&amp; sudo /usr/share/doc/libdvdread4/./install-css.sh</p>
-
-<ul>
-<li>Flash</li>
-</ul>
-
-
-<p>sudo apt-get install gsfonts gsfonts-x11 flashplugin-nonfree</p>
-
-<ol>
-<li>Tweak your eyecandy</li>
-</ol>
-
-
-<p>Ubuntu 9.04 comes with compiz fusion effects OOTB but doesn’t offer a way to customize them.</p>
-
-<p>In a terminal copy/paste this:</p>
-
-<p>sudo apt-get install simple-ccsm</p>
-
-<p>Now navigate to System → Preferences → Simple CompizConfig Settings Manager .</p>
-
-<p>8 – Missing Windows software?? Run Windows softwares in Linux!!!</p>
-
-<p>Run Windows Applications such as 7zip, Google Sketchup, AutoCAD, Dreamwaver, Flash MX, Fireworks MX, IE6, IE7, Safari, Itunes, Windows Media Player and many more…</p>
-
-<p>Play Windows Games in Linux like Age Of Empires, Call Of Duty, Diablo, Fear, Fallout, Far Cry, Grand Theft Auto, Half Life, Halo, Hitman, Max Payne, Need For Speed, Prince Of Persia, Sim City Star Wars, The Simsworld of warcraft , Tomb Raider, Warcraft, World Of Warcraft, Counterstrike and many other can be played.</p>
-
-<p>Install Playonlinux. It’s based on wine. Wine is a compatibility layer for running Windows programs in Linux.</p>
-
-<p>sudo apt-get install wine playonlinux</p>
-
-<p>9 – Clipboard Management</p>
-
-<p>By Default in ubuntu when u copy something from an application and closes the application u will not be able to access it from the clipboard. And also when u copy severals text in serial u only have the last on available to you in the clipboard. To solve that install either of the following but Glipper is better because it supports plugins.</p>
-
-<p>Glipper</p>
-
-<p>sudo apt-get install glipper</p>
-
-<p>Then right click ur panel → Add to Panel then drag Clipboard Manager to ur panel</p>
-
-<p>Parcellite</p>
-
-<p>sudo apt-get install parcellite</p>
-
-<p>10 – Archiver/ Packing software</p>
-
-<p>Windows equivalent : winrar, zip, 7zip</p>
-
-<p>Ubuntu equivalent : tar, unrar, p7zip, arj, unace</p>
-
-<p>It’s bad when you don’t have Internet on your computer/notebook, but you have to pack/unpack something but the file format isn’t recognized by the system. To prevent from this bad situation, you can install a bunch of packing software by typing this on the terminal:</p>
-
-<p>sudo apt-get install unace rar unrar zip unzip p7zip-full p7zip-rar sharutils aish uudeview mpack lha arj cabextract file-roller</p>
 ]]></content>
   </entry>
   
