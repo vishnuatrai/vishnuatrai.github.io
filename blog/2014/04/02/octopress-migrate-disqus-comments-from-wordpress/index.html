@@ -232,6 +232,10 @@ http://vishnuatrai.com/?p=132, http://vishnuatrai.com/blog/2010/11/01/why-nosql/
       });
 
       $('#bloag-search').css('z-index','10000');
+      $('#content').click(function(){  $('#bloag-search').hide();  });
+      $("#bloag-search").on('click', '.gsc-clear-button', 
+        function(){ $('#bloag-search').hide();
+      });
 
     });
   </script>

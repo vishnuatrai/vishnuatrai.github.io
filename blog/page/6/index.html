@@ -193,6 +193,10 @@ just exec as root: &ldquo;nano /etc/modprobe.d/alsa-base.conf</p>
       });
 
       $('#bloag-search').css('z-index','10000');
+      $('#content').click(function(){  $('#bloag-search').hide();  });
+      $("#bloag-search").on('click', '.gsc-clear-button', 
+        function(){ $('#bloag-search').hide();
+      });
 
     });
   </script>

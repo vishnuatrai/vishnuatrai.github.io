@@ -241,6 +241,10 @@ For example, MapReduce is used for the generation of data for Google&rsquo;s pro
       });
 
       $('#bloag-search').css('z-index','10000');
+      $('#content').click(function(){  $('#bloag-search').hide();  });
+      $("#bloag-search").on('click', '.gsc-clear-button', 
+        function(){ $('#bloag-search').hide();
+      });
 
     });
   </script>

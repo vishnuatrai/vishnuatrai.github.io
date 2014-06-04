@@ -254,6 +254,10 @@ With MongoDB you should see high write performance, especially for updates.</p>
       });
 
       $('#bloag-search').css('z-index','10000');
+      $('#content').click(function(){  $('#bloag-search').hide();  });
+      $("#bloag-search").on('click', '.gsc-clear-button', 
+        function(){ $('#bloag-search').hide();
+      });
 
     });
   </script>

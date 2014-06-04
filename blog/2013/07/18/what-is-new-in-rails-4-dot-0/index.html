@@ -264,6 +264,10 @@ version then ruby 1.9.3. Major developments are below &ndash;</p>
       });
 
       $('#bloag-search').css('z-index','10000');
+      $('#content').click(function(){  $('#bloag-search').hide();  });
+      $("#bloag-search").on('click', '.gsc-clear-button', 
+        function(){ $('#bloag-search').hide();
+      });
 
     });
   </script>
