@@ -5,7 +5,8 @@ date: 2010-10-12 09:59:48+00:00
 layout: post
 slug: managed-rake-tasks-rake-migration
 title: 'Rake Migration: Track Rake Tasks with versions'
-wordpress_id: 115
+description: "Rake Migration: Track Rake Tasks with versions"
+keywords: Ruby, Rake Task, Migration
 categories:
 - Ruby
 - Rake Task

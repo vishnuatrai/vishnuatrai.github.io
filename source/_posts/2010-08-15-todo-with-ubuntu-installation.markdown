@@ -5,7 +5,8 @@ date: 2010-08-15 16:49:56+00:00
 layout: post
 slug: todo-with-ubuntu-installation
 title: '#After ubuntu installation Part I'
-wordpress_id: 12
+description: After ubuntu installation
+keywords:  Linux, Ubuntu, Ubuntu installation
 categories:
 - Linux
 - Ubuntu

@@ -5,7 +5,8 @@ date: 2011-01-12 17:14:11+00:00
 layout: post
 slug: mongodb-vs-couchdb
 title: MongoDB V/S CouchDB
-wordpress_id: 139
+description: "MongoDB V/S CouchDB"
+keywords: MongoDb, CouchDB, NoSQL
 categories:
 - CouchDB
 - MongoDb

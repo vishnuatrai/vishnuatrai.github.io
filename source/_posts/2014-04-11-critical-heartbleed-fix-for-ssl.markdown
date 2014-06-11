@@ -3,6 +3,8 @@ layout: post
 title: "Critical Heartbleed fix for SSL"
 date: 2014-04-11 15:30:33 +0530
 comments: true
+description: Critical Heartbleed fix for SSL
+keywords: OpenSSL, Valunability, Heartbleed, SSL
 categories: 
   OpenSSL
   Valunability

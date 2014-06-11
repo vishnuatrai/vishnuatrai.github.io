@@ -3,6 +3,8 @@ layout: post
 title: "Octopress: Programmer Friendly Blogging"
 date: 2014-03-27 13:39:53 +0530
 comments: true
+description: "Octopress: Programmer Friendly Blogging"
+keywords: Octopress, Jekyll, Blogging
 categories: 
   Octopress
   Jekyll

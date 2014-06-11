@@ -3,6 +3,8 @@ layout: post
 title: "Octopress: Migrate Disqus Comments from WordPress"
 date: 2014-04-02 12:08:35 +0530
 comments: true
+description: "Octopress: Migrate Disqus Comments from WordPress"
+keywords: Octopress, Jekyll, Disqus Migration, WordPress Migration
 categories:
   Octopress
   Jekyll

@@ -5,7 +5,8 @@ date: 2010-09-20 14:03:35+00:00
 layout: post
 slug: indexing-basic-mysql-queries
 title: MySql DB Indexing
-wordpress_id: 59
+description: MySql DB Indexing
+keywords: MySql, Indexing, Performance
 categories:
 - MySql
 - Indexing

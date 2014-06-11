@@ -3,6 +3,8 @@ layout: post
 title: "Ruby 2.0.0 Changelog"
 date: 2013-04-05 12:43:25 +0530
 comments: true
+description: Ruby 2.0.0 Changelog
+keywords: Ruby, Ruby 2.0.0
 categories: 
 - Ruby
 - Ruby 2.0.0

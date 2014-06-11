@@ -5,7 +5,8 @@ date: 2012-04-06 05:42:46+00:00
 layout: post
 slug: jasmine-ajax-and-spies
 title: 'Jasmine: Ajax and Spies'
-wordpress_id: 328
+description: "Jasmine: Ajax and Spies"
+keywords: BDD, jasmine, Javascript
 categories:
 - BDD
 - jasmine

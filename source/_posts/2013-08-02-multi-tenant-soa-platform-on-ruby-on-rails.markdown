@@ -3,6 +3,8 @@ layout: post
 title: "Ruby for Multi-tenant SOA platform"
 date: 2013-08-02 18:03:45 +0530
 comments: true
+description: Ruby for Multi-tenant SOA platform
+keywords: RoR, SOA, Multitenant, Ruby on Rails
 categories:
   RoR
   SOA

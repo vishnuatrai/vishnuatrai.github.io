@@ -5,7 +5,8 @@ date: 2012-03-12 08:54:24+00:00
 layout: post
 slug: jasmine-bdd-for-javascript
 title: 'Jasmine: BDD for Javascript'
-wordpress_id: 292
+description: "Jasmine: BDD for Javascript"
+keywords: BDD, jasmine, Javascript, RubyOnRails
 categories:
 - BDD
 - jasmine

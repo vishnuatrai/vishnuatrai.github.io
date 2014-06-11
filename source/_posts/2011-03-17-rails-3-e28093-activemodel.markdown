@@ -5,7 +5,8 @@ date: 2011-03-17 17:25:31+00:00
 layout: post
 slug: rails-3-%e2%80%93-activemodel
 title: Rails 3 – ActiveModel Basics
-wordpress_id: 147
+description: "Rails 3 – ActiveModel Basics"
+keywords: Rails3, RoR, Ruby, RubyOnRails, Ruby on Rails
 categories:
 - Rails3
 - RoR

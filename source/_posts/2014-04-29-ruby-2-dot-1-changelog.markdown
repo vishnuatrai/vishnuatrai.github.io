@@ -3,6 +3,8 @@ layout: post
 title: "Ruby 2.1 Changelog"
 date: 2014-04-29 12:01:04 +0530
 comments: true
+description: Ruby 2.1 Changelog
+keywords: Ruby, Ruby 2.1
 categories: 
 - Ruby
 - Ruby 2.1

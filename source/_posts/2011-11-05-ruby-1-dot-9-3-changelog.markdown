@@ -3,6 +3,8 @@ layout: post
 title: "Ruby 1.9.3 Changelog"
 date: 2011-11-05 12:52:27 +0530
 comments: true
+description: "Ruby 1.9.3 Changelog"
+keywords: Ruby, Ruby 1.9.3
 categories: 
 - Ruby
 - Ruby 1.9.3

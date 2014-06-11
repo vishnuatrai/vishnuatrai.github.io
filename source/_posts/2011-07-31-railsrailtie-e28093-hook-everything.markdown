@@ -5,7 +5,8 @@ date: 2011-07-31 12:03:44+00:00
 layout: post
 slug: railsrailtie-%e2%80%93-hook-everything
 title: Rails::Railtie – Hook Everything
-wordpress_id: 170
+description: "Rails::Railtie – Hook Everything"
+keywords: Rails3, Railtie, RubyOnRails, RoR, Ruby on Rails
 categories:
 - Rails3
 - Railtie

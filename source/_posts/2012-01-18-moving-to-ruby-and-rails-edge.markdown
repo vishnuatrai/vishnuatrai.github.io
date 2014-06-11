@@ -5,7 +5,8 @@ date: 2012-01-18 09:55:34+00:00
 layout: post
 slug: moving-to-ruby-and-rails-edge
 title: Moving to Ruby and Rails Edge
-wordpress_id: 173
+description: Moving to Ruby and Rails Edge
+keywords: Rails3, Ruby, RubyOnRails, RoR, Ruby on Rails
 categories:
 - Rails3
 - Ruby
