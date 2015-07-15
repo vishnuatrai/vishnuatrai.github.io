@@ -10,7 +10,7 @@ keywords: "Vishnu Sharma, Vishnu Atrai, Dausa, Jaipur, Bangalore, Ruby on Rails,
 
 ---
 
-I'm Vishnu Sharma and I am a software developer who specializes in building web applications in various domains(ie. Financial, Online tutorial, HR solution, ERP, Social Networking etc). I have been in the field for nearly 8.5 years, and have been loving every minute of it. I am a blogger, designer and developer. 
+I'm Vishnu Sharma and I am a software developer who specializes in building web applications in various domains(ie. Financial, Online tutorial, HR solution, ERP, Social Networking etc). I have been working in this domain for nearly 9.5 years, and have been loving every minute of it. I am a blogger, designer and developer. 
 
 I am using Ruby on Rails framework to develop web apps, earlier I was using CoreJava and JSP for web development. I use python, node.js frameworks also to develop web apps. I love open source technologies, frameworks, libraries etc.
 
