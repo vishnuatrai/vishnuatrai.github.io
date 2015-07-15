@@ -1,4 +1,4 @@
 vatrai.github.io
 ================
 
-My github pages
+My personal blog
