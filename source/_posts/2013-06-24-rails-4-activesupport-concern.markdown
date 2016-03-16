@@ -4,9 +4,9 @@ title: "Rails 4 - ActiveSupport::Concern"
 date: 2013-06-24 18:00:23 +0530
 comments: true
 description: "Rails 4 - ActiveSupport::Concern"
-keywords: Rails4, Rails, RoR, ActiveSupport::Concern
+keywords: Rails 4, Rails, RoR, ActiveSupport::Concern
 categories:
-  Rails4
+  Rails&nbsp;4
   Rails
   RoR 
 ---

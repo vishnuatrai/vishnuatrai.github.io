@@ -6,12 +6,12 @@ layout: post
 slug: railsrailtie-%e2%80%93-hook-everything
 title: Rails::Railtie – Hook Everything
 description: "Rails::Railtie – Hook Everything"
-keywords: Rails3, Railtie, RubyOnRails, RoR, Ruby on Rails
+keywords: Rails&nbsp;3, Railtie, RoR, Ruby on Rails
 categories:
-- Rails3
+- Rails&nbsp;3
 - Railtie
-- RubyOnRails
 - RoR
+- Ruby on Rails
 ---
 
 After Rails 3 released I have been trying to find major and important changes in rails framework over 2.x version. The change I like most is Rails Railtie. Using Railtie you can configure your own gem or plugin in a rails application according to your choice in boot process. <!--more-->  If you are a plugin developer, you can use Railtie class that is capable of loading generators, tasks, middlewares and adding subscribers.

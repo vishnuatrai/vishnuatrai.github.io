@@ -7,7 +7,7 @@ description: Ruby 2.1 Changelog
 keywords: Ruby, Ruby 2.1
 categories: 
 - Ruby
-- Ruby 2.1
+- Ruby&nbsp;2.1
 ---
 
 Ruby 2.1.0 has been released now question is, what's new in ruby 2.1.0. Below list of new 

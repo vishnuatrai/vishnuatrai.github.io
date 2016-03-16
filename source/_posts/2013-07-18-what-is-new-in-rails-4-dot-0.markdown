@@ -4,9 +4,9 @@ title: "What is new in Rails 4.0"
 date: 2013-07-18 19:58:40 +0530
 comments: true
 description: What is new in Rails 4.0
-keywords: Rails4, Rails, RoR, Ruby on Rails
+keywords: Rails 4, Rails, RoR, Ruby on Rails
 categories:
-  Rails4
+  Rails&nbsp;4
   Rails
   RoR 
 ---

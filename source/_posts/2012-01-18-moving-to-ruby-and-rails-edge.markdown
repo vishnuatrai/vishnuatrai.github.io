@@ -6,9 +6,9 @@ layout: post
 slug: moving-to-ruby-and-rails-edge
 title: Moving to Ruby and Rails Edge
 description: Moving to Ruby and Rails Edge
-keywords: Rails3, Ruby, RubyOnRails, RoR, Ruby on Rails
+keywords: Rails&nbsp;3, Ruby, RubyOnRails, RoR, Ruby on Rails
 categories:
-- Rails3
+- Rails&nbsp;3
 - Ruby
 - RubyOnRails
 - RoR

@@ -6,9 +6,9 @@ layout: post
 slug: rails-3-%e2%80%93-activemodel
 title: Rails 3 – ActiveModel Basics
 description: "Rails 3 – ActiveModel Basics"
-keywords: Rails3, RoR, Ruby, RubyOnRails, Ruby on Rails
+keywords: Rails 3, RoR, Ruby, RubyOnRails, Ruby on Rails
 categories:
-- Rails3
+- Rails&nbsp;3
 - RoR
 - Ruby
 - RubyOnRails
