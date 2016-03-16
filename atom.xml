@@ -4,7 +4,7 @@
   <title><![CDATA[@vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2016-03-16T19:32:00+05:30</updated>
+  <updated>2016-03-16T19:35:48+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -20,7 +20,7 @@
     <id>http://vishnuatrai.com/blog/2015/01/15/what-is-new-in-rails-4-dot-2</id>
     <content type="html"><![CDATA[<h3>Active Job</h3>
 
-<p>Active Job is a framework for declaring jobs and making them run on a variety of queueing backends. These jobs can be everything from regularly scheduled clean-ups, to billing charges, to mailings. Anything that can be chopped up into small units of work and run in parallel.</p>
+<p>Active Job is a framework for declaring jobs and making them run on a variety of queueing backends. These jobs can be everything from regularly scheduled clean-ups, to billing charges, to mailings. Anything that can be chopped up into small units of work and run in parallel.<!--more--></p>
 
 <pre><code>class GuestsCleanupJob &lt; ActiveJob::Base
   queue_as :default
