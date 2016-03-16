@@ -4,7 +4,7 @@
   <title><![CDATA[Category: RoR | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/blog/categories/ror/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2015-07-15T17:35:17+05:30</updated>
+  <updated>2016-03-16T19:32:00+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -12,6 +12,102 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[What Is New in Rails 4.2]]></title>
+    <link href="http://vishnuatrai.com/blog/2015/01/15/what-is-new-in-rails-4-dot-2/"/>
+    <updated>2015-01-15T17:58:43+05:30</updated>
+    <id>http://vishnuatrai.com/blog/2015/01/15/what-is-new-in-rails-4-dot-2</id>
+    <content type="html"><![CDATA[<h3>Active Job</h3>
+
+<p>Active Job is a framework for declaring jobs and making them run on a variety of queueing backends. These jobs can be everything from regularly scheduled clean-ups, to billing charges, to mailings. Anything that can be chopped up into small units of work and run in parallel.</p>
+
+<pre><code>class GuestsCleanupJob &lt; ActiveJob::Base
+  queue_as :default
+
+  def perform(*guests)
+    # Do something later
+  end
+end
+
+# Enqueue a job to be performed as soon the queuing system is free.
+GuestsCleanupJob.perform_later guest
+
+#Setting the Backend
+# config/application.rb
+module YourApp
+  class Application &lt; Rails::Application
+    # Be sure to have the adapter's gem in your Gemfile and follow
+    # the adapter's specific installation and deployment instructions.
+    config.active_job.queue_adapter = :sidekiq
+  end
+end
+</code></pre>
+
+<h3>Asynchronous Mails</h3>
+
+<p>Building on top of Active Job, Action Mailer now comes with a <code>deliver_later</code> method that sends emails via the queue, so it doesn&rsquo;t block the controller or model if the queue is asynchronous (the default inline queue blocks).</p>
+
+<p>Sending emails right away is still possible with <code>deliver_now</code>.</p>
+
+<h3>Adequate Record</h3>
+
+<p>Adequate Record is a set of performance improvements in Active Record that makes common find and find_by calls and some association queries up to 2x faster.</p>
+
+<p>It works by caching common SQL queries as prepared statements and reusing them on similar calls, skipping most of the query-generation work on subsequent calls.</p>
+
+<pre><code>Post.find(1)  # First call generates and cache the prepared statement
+Post.find(2)  # Subsequent calls reuse the cached prepared statement
+
+Post.find_by_title('first post')
+Post.find_by_title('second post')
+
+Post.find_by(title: 'first post')
+Post.find_by(title: 'second post')
+
+post.comments
+post.comments(true)
+</code></pre>
+
+<p>Caching is not used in the following scenarios:</p>
+
+<pre><code>- The model has a default scope
+- The model uses single table inheritance
+- find with a list of ids, eg.
+    Post.find(1, 2, 3)
+    Post.find([1,2])
+- find_by with SQL fragments, eg.
+    Post.find_by('published_at &lt; ?', 2.weeks.ago)
+</code></pre>
+
+<h3>Web Console</h3>
+
+<p>Web Console adds an interactive Ruby console on every error page and provides a console view and controller helpers.</p>
+
+<p>The interactive console on error pages lets you execute code in the context of the place where the exception originated. The console helper, if called anywhere in a view or controller, launches an interactive console with the final context, once rendering has completed.</p>
+
+<h3>Foreign Key Support</h3>
+
+<p>The migration DSL now supports adding and removing foreign keys. They are dumped to <code>schema.rb</code> as well. At this time, only the <code>mysql</code>, <code>mysql2</code> and <code>postgresql</code> adapters support foreign keys.</p>
+
+<pre><code># add a foreign key to `articles.author_id` referencing `authors.id`
+add_foreign_key :articles, :authors
+
+# add a foreign key to `articles.author_id` referencing `users.lng_id`
+add_foreign_key :articles, :users, column: :author_id, primary_key: "lng_id"
+
+# remove the foreign key on `accounts.branch_id`
+remove_foreign_key :accounts, :branches
+
+# remove the foreign key on `accounts.owner_id`
+remove_foreign_key :accounts, column: :owner_id
+</code></pre>
+
+<h3>References</h3>
+
+<p><a href="http://guides.rubyonrails.org/4_2_release_notes.html">http://guides.rubyonrails.org/4_2_release_notes.html</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[What Is New in Rails 4.1]]></title>
@@ -234,88 +330,6 @@ p = Post.find(1)
 p.comments
 p.comment_titles
 p.comment_users
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Jasmine: BDD for Javascript]]></title>
-    <link href="http://vishnuatrai.com/blog/2012/03/12/jasmine-bdd-for-javascript/"/>
-    <updated>2012-03-12T14:24:24+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2012/03/12/jasmine-bdd-for-javascript</id>
-    <content type="html"><![CDATA[<p>In web development, if we are doing web 2.0 and modern web concepts, we have to write a lot of javascript and ajax calls and that will increase client side javascript day by day. <!--more--> We have lot of good javascript libraries for implementation. For faster delivery of features we need to cover the client side javascript with test cases. Jasmine is a tool to do BDD for javascript. It can mock ajax calls and you can use some static templates as a result. Jasmine also can be useful for TDD with javascript.</p>
-
-<h4>1. Setting up a project</h4>
-
-<p>To set up a project for javascript BDD, first of all you need to add <strong>&lsquo;jasmine&rsquo;</strong> to your gem file. Then after bundle install you will have to run a generator {<strong>rails g jasmine:install</strong>} to generate jasmine defaults. Now you can run command <strong>rake jasmine</strong> to see your spec on browser. The server run default on 8888 port. You can see your specs by browsing <a href="http://localhost:8888.">http://localhost:8888.</a> To write specs you can add a .js file in spec/javascripts/my_javascript_spec.js.</p>
-
-<h4>2. Syntax</h4>
-
-<p>Jasmine is very similar with rSpec in terms of syntax. It has methods like <strong>describe</strong> and <strong>it</strong>. Both functions take two arguments, first a string to show the context and second function to test the results. <strong>describe</strong> can be used for grouping related specs.</p>
-
-<pre><code>describe('addition', function () {  
-    it('adds two numbers', function () {  
-        expect(5 + 5).toEqual(10);  
-    });  
-}); 
-</code></pre>
-
-<h4>3. Setup and Tear-down</h4>
-
-<p>Jasmine provides function <strong>beforeEach</strong> for setup the spec context and <strong>afterEach</strong> to clear the context.</p>
-
-<pre><code>describe("Spec setup and tear-down", function() {
-  var number;
-  beforeEach(function() {
-    number = 0;
-    number += 1;
-  });
-
-  afterEach(function() {
-    number = 0;
-  });
-
-  it("first assertion", function() {
-    expect(number).toEqual(1);              #green
-  });
-
-  it("second assertion", function() {
-    expect(number).toEqual(1);              #green
-  });
-});
-</code></pre>
-
-<h4>4. Matchers</h4>
-
-<p>Given few of the matches you can use for assertions &ndash;</p>
-
-<pre><code>toContain
-   expect(["linux", "mac", "windows"]).toContain("linux");  
-toMatch
-   expect(1050.50).toMatch(/\$\d*.\d\d/);
-toBeLessThan
-   expect(1).toBeLessThan(2);  
-toBeGreaterThan
-   expect(2).toBeGreaterThan(1);
-toBeTruthy
-  expect(true).toBeTruthy(); 
-toBeFalsy
-  expect(false).toBeFalsy();  
-
-and a lot many.
-</code></pre>
-
-<h4>5. Custom Matchers</h4>
-
-<p>We can write our own custom matcher using <strong>this.addMatchers</strong> in beforeEach call.</p>
-
-<pre><code>beforeEach(function () {  
-  this.addMatchers({  
-    toBeBetween: function (floor, ceiling) {  
-      return this.actual &gt; floor &amp;&amp; this.actual &lt; ceiling;  
-    }  
-  });  
-});  
 </code></pre>
 ]]></content>
   </entry>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Rails&nbsp;4.2 | @vishnuatrai]]></title>
+  <link href="http://vishnuatrai.com/blog/categories/rails-4-dot-2/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.com/"/>
+  <updated>2016-03-16T19:32:00+05:30</updated>
+  <id>http://vishnuatrai.com/</id>
+  <author>
+    <name><![CDATA[vishnuatrai.com]]></name>
+    <email><![CDATA[me@vishnuatrai.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[What Is New in Rails 4.2]]></title>
+    <link href="http://vishnuatrai.com/blog/2015/01/15/what-is-new-in-rails-4-dot-2/"/>
+    <updated>2015-01-15T17:58:43+05:30</updated>
+    <id>http://vishnuatrai.com/blog/2015/01/15/what-is-new-in-rails-4-dot-2</id>
+    <content type="html"><![CDATA[<h3>Active Job</h3>
+
+<p>Active Job is a framework for declaring jobs and making them run on a variety of queueing backends. These jobs can be everything from regularly scheduled clean-ups, to billing charges, to mailings. Anything that can be chopped up into small units of work and run in parallel.</p>
+
+<pre><code>class GuestsCleanupJob &lt; ActiveJob::Base
+  queue_as :default
+
+  def perform(*guests)
+    # Do something later
+  end
+end
+
+# Enqueue a job to be performed as soon the queuing system is free.
+GuestsCleanupJob.perform_later guest
+
+#Setting the Backend
+# config/application.rb
+module YourApp
+  class Application &lt; Rails::Application
+    # Be sure to have the adapter's gem in your Gemfile and follow
+    # the adapter's specific installation and deployment instructions.
+    config.active_job.queue_adapter = :sidekiq
+  end
+end
+</code></pre>
+
+<h3>Asynchronous Mails</h3>
+
+<p>Building on top of Active Job, Action Mailer now comes with a <code>deliver_later</code> method that sends emails via the queue, so it doesn&rsquo;t block the controller or model if the queue is asynchronous (the default inline queue blocks).</p>
+
+<p>Sending emails right away is still possible with <code>deliver_now</code>.</p>
+
+<h3>Adequate Record</h3>
+
+<p>Adequate Record is a set of performance improvements in Active Record that makes common find and find_by calls and some association queries up to 2x faster.</p>
+
+<p>It works by caching common SQL queries as prepared statements and reusing them on similar calls, skipping most of the query-generation work on subsequent calls.</p>
+
+<pre><code>Post.find(1)  # First call generates and cache the prepared statement
+Post.find(2)  # Subsequent calls reuse the cached prepared statement
+
+Post.find_by_title('first post')
+Post.find_by_title('second post')
+
+Post.find_by(title: 'first post')
+Post.find_by(title: 'second post')
+
+post.comments
+post.comments(true)
+</code></pre>
+
+<p>Caching is not used in the following scenarios:</p>
+
+<pre><code>- The model has a default scope
+- The model uses single table inheritance
+- find with a list of ids, eg.
+    Post.find(1, 2, 3)
+    Post.find([1,2])
+- find_by with SQL fragments, eg.
+    Post.find_by('published_at &lt; ?', 2.weeks.ago)
+</code></pre>
+
+<h3>Web Console</h3>
+
+<p>Web Console adds an interactive Ruby console on every error page and provides a console view and controller helpers.</p>
+
+<p>The interactive console on error pages lets you execute code in the context of the place where the exception originated. The console helper, if called anywhere in a view or controller, launches an interactive console with the final context, once rendering has completed.</p>
+
+<h3>Foreign Key Support</h3>
+
+<p>The migration DSL now supports adding and removing foreign keys. They are dumped to <code>schema.rb</code> as well. At this time, only the <code>mysql</code>, <code>mysql2</code> and <code>postgresql</code> adapters support foreign keys.</p>
+
+<pre><code># add a foreign key to `articles.author_id` referencing `authors.id`
+add_foreign_key :articles, :authors
+
+# add a foreign key to `articles.author_id` referencing `users.lng_id`
+add_foreign_key :articles, :users, column: :author_id, primary_key: "lng_id"
+
+# remove the foreign key on `accounts.branch_id`
+remove_foreign_key :accounts, :branches
+
+# remove the foreign key on `accounts.owner_id`
+remove_foreign_key :accounts, column: :owner_id
+</code></pre>
+
+<h3>References</h3>
+
+<p><a href="http://guides.rubyonrails.org/4_2_release_notes.html">http://guides.rubyonrails.org/4_2_release_notes.html</a></p>
+]]></content>
+  </entry>
+  
+</feed>

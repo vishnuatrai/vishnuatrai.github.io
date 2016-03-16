@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2015-07-15T17:35:17+05:30</updated>
+  <updated>2016-03-16T19:32:00+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -12,6 +12,164 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby 2.2.0 Features]]></title>
+    <link href="http://vishnuatrai.com/blog/2014/12/30/ruby-2-dot-2-features/"/>
+    <updated>2014-12-30T17:53:04+05:30</updated>
+    <id>http://vishnuatrai.com/blog/2014/12/30/ruby-2-dot-2-features</id>
+    <content type="html"><![CDATA[<h3>1) Incremental and Symbol GC (RIncGC)</h3>
+
+<p>Ruby 2.2.0 release includes several grabage collection (GC) improvements. Symbols are now garbage collectable.</p>
+
+<p>Following the introduction of generational garbage collection in Ruby 2.1.0, which markedly improved the GC throughput, Ruby maintainers continue to introduce important changes in this space. The generational GC (RGenGC) classifies objects into generations, on the assumption that most objects die young. <!--more--> This assumption allows for high throughput and low pause time on younger objects, because older objects are only evaluated for deletion when there is no memory. But this means that older objects still suffer from high pause time.</p>
+
+<p>The incremental GC (RIncGC), built on top of the generational GC, aims to cut that pause time while maintaining the same throughput. It achieves the shorter pause time by interleaving the mark phase, where objects are marked for GC, with Ruby&rsquo;s regular execution. Before Ruby 2.2.0, the mark phase was done in one big step.</p>
+
+<h3>2) Rails 5.0 support</h3>
+
+<p>Rails 5.0 will target Ruby 2.2+ exclusively. There are a bunch of optimizations coming in Ruby 2.2 that are going to be very nice, but most importantly for Rails, symbols are going to be garbage collected. This means we can shed a lot of weight related to juggling strings when we accept input from the outside world. It also means that we can convert fully to keyword arguments and all the other good stuff from the latest Ruby.</p>
+
+<h3>3) Binding#local_variables</h3>
+
+<p>To know the local variables defined in a scope use <code>binding.local_variables</code> that will give all variables in use.</p>
+
+<pre><code>def m1(a, b)
+  puts binding.local_variables
+  c = a + b
+  puts binding.local_variables
+  c
+end
+
+irb(main):001&gt; m1(2,3)
+[:a, :b, :c]
+[:a, :b, :c]
+=&gt;5
+</code></pre>
+
+<h3>4) Binding#receiver</h3>
+
+<p>Ruby 2.2 provides a way to know which object is receiving the method call using <code>binding.receiver</code> method</p>
+
+<pre><code>class Amimal
+  def self.walk
+    puts 'walk'
+    binding.receiver
+  end 
+end
+
+irb(main):001&gt; Amimal.walk
+walk
+=&gt;Animal
+
+class Dog &lt; Animal
+end 
+
+irb(main):002&gt; Dog.walk
+walk
+=&gt;Dog
+</code></pre>
+
+<h3>5) Enumerable#slice_after</h3>
+
+<p>This method is a complement to the existing <code>slice_before</code> method.</p>
+
+<p>As the name suggests, <code>slice_before</code> is used to slice and dice enumerables. Given a way to match an element in the enumerable, it will find a match and cut it apart just prior to the match.</p>
+
+<pre><code>irb(main):001&gt;[1, 'a', 2, 'b', 'c', 3, 'd', 'e', 'f'].slice_before { |e| e.is_a?(Integer) }.to_a
+=&gt;[[1, "a"], [2, "b", "c"], [3, "d", "e", "f"]]
+</code></pre>
+
+<p><code>slice_after</code> does slices after instead:</p>
+
+<pre><code>irb(main):002&gt;[1, 'a', 2, 'b', 'c', 3, 'd', 'e', 'f'].slice_after(Integer).to_a
+=&gt;[[1], ["a", 2], ["b", "c", 3], ["d", "e", "f"]]
+</code></pre>
+
+<h3>6) Enumerable#slice_when</h3>
+
+<p>A particularly fun addition is <code>slice_when</code>. Unlike <code>slice_after</code>, this method only accepts a block. It walks an enumerable, passing pairs of elements to the block. When the block returns <code>true</code>, the enumerable is sliced between the pair of elements:</p>
+
+<pre><code>irb(main):001&gt;[1, 3, 4, 5, 7, 8, 9, 10, 12].slice_when { |a, b| a + 1 != b }.to_a
+=&gt;[[1], [3, 4, 5], [7, 8, 9, 10], [12]]
+</code></pre>
+
+<h3>7) Float#next_float, Float#prev_float</h3>
+
+<p>These functions return the next or previous representable float. Note the word “representable” in that sentence, not all floats can be represented.</p>
+
+<pre><code>irb(main):001&gt;1.0.next_float
+=&gt;1.0000000000000002
+
+irb(main):002&gt;1.0.prev_float
+=&gt;0.9999999999999999
+</code></pre>
+
+<h3>8) Kernel#itself</h3>
+
+<p>Ruby went out and got itself an identity method. For those not familiar, an identity method returns the object it’s called on:</p>
+
+<pre><code>irb(main):001&gt;1.itself
+=&gt;1
+
+irb(main):002&gt;[2, 3, 3, 1, 2, 3, 3, 1, 1, 2].group_by(&amp;:itself)
+=&gt;{2=&gt;[2, 2, 2], 3=&gt;[3, 3, 3, 3], 1=&gt;[1, 1, 1]}
+</code></pre>
+
+<h3>8) Method#curry</h3>
+
+<p>You might not have realized that Ruby is capable of currying and partial application. In the past, you could only call <code>curry</code> on a <code>Proc</code>. This same power is now available to you on <code>Method</code>.</p>
+
+<pre><code>def sum(*args)
+  args.reduce(:+)
+end 
+
+irb(main):001&gt;inc = method(:sum).curry(2).(1)
+=&gt;#&lt;Proc:0x007fff322d7420 (lambda)&gt;
+irb(main):002&gt;inc.(3)
+=&gt;4
+</code></pre>
+
+<h3>9) Method#super_method</h3>
+
+<p>Calling <code>super_method</code> returns the method that you would get if you called <code>super</code>. If the method has no parent, it returns <code>nil</code>.</p>
+
+<pre><code>class Cat
+  def speak
+    'meow'
+  end
+end
+
+class Tiger &lt; Cat
+  def speak
+    'roar'
+  end
+end
+
+irb(main):001&gt;Tiger.new.method('speak')
+=&gt;#&lt;Method: Tiger#speak&gt; 
+irb(main):002&gt;Tiger.new.method('speak').super_method
+=&gt;#&lt;Method: Cat#speak&gt;
+irb(main):002&gt;Cat.new.method('speak').super_method
+=&gt;nil
+</code></pre>
+
+<h3>10) Quoted symbol keys in hashes with a trailing colon</h3>
+
+<p>Ruby 2.2 lets you create quoted symbol keys in hashes with a trailing colon:</p>
+
+<pre><code>irb(main):001&gt;{ 'programming-language': :ruby }
+</code></pre>
+
+<h3>References</h3>
+
+<p><a href="https://github.com/ruby/ruby/blob/v2_2_0/NEWS">https://github.com/ruby/ruby/blob/v2_2_0/NEWS</a></p>
+
+<p><a href="https://www.ruby-lang.org/en/news/2014/12/25/ruby-2-2-0-released/">https://www.ruby-lang.org/en/news/2014/12/25/ruby-2-2-0-released/</a></p>
+
+<p><a href="http://www.sitepoint.com/new-methods-ruby-2-2/">http://www.sitepoint.com/new-methods-ruby-2-2/</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby 2.1 Changelog]]></title>
@@ -300,204 +458,6 @@ features introduced in ruby 1.9.3.</p>
 hashes and blocks.</p>
 
 <p>New method tap has been released to improve chain methods.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rails 3 – ActiveModel Basics]]></title>
-    <link href="http://vishnuatrai.com/blog/2011/03/17/rails-3-e28093-activemodel/"/>
-    <updated>2011-03-17T22:55:31+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2011/03/17/rails-3-e28093-activemodel</id>
-    <content type="html"><![CDATA[<p>Hey Guys,</p>
-
-<p>It is long time to write something, since I was busy with some open-source stuff. Over last two weeks we were migrating an application from rails 2.x version to rails 3.x. In that application we had lot of ActiveResource classes and other classes, and in those classes we need to validate some attributes and also we need to wrap call backs around some methods in ActiveRecord style. <!--more--> In earlier 2.x rails version we had to write some code for validation and  call back that was written us.</p>
-
-<p>During the migration from 2.x version to rails 3, we got to know about ActiveModel module that will give you lot of features in ActiveRecord style.</p>
-
-<p>Here, I am sharing my experiences with ActiveModel &ndash;</p>
-
-<p>ActiveModel is a nice library provided by Rails 3, by using that any ruby object can behave like a ActiveRecord class object. Some of ActiveModel API explained below &ndash;</p>
-
-<h4>1.1 AttributeMethods</h4>
-
-<p>AttributeMethods module can add custom prefixes and suffixes on  methods of a class. It is used by defining the prefixes and suffixes,  which methods on the object will use them.</p>
-
-<pre><code>class Person
-  include ActiveModel::AttributeMethods
-
-  attribute_method_prefix 'reset_'
-  attribute_method_suffix '_highest?'
-  define_attribute_methods ['age']
-
-  attr_accessor :age
-
-private
-  def reset_attribute(attribute)
-    send("#{attribute}=", 0)
-  end
-
-  def attribute_highest?(attribute)
-    send(attribute) &gt; 100 ? true : false
-  end
-
-end
-
-person = Person.new
-person.age = 110
-person.age_highest?  # true
-person.reset_age     # 0
-person.age_highest?  # false
-</code></pre>
-
-<h4>1.2 Callbacks</h4>
-
-<p>Callbacks gives Active Record style callbacks. This provides the  ability to define the callbacks and those will run at appropriate time.  After defining a callbacks you can wrap with before, after and around  custom methods.</p>
-
-<pre><code>class Person
-  extend ActiveModel::Callbacks
-
-  define_model_callbacks :update
-
-  before_update :reset_me
-
-  def update
-    _run_update_callbacks do
-      # This will call when we are trying to call update on object.
-    end
-  end
-
-  def reset_me
-    # This method will call when you are calling update on object as a before_update callback as defined.
-  end
-end
-</code></pre>
-
-<h4>1.3 Conversion</h4>
-
-<p>If a class defines persisted? and id methods then you can include  Conversion module in that class and you can able to call Rails  conversion methods to objects of that class.</p>
-
-<pre><code>class Person
-  include ActiveModel::Conversion
-
-  def persisted?
-    false
-  end
-
-  def id
-    nil
-  end
-end
-
-person = Person.new
-person.to_model == person  #=&gt; true
-person.to_key              #=&gt; nil
-person.to_param            #=&gt; nil
-</code></pre>
-
-<h4>1.4 Dirty</h4>
-
-<p>An object becomes dirty when an object is gone through one or more  changes to its attributes and not yet saved. This gives the ability to  check whether an object has been changed or not. It also has attribute  based accessor methods. Lets consider a Person class with attributes  first_name and last_name</p>
-
-<pre><code>require 'rubygems'
-require 'active_model'
-
-class Person
-  include ActiveModel::Dirty
-  define_attribute_methods [:first_name, :last_name]
-
-  def first_name
-    @first_name
-  end
-
-  def first_name=(value)
-    first_name_will_change!
-    @first_name = value
-  end
-
-  def last_name
-    @last_name
-  end
-
-  def last_name=(value)
-    last_name_will_change!
-    @last_name = value
-  end
-
-  def save
-    @previously_changed = changes
-  end
-
-end
-</code></pre>
-
-<h5>1.4.1 Querying object directly for its list of all changed attributes.</h5>
-
-<pre><code>person = Person.new
-person.first_name = "First Name"
-
-person.first_name #=&gt; "First Name"
-person.first_name = "First Name Changed"
-
-person.changed? #=&gt; true
-
-#returns an list of fields arry which all has been changed before saved.
-person.changed #=&gt; ["first_name"]
-
-#returns a hash of the fields that have changed with their original values.
-person.changed_attributes #=&gt; {"first_name" =&gt; "First Name Changed"}
-
-#returns a hash of changes, with the attribute names as the keys, and the values will be an array of the old and new value for that field.
-person.changes #=&gt; {"first_name" =&gt; ["First Name","First Name Changed"]}
-</code></pre>
-
-<h5>1.4.2 Attribute based accessor methods</h5>
-
-<p>Track whether the particular attribute has been changed or not.</p>
-
-<pre><code>#attr_name_changed?
-person.first_name #=&gt; "First Name"
-
-#assign some other value to first_name attribute
-person.first_name = "First Name 1"
-
-person.first_name_changed? #=&gt; true
-</code></pre>
-
-<p>Track what was the previous value of the attribute.</p>
-
-<pre><code>#attr_name_was accessor
-person.first_name_was  #=&gt; "First Name"
-</code></pre>
-
-<h5>Track  both previous and current value of the changed attribute. Returns an array if changed else returns nil</h5>
-
-<pre><code>#attr_name_change
-person.first_name_change #=&gt; ["First Name", "First Name 1"]
-person.last_name_change #=&gt; nil
-</code></pre>
-
-<h4>1.5 Validations</h4>
-
-<p>Validations module adds the ability to class objects to validate them in Active Record style.</p>
-
-<pre><code>class Person
-  include ActiveModel::Validations
-
-  attr_accessor :name, :email
-
-  validates :name, :presence =&gt; true
-  validates_format_of :email, :with =&gt; /^([^\s]+)((?:[-a-z0-9]\.)[a-z]{2,})$/i 
-
-end
-
-person = Person.new
-person.valid?                        #=&gt; false
-person.name  = 'vishnu'
-person.email  = 'me'
-person.valid?                        #=&gt; false
-person.email = 'me@vishnuatrai.com'
-person.valid?                        #=&gt; true
-</code></pre>
 ]]></content>
   </entry>
   

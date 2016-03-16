@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Rails3 | @vishnuatrai]]></title>
-  <link href="http://vishnuatrai.com/blog/categories/rails3/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Rails&nbsp;3 | @vishnuatrai]]></title>
+  <link href="http://vishnuatrai.com/blog/categories/rails-3/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2015-07-15T17:35:17+05:30</updated>
+  <updated>2016-03-16T19:32:00+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
