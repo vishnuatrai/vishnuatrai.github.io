@@ -4,7 +4,7 @@
   <title><![CDATA[Category: RoR | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/blog/categories/ror/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2017-02-17T15:22:28+05:30</updated>
+  <updated>2017-05-10T17:28:27+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -102,6 +102,10 @@ remove_foreign_key :accounts, :branches
 # remove the foreign key on `accounts.owner_id`
 remove_foreign_key :accounts, column: :owner_id
 </code></pre>
+
+<h3>References</h3>
+
+<p><a href="http://guides.rubyonrails.org/4_2_release_notes.html">http://guides.rubyonrails.org/4_2_release_notes.html</a></p>
 ]]></content>
   </entry>
   
@@ -164,6 +168,12 @@ Rails.application.message_verifier(:remember_me).verify(signed_token) # =&gt; to
 Rails.application.message_verifier(:remember_me).verify(tampered_token)
 # raises ActiveSupport::MessageVerifier::InvalidSignature
 </code></pre>
+
+<h3>References</h3>
+
+<p><a href="http://weblog.rubyonrails.org/2014/4/8/Rails-4-1/">http://weblog.rubyonrails.org/2014/4/8/Rails-4-1/</a></p>
+
+<p><a href="http://edgeguides.rubyonrails.org/4_1_release_notes.html">http://edgeguides.rubyonrails.org/4_1_release_notes.html</a></p>
 ]]></content>
   </entry>
   
