@@ -18,11 +18,11 @@
 
 	<link href="/atom.xml" rel="alternate" title="@vishnuatrai" type="application/atom+xml">
 	
-	<link rel="canonical" href="http://vishnuatrai.com/blog/2012/04/06/jasmine-ajax-and-spies/">
-  <link href="/favicon.gif" rel="shortcut icon" type="image/x-icon" >
-  <link rel="icon" href="/favicon.gif" type="image/x-icon">
+	<link rel="canonical" href="http://localhost:4000/blog/2012/04/06/jasmine-ajax-and-spies/">
+  <link href="//favicon.gif" rel="shortcut icon" type="image/x-icon" >
+  <link rel="icon" href="//favicon.gif" type="image/x-icon">
 
-	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="//stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
@@ -38,15 +38,15 @@
 		<div class="left-col">
 			<div class="intrude-less">
 			<header id="header" class="inner"><nav id="main-nav"><ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/about">About</a></li>
+  <li><a href="//">Blog</a></li>
+  <li><a href="//about">About</a></li>
   <li><a onclick="javascript:void(0);" id="search-blog-lnk" style='cursor:move;'>Search</a></li>
-  <li><a href="/blog/archives">Archives</a></li>
+  <li><a href="//blog/archives">Archives</a></li>
 </ul>
 </nav>
 <div class="profile-container">
   <div class="profilepic">
-    <script src="/javascripts/md5.js"></script>
+    <script src="//javascripts/md5.js"></script>
     <script type="text/javascript">
 $(function(){
   $('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("me@vishnuatrai.com") + "?s=160' alt='Profile Picture' style='width: 160px;' />");
@@ -54,7 +54,7 @@ $(function(){
     </script>
   </div>
   <hgroup>
-  <h1 class="site-title"><a href="/">@vishnuatrai</a></h1>
+  <h1 class="site-title"><a href="//">@vishnuatrai</a></h1>
   
   <p class="site-subtitle">Ruby on Rails contributor developer</p>
   
@@ -90,7 +90,7 @@ $(function(){
 
 <hgroup>
  <p class="site-subtitle" style="font-size:10px;">
-  Copyright &copy; 2017 - vishnuatrai.com 
+  Copyright &copy; 2019 - vishnuatrai.com 
   <br />
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
  </p>
@@ -121,11 +121,9 @@ $(function(){
 
 
 
-  
 
 
-
-  <div class="post-date"><time datetime="2012-04-06T11:12:46+05:30" data-updated="true" itemprop="datePublished">Apr 6<span>th</span>, 2012</time></div>
+  <div class="post-date"><time datetime="2012-04-06T11:12:46+05:30" data-updated="true" itemprop="datePublished"></time></div>
 	<div class="entry-content" itemprop="articleBody"><p>In continuation of previous post for Jasmine, here I want to share my experience with Jasmine and Ajax. I want to show how cool it is with jasmine to test ajax calls in javascript. <!--more--> Jasmine spies can be used for mock the ajax call with fake data. Spy replaces the function it is spying on. For example my javascript function have an ajax call &ndash;</p>
 
 <pre><code>function myprofiledetails(){
@@ -219,8 +217,8 @@ calls passed function when spy is called
 			</div>
 			<footer id="footer" class="inner">
 </footer>
-			<script src="/javascripts/slash.js"></script>
-<script src="/javascripts/jquery.fancybox.pack.js"></script>
+			<script src="//javascripts/slash.js"></script>
+<script src="//javascripts/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
 (function($){
 	$('.fancybox').fancybox();
@@ -234,9 +232,9 @@ calls passed function when spy is called
         
 
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://vishnuatrai.com/blog/2012/04/06/jasmine-ajax-and-spies/';
+        var disqus_identifier = 'http://localhost:4000/blog/2012/04/06/jasmine-ajax-and-spies/';
 
-        var disqus_url = 'http://vishnuatrai.com/blog/2012/04/06/jasmine-ajax-and-spies/';
+        var disqus_url = 'http://localhost:4000/blog/2012/04/06/jasmine-ajax-and-spies/';
         var disqus_script = 'embed.js';
       
     (function () {

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[@vishnuatrai]]></title>
-  <link href="http://vishnuatrai.com/atom.xml" rel="self"/>
-  <link href="http://vishnuatrai.com/"/>
-  <updated>2017-05-10T17:28:27+05:30</updated>
-  <id>http://vishnuatrai.com/</id>
+  <link href="http://localhost:4000/atom.xml" rel="self"/>
+  <link href="http://localhost:4000/"/>
+  <updated>2019-08-31T15:24:12+05:30</updated>
+  <id>http://localhost:4000/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
     <email><![CDATA[me@vishnuatrai.com]]></email>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[What is new in Rails 4.2]]></title>
-    <link href="http://vishnuatrai.com/blog/2015/01/15/what-is-new-in-rails-4-dot-2/"/>
+    <link href="http://localhost:4000/blog/2015/01/15/what-is-new-in-rails-4-dot-2/"/>
     <updated>2015-01-15T17:58:43+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2015/01/15/what-is-new-in-rails-4-dot-2</id>
+    <id>http://localhost:4000/blog/2015/01/15/what-is-new-in-rails-4-dot-2</id>
     <content type="html"><![CDATA[<h3>Active Job</h3>
 
 <p>Active Job is a framework for declaring jobs and making them run on a variety of queueing backends. These jobs can be everything from regularly scheduled clean-ups, to billing charges, to mailings. Anything that can be chopped up into small units of work and run in parallel.<!--more--></p>
@@ -111,9 +111,9 @@ remove_foreign_key :accounts, column: :owner_id
   
   <entry>
     <title type="html"><![CDATA[Ruby 2.2.0 Features]]></title>
-    <link href="http://vishnuatrai.com/blog/2014/12/30/ruby-2-dot-2-features/"/>
+    <link href="http://localhost:4000/blog/2014/12/30/ruby-2-dot-2-features/"/>
     <updated>2014-12-30T17:53:04+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2014/12/30/ruby-2-dot-2-features</id>
+    <id>http://localhost:4000/blog/2014/12/30/ruby-2-dot-2-features</id>
     <content type="html"><![CDATA[<h3>1) Incremental and Symbol GC (RIncGC)</h3>
 
 <p>Ruby 2.2.0 release includes several grabage collection (GC) improvements. Symbols are now garbage collectable.</p>
@@ -269,9 +269,9 @@ irb(main):002&gt;Cat.new.method('speak').super_method
   
   <entry>
     <title type="html"><![CDATA[What is new in Rails 4.1]]></title>
-    <link href="http://vishnuatrai.com/blog/2014/05/31/what-is-new-in-rails-4-dot-1/"/>
+    <link href="http://localhost:4000/blog/2014/05/31/what-is-new-in-rails-4-dot-1/"/>
     <updated>2014-05-31T19:59:28+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2014/05/31/what-is-new-in-rails-4-dot-1</id>
+    <id>http://localhost:4000/blog/2014/05/31/what-is-new-in-rails-4-dot-1</id>
     <content type="html"><![CDATA[<p>Rails 4.1 is a minor release but includes interesting features below &ndash;</p>
 
 <h3>Spring</h3>
@@ -337,9 +337,9 @@ Rails.application.message_verifier(:remember_me).verify(tampered_token)
   
   <entry>
     <title type="html"><![CDATA[Ruby 2.1 Changelog]]></title>
-    <link href="http://vishnuatrai.com/blog/2014/04/29/ruby-2-dot-1-changelog/"/>
+    <link href="http://localhost:4000/blog/2014/04/29/ruby-2-dot-1-changelog/"/>
     <updated>2014-04-29T12:01:04+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2014/04/29/ruby-2-dot-1-changelog</id>
+    <id>http://localhost:4000/blog/2014/04/29/ruby-2-dot-1-changelog</id>
     <content type="html"><![CDATA[<p>Ruby 2.1.0 has been released now question is, what&rsquo;s new in ruby 2.1.0. Below list of new
 features introduced in ruby 2.1.0.</p>
 
@@ -432,9 +432,9 @@ NoMethodError: undefined method `permalinkify' for "ruby on rails":String
   
   <entry>
     <title type="html"><![CDATA[Critical Heartbleed fix for SSL]]></title>
-    <link href="http://vishnuatrai.com/blog/2014/04/11/critical-heartbleed-fix-for-ssl/"/>
+    <link href="http://localhost:4000/blog/2014/04/11/critical-heartbleed-fix-for-ssl/"/>
     <updated>2014-04-11T15:30:33+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2014/04/11/critical-heartbleed-fix-for-ssl</id>
+    <id>http://localhost:4000/blog/2014/04/11/critical-heartbleed-fix-for-ssl</id>
     <content type="html"><![CDATA[<p>OpenSSL heartbleed bug allows hackers to untraceably read server traffic and some server memory. This implementation mistake leads to the leak of memory information from the server to the client and from the client to the server. <!--more--></p>
 
 <p>For my Ruby on Rails application deployed on AWS, the minimal steps I took to upgrade fixed OpenSSL version given below &ndash;</p>
@@ -478,9 +478,9 @@ ln -s /usr/local/ssl/bin/openssl /usr/bin/openssl
   
   <entry>
     <title type="html"><![CDATA[Octopress: Migrate Disqus Comments from WordPress]]></title>
-    <link href="http://vishnuatrai.com/blog/2014/04/02/octopress-migrate-disqus-comments-from-wordpress/"/>
+    <link href="http://localhost:4000/blog/2014/04/02/octopress-migrate-disqus-comments-from-wordpress/"/>
     <updated>2014-04-02T12:08:35+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2014/04/02/octopress-migrate-disqus-comments-from-wordpress</id>
+    <id>http://localhost:4000/blog/2014/04/02/octopress-migrate-disqus-comments-from-wordpress</id>
     <content type="html"><![CDATA[<p>Last week I migrated my blog from WordPress to Octopress and find it very cool blogging engine. Though, migraiton of posts and pages was quite easy but migration or you can say linking of Disqus comments from WorlPress pages to Octopress was difficult.<!--more--> I tried lot of different options but could not relink the Disqus comments.</p>
 
 <p>Then I read the Disqus documentation and advanced migration options, and I found a options using that we can relink our comments properly to new bloging urls.</p>
@@ -503,9 +503,9 @@ http://vishnuatrai.com/?p=132, http://vishnuatrai.com/blog/2010/11/01/why-nosql/
   
   <entry>
     <title type="html"><![CDATA[Octopress: Programmer Friendly Blogging]]></title>
-    <link href="http://vishnuatrai.com/blog/2014/03/27/octopress-programmer-friendly-blogging/"/>
+    <link href="http://localhost:4000/blog/2014/03/27/octopress-programmer-friendly-blogging/"/>
     <updated>2014-03-27T13:39:53+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2014/03/27/octopress-programmer-friendly-blogging</id>
+    <id>http://localhost:4000/blog/2014/03/27/octopress-programmer-friendly-blogging</id>
     <content type="html"><![CDATA[<p>Nowadays blogs I am reading are mostly running with jekyll and using octopress to publish. Lot of my friends migrated from WordPress to Octopress. I was curious why they are doing so and what is the advantege with Octopress over WordPress.<!--more--> As an experiment I started developing a gihub pages application using Octopress and I found it very simple and easy to write. Good fit for my blog application.</p>
 
 <h3>Why I like?</h3>
@@ -540,9 +540,9 @@ http://vishnuatrai.com/?p=132, http://vishnuatrai.com/blog/2010/11/01/why-nosql/
   
   <entry>
     <title type="html"><![CDATA[Javascript Object Oriented Programming]]></title>
-    <link href="http://vishnuatrai.com/blog/2013/10/15/javascript-object-oriented-programming/"/>
+    <link href="http://localhost:4000/blog/2013/10/15/javascript-object-oriented-programming/"/>
     <updated>2013-10-15T18:00:18+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2013/10/15/javascript-object-oriented-programming</id>
+    <id>http://localhost:4000/blog/2013/10/15/javascript-object-oriented-programming</id>
     <content type="html"><![CDATA[<p>JavaScript is a prototype-based OOP language in which behaviour reuse
 (inheritance) is achieved using existing objects which serve as prototypes. Whenever you
 assign a object as prototype of other object, properties and methods will be available to
@@ -596,9 +596,9 @@ h.speak()               =&gt; Hi
   
   <entry>
     <title type="html"><![CDATA[Ruby for Multi-tenant SOA platform]]></title>
-    <link href="http://vishnuatrai.com/blog/2013/08/02/multi-tenant-soa-platform-on-ruby-on-rails/"/>
+    <link href="http://localhost:4000/blog/2013/08/02/multi-tenant-soa-platform-on-ruby-on-rails/"/>
     <updated>2013-08-02T18:03:45+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2013/08/02/multi-tenant-soa-platform-on-ruby-on-rails</id>
+    <id>http://localhost:4000/blog/2013/08/02/multi-tenant-soa-platform-on-ruby-on-rails</id>
     <content type="html"><![CDATA[<p>After cloud computing, Multi-tenancy and SOA become a buzzword for tech companies those provide B2B solutions.</p>
 
 <p>Multi-tenancy will reduce the cost and simplifies the release management.<!--more--></p>
@@ -637,9 +637,9 @@ gem 'typhoeus'
   
   <entry>
     <title type="html"><![CDATA[What is new in Rails 4.0]]></title>
-    <link href="http://vishnuatrai.com/blog/2013/07/18/what-is-new-in-rails-4-dot-0/"/>
+    <link href="http://localhost:4000/blog/2013/07/18/what-is-new-in-rails-4-dot-0/"/>
     <updated>2013-07-18T19:58:40+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2013/07/18/what-is-new-in-rails-4-dot-0</id>
+    <id>http://localhost:4000/blog/2013/07/18/what-is-new-in-rails-4-dot-0</id>
     <content type="html"><![CDATA[<p>Rails 4.0 and newer version will support ruby 1.9.3+ only. It wont work with lessor
 version then ruby 1.9.3. Major developments are below &ndash;</p>
 
@@ -693,9 +693,9 @@ version then ruby 1.9.3. Major developments are below &ndash;</p>
   
   <entry>
     <title type="html"><![CDATA[Rails 4 - ActiveSupport::Concern]]></title>
-    <link href="http://vishnuatrai.com/blog/2013/06/24/rails-4-activesupport-concern/"/>
+    <link href="http://localhost:4000/blog/2013/06/24/rails-4-activesupport-concern/"/>
     <updated>2013-06-24T18:00:23+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2013/06/24/rails-4-activesupport-concern</id>
+    <id>http://localhost:4000/blog/2013/06/24/rails-4-activesupport-concern</id>
     <content type="html"><![CDATA[<p>Rails 4 ActiveSupport::Concern is a very cool feature to organize your module in such a way
 that when you include module in a class you don&rsquo;t need to write extra callbacks to extend or
 include methods in your class. This feature is a great way to keep your code organized and DRY. This handles module dependencies also.</p>
@@ -753,9 +753,9 @@ p.comment_users
   
   <entry>
     <title type="html"><![CDATA[Ruby 2.0.0 Changelog]]></title>
-    <link href="http://vishnuatrai.com/blog/2013/04/05/ruby-2-dot-0-0-changelog/"/>
+    <link href="http://localhost:4000/blog/2013/04/05/ruby-2-dot-0-0-changelog/"/>
     <updated>2013-04-05T12:43:25+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2013/04/05/ruby-2-dot-0-0-changelog</id>
+    <id>http://localhost:4000/blog/2013/04/05/ruby-2-dot-0-0-changelog</id>
     <content type="html"><![CDATA[<p>Ruby 2.0 has been released now question is, what’s new in ruby 2.0. Below list of new features
 introduced in ruby 2.0.</p>
 
@@ -783,9 +783,9 @@ introduced in ruby 2.0.</p>
   
   <entry>
     <title type="html"><![CDATA[Jasmine: Ajax and Spies]]></title>
-    <link href="http://vishnuatrai.com/blog/2012/04/06/jasmine-ajax-and-spies/"/>
+    <link href="http://localhost:4000/blog/2012/04/06/jasmine-ajax-and-spies/"/>
     <updated>2012-04-06T11:12:46+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2012/04/06/jasmine-ajax-and-spies</id>
+    <id>http://localhost:4000/blog/2012/04/06/jasmine-ajax-and-spies</id>
     <content type="html"><![CDATA[<p>In continuation of previous post for Jasmine, here I want to share my experience with Jasmine and Ajax. I want to show how cool it is with jasmine to test ajax calls in javascript. <!--more--> Jasmine spies can be used for mock the ajax call with fake data. Spy replaces the function it is spying on. For example my javascript function have an ajax call &ndash;</p>
 
 <pre><code>function myprofiledetails(){
@@ -854,9 +854,9 @@ calls passed function when spy is called
   
   <entry>
     <title type="html"><![CDATA[Jasmine: BDD for Javascript]]></title>
-    <link href="http://vishnuatrai.com/blog/2012/03/12/jasmine-bdd-for-javascript/"/>
+    <link href="http://localhost:4000/blog/2012/03/12/jasmine-bdd-for-javascript/"/>
     <updated>2012-03-12T14:24:24+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2012/03/12/jasmine-bdd-for-javascript</id>
+    <id>http://localhost:4000/blog/2012/03/12/jasmine-bdd-for-javascript</id>
     <content type="html"><![CDATA[<p>In web development, if we are doing web 2.0 and modern web concepts, we have to write a lot of javascript and ajax calls and that will increase client side javascript day by day. <!--more--> We have lot of good javascript libraries for implementation. For faster delivery of features we need to cover the client side javascript with test cases. Jasmine is a tool to do BDD for javascript. It can mock ajax calls and you can use some static templates as a result. Jasmine also can be useful for TDD with javascript.</p>
 
 <h4>1. Setting up a project</h4>
@@ -936,9 +936,9 @@ and a lot many.
   
   <entry>
     <title type="html"><![CDATA[Moving to Ruby and Rails Edge]]></title>
-    <link href="http://vishnuatrai.com/blog/2012/01/18/moving-to-ruby-and-rails-edge/"/>
+    <link href="http://localhost:4000/blog/2012/01/18/moving-to-ruby-and-rails-edge/"/>
     <updated>2012-01-18T15:25:34+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2012/01/18/moving-to-ruby-and-rails-edge</id>
+    <id>http://localhost:4000/blog/2012/01/18/moving-to-ruby-and-rails-edge</id>
     <content type="html"><![CDATA[<p>Since our team always works with technology edge whether it is rails or ruby, from last week we started moving to ruby 1.9.3 and rails 3.1.3. I am sharing our experiences we found during migrating our product to rails and ruby latest release.<!--more--></p>
 
 <h5>Ruby-1.9.3 Upgrade</h5>
@@ -1066,9 +1066,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Ruby 1.9.3 Changelog]]></title>
-    <link href="http://vishnuatrai.com/blog/2011/11/05/ruby-1-dot-9-3-changelog/"/>
+    <link href="http://localhost:4000/blog/2011/11/05/ruby-1-dot-9-3-changelog/"/>
     <updated>2011-11-05T12:52:27+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2011/11/05/ruby-1-dot-9-3-changelog</id>
+    <id>http://localhost:4000/blog/2011/11/05/ruby-1-dot-9-3-changelog</id>
     <content type="html"><![CDATA[<p>Ruby 1.9.3 has been released now question is, what’s new in ruby 1.9.3. Below list of new
 features introduced in ruby 1.9.3.</p>
 
@@ -1101,9 +1101,9 @@ hashes and blocks.</p>
   
   <entry>
     <title type="html"><![CDATA[Rails::Railtie – Hook Everything]]></title>
-    <link href="http://vishnuatrai.com/blog/2011/07/31/railsrailtie-e28093-hook-everything/"/>
+    <link href="http://localhost:4000/blog/2011/07/31/railsrailtie-e2-80-93-hook-everything/"/>
     <updated>2011-07-31T17:33:44+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2011/07/31/railsrailtie-e28093-hook-everything</id>
+    <id>http://localhost:4000/blog/2011/07/31/railsrailtie-%e2%80%93-hook-everything</id>
     <content type="html"><![CDATA[<p>After Rails 3 released I have been trying to find major and important changes in rails framework over 2.x version. The change I like most is Rails Railtie. Using Railtie you can configure your own gem or plugin in a rails application according to your choice in boot process. <!--more-->  If you are a plugin developer, you can use Railtie class that is capable of loading generators, tasks, middlewares and adding subscribers.</p>
 
 <p>Rails::Engine is nothing more than a Railtie and it has some initializers already set and Rails::Application and Rails::Plugin are also engines. Any subclass of Railtie can be use to initialize rails application, so your plugin can be a first class member of rails application.</p>
@@ -1162,9 +1162,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Rails 3 – ActiveModel Basics]]></title>
-    <link href="http://vishnuatrai.com/blog/2011/03/17/rails-3-e28093-activemodel/"/>
+    <link href="http://localhost:4000/blog/2011/03/17/rails-3-e2-80-93-activemodel/"/>
     <updated>2011-03-17T22:55:31+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2011/03/17/rails-3-e28093-activemodel</id>
+    <id>http://localhost:4000/blog/2011/03/17/rails-3-%e2%80%93-activemodel</id>
     <content type="html"><![CDATA[<p>Hey Guys,</p>
 
 <p>It is long time to write something, since I was busy with some open-source stuff. Over last two weeks we were migrating an application from rails 2.x version to rails 3.x. In that application we had lot of ActiveResource classes and other classes, and in those classes we need to validate some attributes and also we need to wrap call backs around some methods in ActiveRecord style. <!--more--> In earlier 2.x rails version we had to write some code for validation and  call back that was written us.</p>
@@ -1360,9 +1360,9 @@ person.valid?                        #=&gt; true
   
   <entry>
     <title type="html"><![CDATA[MapReduce: Reduce Analytical Data Processing]]></title>
-    <link href="http://vishnuatrai.com/blog/2011/02/16/mapreduce-tool-to-reduce-analytical-data-processing/"/>
+    <link href="http://localhost:4000/blog/2011/02/16/mapreduce-tool-to-reduce-analytical-data-processing/"/>
     <updated>2011-02-16T22:54:29+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2011/02/16/mapreduce-tool-to-reduce-analytical-data-processing</id>
+    <id>http://localhost:4000/blog/2011/02/16/mapreduce-tool-to-reduce-analytical-data-processing</id>
     <content type="html"><![CDATA[<p>Today every human being is rapidly increasing online activities and as a result web applications are having a huge amounts of data, now it is a challenge for organizations to quickly analyze the huge amounts of data their customers and audiences generate to better understand and serve them.<!--more--> MapReduce is the tool that is helping those organizations.</p>
 
 <p>MapReduce is a programming framework popularized by Google and used to simplify data processing across massive data sets.</p>
@@ -1394,9 +1394,9 @@ For example, MapReduce is used for the generation of data for Google&rsquo;s pro
   
   <entry>
     <title type="html"><![CDATA[MongoDB V/S CouchDB]]></title>
-    <link href="http://vishnuatrai.com/blog/2011/01/12/mongodb-vs-couchdb/"/>
+    <link href="http://localhost:4000/blog/2011/01/12/mongodb-vs-couchdb/"/>
     <updated>2011-01-12T22:44:11+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2011/01/12/mongodb-vs-couchdb</id>
+    <id>http://localhost:4000/blog/2011/01/12/mongodb-vs-couchdb</id>
     <content type="html"><![CDATA[<p>Both MongoDB and CouchDB are document oriented databases with JSON style object data storage.  They have their pros and cons in different situations.<!--more--></p>
 
 <h4>1) Map Reduce</h4>
