@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ruby | @vishnuatrai]]></title>
+  <link href="http://vishnuatrai.com/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.com/"/>
+  <updated>2019-09-03T09:58:09+05:30</updated>
+  <id>http://vishnuatrai.com/</id>
+  <author>
+    <name><![CDATA[vishnuatrai.com]]></name>
+    <email><![CDATA[me@vishnuatrai.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby 2.2.0 Features]]></title>
+    <link href="http://vishnuatrai.com/blog/2014/12/30/ruby-2-dot-2-features/"/>
+    <updated>2014-12-30T17:53:04+05:30</updated>
+    <id>http://vishnuatrai.com/blog/2014/12/30/ruby-2-dot-2-features</id>
+    <content type="html"><![CDATA[<h3>1) Incremental and Symbol GC (RIncGC)</h3>
+
+<p>Ruby 2.2.0 release includes several grabage collection (GC) improvements. Symbols are now garbage collectable.</p>
+
+<p>Following the introduction of generational garbage collection in Ruby 2.1.0, which markedly improved the GC throughput, Ruby maintainers continue to introduce important changes in this space. The generational GC (RGenGC) classifies objects into generations, on the assumption that most objects die young. <!--more--> This assumption allows for high throughput and low pause time on younger objects, because older objects are only evaluated for deletion when there is no memory. But this means that older objects still suffer from high pause time.</p>
+
+<p>The incremental GC (RIncGC), built on top of the generational GC, aims to cut that pause time while maintaining the same throughput. It achieves the shorter pause time by interleaving the mark phase, where objects are marked for GC, with Ruby&rsquo;s regular execution. Before Ruby 2.2.0, the mark phase was done in one big step.</p>
+
+<h3>2) Rails 5.0 support</h3>
+
+<p>Rails 5.0 will target Ruby 2.2+ exclusively. There are a bunch of optimizations coming in Ruby 2.2 that are going to be very nice, but most importantly for Rails, symbols are going to be garbage collected. This means we can shed a lot of weight related to juggling strings when we accept input from the outside world. It also means that we can convert fully to keyword arguments and all the other good stuff from the latest Ruby.</p>
+
+<h3>3) Binding#local_variables</h3>
+
+<p>To know the local variables defined in a scope use <code>binding.local_variables</code> that will give all variables in use.</p>
+
+<pre><code>def m1(a, b)
+  puts binding.local_variables
+  c = a + b
+  puts binding.local_variables
+  c
+end
+
+irb(main):001&gt; m1(2,3)
+[:a, :b, :c]
+[:a, :b, :c]
+=&gt;5
+</code></pre>
+
+<h3>4) Binding#receiver</h3>
+
+<p>Ruby 2.2 provides a way to know which object is receiving the method call using <code>binding.receiver</code> method</p>
+
+<pre><code>class Amimal
+  def self.walk
+    puts 'walk'
+    binding.receiver
+  end 
+end
+
+irb(main):001&gt; Amimal.walk
+walk
+=&gt;Animal
+
+class Dog &lt; Animal
+end 
+
+irb(main):002&gt; Dog.walk
+walk
+=&gt;Dog
+</code></pre>
+
+<h3>5) Enumerable#slice_after</h3>
+
+<p>This method is a complement to the existing <code>slice_before</code> method.</p>
+
+<p>As the name suggests, <code>slice_before</code> is used to slice and dice enumerables. Given a way to match an element in the enumerable, it will find a match and cut it apart just prior to the match.</p>
+
+<pre><code>irb(main):001&gt;[1, 'a', 2, 'b', 'c', 3, 'd', 'e', 'f'].slice_before { |e| e.is_a?(Integer) }.to_a
+=&gt;[[1, "a"], [2, "b", "c"], [3, "d", "e", "f"]]
+</code></pre>
+
+<p><code>slice_after</code> does slices after instead:</p>
+
+<pre><code>irb(main):002&gt;[1, 'a', 2, 'b', 'c', 3, 'd', 'e', 'f'].slice_after(Integer).to_a
+=&gt;[[1], ["a", 2], ["b", "c", 3], ["d", "e", "f"]]
+</code></pre>
+
+<h3>6) Enumerable#slice_when</h3>
+
+<p>A particularly fun addition is <code>slice_when</code>. Unlike <code>slice_after</code>, this method only accepts a block. It walks an enumerable, passing pairs of elements to the block. When the block returns <code>true</code>, the enumerable is sliced between the pair of elements:</p>
+
+<pre><code>irb(main):001&gt;[1, 3, 4, 5, 7, 8, 9, 10, 12].slice_when { |a, b| a + 1 != b }.to_a
+=&gt;[[1], [3, 4, 5], [7, 8, 9, 10], [12]]
+</code></pre>
+
+<h3>7) Float#next_float, Float#prev_float</h3>
+
+<p>These functions return the next or previous representable float. Note the word “representable” in that sentence, not all floats can be represented.</p>
+
+<pre><code>irb(main):001&gt;1.0.next_float
+=&gt;1.0000000000000002
+
+irb(main):002&gt;1.0.prev_float
+=&gt;0.9999999999999999
+</code></pre>
+
+<h3>8) Kernel#itself</h3>
+
+<p>Ruby went out and got itself an identity method. For those not familiar, an identity method returns the object it’s called on:</p>
+
+<pre><code>irb(main):001&gt;1.itself
+=&gt;1
+
+irb(main):002&gt;[2, 3, 3, 1, 2, 3, 3, 1, 1, 2].group_by(&amp;:itself)
+=&gt;{2=&gt;[2, 2, 2], 3=&gt;[3, 3, 3, 3], 1=&gt;[1, 1, 1]}
+</code></pre>
+
+<h3>8) Method#curry</h3>
+
+<p>You might not have realized that Ruby is capable of currying and partial application. In the past, you could only call <code>curry</code> on a <code>Proc</code>. This same power is now available to you on <code>Method</code>.</p>
+
+<pre><code>def sum(*args)
+  args.reduce(:+)
+end 
+
+irb(main):001&gt;inc = method(:sum).curry(2).(1)
+=&gt;#&lt;Proc:0x007fff322d7420 (lambda)&gt;
+irb(main):002&gt;inc.(3)
+=&gt;4
+</code></pre>
+
+<h3>9) Method#super_method</h3>
+
+<p>Calling <code>super_method</code> returns the method that you would get if you called <code>super</code>. If the method has no parent, it returns <code>nil</code>.</p>
+
+<pre><code>class Cat
+  def speak
+    'meow'
+  end
+end
+
+class Tiger &lt; Cat
+  def speak
+    'roar'
+  end
+end
+
+irb(main):001&gt;Tiger.new.method('speak')
+=&gt;#&lt;Method: Tiger#speak&gt; 
+irb(main):002&gt;Tiger.new.method('speak').super_method
+=&gt;#&lt;Method: Cat#speak&gt;
+irb(main):002&gt;Cat.new.method('speak').super_method
+=&gt;nil
+</code></pre>
+
+<h3>10) Quoted symbol keys in hashes with a trailing colon</h3>
+
+<p>Ruby 2.2 lets you create quoted symbol keys in hashes with a trailing colon:</p>
+
+<pre><code>irb(main):001&gt;{ 'programming-language': :ruby }
+</code></pre>
+
+<h3>References</h3>
+
+<p><a href="https://github.com/ruby/ruby/blob/v2_2_0/NEWS">https://github.com/ruby/ruby/blob/v2_2_0/NEWS</a></p>
+
+<p><a href="https://www.ruby-lang.org/en/news/2014/12/25/ruby-2-2-0-released/">https://www.ruby-lang.org/en/news/2014/12/25/ruby-2-2-0-released/</a></p>
+
+<p><a href="http://www.sitepoint.com/new-methods-ruby-2-2/">http://www.sitepoint.com/new-methods-ruby-2-2/</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby 2.1 Changelog]]></title>
+    <link href="http://vishnuatrai.com/blog/2014/04/29/ruby-2-dot-1-changelog/"/>
+    <updated>2014-04-29T12:01:04+05:30</updated>
+    <id>http://vishnuatrai.com/blog/2014/04/29/ruby-2-dot-1-changelog</id>
+    <content type="html"><![CDATA[<p>Ruby 2.1.0 has been released now question is, what&rsquo;s new in ruby 2.1.0. Below list of new
+features introduced in ruby 2.1.0.</p>
+
+<h3>1) def&rsquo;s return value <!--more--></h3>
+
+<p>In earlier versions it was nil but in ruby 2.1 it will return a symbol.</p>
+
+<pre><code>irb(main):002:0&gt; def my_method
+irb(main):003:1&gt; end
+=&gt; :my_method
+</code></pre>
+
+<h3>2) Rational Number and Complex Number Literals</h3>
+
+<p>Earlier version you will have to use core classes to use relational and complex numbers,
+ruby 2.1 gives r and i suffix for them. Older version will give error for these literals.</p>
+
+<pre><code>irb(main):003:0&gt; (2+3i) + Complex(5, 4i)
+=&gt; (3+3i)
+</code></pre>
+
+<h3>3) Required Keyword arguments</h3>
+
+<p>Keyword arguments introduced by ruby 2.0 and there was no way to make them required.
+In ruby 2.1 for missing keyword arguments it will raise
+ArgumentError: missing keyword: keyword</p>
+
+<pre><code>def permaliinkify(str:, delimiter: "-")
+  str.downcase.split.join(delimiter)
+end
+
+irb(main):002:0&gt; permalinkify(delimiter: "-lol-")
+ArgumentError: missing keyword: str
+from (irb):LN
+from /.rvm/2.1.0/bin/irb:11:in `&lt;main&gt;'
+</code></pre>
+
+<h3>4) Restricted Generational Garbage Collector (RGenGC)</h3>
+
+<p>Ruby 2.1 introduced faster garbage collector RGenGC. That will make mark and sweep faster.
+RGenGC design of garbage collector leverages the fact that most objects collected
+by the garbage collector were the objects most recently created.</p>
+
+<h3>5) Exception#cause</h3>
+
+<p>Ruby 2.1 provides a way to have an exception carry a &ldquo;cause&rdquo; along with it.</p>
+
+<pre><code>begin
+  begin
+    raise "Error!"
+  rescue =&gt; e
+    raise StandardError, "take the cause"
+  end
+rescue Exception =&gt; e
+  puts "Caused by  : #{e.cause.message} [#{e.cause.class}]"
+end
+=&gt; Caused by  : Error! [RuntimeError]
+</code></pre>
+
+<h3>6) Refinements</h3>
+
+<p>In ruby 2.1, Refinements provide an alternate way to scope our modifications in
+ruby open classes or modules.</p>
+
+<pre><code>module Permalinker
+  refine String do
+    def permalinkify
+      downcase.split.join("-")
+    end
+  end
+end
+
+class Post
+  using Permalinker
+  def initialize(title)
+    @title = title
+  end
+  def permalink
+    @title.permalinkify
+  end
+end
+irb(main):002:0&gt; post = Post.new("Ruby on Rails")
+irb(main):002:0&gt; post.permalink
+=&gt; "ruby-on-rails"
+irb(main):023:0&gt; "ruby on rails".permalinkify
+NoMethodError: undefined method `permalinkify' for "ruby on rails":String
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby 2.0.0 Changelog]]></title>
+    <link href="http://vishnuatrai.com/blog/2013/04/05/ruby-2-dot-0-0-changelog/"/>
+    <updated>2013-04-05T12:43:25+05:30</updated>
+    <id>http://vishnuatrai.com/blog/2013/04/05/ruby-2-dot-0-0-changelog</id>
+    <content type="html"><![CDATA[<p>Ruby 2.0 has been released now question is, what’s new in ruby 2.0. Below list of new features
+introduced in ruby 2.0.</p>
+
+<h3>1) Keyword arguments <!--more--></h3>
+
+<h3>2) Module#prepend</h3>
+
+<h3>3) Enumerable#lazy</h3>
+
+<h3>4) Refinements</h3>
+
+<h3>5) %i and %I symbol array literal</h3>
+
+<h3>6) Array#bsearch and Range#bsearch</h3>
+
+<h3>7) Garbage collection improvements</h3>
+
+<h3>8) Default UTF-8 encoding</h3>
+
+<h3>9) <strong>DIR</strong> Keyword</h3>
+
+<h3>10) TracePoint</h3>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Moving to Ruby and Rails Edge]]></title>
+    <link href="http://vishnuatrai.com/blog/2012/01/18/moving-to-ruby-and-rails-edge/"/>
+    <updated>2012-01-18T15:25:34+05:30</updated>
+    <id>http://vishnuatrai.com/blog/2012/01/18/moving-to-ruby-and-rails-edge</id>
+    <content type="html"><![CDATA[<p>Since our team always works with technology edge whether it is rails or ruby, from last week we started moving to ruby 1.9.3 and rails 3.1.3. I am sharing our experiences we found during migrating our product to rails and ruby latest release.<!--more--></p>
+
+<h5>Ruby-1.9.3 Upgrade</h5>
+
+<p>Compare to ruby 1.8.7 in ruby 1.9.3 there are lot of changes, newly introduced, and things taken away, some of them are here &ndash;</p>
+
+<h4>1) Load path not including the working directory</h4>
+
+<pre><code>require_relative or require './file'
+</code></pre>
+
+<h4>2)New Hash syntax – without hash-rockets(=>)</h4>
+
+<pre><code>{ name: 'vishnu', age: '26'}
+</code></pre>
+
+<h4>3)Character Encoding – more encoding support for other char-sets</h4>
+
+<p>cp950, cp951, UTF-16, and UTF-32 etc.</p>
+
+<h4>4)Array – to_s no longer joins elements, but returns and inspect style representation</h4>
+
+<p>choice method goes to sample method
+method nitems removed</p>
+
+<h4>5)Procs and Lambdas – proc {} creates a Proc object instead lambda</h4>
+
+<pre><code> proc {}.lambda?          #=&gt; false
+ lambda {}.lambda?        #=&gt; true
+</code></pre>
+
+<p>source_location method gives file_name, line_number of proc</p>
+
+<h4>6)Time – Time standard library changed</h4>
+
+<p>Time.parse uses dd/mm/yyyy format instead of mm/dd/yyyy
+Time monday?, tuesday?, wednesday?, thursday?, friday?, saturday? sunday? Available to check a day</p>
+
+<h4>7)New in Standard Library1.9.3</h4>
+
+<p>json, to_json and JSON.load(data) method is available with objects
+minitest MiniTest and MiniTest::Spec
+prime – Prime number library</p>
+
+<pre><code>7.prime?          #=&gt; true
+6.prime?          #=&gt; false
+</code></pre>
+
+<h4>8)Removed from Standard Library 1.9.3</h4>
+
+<p>soap/wsdlDriver, date2, ftools,jcode(removed because now encoding support), parsedate, rubyunit</p>
+
+<h5>Rails-3.1.3 Upgrade</h5>
+
+<p>In order to upgrade to Rails 3.1.3 version with ruby 1.9.3 here are some points, those can help you &ndash;</p>
+
+<h4>1)To support special characters in your ruby code</h4>
+
+<p>Put {# &ndash;<em>&ndash; coding: utf-8 &ndash;</em>&ndash;} beginning of the file and
+configuration in application.rb for default encoding. config.encoding = &ldquo;utf-8&rdquo;</p>
+
+<h4>2)Capybara should upgrade to 1.1.2 version and cucumber with 1.1.2 version</h4>
+
+<p>regenerate cucumber environment with required options</p>
+
+<pre><code>bundle exec rails g cucumber:install --capybara –rspec
+</code></pre>
+
+<h4>3)By default ActiveResource uses JSON format</h4>
+
+<p>To make default XML format specify format in initializers</p>
+
+<pre><code>ActiveResource::Base.format = ActiveResource::Formats::XmlFormat
+</code></pre>
+
+<h4>4)To load all helpers in each controller/action specify config</h4>
+
+<pre><code>config.action_controller.include_all_helpers = true   in application.rb
+instead
+helpers :all in application_controller.rb
+</code></pre>
+
+<h4>5)To load test_helper.rb in all test specs, use</h4>
+
+<pre><code>require './test/test_helper'
+instead
+require File.dirname(__FILE__) + '/../test_helper'
+</code></pre>
+
+<h4>6)RJS template fix</h4>
+
+<p>RJS template and rjs code in controller is not supported, changed to .html.js template. For a quick fix you can use prototype-rails gem in Gemfile</p>
+
+<pre><code>gem 'prototype-rails'     #Gemfile
+</code></pre>
+
+<p>prototype-rails do not use prototype.js it provides helper methods to support rjs templates. later on you can migrate all .rjs to .js</p>
+
+<h4>7) Enable assets pipeline</h4>
+
+<p>To enable assets pipeline, an import feature of rails 3.1, you need to set application.rb with configurations-</p>
+
+<pre><code>config.assets.enabled = true
+config.assets.initialize_on_precompile = false
+</code></pre>
+
+<p>and production.rb with configurations &ndash;</p>
+
+<pre><code>config.assets.compress = true
+config.assets.compile = true
+config.assets.digest = false
+config.assets.js_compressor  = :uglifier
+</code></pre>
+
+<p>and gemfile should have a group :assets and should include saas-rails, coffee-rails, uglifier gems.</p>
+
+<pre><code>group :assets do
+  gem 'sass-rails',   "~&gt; 3.1.0"
+  gem 'coffee-rails', "~&gt; 3.1.0"
+  gem 'uglifier'
+end
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby 1.9.3 Changelog]]></title>
+    <link href="http://vishnuatrai.com/blog/2011/11/05/ruby-1-dot-9-3-changelog/"/>
+    <updated>2011-11-05T12:52:27+05:30</updated>
+    <id>http://vishnuatrai.com/blog/2011/11/05/ruby-1-dot-9-3-changelog</id>
+    <content type="html"><![CDATA[<p>Ruby 1.9.3 has been released now question is, what’s new in ruby 1.9.3. Below list of new
+features introduced in ruby 1.9.3.</p>
+
+<h3>1) Objects hieararchy <!--more--></h3>
+
+<h3>2) Fibers</h3>
+
+<h3>3) New character encodings</h3>
+
+<h3>4) Faster loading &ndash; the load.c patch</h3>
+
+<h3>5) Hashes syntax</h3>
+
+<h3>6) Improved GC performance with a lazy garbage collector</h3>
+
+<h3>7) A &lsquo;better strategy&rsquo; for the GIL / GVL</h3>
+
+<h3>8) Test/unit supports parallel testing</h3>
+
+<h3>9) Random.rand tweaks (and rand() now accepts ranges)</h3>
+
+<h3>10) Main changes</h3>
+
+<p>The other main areas where changes were introduced: symbols, arrays,
+hashes and blocks.</p>
+
+<p>New method tap has been released to improve chain methods.</p>
+]]></content>
+  </entry>
+  
+</feed>

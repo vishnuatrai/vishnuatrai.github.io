@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: RubyOnRails | @vishnuatrai]]></title>
+  <link href="http://vishnuatrai.com/blog/categories/rubyonrails/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.com/"/>
+  <updated>2019-09-03T09:58:09+05:30</updated>
+  <id>http://vishnuatrai.com/</id>
+  <author>
+    <name><![CDATA[vishnuatrai.com]]></name>
+    <email><![CDATA[me@vishnuatrai.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Jasmine: BDD for Javascript]]></title>
+    <link href="http://vishnuatrai.com/blog/2012/03/12/jasmine-bdd-for-javascript/"/>
+    <updated>2012-03-12T14:24:24+05:30</updated>
+    <id>http://vishnuatrai.com/blog/2012/03/12/jasmine-bdd-for-javascript</id>
+    <content type="html"><![CDATA[<p>In web development, if we are doing web 2.0 and modern web concepts, we have to write a lot of javascript and ajax calls and that will increase client side javascript day by day. <!--more--> We have lot of good javascript libraries for implementation. For faster delivery of features we need to cover the client side javascript with test cases. Jasmine is a tool to do BDD for javascript. It can mock ajax calls and you can use some static templates as a result. Jasmine also can be useful for TDD with javascript.</p>
+
+<h4>1. Setting up a project</h4>
+
+<p>To set up a project for javascript BDD, first of all you need to add <strong>&lsquo;jasmine&rsquo;</strong> to your gem file. Then after bundle install you will have to run a generator {<strong>rails g jasmine:install</strong>} to generate jasmine defaults. Now you can run command <strong>rake jasmine</strong> to see your spec on browser. The server run default on 8888 port. You can see your specs by browsing <a href="http://localhost:8888.">http://localhost:8888.</a> To write specs you can add a .js file in spec/javascripts/my_javascript_spec.js.</p>
+
+<h4>2. Syntax</h4>
+
+<p>Jasmine is very similar with rSpec in terms of syntax. It has methods like <strong>describe</strong> and <strong>it</strong>. Both functions take two arguments, first a string to show the context and second function to test the results. <strong>describe</strong> can be used for grouping related specs.</p>
+
+<pre><code>describe('addition', function () {  
+    it('adds two numbers', function () {  
+        expect(5 + 5).toEqual(10);  
+    });  
+}); 
+</code></pre>
+
+<h4>3. Setup and Tear-down</h4>
+
+<p>Jasmine provides function <strong>beforeEach</strong> for setup the spec context and <strong>afterEach</strong> to clear the context.</p>
+
+<pre><code>describe("Spec setup and tear-down", function() {
+  var number;
+  beforeEach(function() {
+    number = 0;
+    number += 1;
+  });
+
+  afterEach(function() {
+    number = 0;
+  });
+
+  it("first assertion", function() {
+    expect(number).toEqual(1);              #green
+  });
+
+  it("second assertion", function() {
+    expect(number).toEqual(1);              #green
+  });
+});
+</code></pre>
+
+<h4>4. Matchers</h4>
+
+<p>Given few of the matches you can use for assertions &ndash;</p>
+
+<pre><code>toContain
+   expect(["linux", "mac", "windows"]).toContain("linux");  
+toMatch
+   expect(1050.50).toMatch(/\$\d*.\d\d/);
+toBeLessThan
+   expect(1).toBeLessThan(2);  
+toBeGreaterThan
+   expect(2).toBeGreaterThan(1);
+toBeTruthy
+  expect(true).toBeTruthy(); 
+toBeFalsy
+  expect(false).toBeFalsy();  
+
+and a lot many.
+</code></pre>
+
+<h4>5. Custom Matchers</h4>
+
+<p>We can write our own custom matcher using <strong>this.addMatchers</strong> in beforeEach call.</p>
+
+<pre><code>beforeEach(function () {  
+  this.addMatchers({  
+    toBeBetween: function (floor, ceiling) {  
+      return this.actual &gt; floor &amp;&amp; this.actual &lt; ceiling;  
+    }  
+  });  
+});  
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Moving to Ruby and Rails Edge]]></title>
+    <link href="http://vishnuatrai.com/blog/2012/01/18/moving-to-ruby-and-rails-edge/"/>
+    <updated>2012-01-18T15:25:34+05:30</updated>
+    <id>http://vishnuatrai.com/blog/2012/01/18/moving-to-ruby-and-rails-edge</id>
+    <content type="html"><![CDATA[<p>Since our team always works with technology edge whether it is rails or ruby, from last week we started moving to ruby 1.9.3 and rails 3.1.3. I am sharing our experiences we found during migrating our product to rails and ruby latest release.<!--more--></p>
+
+<h5>Ruby-1.9.3 Upgrade</h5>
+
+<p>Compare to ruby 1.8.7 in ruby 1.9.3 there are lot of changes, newly introduced, and things taken away, some of them are here &ndash;</p>
+
+<h4>1) Load path not including the working directory</h4>
+
+<pre><code>require_relative or require './file'
+</code></pre>
+
+<h4>2)New Hash syntax – without hash-rockets(=>)</h4>
+
+<pre><code>{ name: 'vishnu', age: '26'}
+</code></pre>
+
+<h4>3)Character Encoding – more encoding support for other char-sets</h4>
+
+<p>cp950, cp951, UTF-16, and UTF-32 etc.</p>
+
+<h4>4)Array – to_s no longer joins elements, but returns and inspect style representation</h4>
+
+<p>choice method goes to sample method
+method nitems removed</p>
+
+<h4>5)Procs and Lambdas – proc {} creates a Proc object instead lambda</h4>
+
+<pre><code> proc {}.lambda?          #=&gt; false
+ lambda {}.lambda?        #=&gt; true
+</code></pre>
+
+<p>source_location method gives file_name, line_number of proc</p>
+
+<h4>6)Time – Time standard library changed</h4>
+
+<p>Time.parse uses dd/mm/yyyy format instead of mm/dd/yyyy
+Time monday?, tuesday?, wednesday?, thursday?, friday?, saturday? sunday? Available to check a day</p>
+
+<h4>7)New in Standard Library1.9.3</h4>
+
+<p>json, to_json and JSON.load(data) method is available with objects
+minitest MiniTest and MiniTest::Spec
+prime – Prime number library</p>
+
+<pre><code>7.prime?          #=&gt; true
+6.prime?          #=&gt; false
+</code></pre>
+
+<h4>8)Removed from Standard Library 1.9.3</h4>
+
+<p>soap/wsdlDriver, date2, ftools,jcode(removed because now encoding support), parsedate, rubyunit</p>
+
+<h5>Rails-3.1.3 Upgrade</h5>
+
+<p>In order to upgrade to Rails 3.1.3 version with ruby 1.9.3 here are some points, those can help you &ndash;</p>
+
+<h4>1)To support special characters in your ruby code</h4>
+
+<p>Put {# &ndash;<em>&ndash; coding: utf-8 &ndash;</em>&ndash;} beginning of the file and
+configuration in application.rb for default encoding. config.encoding = &ldquo;utf-8&rdquo;</p>
+
+<h4>2)Capybara should upgrade to 1.1.2 version and cucumber with 1.1.2 version</h4>
+
+<p>regenerate cucumber environment with required options</p>
+
+<pre><code>bundle exec rails g cucumber:install --capybara –rspec
+</code></pre>
+
+<h4>3)By default ActiveResource uses JSON format</h4>
+
+<p>To make default XML format specify format in initializers</p>
+
+<pre><code>ActiveResource::Base.format = ActiveResource::Formats::XmlFormat
+</code></pre>
+
+<h4>4)To load all helpers in each controller/action specify config</h4>
+
+<pre><code>config.action_controller.include_all_helpers = true   in application.rb
+instead
+helpers :all in application_controller.rb
+</code></pre>
+
+<h4>5)To load test_helper.rb in all test specs, use</h4>
+
+<pre><code>require './test/test_helper'
+instead
+require File.dirname(__FILE__) + '/../test_helper'
+</code></pre>
+
+<h4>6)RJS template fix</h4>
+
+<p>RJS template and rjs code in controller is not supported, changed to .html.js template. For a quick fix you can use prototype-rails gem in Gemfile</p>
+
+<pre><code>gem 'prototype-rails'     #Gemfile
+</code></pre>
+
+<p>prototype-rails do not use prototype.js it provides helper methods to support rjs templates. later on you can migrate all .rjs to .js</p>
+
+<h4>7) Enable assets pipeline</h4>
+
+<p>To enable assets pipeline, an import feature of rails 3.1, you need to set application.rb with configurations-</p>
+
+<pre><code>config.assets.enabled = true
+config.assets.initialize_on_precompile = false
+</code></pre>
+
+<p>and production.rb with configurations &ndash;</p>
+
+<pre><code>config.assets.compress = true
+config.assets.compile = true
+config.assets.digest = false
+config.assets.js_compressor  = :uglifier
+</code></pre>
+
+<p>and gemfile should have a group :assets and should include saas-rails, coffee-rails, uglifier gems.</p>
+
+<pre><code>group :assets do
+  gem 'sass-rails',   "~&gt; 3.1.0"
+  gem 'coffee-rails', "~&gt; 3.1.0"
+  gem 'uglifier'
+end
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rails 3 – ActiveModel Basics]]></title>
+    <link href="http://vishnuatrai.com/blog/2011/03/17/rails-3-e28093-activemodel/"/>
+    <updated>2011-03-17T22:55:31+05:30</updated>
+    <id>http://vishnuatrai.com/blog/2011/03/17/rails-3-e28093-activemodel</id>
+    <content type="html"><![CDATA[<p>Hey Guys,</p>
+
+<p>It is long time to write something, since I was busy with some open-source stuff. Over last two weeks we were migrating an application from rails 2.x version to rails 3.x. In that application we had lot of ActiveResource classes and other classes, and in those classes we need to validate some attributes and also we need to wrap call backs around some methods in ActiveRecord style. <!--more--> In earlier 2.x rails version we had to write some code for validation and  call back that was written us.</p>
+
+<p>During the migration from 2.x version to rails 3, we got to know about ActiveModel module that will give you lot of features in ActiveRecord style.</p>
+
+<p>Here, I am sharing my experiences with ActiveModel &ndash;</p>
+
+<p>ActiveModel is a nice library provided by Rails 3, by using that any ruby object can behave like a ActiveRecord class object. Some of ActiveModel API explained below &ndash;</p>
+
+<h4>1.1 AttributeMethods</h4>
+
+<p>AttributeMethods module can add custom prefixes and suffixes on  methods of a class. It is used by defining the prefixes and suffixes,  which methods on the object will use them.</p>
+
+<pre><code>class Person
+  include ActiveModel::AttributeMethods
+
+  attribute_method_prefix 'reset_'
+  attribute_method_suffix '_highest?'
+  define_attribute_methods ['age']
+
+  attr_accessor :age
+
+private
+  def reset_attribute(attribute)
+    send("#{attribute}=", 0)
+  end
+
+  def attribute_highest?(attribute)
+    send(attribute) &gt; 100 ? true : false
+  end
+
+end
+
+person = Person.new
+person.age = 110
+person.age_highest?  # true
+person.reset_age     # 0
+person.age_highest?  # false
+</code></pre>
+
+<h4>1.2 Callbacks</h4>
+
+<p>Callbacks gives Active Record style callbacks. This provides the  ability to define the callbacks and those will run at appropriate time.  After defining a callbacks you can wrap with before, after and around  custom methods.</p>
+
+<pre><code>class Person
+  extend ActiveModel::Callbacks
+
+  define_model_callbacks :update
+
+  before_update :reset_me
+
+  def update
+    _run_update_callbacks do
+      # This will call when we are trying to call update on object.
+    end
+  end
+
+  def reset_me
+    # This method will call when you are calling update on object as a before_update callback as defined.
+  end
+end
+</code></pre>
+
+<h4>1.3 Conversion</h4>
+
+<p>If a class defines persisted? and id methods then you can include  Conversion module in that class and you can able to call Rails  conversion methods to objects of that class.</p>
+
+<pre><code>class Person
+  include ActiveModel::Conversion
+
+  def persisted?
+    false
+  end
+
+  def id
+    nil
+  end
+end
+
+person = Person.new
+person.to_model == person  #=&gt; true
+person.to_key              #=&gt; nil
+person.to_param            #=&gt; nil
+</code></pre>
+
+<h4>1.4 Dirty</h4>
+
+<p>An object becomes dirty when an object is gone through one or more  changes to its attributes and not yet saved. This gives the ability to  check whether an object has been changed or not. It also has attribute  based accessor methods. Lets consider a Person class with attributes  first_name and last_name</p>
+
+<pre><code>require 'rubygems'
+require 'active_model'
+
+class Person
+  include ActiveModel::Dirty
+  define_attribute_methods [:first_name, :last_name]
+
+  def first_name
+    @first_name
+  end
+
+  def first_name=(value)
+    first_name_will_change!
+    @first_name = value
+  end
+
+  def last_name
+    @last_name
+  end
+
+  def last_name=(value)
+    last_name_will_change!
+    @last_name = value
+  end
+
+  def save
+    @previously_changed = changes
+  end
+
+end
+</code></pre>
+
+<h5>1.4.1 Querying object directly for its list of all changed attributes.</h5>
+
+<pre><code>person = Person.new
+person.first_name = "First Name"
+
+person.first_name #=&gt; "First Name"
+person.first_name = "First Name Changed"
+
+person.changed? #=&gt; true
+
+#returns an list of fields arry which all has been changed before saved.
+person.changed #=&gt; ["first_name"]
+
+#returns a hash of the fields that have changed with their original values.
+person.changed_attributes #=&gt; {"first_name" =&gt; "First Name Changed"}
+
+#returns a hash of changes, with the attribute names as the keys, and the values will be an array of the old and new value for that field.
+person.changes #=&gt; {"first_name" =&gt; ["First Name","First Name Changed"]}
+</code></pre>
+
+<h5>1.4.2 Attribute based accessor methods</h5>
+
+<p>Track whether the particular attribute has been changed or not.</p>
+
+<pre><code>#attr_name_changed?
+person.first_name #=&gt; "First Name"
+
+#assign some other value to first_name attribute
+person.first_name = "First Name 1"
+
+person.first_name_changed? #=&gt; true
+</code></pre>
+
+<p>Track what was the previous value of the attribute.</p>
+
+<pre><code>#attr_name_was accessor
+person.first_name_was  #=&gt; "First Name"
+</code></pre>
+
+<h5>Track  both previous and current value of the changed attribute. Returns an array if changed else returns nil</h5>
+
+<pre><code>#attr_name_change
+person.first_name_change #=&gt; ["First Name", "First Name 1"]
+person.last_name_change #=&gt; nil
+</code></pre>
+
+<h4>1.5 Validations</h4>
+
+<p>Validations module adds the ability to class objects to validate them in Active Record style.</p>
+
+<pre><code>class Person
+  include ActiveModel::Validations
+
+  attr_accessor :name, :email
+
+  validates :name, :presence =&gt; true
+  validates_format_of :email, :with =&gt; /^([^\s]+)((?:[-a-z0-9]\.)[a-z]{2,})$/i 
+
+end
+
+person = Person.new
+person.valid?                        #=&gt; false
+person.name  = 'vishnu'
+person.email  = 'me'
+person.valid?                        #=&gt; false
+person.email = 'me@vishnuatrai.com'
+person.valid?                        #=&gt; true
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

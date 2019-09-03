@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Ruby 1.9.3 | @vishnuatrai]]></title>
+  <link href="http://vishnuatrai.com/blog/categories/ruby-1-dot-9-3/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.com/"/>
+  <updated>2019-09-03T09:58:09+05:30</updated>
+  <id>http://vishnuatrai.com/</id>
+  <author>
+    <name><![CDATA[vishnuatrai.com]]></name>
+    <email><![CDATA[me@vishnuatrai.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Ruby 1.9.3 Changelog]]></title>
+    <link href="http://vishnuatrai.com/blog/2011/11/05/ruby-1-dot-9-3-changelog/"/>
+    <updated>2011-11-05T12:52:27+05:30</updated>
+    <id>http://vishnuatrai.com/blog/2011/11/05/ruby-1-dot-9-3-changelog</id>
+    <content type="html"><![CDATA[<p>Ruby 1.9.3 has been released now question is, what’s new in ruby 1.9.3. Below list of new
+features introduced in ruby 1.9.3.</p>
+
+<h3>1) Objects hieararchy <!--more--></h3>
+
+<h3>2) Fibers</h3>
+
+<h3>3) New character encodings</h3>
+
+<h3>4) Faster loading &ndash; the load.c patch</h3>
+
+<h3>5) Hashes syntax</h3>
+
+<h3>6) Improved GC performance with a lazy garbage collector</h3>
+
+<h3>7) A &lsquo;better strategy&rsquo; for the GIL / GVL</h3>
+
+<h3>8) Test/unit supports parallel testing</h3>
+
+<h3>9) Random.rand tweaks (and rand() now accepts ranges)</h3>
+
+<h3>10) Main changes</h3>
+
+<p>The other main areas where changes were introduced: symbols, arrays,
+hashes and blocks.</p>
+
+<p>New method tap has been released to improve chain methods.</p>
+]]></content>
+  </entry>
+  
+</feed>

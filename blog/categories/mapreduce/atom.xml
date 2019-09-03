@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: MapReduce | @vishnuatrai]]></title>
+  <link href="http://vishnuatrai.com/blog/categories/mapreduce/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.com/"/>
+  <updated>2019-09-03T09:58:09+05:30</updated>
+  <id>http://vishnuatrai.com/</id>
+  <author>
+    <name><![CDATA[vishnuatrai.com]]></name>
+    <email><![CDATA[me@vishnuatrai.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[MapReduce: Reduce Analytical Data Processing]]></title>
+    <link href="http://vishnuatrai.com/blog/2011/02/16/mapreduce-tool-to-reduce-analytical-data-processing/"/>
+    <updated>2011-02-16T22:54:29+05:30</updated>
+    <id>http://vishnuatrai.com/blog/2011/02/16/mapreduce-tool-to-reduce-analytical-data-processing</id>
+    <content type="html"><![CDATA[<p>Today every human being is rapidly increasing online activities and as a result web applications are having a huge amounts of data, now it is a challenge for organizations to quickly analyze the huge amounts of data their customers and audiences generate to better understand and serve them.<!--more--> MapReduce is the tool that is helping those organizations.</p>
+
+<p>MapReduce is a programming framework popularized by Google and used to simplify data processing across massive data sets.</p>
+
+<p>Enterprise implementation of MapReduce can be found in Hadoop, which uses HDFS to store unstructured data (file system) and uses the power of MapReduce to parallelize the processing of this data. Hadoop is suited for non time-sensitive batch jobs involving large-scale datasets.</p>
+
+<p>With MapReduce, computational processing can occur on data stored either in a filesystem (unstructured) or within a database (structured).</p>
+
+<p>There are two fundamental pieces of a MapReduce query:</p>
+
+<h4>Map</h4>
+
+<p>The master node takes the input, chops it up into smaller sub-problems, and distributes those to worker nodes. A worker node may do this again in turn, leading to a multi-level tree structure. The worker node processes that smaller problem, and passes the answer back to its master node.</p>
+
+<h4>Reduce</h4>
+
+<p>The master node then takes the answers to all the sub-problems and combines them in a way to get the output &ndash; the answer to the problem it was originally trying to solve.</p>
+
+<h3>Benefits of MapReduce</h3>
+
+<p>First, the model is easy to use, even for programmers without experience with distributed systems, since it hides the details of parallelization, fault-tolerance, locality optimization, and load balancing. MapReduce allows developers to write applications in their language of choice while handling the details of parallelization behind the scenes.</p>
+
+<p>Second, a large variety of problems are easily expressible as MapReduce computations.
+For example, MapReduce is used for the generation of data for Google&rsquo;s production web search service, for sorting, for data mining, for machine learning, and many other systems.</p>
+
+<p>Third, MapReduce enables scaling of applications across large clusters of machines comprising thousands of nodes, with fault-tolerance built-in for ultra-fast performance.</p>
+]]></content>
+  </entry>
+  
+</feed>

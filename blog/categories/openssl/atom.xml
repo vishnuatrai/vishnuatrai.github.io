@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: OpenSSL | @vishnuatrai]]></title>
+  <link href="http://vishnuatrai.com/blog/categories/openssl/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.com/"/>
+  <updated>2019-09-03T09:58:09+05:30</updated>
+  <id>http://vishnuatrai.com/</id>
+  <author>
+    <name><![CDATA[vishnuatrai.com]]></name>
+    <email><![CDATA[me@vishnuatrai.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Critical Heartbleed Fix for SSL]]></title>
+    <link href="http://vishnuatrai.com/blog/2014/04/11/critical-heartbleed-fix-for-ssl/"/>
+    <updated>2014-04-11T15:30:33+05:30</updated>
+    <id>http://vishnuatrai.com/blog/2014/04/11/critical-heartbleed-fix-for-ssl</id>
+    <content type="html"><![CDATA[<p>OpenSSL heartbleed bug allows hackers to untraceably read server traffic and some server memory. This implementation mistake leads to the leak of memory information from the server to the client and from the client to the server. <!--more--></p>
+
+<p>For my Ruby on Rails application deployed on AWS, the minimal steps I took to upgrade fixed OpenSSL version given below &ndash;</p>
+
+<p>  1) Update OpenSSL to 1.0.1g</p>
+
+<pre><code>download source from here http://www.openssl.org/source/openssl-1.0.1g.tar.gz
+tar -zxf openssl-1.0.1g.tar.gz 
+cd openssl-1.0.1g
+./config
+make
+make test
+make install
+
+openssl version
+
+if this will show older version then do below steps
+
+ln -s /usr/local/ssl/bin/openssl /usr/bin/openssl
+</code></pre>
+
+<p>  2) Recompile/reinstall ruby with new openssl version</p>
+
+<p>  3) Recompile/reinstall libriaries or gems those are related to openssl</p>
+
+<p>  4) Reboot the server</p>
+
+<p>  5) Regenerate new private key and csr to generate new SSL certificate</p>
+
+<p>  6) Change server access keys and passwords</p>
+
+<p>  7) Change API keys, passwords, tokens</p>
+
+<p>  8) Cahnge session secret key for cookie based session store</p>
+
+<p>  9) Restart the web and app servers</p>
+
+<p>  10) You can ask your application users to change their password</p>
+]]></content>
+  </entry>
+  
+</feed>

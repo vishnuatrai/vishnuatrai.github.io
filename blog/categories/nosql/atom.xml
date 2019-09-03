@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: NoSQL | @vishnuatrai]]></title>
+  <link href="http://vishnuatrai.com/blog/categories/nosql/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.com/"/>
+  <updated>2019-09-03T09:58:09+05:30</updated>
+  <id>http://vishnuatrai.com/</id>
+  <author>
+    <name><![CDATA[vishnuatrai.com]]></name>
+    <email><![CDATA[me@vishnuatrai.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[MongoDB v/s CouchDB]]></title>
+    <link href="http://vishnuatrai.com/blog/2011/01/12/mongodb-vs-couchdb/"/>
+    <updated>2011-01-12T22:44:11+05:30</updated>
+    <id>http://vishnuatrai.com/blog/2011/01/12/mongodb-vs-couchdb</id>
+    <content type="html"><![CDATA[<p>Both MongoDB and CouchDB are document oriented databases with JSON style object data storage.  They have their pros and cons in different situations.<!--more--></p>
+
+<h4>1) Map Reduce</h4>
+
+<p>Mongo uses map reduce for data processing jobs, Couch uses map reduce for build all views.</p>
+
+<h4>2) Atomicity</h4>
+
+<p>Both support concurrent modifications of single documents.  Both forego complex transactions involving large numbers of objects.</p>
+
+<h4>3) Interface</h4>
+
+<p>Couch uses REST as its interface to the database. Mongo relies on language specific database drivers.</p>
+
+<h4>4) Query Expression</h4>
+
+<p>Couch uses index building schemes to generate indexes those support particular queries. Mongo uses traditional dynamic queries and query optimizer to determine whether index exists or not.</p>
+
+<h4>5) Horizontal Scalability</h4>
+
+<p>Couch uses replication as a way to scale, instead Mongo uses sharding as a way to scale that is similar to Google&rsquo;s BigTable.</p>
+
+<h4>6) Storage strategy</h4>
+
+<p>Couch MVCC based, Mongo uses traditional approach and updates an object in place when possible.</p>
+
+<h3>Use cases</h3>
+
+<p>Couch is very good for certain classes of problems:
+   problems which need intense versioning; problems with offline databases that resync later;
+   problems where you want a large amount of master-master replication happening.</p>
+
+<p>Mongo is very good for different kind of problems:</p>
+
+<pre><code>problems requiring high update rates of objects are a great fit; compaction is not necessary.
+</code></pre>
+
+<p>Mongo is more oriented towards master/slave and auto failover configurations than to complex master-master setups.   <br/>
+With MongoDB you should see high write performance, especially for updates.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Why NoSQL?]]></title>
+    <link href="http://vishnuatrai.com/blog/2010/11/01/why-nosql/"/>
+    <updated>2010-11-01T20:57:27+05:30</updated>
+    <id>http://vishnuatrai.com/blog/2010/11/01/why-nosql</id>
+    <content type="html"><![CDATA[<p><strong>Why NoSQL?</strong></p>
+
+<p><strong>NoSQL</strong> term is supposed to stand for “Not Only SQL.” . This term is used to designated DBMS that differ from classic RDBMS in some way. These DBMS may not require fixed table schemas, and usually avoid join operations and typically scale horizontally.<!--more--></p>
+
+<p><strong>Architecture</strong></p>
+
+<p>NOSQL databases tend to have two key attributes across the board. One is that they’re non-relational, so they’re not doing joins on the server. And second, they have light transactional semantics. So complex, long-running, serialized transactions are not part of any of these NoSQL products. Those two differences, put together, allow you to take a very different approach to how databases are created, which means you can make horizontally scalable databases — the kind that run across large clusters of machines.</p>
+
+<p>RDBMS have shown poor performance on certain data-intensive applications, including indexing a large number of documents, serving pages on high-traffic websites, and delivering streaming media.  Typical RDBMS implementations are tuned either for small but frequent read/write transactions or for large batch transactions with rare write accesses. NoSQL on the other hand, services heavy read/write workloads</p>
+
+<p>NoSQL architectures often provide weak consistency guarantees, such as eventual consistency, or transactions restricted to single data items. Some systems, however, provide full ACID guarantees, in some instances by adding a supplementary middleware layer (e.g., CloudTPS).</p>
+
+<p><strong>Core NoSQL Systems</strong></p>
+
+<p><strong>Wide Column Store/Column Families</strong></p>
+
+<p>1.Cassandra
+2.Cloudera
+3.Amazon SimpleDB</p>
+
+<p><strong>Document Store</strong></p>
+
+<ol>
+<li>CouchDB</li>
+<li>MongoDB</li>
+<li>OrientDB</li>
+</ol>
+
+
+<p><strong>Key Value/ Tuple Store</strong></p>
+
+<p>1.Redis
+2.MemcacheDB
+3.Tokyo Cabibnet</p>
+]]></content>
+  </entry>
+  
+</feed>
