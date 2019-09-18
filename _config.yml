@@ -2,10 +2,10 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://vishnuatrai.com
+url: http://vishnuatrai.in
 title: "@vishnuatrai"
 subtitle: Ruby on Rails contributor developer
-author: vishnuatrai.com
+author: vishnuatrai.in
 simple_search: https://www.google.com/search
 description:
 
@@ -17,9 +17,9 @@ date_format: "ordinal"
 
 # RSS / Email (optional) subscription links (change if using something like Feedburner)
 subscribe_rss: /atom.xml
-subscribe_email: me@vishnuatrai.com
+subscribe_email: vishnu.atrai@gmail.com
 # RSS feeds can list your email address if you like
-email: me@vishnuatrai.com
+email: vishnu.atrai@gmail.com
 
 # ----------------------- #
 #    Jekyll & Plugins     #
