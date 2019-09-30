@@ -2,22 +2,22 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Jasmine | @vishnuatrai]]></title>
-  <link href="http://vishnuatrai.com/blog/categories/jasmine/atom.xml" rel="self"/>
-  <link href="http://vishnuatrai.com/"/>
-  <updated>2019-09-03T09:58:09+05:30</updated>
-  <id>http://vishnuatrai.com/</id>
+  <link href="http://vishnuatrai.in/blog/categories/jasmine/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.in/"/>
+  <updated>2019-09-30T10:54:18+05:30</updated>
+  <id>http://vishnuatrai.in/</id>
   <author>
-    <name><![CDATA[vishnuatrai.com]]></name>
-    <email><![CDATA[me@vishnuatrai.com]]></email>
+    <name><![CDATA[vishnuatrai.in]]></name>
+    <email><![CDATA[vishnu.atrai@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
   
   <entry>
     <title type="html"><![CDATA[Jasmine: Ajax and Spies]]></title>
-    <link href="http://vishnuatrai.com/blog/2012/04/06/jasmine-ajax-and-spies/"/>
+    <link href="http://vishnuatrai.in/blog/2012/04/06/jasmine-ajax-and-spies/"/>
     <updated>2012-04-06T11:12:46+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2012/04/06/jasmine-ajax-and-spies</id>
+    <id>http://vishnuatrai.in/blog/2012/04/06/jasmine-ajax-and-spies</id>
     <content type="html"><![CDATA[<p>In continuation of previous post for Jasmine, here I want to share my experience with Jasmine and Ajax. I want to show how cool it is with jasmine to test ajax calls in javascript. <!--more--> Jasmine spies can be used for mock the ajax call with fake data. Spy replaces the function it is spying on. For example my javascript function have an ajax call &ndash;</p>
 
 <pre><code>function myprofiledetails(){
@@ -86,9 +86,9 @@ calls passed function when spy is called
   
   <entry>
     <title type="html"><![CDATA[Jasmine: BDD for Javascript]]></title>
-    <link href="http://vishnuatrai.com/blog/2012/03/12/jasmine-bdd-for-javascript/"/>
+    <link href="http://vishnuatrai.in/blog/2012/03/12/jasmine-bdd-for-javascript/"/>
     <updated>2012-03-12T14:24:24+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2012/03/12/jasmine-bdd-for-javascript</id>
+    <id>http://vishnuatrai.in/blog/2012/03/12/jasmine-bdd-for-javascript</id>
     <content type="html"><![CDATA[<p>In web development, if we are doing web 2.0 and modern web concepts, we have to write a lot of javascript and ajax calls and that will increase client side javascript day by day. <!--more--> We have lot of good javascript libraries for implementation. For faster delivery of features we need to cover the client side javascript with test cases. Jasmine is a tool to do BDD for javascript. It can mock ajax calls and you can use some static templates as a result. Jasmine also can be useful for TDD with javascript.</p>
 
 <h4>1. Setting up a project</h4>

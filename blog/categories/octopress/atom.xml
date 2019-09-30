@@ -2,22 +2,22 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Octopress | @vishnuatrai]]></title>
-  <link href="http://vishnuatrai.com/blog/categories/octopress/atom.xml" rel="self"/>
-  <link href="http://vishnuatrai.com/"/>
-  <updated>2019-09-03T09:58:09+05:30</updated>
-  <id>http://vishnuatrai.com/</id>
+  <link href="http://vishnuatrai.in/blog/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.in/"/>
+  <updated>2019-09-30T10:54:18+05:30</updated>
+  <id>http://vishnuatrai.in/</id>
   <author>
-    <name><![CDATA[vishnuatrai.com]]></name>
-    <email><![CDATA[me@vishnuatrai.com]]></email>
+    <name><![CDATA[vishnuatrai.in]]></name>
+    <email><![CDATA[vishnu.atrai@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
   
   <entry>
     <title type="html"><![CDATA[Octopress: Migrate Disqus Comments From WordPress]]></title>
-    <link href="http://vishnuatrai.com/blog/2014/04/02/octopress-migrate-disqus-comments-from-wordpress/"/>
+    <link href="http://vishnuatrai.in/blog/2014/04/02/octopress-migrate-disqus-comments-from-wordpress/"/>
     <updated>2014-04-02T12:08:35+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2014/04/02/octopress-migrate-disqus-comments-from-wordpress</id>
+    <id>http://vishnuatrai.in/blog/2014/04/02/octopress-migrate-disqus-comments-from-wordpress</id>
     <content type="html"><![CDATA[<p>Last week I migrated my blog from WordPress to Octopress and find it very cool blogging engine. Though, migraiton of posts and pages was quite easy but migration or you can say linking of Disqus comments from WorlPress pages to Octopress was difficult.<!--more--> I tried lot of different options but could not relink the Disqus comments.</p>
 
 <p>Then I read the Disqus documentation and advanced migration options, and I found a options using that we can relink our comments properly to new bloging urls.</p>
@@ -40,9 +40,9 @@ http://vishnuatrai.com/?p=132, http://vishnuatrai.com/blog/2010/11/01/why-nosql/
   
   <entry>
     <title type="html"><![CDATA[Octopress: Programmer Friendly Blogging]]></title>
-    <link href="http://vishnuatrai.com/blog/2014/03/27/octopress-programmer-friendly-blogging/"/>
+    <link href="http://vishnuatrai.in/blog/2014/03/27/octopress-programmer-friendly-blogging/"/>
     <updated>2014-03-27T13:39:53+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2014/03/27/octopress-programmer-friendly-blogging</id>
+    <id>http://vishnuatrai.in/blog/2014/03/27/octopress-programmer-friendly-blogging</id>
     <content type="html"><![CDATA[<p>Nowadays blogs I am reading are mostly running with jekyll and using octopress to publish. Lot of my friends migrated from WordPress to Octopress. I was curious why they are doing so and what is the advantege with Octopress over WordPress.<!--more--> As an experiment I started developing a gihub pages application using Octopress and I found it very simple and easy to write. Good fit for my blog application.</p>
 
 <h3>Why I like?</h3>

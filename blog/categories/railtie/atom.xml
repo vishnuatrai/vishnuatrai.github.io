@@ -2,22 +2,22 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Railtie | @vishnuatrai]]></title>
-  <link href="http://vishnuatrai.com/blog/categories/railtie/atom.xml" rel="self"/>
-  <link href="http://vishnuatrai.com/"/>
-  <updated>2019-09-03T09:58:09+05:30</updated>
-  <id>http://vishnuatrai.com/</id>
+  <link href="http://vishnuatrai.in/blog/categories/railtie/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.in/"/>
+  <updated>2019-09-30T10:54:18+05:30</updated>
+  <id>http://vishnuatrai.in/</id>
   <author>
-    <name><![CDATA[vishnuatrai.com]]></name>
-    <email><![CDATA[me@vishnuatrai.com]]></email>
+    <name><![CDATA[vishnuatrai.in]]></name>
+    <email><![CDATA[vishnu.atrai@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
   
   <entry>
     <title type="html"><![CDATA[Rails::Railtie – Hook Everything]]></title>
-    <link href="http://vishnuatrai.com/blog/2011/07/31/railsrailtie-e28093-hook-everything/"/>
+    <link href="http://vishnuatrai.in/blog/2011/07/31/railsrailtie-e28093-hook-everything/"/>
     <updated>2011-07-31T17:33:44+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2011/07/31/railsrailtie-e28093-hook-everything</id>
+    <id>http://vishnuatrai.in/blog/2011/07/31/railsrailtie-e28093-hook-everything</id>
     <content type="html"><![CDATA[<p>After Rails 3 released I have been trying to find major and important changes in rails framework over 2.x version. The change I like most is Rails Railtie. Using Railtie you can configure your own gem or plugin in a rails application according to your choice in boot process. <!--more-->  If you are a plugin developer, you can use Railtie class that is capable of loading generators, tasks, middlewares and adding subscribers.</p>
 
 <p>Rails::Engine is nothing more than a Railtie and it has some initializers already set and Rails::Application and Rails::Plugin are also engines. Any subclass of Railtie can be use to initialize rails application, so your plugin can be a first class member of rails application.</p>

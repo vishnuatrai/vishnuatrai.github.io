@@ -2,22 +2,22 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: MongoDb | @vishnuatrai]]></title>
-  <link href="http://vishnuatrai.com/blog/categories/mongodb/atom.xml" rel="self"/>
-  <link href="http://vishnuatrai.com/"/>
-  <updated>2019-09-03T09:58:09+05:30</updated>
-  <id>http://vishnuatrai.com/</id>
+  <link href="http://vishnuatrai.in/blog/categories/mongodb/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.in/"/>
+  <updated>2019-09-30T10:54:18+05:30</updated>
+  <id>http://vishnuatrai.in/</id>
   <author>
-    <name><![CDATA[vishnuatrai.com]]></name>
-    <email><![CDATA[me@vishnuatrai.com]]></email>
+    <name><![CDATA[vishnuatrai.in]]></name>
+    <email><![CDATA[vishnu.atrai@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
   
   <entry>
     <title type="html"><![CDATA[MongoDB v/s CouchDB]]></title>
-    <link href="http://vishnuatrai.com/blog/2011/01/12/mongodb-vs-couchdb/"/>
+    <link href="http://vishnuatrai.in/blog/2011/01/12/mongodb-vs-couchdb/"/>
     <updated>2011-01-12T22:44:11+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2011/01/12/mongodb-vs-couchdb</id>
+    <id>http://vishnuatrai.in/blog/2011/01/12/mongodb-vs-couchdb</id>
     <content type="html"><![CDATA[<p>Both MongoDB and CouchDB are document oriented databases with JSON style object data storage.  They have their pros and cons in different situations.<!--more--></p>
 
 <h4>1) Map Reduce</h4>

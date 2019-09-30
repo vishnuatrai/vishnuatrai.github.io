@@ -2,22 +2,22 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Migration | @vishnuatrai]]></title>
-  <link href="http://vishnuatrai.com/blog/categories/migration/atom.xml" rel="self"/>
-  <link href="http://vishnuatrai.com/"/>
-  <updated>2019-09-03T09:58:09+05:30</updated>
-  <id>http://vishnuatrai.com/</id>
+  <link href="http://vishnuatrai.in/blog/categories/migration/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.in/"/>
+  <updated>2019-09-30T10:54:18+05:30</updated>
+  <id>http://vishnuatrai.in/</id>
   <author>
-    <name><![CDATA[vishnuatrai.com]]></name>
-    <email><![CDATA[me@vishnuatrai.com]]></email>
+    <name><![CDATA[vishnuatrai.in]]></name>
+    <email><![CDATA[vishnu.atrai@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
   
   <entry>
     <title type="html"><![CDATA[Rake Migration: Track Rake Tasks With Versions]]></title>
-    <link href="http://vishnuatrai.com/blog/2010/10/12/managed-rake-tasks-rake-migration/"/>
+    <link href="http://vishnuatrai.in/blog/2010/10/12/managed-rake-tasks-rake-migration/"/>
     <updated>2010-10-12T15:29:48+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2010/10/12/managed-rake-tasks-rake-migration</id>
+    <id>http://vishnuatrai.in/blog/2010/10/12/managed-rake-tasks-rake-migration</id>
     <content type="html"><![CDATA[<p>I have started working on a plugin which helps rails projects to maintain the list of rake tasks.</p>
 
 <p>We are working on a project there are four to six teams at different geo-locations Bangalore, Kolkata, Edmonton etc.For the same project we have different environments like Developemnt, Testing, Staging, QA, QA2, Beta etc.All teams are working with new features, as well as bug fixes.<!--more--></p>

@@ -2,22 +2,22 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Rails | @vishnuatrai]]></title>
-  <link href="http://vishnuatrai.com/blog/categories/rails/atom.xml" rel="self"/>
-  <link href="http://vishnuatrai.com/"/>
-  <updated>2019-09-03T09:58:09+05:30</updated>
-  <id>http://vishnuatrai.com/</id>
+  <link href="http://vishnuatrai.in/blog/categories/rails/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.in/"/>
+  <updated>2019-09-30T10:54:18+05:30</updated>
+  <id>http://vishnuatrai.in/</id>
   <author>
-    <name><![CDATA[vishnuatrai.com]]></name>
-    <email><![CDATA[me@vishnuatrai.com]]></email>
+    <name><![CDATA[vishnuatrai.in]]></name>
+    <email><![CDATA[vishnu.atrai@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
   
   <entry>
     <title type="html"><![CDATA[What Is New in Rails 4.2]]></title>
-    <link href="http://vishnuatrai.com/blog/2015/01/15/what-is-new-in-rails-4-dot-2/"/>
+    <link href="http://vishnuatrai.in/blog/2015/01/15/what-is-new-in-rails-4-dot-2/"/>
     <updated>2015-01-15T17:58:43+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2015/01/15/what-is-new-in-rails-4-dot-2</id>
+    <id>http://vishnuatrai.in/blog/2015/01/15/what-is-new-in-rails-4-dot-2</id>
     <content type="html"><![CDATA[<h3>Active Job</h3>
 
 <p>Active Job is a framework for declaring jobs and making them run on a variety of queueing backends. These jobs can be everything from regularly scheduled clean-ups, to billing charges, to mailings. Anything that can be chopped up into small units of work and run in parallel.<!--more--></p>
@@ -111,9 +111,9 @@ remove_foreign_key :accounts, column: :owner_id
   
   <entry>
     <title type="html"><![CDATA[What Is New in Rails 4.1]]></title>
-    <link href="http://vishnuatrai.com/blog/2014/05/31/what-is-new-in-rails-4-dot-1/"/>
+    <link href="http://vishnuatrai.in/blog/2014/05/31/what-is-new-in-rails-4-dot-1/"/>
     <updated>2014-05-31T19:59:28+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2014/05/31/what-is-new-in-rails-4-dot-1</id>
+    <id>http://vishnuatrai.in/blog/2014/05/31/what-is-new-in-rails-4-dot-1</id>
     <content type="html"><![CDATA[<p>Rails 4.1 is a minor release but includes interesting features below &ndash;</p>
 
 <h3>Spring</h3>
@@ -179,9 +179,9 @@ Rails.application.message_verifier(:remember_me).verify(tampered_token)
   
   <entry>
     <title type="html"><![CDATA[What Is New in Rails 4.0]]></title>
-    <link href="http://vishnuatrai.com/blog/2013/07/18/what-is-new-in-rails-4-dot-0/"/>
+    <link href="http://vishnuatrai.in/blog/2013/07/18/what-is-new-in-rails-4-dot-0/"/>
     <updated>2013-07-18T19:58:40+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2013/07/18/what-is-new-in-rails-4-dot-0</id>
+    <id>http://vishnuatrai.in/blog/2013/07/18/what-is-new-in-rails-4-dot-0</id>
     <content type="html"><![CDATA[<p>Rails 4.0 and newer version will support ruby 1.9.3+ only. It wont work with lessor
 version then ruby 1.9.3. Major developments are below &ndash;</p>
 
@@ -235,9 +235,9 @@ version then ruby 1.9.3. Major developments are below &ndash;</p>
   
   <entry>
     <title type="html"><![CDATA[Rails 4 - ActiveSupport::Concern]]></title>
-    <link href="http://vishnuatrai.com/blog/2013/06/24/rails-4-activesupport-concern/"/>
+    <link href="http://vishnuatrai.in/blog/2013/06/24/rails-4-activesupport-concern/"/>
     <updated>2013-06-24T18:00:23+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2013/06/24/rails-4-activesupport-concern</id>
+    <id>http://vishnuatrai.in/blog/2013/06/24/rails-4-activesupport-concern</id>
     <content type="html"><![CDATA[<p>Rails 4 ActiveSupport::Concern is a very cool feature to organize your module in such a way
 that when you include module in a class you don&rsquo;t need to write extra callbacks to extend or
 include methods in your class. This feature is a great way to keep your code organized and DRY. This handles module dependencies also.</p>

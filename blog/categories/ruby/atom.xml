@@ -2,22 +2,22 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Ruby | @vishnuatrai]]></title>
-  <link href="http://vishnuatrai.com/blog/categories/ruby/atom.xml" rel="self"/>
-  <link href="http://vishnuatrai.com/"/>
-  <updated>2019-09-03T09:58:09+05:30</updated>
-  <id>http://vishnuatrai.com/</id>
+  <link href="http://vishnuatrai.in/blog/categories/ruby/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.in/"/>
+  <updated>2019-09-30T10:54:18+05:30</updated>
+  <id>http://vishnuatrai.in/</id>
   <author>
-    <name><![CDATA[vishnuatrai.com]]></name>
-    <email><![CDATA[me@vishnuatrai.com]]></email>
+    <name><![CDATA[vishnuatrai.in]]></name>
+    <email><![CDATA[vishnu.atrai@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
   
   <entry>
     <title type="html"><![CDATA[Ruby 2.2.0 Features]]></title>
-    <link href="http://vishnuatrai.com/blog/2014/12/30/ruby-2-dot-2-features/"/>
+    <link href="http://vishnuatrai.in/blog/2014/12/30/ruby-2-dot-2-features/"/>
     <updated>2014-12-30T17:53:04+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2014/12/30/ruby-2-dot-2-features</id>
+    <id>http://vishnuatrai.in/blog/2014/12/30/ruby-2-dot-2-features</id>
     <content type="html"><![CDATA[<h3>1) Incremental and Symbol GC (RIncGC)</h3>
 
 <p>Ruby 2.2.0 release includes several grabage collection (GC) improvements. Symbols are now garbage collectable.</p>
@@ -173,9 +173,9 @@ irb(main):002&gt;Cat.new.method('speak').super_method
   
   <entry>
     <title type="html"><![CDATA[Ruby 2.1 Changelog]]></title>
-    <link href="http://vishnuatrai.com/blog/2014/04/29/ruby-2-dot-1-changelog/"/>
+    <link href="http://vishnuatrai.in/blog/2014/04/29/ruby-2-dot-1-changelog/"/>
     <updated>2014-04-29T12:01:04+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2014/04/29/ruby-2-dot-1-changelog</id>
+    <id>http://vishnuatrai.in/blog/2014/04/29/ruby-2-dot-1-changelog</id>
     <content type="html"><![CDATA[<p>Ruby 2.1.0 has been released now question is, what&rsquo;s new in ruby 2.1.0. Below list of new
 features introduced in ruby 2.1.0.</p>
 
@@ -268,9 +268,9 @@ NoMethodError: undefined method `permalinkify' for "ruby on rails":String
   
   <entry>
     <title type="html"><![CDATA[Ruby 2.0.0 Changelog]]></title>
-    <link href="http://vishnuatrai.com/blog/2013/04/05/ruby-2-dot-0-0-changelog/"/>
+    <link href="http://vishnuatrai.in/blog/2013/04/05/ruby-2-dot-0-0-changelog/"/>
     <updated>2013-04-05T12:43:25+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2013/04/05/ruby-2-dot-0-0-changelog</id>
+    <id>http://vishnuatrai.in/blog/2013/04/05/ruby-2-dot-0-0-changelog</id>
     <content type="html"><![CDATA[<p>Ruby 2.0 has been released now question is, what’s new in ruby 2.0. Below list of new features
 introduced in ruby 2.0.</p>
 
@@ -298,9 +298,9 @@ introduced in ruby 2.0.</p>
   
   <entry>
     <title type="html"><![CDATA[Moving to Ruby and Rails Edge]]></title>
-    <link href="http://vishnuatrai.com/blog/2012/01/18/moving-to-ruby-and-rails-edge/"/>
+    <link href="http://vishnuatrai.in/blog/2012/01/18/moving-to-ruby-and-rails-edge/"/>
     <updated>2012-01-18T15:25:34+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2012/01/18/moving-to-ruby-and-rails-edge</id>
+    <id>http://vishnuatrai.in/blog/2012/01/18/moving-to-ruby-and-rails-edge</id>
     <content type="html"><![CDATA[<p>Since our team always works with technology edge whether it is rails or ruby, from last week we started moving to ruby 1.9.3 and rails 3.1.3. I am sharing our experiences we found during migrating our product to rails and ruby latest release.<!--more--></p>
 
 <h5>Ruby-1.9.3 Upgrade</h5>
@@ -428,9 +428,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Ruby 1.9.3 Changelog]]></title>
-    <link href="http://vishnuatrai.com/blog/2011/11/05/ruby-1-dot-9-3-changelog/"/>
+    <link href="http://vishnuatrai.in/blog/2011/11/05/ruby-1-dot-9-3-changelog/"/>
     <updated>2011-11-05T12:52:27+05:30</updated>
-    <id>http://vishnuatrai.com/blog/2011/11/05/ruby-1-dot-9-3-changelog</id>
+    <id>http://vishnuatrai.in/blog/2011/11/05/ruby-1-dot-9-3-changelog</id>
     <content type="html"><![CDATA[<p>Ruby 1.9.3 has been released now question is, what’s new in ruby 1.9.3. Below list of new
 features introduced in ruby 1.9.3.</p>
 
