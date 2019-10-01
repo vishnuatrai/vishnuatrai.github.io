@@ -20,9 +20,9 @@ If you read Tools option under Discussion tab, you will find a option "Upload a 
 In my case CSV file format was similar to given below format.
 
 
-    http://vishnuatrai.com/?page_id=2, http://vishnuatrai.com/about/index.html
-    http://vishnuatrai.com/?p=115, http://vishnuatrai.com/blog/2010/10/12/managed-rake-tasks-rake-migration/
-    http://vishnuatrai.com/?p=132, http://vishnuatrai.com/blog/2010/11/01/why-nosql/
+    http://vishnuatrai.in/?page_id=2, http://vishnuatrai.in/about/index.html
+    http://vishnuatrai.in/?p=115, http://vishnuatrai.in/blog/2010/10/12/managed-rake-tasks-rake-migration/
+    http://vishnuatrai.in/?p=132, http://vishnuatrai.in/blog/2010/11/01/why-nosql/
 
 
 The Disqus Crawler runs and relink your comments to new urls.
