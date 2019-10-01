@@ -4,7 +4,7 @@
 
 url: http://vishnuatrai.in
 title: "@vishnuatrai"
-subtitle: Ruby on Rails contributor developer
+subtitle: Java, SpringBoot, Ruby on Rails contributor developer
 author: vishnuatrai.in
 simple_search: https://www.google.com/search
 description:
@@ -76,13 +76,13 @@ twitter_tweet_button: true
 linkedin_user: vishnuatrai
 
 # Google +1
-google_plus_one: true
-google_plus_one_size: medium
+#google_plus_one: true
+#google_plus_one_size: medium
 
 # Google Plus Profile
 # Hidden: No visible button, just add author information to search results
-googleplus_user: 102433220410072726105
-googleplus_hidden: false
+#googleplus_user: 102433220410072726105
+#googleplus_hidden: false
 
 # Pinboard
 pinboard_user:

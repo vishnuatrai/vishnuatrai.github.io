@@ -6,14 +6,14 @@ layout: page
 slug: about
 title: Who I am?
 description: "Vishnu Sharma Vishnu Atrai Ruby on Rails Python Dausa Jaipur Bangalore @vishnuatrai"
-keywords: "Vishnu Sharma, Vishnu Atrai, Dausa, Jaipur, Bangalore, Ruby on Rails, Sofrware Engineer, @vishnuatrai"
+keywords: "Vishnu Sharma, Vishnu Atrai, Dausa, Jaipur, Bangalore, Java, Spring Boot, Ruby on Rails, Sofrware Engineer, @vishnuatrai"
 
 ---
 
-I'm Vishnu Sharma and I am a software developer who specializes in building web applications in various domains(ie. Financial, Online tutorial, HR solution, ERP, Social Networking etc). I have been working in this domain for nearly 9.5 years, and have been loving every minute of it. I am a blogger, designer and developer. 
+I'm Vishnu Sharma and I am a software developer who specializes in building web applications in various domains(ie. Financial, Online tutorial, HR solution, ERP, Social Networking etc). I have been working in this domain for nearly 13+ years, and have been loving every minute of it. I am a blogger, designer and developer. 
 
-I am using Ruby on Rails framework to develop web apps, earlier I was using CoreJava and JSP for web development. I use python, node.js frameworks also to develop web apps. I love open source technologies, frameworks, libraries etc.
+I use Java, Spring Boot, Ruby on Rails, express.js react.js to develop web and miroservice apps. Open source technologies, frameworks, libraries excite me to explore and use in my day to day work.
 
-I actively contribute to ruby libraries in my spare time. I have done few contribution to Ruby on Rails framework itself. http://contributors.rubyonrails.org/contributors/vishnu-atrai/commits
+I actively contribute to ruby, java, node.js libraries in my spare time. I have done few contribution to Ruby on Rails framework itself. http://contributors.rubyonrails.org/contributors/vishnu-atrai/commits
 
 
