@@ -396,7 +396,7 @@ person.valid?                        #=&gt; false
 person.name  = 'vishnu'
 person.email  = 'me'
 person.valid?                        #=&gt; false
-person.email = 'me@vishnuatrai.com'
+person.email = 'vishnu.atrai@gmail.com'
 person.valid?                        #=&gt; true
 </code></pre>
 ]]></content>
