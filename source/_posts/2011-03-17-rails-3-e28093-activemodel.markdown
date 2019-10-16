@@ -295,7 +295,7 @@ Validations module adds the ability to class objects to validate them in Active 
     person.name  = 'vishnu'
     person.email  = 'me'
     person.valid?                        #=> false
-    person.email = 'me@vishnuatrai.com'
+    person.email = 'vishnu.atrai@gmail.com'
     person.valid?                        #=> true
 
 

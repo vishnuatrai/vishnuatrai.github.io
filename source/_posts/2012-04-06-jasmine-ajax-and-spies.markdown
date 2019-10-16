@@ -19,7 +19,7 @@ In continuation of previous post for Jasmine, here I want to share my experience
     function myprofiledetails(){
         $.ajax({
           type: "GET",
-          url: "http://vishnuatrai.com/aboutme.php",
+          url: "http://vishnuatrai.in/aboutme.php",
           success: function(json){
             $('#infodiv').html("Ruby On Rails development with jasmine");
           }
