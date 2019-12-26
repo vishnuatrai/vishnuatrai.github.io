@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Docker | @vishnuatrai]]></title>
+  <link href="http://vishnuatrai.in/blog/categories/docker/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.in/"/>
+  <updated>2019-12-26T21:31:35+05:30</updated>
+  <id>http://vishnuatrai.in/</id>
+  <author>
+    <name><![CDATA[vishnuatrai.in]]></name>
+    <email><![CDATA[vishnu.atrai@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Dive Into Docker Image Layers]]></title>
+    <link href="http://vishnuatrai.in/blog/2019/12/26/dive-into-docker-image-layers/"/>
+    <updated>2019-12-26T20:48:58+05:30</updated>
+    <id>http://vishnuatrai.in/blog/2019/12/26/dive-into-docker-image-layers</id>
+    <content type="html"><![CDATA[<p>I recently used a tool named <a href="https://github.com/wagoodman/dive"><code>dive</code></a> to explore docker images developed and maintained by teammates or opensourced docker images. I used to look into <code>Dockerfile</code> steps to explore image layes. <code>dive</code> brings cli-ui and using arrow and tab keys we can explore each layer in left pane while layer contents listed in right pane.<!--more--></p>
+
+<p>Essentially <code>dive</code> based on docker api and its cache contents and provides commands to explore layer contents and minimize the size of images.</p>
+
+<p>Installation</p>
+
+<p><code>brew install dive</code></p>
+
+<p>command to explore a image layers</p>
+
+<p><code>dive &lt;docker-image-id&gt;</code></p>
+
+<p>to build a image using <code>dive</code> command</p>
+
+<p><code>dive build -t &lt;image-tag&gt; .</code></p>
+]]></content>
+  </entry>
+  
+</feed>
