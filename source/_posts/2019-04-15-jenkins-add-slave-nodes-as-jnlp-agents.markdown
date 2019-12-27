@@ -4,7 +4,7 @@ title: "Jenkins - Add Slave nodes as JNLP agents"
 date: 2019-04-15 15:36:54 +0530
 comments: true
 description: Jenkins - Add Slave nodes as JNLP agents
-keywords: Jenkins, JNLP Agents
+keywords: Jenkins, JNLP Agents, DevOps
 categories:
   Jenkins
   Master&nbsp;Slave
