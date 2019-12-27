@@ -4,7 +4,7 @@
   <title><![CDATA[@vishnuatrai]]></title>
   <link href="http://vishnuatrai.in/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.in/"/>
-  <updated>2019-12-27T16:30:21+05:30</updated>
+  <updated>2019-12-27T20:34:05+05:30</updated>
   <id>http://vishnuatrai.in/</id>
   <author>
     <name><![CDATA[vishnuatrai.in]]></name>
@@ -33,6 +33,38 @@
 <p>to build a image using <code>dive</code> command</p>
 
 <p><code>dive build -t &lt;image-tag&gt; .</code></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Jenkins Slave with Docker Executors]]></title>
+    <link href="http://vishnuatrai.in/blog/2019/08/08/jenkins-slave-with-docker-executors/"/>
+    <updated>2019-08-08T16:35:25+05:30</updated>
+    <id>http://vishnuatrai.in/blog/2019/08/08/jenkins-slave-with-docker-executors</id>
+    <content type="html"><![CDATA[<p><a href="https://wiki.jenkins.io/display/JENKINS/Docker+Plugin">Docker Plugin</a> enables jenkins to run jobs as docker container. In such case we dont need to setup jenkins nodes(agents) with specific binaries, instead docker images will be used to run jobs.<!--more-->Jenkins master needs to be configured with docker host where we can push docker images, those will be used by agents to execute jobs.</p>
+
+<h3>Global Configuration</h3>
+
+<p>After installation of <code>Docker Plugin</code> from manage plugins options, we will need to configure docker host and templates to create docker executers in Global Configuration option.</p>
+
+<p>Go to <strong>Global Configurations</strong> &ndash;> <strong>Docker</strong> &ndash;> fill the below configuration options to setup docker host <br />
+<strong>Name</strong>    Name of docker slave to be used in job configuration  <br />
+<strong>Docker Url</strong>    docker engine url and port  <br />
+<strong>Docker Template</strong>    docker template is an executor, we can add multiple templates and it will enable multiple executors  <br />
+Fill below configurations to setup docker template <br /></p>
+
+<ul>
+<li><strong>Docker Image</strong> image name that that is available on docker host and having binaries to run the job</li>
+<li><strong>Container Settings</strong> > <strong>Volumes</strong> Provide the container volumes(ie. <code>/home/dockerslave/bin</code>) where the binaries available, these are mapped with host machine and binaries will be available on host machine to run the job.</li>
+<li><strong>Label</strong> Provide the label to uniquely identify the executor and configure in job configuration</li>
+<li><strong>Launch Method</strong> select <strong>Docker ssh compute launcher</strong></li>
+<li><strong>Credentials</strong> select credential id to ssh into docker host container</li>
+</ul>
+
+
+<h3>Job Configuration</h3>
+
+<p><strong>Build</strong> > check <strong>Restrict where this project can be run</strong> > <strong>Label Expression</strong> > provide the docker template lable</p>
 ]]></content>
   </entry>
   
@@ -1256,67 +1288,6 @@ features introduced in ruby 1.9.3.</p>
 hashes and blocks.</p>
 
 <p>New method tap has been released to improve chain methods.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rails::Railtie – Hook Everything]]></title>
-    <link href="http://vishnuatrai.in/blog/2011/07/31/railsrailtie-e28093-hook-everything/"/>
-    <updated>2011-07-31T17:33:44+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2011/07/31/railsrailtie-e28093-hook-everything</id>
-    <content type="html"><![CDATA[<p>After Rails 3 released I have been trying to find major and important changes in rails framework over 2.x version. The change I like most is Rails Railtie. Using Railtie you can configure your own gem or plugin in a rails application according to your choice in boot process. <!--more-->  If you are a plugin developer, you can use Railtie class that is capable of loading generators, tasks, middlewares and adding subscribers.</p>
-
-<p>Rails::Engine is nothing more than a Railtie and it has some initializers already set and Rails::Application and Rails::Plugin are also engines. Any subclass of Railtie can be use to initialize rails application, so your plugin can be a first class member of rails application.</p>
-
-<p>Here is sample plugin Railtie that will be loaded when your rails application boots.</p>
-
-<pre><code>require 'rails'
-class MyPlugin &lt; Rails::Railtie
-  # railtie code goes here
-end
-</code></pre>
-
-<p>Here I will give you some examples of Railtie methods, how to customize and extend your rails application using your plugin or gem library.</p>
-
-<h4>1) generators</h4>
-
-<p>Rails will require any generators if you have require generator path in your Railtie class within generators block.</p>
-
-<pre><code>generators do
-  require 'lib/to/generator.rb'
-end
-</code></pre>
-
-<h4>2) rake_tasks</h4>
-
-<p>You can ship rake tasks of your plugin in rails application if you require in Railtie</p>
-
-<pre><code>rake_tasks do 
-  require 'lib/to/rake_task.rb'
-end
-</code></pre>
-
-<h4>3) initializer</h4>
-
-<p>Railtie initializer method can create initializers that can run during the Rails boot process. It has the options to run a initializer before or after a specific initializer.</p>
-
-<pre><code>initializer "plugin_railtie.boot_plugin" do
-  Plugin.boot(NewPlugin)
-end
-
-initializer "new_plugin_railtie.boot_new_plugin", :before =&gt; "plugin_railtie.boot_plugin" do
-    NewPlugin.boot!
-end
-</code></pre>
-
-<h4>4) console</h4>
-
-<p>console method allows to add code that will run when Rails console starts.</p>
-
-<pre><code> console do
-   puts "my plugin loaded."
- end
-</code></pre>
 ]]></content>
   </entry>
   
