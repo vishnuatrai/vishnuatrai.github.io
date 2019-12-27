@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: JNLP&nbsp;agents | @vishnuatrai]]></title>
+  <link href="http://vishnuatrai.in/blog/categories/jnlp-agents/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.in/"/>
+  <updated>2019-12-27T16:30:21+05:30</updated>
+  <id>http://vishnuatrai.in/</id>
+  <author>
+    <name><![CDATA[vishnuatrai.in]]></name>
+    <email><![CDATA[vishnu.atrai@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Jenkins - Add Slave Nodes as JNLP Agents]]></title>
+    <link href="http://vishnuatrai.in/blog/2019/04/15/jenkins-add-slave-nodes-as-jnlp-agents/"/>
+    <updated>2019-04-15T15:36:54+05:30</updated>
+    <id>http://vishnuatrai.in/blog/2019/04/15/jenkins-add-slave-nodes-as-jnlp-agents</id>
+    <content type="html"><![CDATA[<p>If it is required to run Jenkins master in an isolated network and master should not be allowed to connected to its nodes(agents), we can use JNLP method to add agents to master to process jobs in distributed manner. In this scenario, its not desirable to have master connections with slave(agent) nodes but agent to master connections only required. <!--more--></p>
+
+<h3>Only Agent to master connections</h3>
+
+<p>In this case the agent node will not be visible to the master, so the master can not initiate the agent process. You can use a different type of agent configuration in this case called &ldquo;JNLP&rdquo;. This means that the master does not need network &ldquo;ingress&rdquo; to the agent (but the agent will need to be able to connect back to the master). Handy for if the agents are behind a firewall, or perhaps in some more secure environment to do trusted deploys.</p>
+
+<h3>Configuration</h3>
+
+<p>In order to setup a slave agent in above scenario you need to first <strong>Enable the JNLP Agents</strong>:</p>
+
+<p>Go to <strong>Manage Jenkins</strong> &ndash;> <strong>Configure Global Security</strong> &ndash;> under <strong>Agents</strong> section &ndash;> <strong>TCP port for inbound agents</strong> &ndash;> select <strong>Random</strong> &ndash;><strong>Save</strong>.</p>
+
+<h4>Setup slave agent node</h4>
+
+<p>Go to <strong>Manage Jenkins</strong> &ndash;> <strong>Manage Nodes</strong> &ndash;>click on <strong>New Node</strong> &ndash;> Enter the <strong>node name</strong> &ndash;> Select <strong>permanent agent</strong>.</p>
+
+<p>Fill the below details to configure the slave agent</p>
+
+<h4>Description</h4>
+
+<h4>Remote root directory</h4>
+
+<p>This should be the workspace directory on slave agent</p>
+
+<h4>Label</h4>
+
+<p>Provide the label to uniquely identify the slave node</p>
+
+<h4>Launch Method</h4>
+
+<p>Select <strong>launch agent by Connecting it to the master</strong> for windows agents  <br />
+and <strong>launch agents via ssh</strong> for linux agents</p>
+
+<p>To Launch the slave agent via command line  <br />
+<strong>Download the agent.jar file and copy to agent node</strong>  <br />
+<strong>Run agent.jar using command line</strong></p>
+
+<pre><code>java --jar agent.jar -jnlpUrl &lt;jenkins master url&gt; -secret &lt;secret given on node configuration&gt; -workDir "/user/agent/home/workspace"
+</code></pre>
+
+<p>With above command agent is authorized and registered with jenkins master. Now agent is successfully configured and launched, which can be verified on master nodes. Jenkins master can delegate jobs to agent node.</p>
+]]></content>
+  </entry>
+  
+</feed>
