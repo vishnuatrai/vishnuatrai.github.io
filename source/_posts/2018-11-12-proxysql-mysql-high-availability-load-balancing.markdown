@@ -56,6 +56,35 @@ ProxySQL provides below advantages if included in deployment stack
 	mysql_query_rules
 	stats_mysql_query_digest
 
+###Deploying with Kubernetes/Openshift - The Sidecar Pattern
+We can deploy the `proxysql` image in same pod as application image but data base references we will need to provide as `localhost` or `127.0.0.1` and port will be `6033` (the default proxysql port). The application will connect to proxysql server and it will then redirect database queries to mysql database cluster.
+
+Openshift/kubernetes template spec -
+
+	spec:
+	 template:
+	  spce:
+	   volumes:
+	    -
+	   name: "proxysql-configiguration-file"
+	     secret:
+	      secretName: "proxysql-configuration"
+	   containers:
+	    -
+	   name: "proxysql-service"
+	     image: "docker.com/proxysql/proxysql:1.0"
+	     ports:
+	      -
+	   containerPort: 6033
+	       protocal: TCP
+	   env:
+	   resources:
+	   volumeMounts:
+	    -
+	   name: "proxysql-configuration"
+	     readOnly: true
+	     mountPath: "/etc/prosysql-config"
+
 ###References
 
 https://www.proxysql.com/
