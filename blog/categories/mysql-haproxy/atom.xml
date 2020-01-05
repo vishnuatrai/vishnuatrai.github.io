@@ -4,7 +4,7 @@
   <title><![CDATA[Category: MySQL&nbsp;HAProxy | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.in/blog/categories/mysql-haproxy/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.in/"/>
-  <updated>2019-12-27T20:34:05+05:30</updated>
+  <updated>2020-01-05T11:03:55+05:30</updated>
   <id>http://vishnuatrai.in/</id>
   <author>
     <name><![CDATA[vishnuatrai.in]]></name>
@@ -85,6 +85,37 @@ stats_mysql_connection_pool
 stats_mysql_commands_counters
 mysql_query_rules
 stats_mysql_query_digest
+</code></pre>
+
+<h3>Deploying with Kubernetes/Openshift &ndash; The Sidecar Pattern</h3>
+
+<p>We can deploy the <code>proxysql</code> image in same pod as application image but data base references we will need to provide as <code>localhost</code> or <code>127.0.0.1</code> and port will be <code>6033</code> (the default proxysql port). The application will connect to proxysql server and it will then redirect database queries to mysql database cluster.</p>
+
+<p>Openshift/kubernetes template spec &ndash;</p>
+
+<pre><code>spec:
+ template:
+  spce:
+   volumes:
+    -
+   name: "proxysql-configiguration-file"
+     secret:
+      secretName: "proxysql-configuration"
+   containers:
+    -
+   name: "proxysql-service"
+     image: "docker.com/proxysql/proxysql:1.0"
+     ports:
+      -
+   containerPort: 6033
+       protocal: TCP
+   env:
+   resources:
+   volumeMounts:
+    -
+   name: "proxysql-configuration"
+     readOnly: true
+     mountPath: "/etc/prosysql-config"
 </code></pre>
 
 <h3>References</h3>

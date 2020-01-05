@@ -88,7 +88,7 @@ $(function(){
 
 <hgroup>
  <p class="site-subtitle" style="font-size:10px;">
-  Copyright &copy; 2019 - vishnuatrai.in 
+  Copyright &copy; 2020 - vishnuatrai.in 
   <br />
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
  </p>
@@ -191,6 +191,37 @@ stats_mysql_connection_pool
 stats_mysql_commands_counters
 mysql_query_rules
 stats_mysql_query_digest
+</code></pre>
+
+<h3>Deploying with Kubernetes/Openshift &ndash; The Sidecar Pattern</h3>
+
+<p>We can deploy the <code>proxysql</code> image in same pod as application image but data base references we will need to provide as <code>localhost</code> or <code>127.0.0.1</code> and port will be <code>6033</code> (the default proxysql port). The application will connect to proxysql server and it will then redirect database queries to mysql database cluster.</p>
+
+<p>Openshift/kubernetes template spec &ndash;</p>
+
+<pre><code>spec:
+ template:
+  spce:
+   volumes:
+    -
+   name: "proxysql-configiguration-file"
+     secret:
+      secretName: "proxysql-configuration"
+   containers:
+    -
+   name: "proxysql-service"
+     image: "docker.com/proxysql/proxysql:1.0"
+     ports:
+      -
+   containerPort: 6033
+       protocal: TCP
+   env:
+   resources:
+   volumeMounts:
+    -
+   name: "proxysql-configuration"
+     readOnly: true
+     mountPath: "/etc/prosysql-config"
 </code></pre>
 
 <h3>References</h3>
