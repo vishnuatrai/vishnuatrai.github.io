@@ -15,7 +15,7 @@ We have recently faced issue with Elasticsearch field types and mapping, when if
 
 Second record we want to insert same field with another type per say `object`, it will raise exceptation `mapper_parsing_exception, failed to parse field`.
 
-![](/images//posts/elasticsearch2.png)
+![](/images//posts/Elasticsearch2.png)
 
 Because with insertation of first record the index will create a mapping and provide the field type `text` with second record insertation where the type is an object it will not match with the mapping and raise exceptation. 
 
