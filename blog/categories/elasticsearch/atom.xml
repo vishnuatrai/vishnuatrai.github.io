@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Elasticsearch | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.in/blog/categories/elasticsearch/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.in/"/>
-  <updated>2020-01-11T16:39:43+05:30</updated>
+  <updated>2020-01-11T16:43:25+05:30</updated>
   <id>http://vishnuatrai.in/</id>
   <author>
     <name><![CDATA[vishnuatrai.in]]></name>
@@ -30,7 +30,7 @@
 
 <p><img src="/images//posts/elasticsearch3.png" alt="" /></p>
 
-<h3>Simple Hack with Many pitfalls</h3>
+<h3>Simple Hack But Many pitfalls</h3>
 
 <p>Since by nature Elasticsearch doesn&rsquo;t support above scenario, once the mapping is created and type is assigned to a field it will not allow indexing of other type. However in my case we have to store the data in elasticsearch engine, so converted the object to string and that worked. But it will not support query on the converted object and on client side also we will need to convert back to object type.</p>
 
