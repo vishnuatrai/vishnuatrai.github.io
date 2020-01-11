@@ -23,6 +23,8 @@ In order to setup a slave agent in above scenario you need to first **Enable the
 
 Go to **Manage Jenkins** -> **Configure Global Security** -> under **Agents** section -> **TCP port for inbound agents** -> select **Random** ->**Save**. 
 
+![](/images//posts/Jenkins1.png)
+
 ####Setup slave agent node
 Go to **Manage Jenkins** -> **Manage Nodes** ->click on **New Node** -> Enter the **node name** -> Select **permanent agent**. 
 
@@ -36,10 +38,13 @@ Provide the label to uniquely identify the slave node
 Select **launch agent by Connecting it to the master** for windows agents  <br />
 and **launch agents via ssh** for linux agents
 
+![](/images//posts/Jenkins2.png)
 
 To Launch the slave agent via command line  <br />
 **Download the agent.jar file and copy to agent node**  <br />
 **Run agent.jar using command line** 
 	java --jar agent.jar -jnlpUrl <jenkins master url> -secret <secret given on node configuration> -workDir "/user/agent/home/workspace"
+
+![](/images//posts/Jenkins3.png)
 
 With above command agent is authorized and registered with jenkins master. Now agent is successfully configured and launched, which can be verified on master nodes. Jenkins master can delegate jobs to agent node.
