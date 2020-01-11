@@ -4,7 +4,7 @@
   <title><![CDATA[@vishnuatrai]]></title>
   <link href="http://vishnuatrai.in/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.in/"/>
-  <updated>2020-01-11T16:31:30+05:30</updated>
+  <updated>2020-01-11T16:39:43+05:30</updated>
   <id>http://vishnuatrai.in/</id>
   <author>
     <name><![CDATA[vishnuatrai.in]]></name>
@@ -260,7 +260,7 @@ stats_mysql_query_digest
 
 <p>Second record we want to insert same field with another type per say <code>object</code>, it will raise exceptation <code>mapper_parsing_exception, failed to parse field</code>.</p>
 
-<p><img src="http://vishnuatrai.in/images//posts/elasticsearch2.png" alt="" /></p>
+<p><img src="http://vishnuatrai.in/images//posts/Elasticsearch2.png" alt="" /></p>
 
 <p>Because with insertation of first record the index will create a mapping and provide the field type <code>text</code> with second record insertation where the type is an object it will not match with the mapping and raise exceptation.</p>
 
