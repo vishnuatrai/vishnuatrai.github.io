@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Jenkins | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.in/blog/categories/jenkins/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.in/"/>
-  <updated>2020-01-05T11:03:55+05:30</updated>
+  <updated>2020-01-11T14:13:43+05:30</updated>
   <id>http://vishnuatrai.in/</id>
   <author>
     <name><![CDATA[vishnuatrai.in]]></name>
@@ -30,6 +30,8 @@
 
 <p>Go to <strong>Manage Jenkins</strong> &ndash;> <strong>Configure Global Security</strong> &ndash;> under <strong>Agents</strong> section &ndash;> <strong>TCP port for inbound agents</strong> &ndash;> select <strong>Random</strong> &ndash;><strong>Save</strong>.</p>
 
+<p><img src="/images//posts/Jenkins1.png" alt="" /></p>
+
 <h4>Setup slave agent node</h4>
 
 <p>Go to <strong>Manage Jenkins</strong> &ndash;> <strong>Manage Nodes</strong> &ndash;>click on <strong>New Node</strong> &ndash;> Enter the <strong>node name</strong> &ndash;> Select <strong>permanent agent</strong>.</p>
@@ -51,12 +53,16 @@
 <p>Select <strong>launch agent by Connecting it to the master</strong> for windows agents  <br />
 and <strong>launch agents via ssh</strong> for linux agents</p>
 
+<p><img src="/images//posts/Jenkins2.png" alt="" /></p>
+
 <p>To Launch the slave agent via command line  <br />
 <strong>Download the agent.jar file and copy to agent node</strong>  <br />
 <strong>Run agent.jar using command line</strong></p>
 
 <pre><code>java --jar agent.jar -jnlpUrl &lt;jenkins master url&gt; -secret &lt;secret given on node configuration&gt; -workDir "/user/agent/home/workspace"
 </code></pre>
+
+<p><img src="/images//posts/Jenkins3.png" alt="" /></p>
 
 <p>With above command agent is authorized and registered with jenkins master. Now agent is successfully configured and launched, which can be verified on master nodes. Jenkins master can delegate jobs to agent node.</p>
 ]]></content>
