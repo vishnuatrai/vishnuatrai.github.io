@@ -22,6 +22,9 @@ After installation of `Docker Plugin` from manage plugins options, we will need 
 Go to **Global Configurations** -> **Docker** -> fill the below configuration options to setup docker host <br />
 **Name**    Name of docker slave to be used in job configuration  <br />
 **Docker Url**    docker engine url and port  <br />
+
+![](/images//posts/Jenkins7.png)
+
 **Docker Template**    docker template is an executor, we can add multiple templates and it will enable multiple executors  <br />
 Fill below configurations to setup docker template <br />
 
@@ -31,6 +34,9 @@ Fill below configurations to setup docker template <br />
 - **Launch Method** select **Docker ssh compute launcher**
 - **Credentials** select credential id to ssh into docker host container
 
+![](/images//posts/Jenkins4.png)
+![](/images//posts/Jenkins5.png)
+![](/images//posts/Jenkins6.png)
 ###Job Configuration
 **Build** > check **Restrict where this project can be run** > **Label Expression** > provide the docker template lable
 
