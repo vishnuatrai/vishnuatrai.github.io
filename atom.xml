@@ -4,7 +4,7 @@
   <title><![CDATA[@vishnuatrai]]></title>
   <link href="http://vishnuatrai.in/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.in/"/>
-  <updated>2020-01-11T14:32:44+05:30</updated>
+  <updated>2020-01-11T16:31:30+05:30</updated>
   <id>http://vishnuatrai.in/</id>
   <author>
     <name><![CDATA[vishnuatrai.in]]></name>
@@ -246,6 +246,37 @@ stats_mysql_query_digest
 <p>github</p>
 
 <p><a href="https://github.com/sysown/proxysql">https://github.com/sysown/proxysql</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Elasticsearch - mapper_parsing_exception, failed to parse field]]></title>
+    <link href="http://vishnuatrai.in/blog/2017/12/20/elasticsearch-mapper-parsing-exception/"/>
+    <updated>2017-12-20T15:37:59+05:30</updated>
+    <id>http://vishnuatrai.in/blog/2017/12/20/elasticsearch-mapper-parsing-exception</id>
+    <content type="html"><![CDATA[<p>We have recently faced issue with Elasticsearch field types and mapping, when if a field is mapped with a type other type can not be indexed for the same field. Elasticsearch indesing mechanism ristrict that. for example we have created a index named <code>users</code> and inserted a record with <code>text</code> type field <code>name</code>. <!--more--></p>
+
+<p><img src="http://vishnuatrai.in/images//posts/elasticsearch1.png" alt="" /></p>
+
+<p>Second record we want to insert same field with another type per say <code>object</code>, it will raise exceptation <code>mapper_parsing_exception, failed to parse field</code>.</p>
+
+<p><img src="http://vishnuatrai.in/images//posts/elasticsearch2.png" alt="" /></p>
+
+<p>Because with insertation of first record the index will create a mapping and provide the field type <code>text</code> with second record insertation where the type is an object it will not match with the mapping and raise exceptation.</p>
+
+<p><img src="http://vishnuatrai.in/images//posts/elasticsearch3.png" alt="" /></p>
+
+<h3>Simple Hack with Many pitfalls</h3>
+
+<p>Since by nature Elasticsearch doesn&rsquo;t support above scenario, once the mapping is created and type is assigned to a field it will not allow indexing of other type. However in my case we have to store the data in elasticsearch engine, so converted the object to string and that worked. But it will not support query on the converted object and on client side also we will need to convert back to object type.</p>
+
+<p><img src="http://vishnuatrai.in/images//posts/elasticsearch4.png" alt="" /></p>
+
+<p>After converting the object to text it will indexed as a text field only and will look like a escaped string object.</p>
+
+<p><img src="http://vishnuatrai.in/images//posts/elasticsearch5.png" alt="" /></p>
+
+<p>Still investigating on better solution or way to work on this issue.</p>
 ]]></content>
   </entry>
   
@@ -1297,41 +1328,6 @@ config.assets.js_compressor  = :uglifier
   gem 'uglifier'
 end
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ruby 1.9.3 Changelog]]></title>
-    <link href="http://vishnuatrai.in/blog/2011/11/05/ruby-1-dot-9-3-changelog/"/>
-    <updated>2011-11-05T12:52:27+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2011/11/05/ruby-1-dot-9-3-changelog</id>
-    <content type="html"><![CDATA[<p>Ruby 1.9.3 has been released now question is, what’s new in ruby 1.9.3. Below list of new
-features introduced in ruby 1.9.3.</p>
-
-<h3>1) Objects hieararchy <!--more--></h3>
-
-<h3>2) Fibers</h3>
-
-<h3>3) New character encodings</h3>
-
-<h3>4) Faster loading &ndash; the load.c patch</h3>
-
-<h3>5) Hashes syntax</h3>
-
-<h3>6) Improved GC performance with a lazy garbage collector</h3>
-
-<h3>7) A &lsquo;better strategy&rsquo; for the GIL / GVL</h3>
-
-<h3>8) Test/unit supports parallel testing</h3>
-
-<h3>9) Random.rand tweaks (and rand() now accepts ranges)</h3>
-
-<h3>10) Main changes</h3>
-
-<p>The other main areas where changes were introduced: symbols, arrays,
-hashes and blocks.</p>
-
-<p>New method tap has been released to improve chain methods.</p>
 ]]></content>
   </entry>
   
