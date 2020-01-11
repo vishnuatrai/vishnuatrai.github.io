@@ -22,7 +22,7 @@ Because with insertation of first record the index will create a mapping and pro
 
 ![](/images//posts/elasticsearch3.png)
 
-###Simple Hack with Many pitfalls
+###Simple Hack But Many pitfalls
 Since by nature Elasticsearch doesn't support above scenario, once the mapping is created and type is assigned to a field it will not allow indexing of other type. However in my case we have to store the data in elasticsearch engine, so converted the object to string and that worked. But it will not support query on the converted object and on client side also we will need to convert back to object type.
 
 ![](/images//posts/elasticsearch4.png)
