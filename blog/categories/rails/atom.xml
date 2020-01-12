@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Rails | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.in/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.in/"/>
-  <updated>2020-01-11T16:43:25+05:30</updated>
+  <updated>2020-01-12T16:01:24+05:30</updated>
   <id>http://vishnuatrai.in/</id>
   <author>
     <name><![CDATA[vishnuatrai.in]]></name>
@@ -12,6 +12,89 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[What Is New in Rails 5]]></title>
+    <link href="http://vishnuatrai.in/blog/2016/07/05/what-is-new-in-rails-5/"/>
+    <updated>2016-07-05T17:34:19+05:30</updated>
+    <id>http://vishnuatrai.in/blog/2016/07/05/what-is-new-in-rails-5</id>
+    <content type="html"><![CDATA[<h3>ActionCable</h3>
+
+<p>Action Cable can integrates websocket with rails application. Action Cable server can handle multiple connection instances. It has only one instance per websocket connection. The client websocker connection(consumer) can subscribe to multiple cable channels.<!--more-->For example Action Cable server can have a <code>ChatChannel</code> and an <code>AppearancesChannel</code> and a consumer(websocket) can subscribe to either one or both of channels.</p>
+
+<pre><code>#Publisher Streams
+# app/channels/chat_channel.rb
+class ChatChannel &lt; ApplicationCable::Channel
+    def subscribed
+        stream_from "chat_#{params[:room]}"
+    end
+end
+
+#Subscriber
+// app/javascript/channels/chat_channel.js
+import consumer from "./consumer"
+consumer.subscriptions.create({ channel: "ChatChannel", room: "Best Room" })
+</code></pre>
+
+<h3>ActiveRecord::Attributes</h3>
+
+<p>Define an <code>attribute</code> on a model with type. It is not essential to have a database column with the custom model <code>attribute</code>. <code>attribute</code> can also be used to provide default values.</p>
+
+<pre><code># db/schema.rb
+create_table :profiles, force: true do |t|
+    t.decimal :gpa
+    t.string :name, default: "Full Name"
+end
+
+# app/models/profile.rb
+class Profile &lt; ActiveRecord::Base
+end
+
+profile = Profile.new(gpa: '4.1')
+
+# before
+profile.gpa # =&gt; BigDecimal.new(4.1)
+profile.new.name # =&gt; "Full Name"
+
+class Profile &lt; ActiveRecord::Base
+    attribute :gpa, :integer # custom type
+    attribute :name, :string, default: "Your Name" # default value
+    attribute :current_time, :datetime, default: -&gt; { Time.now } # default value
+    attribute :field_without_db_column, :integer, array: true
+end
+
+# after
+profile.gpa # =&gt; 10
+Profile.new.name # =&gt; "Your Name"
+Profile.new.current_time # =&gt; 2015-05-30 11:04:48 -0600
+model = Profile.new(field_without_db_column: ["1", "2", "3"])
+model.attributes # =&gt; {field_without_db_column: [1, 2, 3]}
+</code></pre>
+
+<h3>Rails API &ndash; ActionController::API</h3>
+
+<p>To avoid middlewares used for browser based web applications and server public facing json APIs, we can create API only rails application here after 5.0. <code>rails new my_api --api</code> can be used to generate application which will be API only and will not generate assets and views.</p>
+
+<pre><code># app/controllers/application_controller.rb
+class ApplicationController &lt; ActionController::API
+end
+</code></pre>
+
+<h3>Ruby 2.2.2+ required version from Rails 5.0</h3>
+
+<p>Ruby 2.2.2+ required version from Rails 5.0</p>
+
+<br />
+
+
+<br />
+
+
+<h3>References</h3>
+
+<p><a href="https://guides.rubyonrails.org/5_0_release_notes.html">https://guides.rubyonrails.org/5_0_release_notes.html</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[What Is New in Rails 4.2]]></title>
