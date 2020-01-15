@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: jMeter | @vishnuatrai]]></title>
+  <link href="http://vishnuatrai.in/blog/categories/jmeter/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.in/"/>
+  <updated>2020-01-15T13:57:04+05:30</updated>
+  <id>http://vishnuatrai.in/</id>
+  <author>
+    <name><![CDATA[vishnuatrai.in]]></name>
+    <email><![CDATA[vishnu.atrai@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[jMeter - Optimize for Load Testing]]></title>
+    <link href="http://vishnuatrai.in/blog/2019/11/11/jmeter-optimize-for-load-testing/"/>
+    <updated>2019-11-11T17:40:57+05:30</updated>
+    <id>http://vishnuatrai.in/blog/2019/11/11/jmeter-optimize-for-load-testing</id>
+    <content type="html"><![CDATA[<p>These are the jMeter optimization steps we have taken to simulate 1M request per second concurrency test for REST application deployed on Kubernetes cluster.</p>
+
+<h3>Use a High Capacity Jenkins Slave to run jMeter jmx script</h3>
+
+<p>We have added a high capacity Jenkins slave node to run only jMeter performance test and have done jMeter installation on that server. All performance test jobs are restricted to run on that labeled slave node.<!--more-->
+We can use available memory and CPU to optimize jMeter configuration.</p>
+
+<h3>Run jMeter in non-GUI Mode</h3>
+
+<p>Apart from developing jmx script or debugging request/response not use GUI mode to run load test. In GUI mode AWT Event Thread will disrupt both your test and JMeter in case of more or less high load. GUI mode consumes a lot of memory and other resources, which in turn negatively impacts your scripts and tests. Using the non-GUI mode of JMeter helps to reduce both resource requirements and potential errors.</p>
+
+<h3>Increase the Java Heap Size</h3>
+
+<p>Run JMeter with higher value of memory.</p>
+
+<pre><code>`JVM_ARGS="-Xms512m -Xmx512m" jmeter.sh`
+</code></pre>
+
+<h3>Avoid Listeners</h3>
+
+<p>Avoid UI listeners like graphs or results table to avoid OutOfMemory issues. Preferably only write results to a JTL.</p>
+
+<h3>Minimize Metrics Need to Store</h3>
+
+<p>Configure JMeter to ensure that it will only save the metrics that you absolutely need. You can control what to store by adding relevant lines to the user.properties file in jMeter installation.</p>
+
+<h3>Generate Reports AFTER the Run</h3>
+
+<p>It takes resources to be written (CPU and memory) and for analysis in XML format. Use the outputted .jtl files to create reports once the load test is finished. Building the report requires a great amount of CPU and memory resources.</p>
+
+<h3>Tweak the JVM</h3>
+
+<p>Settings like garbage collector (-XX:+UseConcMarkSweepGC), server JVM (-server) can be set inside JVM_ARGS by editing the JMeter launcher script.</p>
+
+<p><code>NEW="-XX:NewSize=128m -XX:MaxNewSize=128m"</code> line in the JMeter command script should match with values provided in HEAP.</p>
+
+<p><code>-XX:+UseConcMarkSweepGC</code> &ndash; this forces the usage of the CMS garbage collector. It will lower the overall throughput but leads to much shorter CPU intensive garbage collections.</p>
+
+<p><code>-server</code> &ndash; this switches JVM into “server” mode with runtime parameters optimization. In this mode JMeter starts more slowly, but your overall throughput will be higher</p>
+]]></content>
+  </entry>
+  
+</feed>

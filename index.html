@@ -123,6 +123,21 @@ $(function(){
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name"><a href="/blog/2019/11/11/jmeter-optimize-for-load-testing/" itemprop="url">jMeter - Optimize for Load Testing</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>These are the jMeter optimization steps we have taken to simulate 1M request per second concurrency test for REST application deployed on Kubernetes cluster.</p>
+
+<h3>Use a High Capacity Jenkins Slave to run jMeter jmx script</h3>
+
+<p>We have added a high capacity Jenkins slave node to run only jMeter performance test and have done jMeter installation on that server. All performance test jobs are restricted to run on that labeled slave node.
+		
+		<a href="/blog/2019/11/11/jmeter-optimize-for-load-testing/" class="more-link">Read on &rarr;</a>
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
 	<h1 class="title" itemprop="name"><a href="/blog/2019/08/08/jenkins-slave-with-docker-executors/" itemprop="url">Jenkins Slave With Docker Executors</a></h1>
 	<div class="entry-content" itemprop="articleBody">
 		<p><a href="https://wiki.jenkins.io/display/JENKINS/Docker+Plugin">Docker Plugin</a> enables jenkins to run jobs as docker container. In such case we dont need to setup jenkins nodes(agents) with specific binaries, instead docker images will be used to run jobs.
@@ -155,17 +170,6 @@ $(function(){
 <li>Improve database operations 
 		
 		<a href="/blog/2018/11/12/proxysql-mysql-high-availability-load-balancing/" class="more-link">Read on &rarr;</a>
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<h1 class="title" itemprop="name"><a href="/blog/2017/12/20/elasticsearch-mapper-parsing-exception/" itemprop="url">Elasticsearch - Mapper_parsing_exception, Failed to Parse Field</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>We have recently faced issue with Elasticsearch field types and mapping, when if a field is mapped with a type other type can not be indexed for the same field. Elasticsearch indesing mechanism ristrict that. for example we have created a index named <code>users</code> and inserted a record with <code>text</code> type field <code>name</code>. 
-		
-		<a href="/blog/2017/12/20/elasticsearch-mapper-parsing-exception/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>
