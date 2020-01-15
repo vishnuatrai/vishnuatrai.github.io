@@ -4,7 +4,7 @@
   <title><![CDATA[@vishnuatrai]]></title>
   <link href="http://vishnuatrai.in/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.in/"/>
-  <updated>2020-01-15T13:57:04+05:30</updated>
+  <updated>2020-01-15T22:19:32+05:30</updated>
   <id>http://vishnuatrai.in/</id>
   <author>
     <name><![CDATA[vishnuatrai.in]]></name>
@@ -293,6 +293,113 @@ stats_mysql_query_digest
 <p>github</p>
 
 <p><a href="https://github.com/sysown/proxysql">https://github.com/sysown/proxysql</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[What is new in Rails 5.2]]></title>
+    <link href="http://vishnuatrai.in/blog/2018/01/20/what-is-new-in-rails-5-dot-2/"/>
+    <updated>2018-01-20T16:02:51+05:30</updated>
+    <id>http://vishnuatrai.in/blog/2018/01/20/what-is-new-in-rails-5-dot-2</id>
+    <content type="html"><![CDATA[<h3>Active Storage</h3>
+
+<p>Active Storage supports modern approach for file uploading to Amazon S3, Google Cloud Storage, Microsoft Azure Cloud file storage. It will also provide references to active record database tables <code>active_storage_blobs</code> and <code>active_storage_attachments</code>. <code>rails active_storage:install</code> will install initial setup for active storage.<!--more-->Configure and setup <code>config/storage.yml</code> cloud credentials and storage buckets.</p>
+
+<pre><code>#config/storage.yml
+local:
+  service: Disk
+  root: &lt;%= Rails.root.join("storage") %&gt;
+test:
+  service: Disk
+  root: &lt;%= Rails.root.join("tmp/storage") %&gt;
+amazon:
+  service: S3
+  access_key_id: ""
+  secret_access_key: ""
+  bucket: ""
+  region: ""
+</code></pre>
+
+<h3>Redis Cache Store</h3>
+
+<p>Rails 5.2 ships with built-in Redis cache store. The Redis cache store takes advantage of Redis support for automatic eviction when it reaches max memory, allowing it to behave much like a Memcached cache server.</p>
+
+<p>Finally, add the configuration in the relevant <code>config/environments/*.rb</code> file:</p>
+
+<pre><code>config.cache_store = :redis_cache_store, { url: 'redis://redis-server:6379' }
+</code></pre>
+
+<h3>HTTP/2 Early Hints</h3>
+
+<p>This means we can automatically instruct the web server to send required style sheet and JavaScript assets early. Which means faster full page delivery.</p>
+
+<p>To start the server with Early Hints enabled pass <code>--early-hints</code> to <code>rails server</code></p>
+
+<h3>Credentials</h3>
+
+<p>Added <code>config/credentials.yml.enc</code> file to store production app secrets. It allows saving any authentication credentials for third-party services directly in repository encrypted with a key in the <code>config/master.key</code> file or the <code>RAILS_MASTER_KEY</code> environment variable</p>
+
+<p>To add new secret to credentials, first run rails secret to get a new secret. Then run rails credentials:edit to edit credentials, and add the secret. Running credentials:edit creates new credentials file and master key, if they did not already exist.</p>
+
+<p>By default, this file contains the application&rsquo;s <code>secret_key_base</code>, but it could also be used to store other credentials such as access keys for external APIs.</p>
+
+<p>The secrets kept in credentials file are accessible via <code>Rails.application.credentials</code>. For example, with the following decrypted <code>config/credentials.yml.enc</code></p>
+
+<p>  #config/credentials.yml.enc</p>
+
+<pre><code>secret_key_base:&lt;secret key base&gt;
+api_client_key: &lt;secret key1&gt;
+api_client_secret: &lt;secret key2&gt;
+</code></pre>
+
+<h3>Content Security Policy</h3>
+
+<p>Content security policy can be configured as a global default policy and then override it on a per-resource basis and even use lambdas to inject per-request values into the header such as account subdomains in a multi-tenant application.</p>
+
+<p>The HTTP <code>Content-Security-Policy</code> response header allows web site administrators to control resources the user agent is allowed to load for a given page. With a few exceptions, policies mostly involve specifying server origins and script endpoints.</p>
+
+<p>Example &ndash;
+  # config/initializers/content_security_policy.rb</p>
+
+<pre><code>Rails.application.config.content_security_policy do |policy|
+  policy.default_src :self, :https
+  policy.font_src    :self, :https, :data
+  policy.img_src     :self, :https, :data
+  policy.object_src  :none
+  policy.script_src  :self, :https
+  policy.style_src   :self, :https
+
+  # Specify URI for violation reports
+  policy.report_uri "/csp-violation-report-path"
+end
+</code></pre>
+
+<p>Example controller overrides:</p>
+
+<pre><code># Override policy inline
+  class PostsController &lt; ApplicationController
+    content_security_policy do |p|
+      p.upgrade_insecure_requests true
+    end
+  end
+
+# Using literal values
+  class PostsController &lt; ApplicationController
+    content_security_policy do |p|
+      p.base_uri "https://www.example.com"
+    end
+  end
+
+# Disabling the global CSP
+  class PagesController &lt; ApplicationController
+    content_security_policy false, only: :index
+  end
+</code></pre>
+
+<br/>
+
+
+<p>References: <a href="https://guides.rubyonrails.org/5_2_release_notes.html">https://guides.rubyonrails.org/5_2_release_notes.html</a></p>
 ]]></content>
   </entry>
   
@@ -1175,77 +1282,6 @@ introduced in ruby 2.0.</p>
 <h3>9) <strong>DIR</strong> Keyword</h3>
 
 <h3>10) TracePoint</h3>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Jasmine: Ajax and Spies]]></title>
-    <link href="http://vishnuatrai.in/blog/2012/04/06/jasmine-ajax-and-spies/"/>
-    <updated>2012-04-06T11:12:46+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2012/04/06/jasmine-ajax-and-spies</id>
-    <content type="html"><![CDATA[<p>In continuation of previous post for Jasmine, here I want to share my experience with Jasmine and Ajax. I want to show how cool it is with jasmine to test ajax calls in javascript. <!--more--> Jasmine spies can be used for mock the ajax call with fake data. Spy replaces the function it is spying on. For example my javascript function have an ajax call &ndash;</p>
-
-<pre><code>function myprofiledetails(){
-    $.ajax({
-      type: "GET",
-      url: "http://vishnuatrai.in/aboutme.php",
-      success: function(json){
-        $('#infodiv').html("Ruby On Rails development with jasmine");
-      }
-   });
-}
-</code></pre>
-
-<p>In spec file I can spy the ajax call in beforeEach function. And so it won&rsquo;t make a server call and return the fake data.</p>
-
-<pre><code>describe("mock about me", function() {
-
-  beforeEach(function() {
-    //mocking ajax call with Jasmine Spies
-    var fakeData = "Hi, I am doing Ruby On Rails development with jasmine";
-    spyOn($, "ajax").andCallFake(function(params) {
-      params.success(fakeData);
-    });
-  });
-
-  it("Should have a Happy Face", function() {
-    myprofiledetails();
-    expect($('#infodiv')).toHaveText("Ruby On Rails development with jasmine");
-  });
-});
-</code></pre>
-
-<p>Jasmine provides some useful methods to support spies.</p>
-
-<pre><code>expect(x).toHaveBeenCalled()
-passes if x is a spy and was called
-
-expect(x).toHaveBeenCalledWith(arguments)
-passes if x is a spy and was called with the specified arguments
-
-expect(x).not.toHaveBeenCalled()                       
-passes if x is a spy and was not called
-
-expect(x).not.toHaveBeenCalledWith(arguments)   
-passes if x is a spy and was not called with the specified arguments
-</code></pre>
-
-<p>Spies can be trained to respond in a variety of ways when invoked:</p>
-
-<pre><code>spyOn(x, 'method').andCallThrough():
-spies on AND calls the original function spied on
-
-spyOn(x, 'method').andReturn(arguments):
-returns passed arguments when spy is called
-
-spyOn(x, 'method').andThrow(exception):
-throws passed exception when spy is called
-
-spyOn(x, 'method').andCallFake(function): 
-calls passed function when spy is called
-</code></pre>
-
-<p>There is a detailed wiki page for spices on github <a href="https://github.com/pivotal/jasmine/wiki/Spies.">https://github.com/pivotal/jasmine/wiki/Spies.</a></p>
 ]]></content>
   </entry>
   

@@ -122,11 +122,15 @@
     </url>
     <url>
         <loc>http://vishnuatrai.in/blog/2016/07/05/what-is-new-in-rails-5/</loc>
-        <lastmod>2020-01-15T12:31:17+05:30</lastmod>
+        <lastmod>2020-01-15T14:11:00+05:30</lastmod>
     </url>
     <url>
         <loc>http://vishnuatrai.in/blog/2017/12/20/elasticsearch-mapper-parsing-exception/</loc>
         <lastmod>2020-01-11T16:42:42+05:30</lastmod>
+    </url>
+    <url>
+        <loc>http://vishnuatrai.in/blog/2018/01/20/what-is-new-in-rails-5-dot-2/</loc>
+        <lastmod>2020-01-15T22:18:52+05:30</lastmod>
     </url>
     <url>
         <loc>
@@ -144,7 +148,7 @@
     </url>
     <url>
         <loc>http://vishnuatrai.in/blog/2019/11/11/jmeter-optimize-for-load-testing/</loc>
-        <lastmod>2020-01-15T13:55:54+05:30</lastmod>
+        <lastmod>2020-01-15T14:11:00+05:30</lastmod>
     </url>
     <url>
         <loc>http://vishnuatrai.in/blog/2019/12/26/dive-into-docker-image-layers/</loc>
@@ -152,15 +156,15 @@
     </url>
     <url>
         <loc>http://vishnuatrai.in/</loc>
-        <lastmod>2020-01-15T13:55:54+05:30</lastmod>
+        <lastmod>2020-01-15T22:18:52+05:30</lastmod>
     </url>
     <url>
         <loc>http://vishnuatrai.in/about/</loc>
-        <lastmod>2020-01-15T12:31:17+05:30</lastmod>
+        <lastmod>2020-01-15T14:11:00+05:30</lastmod>
     </url>
     <url>
         <loc>http://vishnuatrai.in/blog/archives/</loc>
-        <lastmod>2020-01-15T13:55:54+05:30</lastmod>
+        <lastmod>2020-01-15T22:18:52+05:30</lastmod>
     </url>
     <url>
         <loc>http://vishnuatrai.in/robots.txt</loc>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Rails | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.in/blog/categories/rails/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.in/"/>
-  <updated>2020-01-15T13:57:04+05:30</updated>
+  <updated>2020-01-15T22:19:32+05:30</updated>
   <id>http://vishnuatrai.in/</id>
   <author>
     <name><![CDATA[vishnuatrai.in]]></name>
@@ -12,6 +12,113 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[What Is New in Rails 5.2]]></title>
+    <link href="http://vishnuatrai.in/blog/2018/01/20/what-is-new-in-rails-5-dot-2/"/>
+    <updated>2018-01-20T16:02:51+05:30</updated>
+    <id>http://vishnuatrai.in/blog/2018/01/20/what-is-new-in-rails-5-dot-2</id>
+    <content type="html"><![CDATA[<h3>Active Storage</h3>
+
+<p>Active Storage supports modern approach for file uploading to Amazon S3, Google Cloud Storage, Microsoft Azure Cloud file storage. It will also provide references to active record database tables <code>active_storage_blobs</code> and <code>active_storage_attachments</code>. <code>rails active_storage:install</code> will install initial setup for active storage.<!--more-->Configure and setup <code>config/storage.yml</code> cloud credentials and storage buckets.</p>
+
+<pre><code>#config/storage.yml
+local:
+  service: Disk
+  root: &lt;%= Rails.root.join("storage") %&gt;
+test:
+  service: Disk
+  root: &lt;%= Rails.root.join("tmp/storage") %&gt;
+amazon:
+  service: S3
+  access_key_id: ""
+  secret_access_key: ""
+  bucket: ""
+  region: ""
+</code></pre>
+
+<h3>Redis Cache Store</h3>
+
+<p>Rails 5.2 ships with built-in Redis cache store. The Redis cache store takes advantage of Redis support for automatic eviction when it reaches max memory, allowing it to behave much like a Memcached cache server.</p>
+
+<p>Finally, add the configuration in the relevant <code>config/environments/*.rb</code> file:</p>
+
+<pre><code>config.cache_store = :redis_cache_store, { url: 'redis://redis-server:6379' }
+</code></pre>
+
+<h3>HTTP/2 Early Hints</h3>
+
+<p>This means we can automatically instruct the web server to send required style sheet and JavaScript assets early. Which means faster full page delivery.</p>
+
+<p>To start the server with Early Hints enabled pass <code>--early-hints</code> to <code>rails server</code></p>
+
+<h3>Credentials</h3>
+
+<p>Added <code>config/credentials.yml.enc</code> file to store production app secrets. It allows saving any authentication credentials for third-party services directly in repository encrypted with a key in the <code>config/master.key</code> file or the <code>RAILS_MASTER_KEY</code> environment variable</p>
+
+<p>To add new secret to credentials, first run rails secret to get a new secret. Then run rails credentials:edit to edit credentials, and add the secret. Running credentials:edit creates new credentials file and master key, if they did not already exist.</p>
+
+<p>By default, this file contains the application&rsquo;s <code>secret_key_base</code>, but it could also be used to store other credentials such as access keys for external APIs.</p>
+
+<p>The secrets kept in credentials file are accessible via <code>Rails.application.credentials</code>. For example, with the following decrypted <code>config/credentials.yml.enc</code></p>
+
+<p>  #config/credentials.yml.enc</p>
+
+<pre><code>secret_key_base:&lt;secret key base&gt;
+api_client_key: &lt;secret key1&gt;
+api_client_secret: &lt;secret key2&gt;
+</code></pre>
+
+<h3>Content Security Policy</h3>
+
+<p>Content security policy can be configured as a global default policy and then override it on a per-resource basis and even use lambdas to inject per-request values into the header such as account subdomains in a multi-tenant application.</p>
+
+<p>The HTTP <code>Content-Security-Policy</code> response header allows web site administrators to control resources the user agent is allowed to load for a given page. With a few exceptions, policies mostly involve specifying server origins and script endpoints.</p>
+
+<p>Example &ndash;
+  # config/initializers/content_security_policy.rb</p>
+
+<pre><code>Rails.application.config.content_security_policy do |policy|
+  policy.default_src :self, :https
+  policy.font_src    :self, :https, :data
+  policy.img_src     :self, :https, :data
+  policy.object_src  :none
+  policy.script_src  :self, :https
+  policy.style_src   :self, :https
+
+  # Specify URI for violation reports
+  policy.report_uri "/csp-violation-report-path"
+end
+</code></pre>
+
+<p>Example controller overrides:</p>
+
+<pre><code># Override policy inline
+  class PostsController &lt; ApplicationController
+    content_security_policy do |p|
+      p.upgrade_insecure_requests true
+    end
+  end
+
+# Using literal values
+  class PostsController &lt; ApplicationController
+    content_security_policy do |p|
+      p.base_uri "https://www.example.com"
+    end
+  end
+
+# Disabling the global CSP
+  class PagesController &lt; ApplicationController
+    content_security_policy false, only: :index
+  end
+</code></pre>
+
+<br/>
+
+
+<p>References: <a href="https://guides.rubyonrails.org/5_2_release_notes.html">https://guides.rubyonrails.org/5_2_release_notes.html</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[What Is New in Rails 5]]></title>
@@ -313,66 +420,6 @@ version then ruby 1.9.3. Major developments are below &ndash;</p>
 <h3>Models Concerns</h3>
 
 <h3>vendor/plugins and Ruby 1.9.3 Lesser Banned!</h3>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rails 4 - ActiveSupport::Concern]]></title>
-    <link href="http://vishnuatrai.in/blog/2013/06/24/rails-4-activesupport-concern/"/>
-    <updated>2013-06-24T18:00:23+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2013/06/24/rails-4-activesupport-concern</id>
-    <content type="html"><![CDATA[<p>Rails 4 ActiveSupport::Concern is a very cool feature to organize your module in such a way
-that when you include module in a class you don&rsquo;t need to write extra callbacks to extend or
-include methods in your class. This feature is a great way to keep your code organized and DRY. This handles module dependencies also.</p>
-
-<!--more-->
-
-
-<p>You just need to require activesupport/concern and need to extend your module with ActiveSupport::Concern.
-When you include your module in a class, included block will be executed with in class
-context, ClassMethods block will be added to class itself and methods inside will become
-class methods, other methods outside included and ClassMethods block will be included as
-instance methods. eg.</p>
-
-<pre><code>module Commentable
-  extend ActiveSupport::Concern
-
-  included do         # This block will be executed within class itself
-    has_many :comments, as: :commentable, dependent: :destroy
-    scope :with_comments, -&gt;{ joins(:comments) }
-  end 
-
-  module ClassMethods # Methods within this black will be added to class methods
-    def comment_search(params)
-      .....
-    end
-  end
-
-  def comment_titles  # This method will be added to instance methods
-    comments.map(&amp;:title) 
-  end      
-  def comment_users   # This method will be added to instance methods
-    comments.map(&amp;:username)
-  end
-
-end
-</code></pre>
-
-<p>This should be your module structure and when you include your module in class it will work.
-No method will break. eg.</p>
-
-<pre><code>Class Post
-  include Commentable
-end
-
-Post.with_comments  
-Post.comment_search({}) 
-
-p = Post.find(1)
-p.comments
-p.comment_titles
-p.comment_users
-</code></pre>
 ]]></content>
   </entry>
   

@@ -1,0 +1,326 @@
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>What is new in Rails 5.2 - @vishnuatrai</title>
+	<meta name="author" content="vishnuatrai.in">
+
+	
+	<meta name="description" content="What is new in Rails 5.2">
+	<meta name="keywords" content="Rails 5.2, Rails, RoR, Ruby on Rails">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="@vishnuatrai" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://vishnuatrai.in/blog/2018/01/20/what-is-new-in-rails-5-dot-2/">
+  <link href="/favicon.gif" rel="shortcut icon" type="image/x-icon" >
+  <link rel="icon" href="/favicon.gif" type="image/x-icon">
+
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+	<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><nav id="main-nav"><ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/about">About</a></li>
+  <li><a onclick="javascript:void(0);" id="search-blog-lnk" style='cursor:move;'>Search</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+</nav>
+<div class="profile-container">
+  <div class="profilepic">
+    <script src="/javascripts/md5.js"></script>
+    <script type="text/javascript">
+$(function(){
+  $('.profilepic').append("<img src='http://www.gravatar.com/avatar/" + MD5("vishnu.atrai@gmail.com") + "?s=160' alt='Profile Picture' style='width: 160px;' />");
+});
+    </script>
+  </div>
+  <hgroup>
+  <h1 class="site-title"><a href="/">@vishnuatrai</a></h1>
+  
+  <p class="site-subtitle">Java, Spring Boot, Ruby on Rails contributor developer</p>
+  
+  </hgroup>
+  
+<hgroup>
+  <nav id="sub-nav">
+    <div class="social" style="margin-bottom:60px; margin-right:0px;">
+        
+        
+
+      
+        <a class="twitter" href="http://twitter.com/vishnuatrai" title="Twitter">Twitter</a>
+      
+      
+        <a class="github" href="https://github.com/vishnuatrai" title="GitHub">GitHub</a>
+      
+      
+      
+        <a class="linkedin" href="http://www.linkedin.com/in/vishnuatrai">LinkedIn</a>
+      
+      
+      
+      
+      
+        <a class="rss" href="/atom.xml" title="RSS" target='_blank'>RSS</a>
+      
+    </div>  
+  </nav>
+</hgroup>
+
+<hgroup>
+ <p class="site-subtitle" style="font-size:10px;">
+  Copyright &copy; 2020 - vishnuatrai.in 
+  <br />
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+ </p>
+ </hgroup>
+
+
+</div>
+</header>
+			</div>
+		</div>
+		<div class="mid-col">
+			
+				
+			
+      <div class="mid-col-container">
+        <div id="bloag-search" style="display:none;">
+          <gcse:search></gcse:search>
+        </div>
+				<div id="content" class="article-inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  
+	<h1 class="title" itemprop="name">What Is New in Rails 5.2</h1>
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+  <div class="post-date"><time datetime="2018-01-20T16:02:51+05:30" data-updated="true" itemprop="datePublished">Jan 20<span>th</span>, 2018</time></div>
+	<div class="entry-content" itemprop="articleBody"><h3>Active Storage</h3>
+
+<p>Active Storage supports modern approach for file uploading to Amazon S3, Google Cloud Storage, Microsoft Azure Cloud file storage. It will also provide references to active record database tables <code>active_storage_blobs</code> and <code>active_storage_attachments</code>. <code>rails active_storage:install</code> will install initial setup for active storage.<!--more-->Configure and setup <code>config/storage.yml</code> cloud credentials and storage buckets.</p>
+
+<pre><code>#config/storage.yml
+local:
+  service: Disk
+  root: &lt;%= Rails.root.join("storage") %&gt;
+test:
+  service: Disk
+  root: &lt;%= Rails.root.join("tmp/storage") %&gt;
+amazon:
+  service: S3
+  access_key_id: ""
+  secret_access_key: ""
+  bucket: ""
+  region: ""
+</code></pre>
+
+<h3>Redis Cache Store</h3>
+
+<p>Rails 5.2 ships with built-in Redis cache store. The Redis cache store takes advantage of Redis support for automatic eviction when it reaches max memory, allowing it to behave much like a Memcached cache server.</p>
+
+<p>Finally, add the configuration in the relevant <code>config/environments/*.rb</code> file:</p>
+
+<pre><code>config.cache_store = :redis_cache_store, { url: 'redis://redis-server:6379' }
+</code></pre>
+
+<h3>HTTP/2 Early Hints</h3>
+
+<p>This means we can automatically instruct the web server to send required style sheet and JavaScript assets early. Which means faster full page delivery.</p>
+
+<p>To start the server with Early Hints enabled pass <code>--early-hints</code> to <code>rails server</code></p>
+
+<h3>Credentials</h3>
+
+<p>Added <code>config/credentials.yml.enc</code> file to store production app secrets. It allows saving any authentication credentials for third-party services directly in repository encrypted with a key in the <code>config/master.key</code> file or the <code>RAILS_MASTER_KEY</code> environment variable</p>
+
+<p>To add new secret to credentials, first run rails secret to get a new secret. Then run rails credentials:edit to edit credentials, and add the secret. Running credentials:edit creates new credentials file and master key, if they did not already exist.</p>
+
+<p>By default, this file contains the application&rsquo;s <code>secret_key_base</code>, but it could also be used to store other credentials such as access keys for external APIs.</p>
+
+<p>The secrets kept in credentials file are accessible via <code>Rails.application.credentials</code>. For example, with the following decrypted <code>config/credentials.yml.enc</code></p>
+
+<p>  #config/credentials.yml.enc</p>
+
+<pre><code>secret_key_base:&lt;secret key base&gt;
+api_client_key: &lt;secret key1&gt;
+api_client_secret: &lt;secret key2&gt;
+</code></pre>
+
+<h3>Content Security Policy</h3>
+
+<p>Content security policy can be configured as a global default policy and then override it on a per-resource basis and even use lambdas to inject per-request values into the header such as account subdomains in a multi-tenant application.</p>
+
+<p>The HTTP <code>Content-Security-Policy</code> response header allows web site administrators to control resources the user agent is allowed to load for a given page. With a few exceptions, policies mostly involve specifying server origins and script endpoints.</p>
+
+<p>Example &ndash;
+  # config/initializers/content_security_policy.rb</p>
+
+<pre><code>Rails.application.config.content_security_policy do |policy|
+  policy.default_src :self, :https
+  policy.font_src    :self, :https, :data
+  policy.img_src     :self, :https, :data
+  policy.object_src  :none
+  policy.script_src  :self, :https
+  policy.style_src   :self, :https
+
+  # Specify URI for violation reports
+  policy.report_uri "/csp-violation-report-path"
+end
+</code></pre>
+
+<p>Example controller overrides:</p>
+
+<pre><code># Override policy inline
+  class PostsController &lt; ApplicationController
+    content_security_policy do |p|
+      p.upgrade_insecure_requests true
+    end
+  end
+
+# Using literal values
+  class PostsController &lt; ApplicationController
+    content_security_policy do |p|
+      p.base_uri "https://www.example.com"
+    end
+  end
+
+# Disabling the global CSP
+  class PagesController &lt; ApplicationController
+    content_security_policy false, only: :index
+  end
+</code></pre>
+
+<br/>
+
+
+<p>References: <a href="https://guides.rubyonrails.org/5_2_release_notes.html">https://guides.rubyonrails.org/5_2_release_notes.html</a></p>
+</div>
+
+</article>
+
+	<div class="share">
+    <div class="share_icon_group addthis_toolbox addthis_default_style addthis_32x32_style">
+        
+            <a class="share_icon addthis_button_preferred_1"></a>
+        
+        
+            <a class="share_icon addthis_button_preferred_2" fb:like:layout="button_count"></a>
+        
+        
+        <a class="share_icon addthis_button_preferred_4"></a>
+    </div>
+    <script type="text/javascript" src="http://s7.addthis.com/js/300/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<section id="comment">
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+			</div>
+			<footer id="footer" class="inner">
+</footer>
+			<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'cutthecuttingedge';
+      
+        
+
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://vishnuatrai.in/blog/2018/01/20/what-is-new-in-rails-5-dot-2/';
+
+        var disqus_url = 'http://vishnuatrai.in/blog/2018/01/20/what-is-new-in-rails-5-dot-2/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-18733388-1']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    
+    (function() {
+      var cx = '003479435450341944083:wkvxmvwzl1m';
+      var gcse = document.createElement('script');
+      gcse.type = 'text/javascript';
+      gcse.async = true;
+      gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+      var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(gcse, s);
+    })();
+    $(document).ready(function(){
+      $('#search-blog-lnk').click(function(e){ 
+         $('#bloag-search').toggle(); 
+         $('#bloag-search').css( {'top':e.pageY-50,'left': (e.pageX), 'position':'absolute', 'border':'1px solid black', 'padding':'0px'} );
+      });
+
+      $('#bloag-search').css('z-index','10000');
+      $('#content').click(function(){  $('#bloag-search').hide();  });
+      $("#bloag-search").on('click', '.gsc-clear-button', 
+        function(){ $('#bloag-search').hide();
+      });
+
+    });
+  </script>
+
+
+
+
+		</div>
+	</div>
+</body>
+</html>
