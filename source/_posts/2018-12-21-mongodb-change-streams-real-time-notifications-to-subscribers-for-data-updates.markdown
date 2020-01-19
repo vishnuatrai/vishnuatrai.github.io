@@ -11,3 +11,5 @@ categories:
   ChangeStreams
   DevOps
 ---
+
+Change Stream is a extended feature based on mongoDB oplog(Operations Log) technology.
