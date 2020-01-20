@@ -53,4 +53,4 @@ MongoDB changestream (operation logs, create, update, delete) will be as data so
 2. ***Present a Defined API***, API syntax takes advantage of the established MongoDB query language, and are independent of the underlying oplog format.
 3. ***Total Ordering***, subscriber applications will always receive changes in the order they were applied to the database.
 4. ***Filters***, Changes can be filtered to provide relevant and targeted changes to listening applications. As an example, filters can be on operation type or fields within the document.
-5. ***Power of aggregation***, define change streams on any collection just like any other normal aggregation operators using $changeStream operator and watch() method
+5. ***Power of aggregation***, define change streams on any collection just like any other normal aggregation operators using `$changeStream` operator and `watch()` method
