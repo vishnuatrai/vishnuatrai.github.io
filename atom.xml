@@ -4,7 +4,7 @@
   <title><![CDATA[@vishnuatrai]]></title>
   <link href="http://vishnuatrai.in/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.in/"/>
-  <updated>2020-01-20T11:15:01+05:30</updated>
+  <updated>2020-01-20T11:16:26+05:30</updated>
   <id>http://vishnuatrai.in/</id>
   <author>
     <name><![CDATA[vishnuatrai.in]]></name>
@@ -348,7 +348,7 @@ collection.watch().forEach(printBlock);
 <li><strong><em>Present a Defined API</em></strong>, API syntax takes advantage of the established MongoDB query language, and are independent of the underlying oplog format.</li>
 <li><strong><em>Total Ordering</em></strong>, subscriber applications will always receive changes in the order they were applied to the database.</li>
 <li><strong><em>Filters</em></strong>, Changes can be filtered to provide relevant and targeted changes to listening applications. As an example, filters can be on operation type or fields within the document.</li>
-<li><strong><em>Power of aggregation</em></strong>, define change streams on any collection just like any other normal aggregation operators using $changeStream operator and watch() method</li>
+<li><strong><em>Power of aggregation</em></strong>, define change streams on any collection just like any other normal aggregation operators using <code>$changeStream</code> operator and <code>watch()</code> method</li>
 </ol>
 
 ]]></content>
