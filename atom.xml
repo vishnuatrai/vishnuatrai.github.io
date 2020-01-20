@@ -4,7 +4,7 @@
   <title><![CDATA[@vishnuatrai]]></title>
   <link href="http://vishnuatrai.in/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.in/"/>
-  <updated>2020-01-15T22:19:32+05:30</updated>
+  <updated>2020-01-20T11:15:01+05:30</updated>
   <id>http://vishnuatrai.in/</id>
   <author>
     <name><![CDATA[vishnuatrai.in]]></name>
@@ -293,6 +293,64 @@ stats_mysql_query_digest
 <p>github</p>
 
 <p><a href="https://github.com/sysown/proxysql">https://github.com/sysown/proxysql</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[MongoDB Change Streams - Real time oplog notifications]]></title>
+    <link href="http://vishnuatrai.in/blog/2018/07/05/mongodb-change-streams-real-time-notifications-to-subscribers-for-data-updates/"/>
+    <updated>2018-07-05T17:19:31+05:30</updated>
+    <id>http://vishnuatrai.in/blog/2018/07/05/mongodb-change-streams-real-time-notifications-to-subscribers-for-data-updates</id>
+    <content type="html"><![CDATA[<p>Change Stream is easiest way to subscribe database changes realtime, its based on mongoDB oplog(Operation Log) technology. A ideal use case would be ETL operational data to a reporting and visualization data store via kafka data pipeline.</p>
+
+<h3>MongoDB real time data sync technologies</h3>
+
+<ol>
+<li>mongodb oplog technology based changestream enable applications to stream real-time data changes</li>
+<li>changestream can notify your application of all writes to documents (including deletes) without polling.</li>
+<li>changestream advantages over oplog</li>
+</ol>
+
+
+<h2>Use case</h2>
+
+<p>MongoDB changestream (operation logs, create, update, delete) will be as data source. Java springboot based application to subscribe changes and push to kafka topic. Kafka data pipeline can refine data, transform, filter and sync in to a big data storage for reporting, visualization or many other purpose.</p>
+
+<pre><code>###Java sample
+import com.mongodb.Block;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.changestream.FullDocument;
+import com.mongodb.client.model.changestream.ChangeStreamDocument;
+import org.bson.Document;
+
+
+MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017,localhost:27018,localhost:27019"));
+MongoDatabase database = mongoClient.getDatabase("test");
+MongoCollection&lt;Document&gt; collection = database.getCollection("restaurants");
+
+Block&lt;ChangeStreamDocument&lt;Document&gt;&gt; printBlock = new Block&lt;&gt;() {
+@Override
+    public void apply(final ChangeStreamDocument&lt;Document&gt; changeStreamDocument) {
+        System.out.println(changeStreamDocument);
+    }
+};
+
+collection.watch().forEach(printBlock);
+</code></pre>
+
+<h3>changestream advantages over oplog</h3>
+
+<ol>
+<li><strong><em>Use access control</em></strong> (no admin user required to access changestream)</li>
+<li><strong><em>Present a Defined API</em></strong>, API syntax takes advantage of the established MongoDB query language, and are independent of the underlying oplog format.</li>
+<li><strong><em>Total Ordering</em></strong>, subscriber applications will always receive changes in the order they were applied to the database.</li>
+<li><strong><em>Filters</em></strong>, Changes can be filtered to provide relevant and targeted changes to listening applications. As an example, filters can be on operation type or fields within the document.</li>
+<li><strong><em>Power of aggregation</em></strong>, define change streams on any collection just like any other normal aggregation operators using $changeStream operator and watch() method</li>
+</ol>
+
 ]]></content>
   </entry>
   
@@ -1252,36 +1310,6 @@ p.comments
 p.comment_titles
 p.comment_users
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ruby 2.0.0 Changelog]]></title>
-    <link href="http://vishnuatrai.in/blog/2013/04/05/ruby-2-dot-0-0-changelog/"/>
-    <updated>2013-04-05T12:43:25+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2013/04/05/ruby-2-dot-0-0-changelog</id>
-    <content type="html"><![CDATA[<p>Ruby 2.0 has been released now question is, what’s new in ruby 2.0. Below list of new features
-introduced in ruby 2.0.</p>
-
-<h3>1) Keyword arguments <!--more--></h3>
-
-<h3>2) Module#prepend</h3>
-
-<h3>3) Enumerable#lazy</h3>
-
-<h3>4) Refinements</h3>
-
-<h3>5) %i and %I symbol array literal</h3>
-
-<h3>6) Array#bsearch and Range#bsearch</h3>
-
-<h3>7) Garbage collection improvements</h3>
-
-<h3>8) Default UTF-8 encoding</h3>
-
-<h3>9) <strong>DIR</strong> Keyword</h3>
-
-<h3>10) TracePoint</h3>
 ]]></content>
   </entry>
   

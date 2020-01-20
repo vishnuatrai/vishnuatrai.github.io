@@ -112,6 +112,67 @@ $(function(){
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name"><a href="/blog/2018/07/05/mongodb-change-streams-real-time-notifications-to-subscribers-for-data-updates/" itemprop="url">MongoDB Change Streams - Real Time Oplog Notifications</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Change Stream is easiest way to subscribe database changes realtime, its based on mongoDB oplog(Operation Log) technology. A ideal use case would be ETL operational data to a reporting and visualization data store via kafka data pipeline.</p>
+
+<h3>MongoDB real time data sync technologies</h3>
+
+<ol>
+<li>mongodb oplog technology based changestream enable applications to stream real-time data changes</li>
+<li>changestream can notify your application of all writes to documents (including deletes) without polling.</li>
+<li>changestream advantages over oplog</li>
+</ol>
+
+
+<h2>Use case</h2>
+
+<p>MongoDB changestream (operation logs, create, update, delete) will be as data source. Java springboot based application to subscribe changes and push to kafka topic. Kafka data pipeline can refine data, transform, filter and sync in to a big data storage for reporting, visualization or many other purpose.</p>
+
+<pre><code>###Java sample
+import com.mongodb.Block;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.changestream.FullDocument;
+import com.mongodb.client.model.changestream.ChangeStreamDocument;
+import org.bson.Document;
+
+
+MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017,localhost:27018,localhost:27019"));
+MongoDatabase database = mongoClient.getDatabase("test");
+MongoCollection&lt;Document&gt; collection = database.getCollection("restaurants");
+
+Block&lt;ChangeStreamDocument&lt;Document&gt;&gt; printBlock = new Block&lt;&gt;() {
+@Override
+    public void apply(final ChangeStreamDocument&lt;Document&gt; changeStreamDocument) {
+        System.out.println(changeStreamDocument);
+    }
+};
+
+collection.watch().forEach(printBlock);
+</code></pre>
+
+<h3>changestream advantages over oplog</h3>
+
+<ol>
+<li><strong><em>Use access control</em></strong> (no admin user required to access changestream)</li>
+<li><strong><em>Present a Defined API</em></strong>, API syntax takes advantage of the established MongoDB query language, and are independent of the underlying oplog format.</li>
+<li><strong><em>Total Ordering</em></strong>, subscriber applications will always receive changes in the order they were applied to the database.</li>
+<li><strong><em>Filters</em></strong>, Changes can be filtered to provide relevant and targeted changes to listening applications. As an example, filters can be on operation type or fields within the document.</li>
+<li><strong><em>Power of aggregation</em></strong>, define change streams on any collection just like any other normal aggregation operators using $changeStream operator and watch() method</li>
+</ol>
+
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
 	<h1 class="title" itemprop="name"><a href="/blog/2018/01/20/what-is-new-in-rails-5-dot-2/" itemprop="url">What Is New in Rails 5.2</a></h1>
 	<div class="entry-content" itemprop="articleBody">
 		<h3>Active Storage</h3>
@@ -156,21 +217,6 @@ $(function(){
 <p>Active Job is a framework for declaring jobs and making them run on a variety of queueing backends. These jobs can be everything from regularly scheduled clean-ups, to billing charges, to mailings. Anything that can be chopped up into small units of work and run in parallel.
 		
 		<a href="/blog/2015/01/15/what-is-new-in-rails-4-dot-2/" class="more-link">Read on &rarr;</a>
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<h1 class="title" itemprop="name"><a href="/blog/2014/12/30/ruby-2-dot-2-features/" itemprop="url">Ruby 2.2.0 Features</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<h3>1) Incremental and Symbol GC (RIncGC)</h3>
-
-<p>Ruby 2.2.0 release includes several grabage collection (GC) improvements. Symbols are now garbage collectable.</p>
-
-<p>Following the introduction of generational garbage collection in Ruby 2.1.0, which markedly improved the GC throughput, Ruby maintainers continue to introduce important changes in this space. The generational GC (RGenGC) classifies objects into generations, on the assumption that most objects die young. 
-		
-		<a href="/blog/2014/12/30/ruby-2-dot-2-features/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>
