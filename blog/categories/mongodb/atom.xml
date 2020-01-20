@@ -4,7 +4,7 @@
   <title><![CDATA[Category: MongoDB | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.in/blog/categories/mongodb/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.in/"/>
-  <updated>2020-01-20T11:16:26+05:30</updated>
+  <updated>2020-01-20T12:40:13+05:30</updated>
   <id>http://vishnuatrai.in/</id>
   <author>
     <name><![CDATA[vishnuatrai.in]]></name>
@@ -18,7 +18,7 @@
     <link href="http://vishnuatrai.in/blog/2018/07/05/mongodb-change-streams-real-time-notifications-to-subscribers-for-data-updates/"/>
     <updated>2018-07-05T17:19:31+05:30</updated>
     <id>http://vishnuatrai.in/blog/2018/07/05/mongodb-change-streams-real-time-notifications-to-subscribers-for-data-updates</id>
-    <content type="html"><![CDATA[<p>Change Stream is easiest way to subscribe database changes realtime, its based on mongoDB oplog(Operation Log) technology. A ideal use case would be ETL operational data to a reporting and visualization data store via kafka data pipeline.</p>
+    <content type="html"><![CDATA[<p>Change Stream is easiest way to subscribe database changes realtime, its based on mongoDB oplog(Operation Log) technology. An ideal use case would be ETL operational data to a reporting and visualization data store via kafka data pipeline.</p>
 
 <h3>MongoDB real time data sync technologies</h3>
 
