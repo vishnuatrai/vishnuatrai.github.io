@@ -12,7 +12,7 @@ categories:
   DevOps
 ---
 
-Change Stream is easiest way to subscribe database changes realtime, its based on mongoDB oplog(Operation Log) technology. A ideal use case would be ETL operational data to a reporting and visualization data store via kafka data pipeline.
+Change Stream is easiest way to subscribe database changes realtime, its based on mongoDB oplog(Operation Log) technology. An ideal use case would be ETL operational data to a reporting and visualization data store via kafka data pipeline.
 
 ###MongoDB real time data sync technologies
 1. mongodb oplog technology based changestream enable applications to stream real-time data changes
