@@ -4,9 +4,10 @@ title: "MySQL - Encryption at rest"
 date: 2020-01-11 18:20:46 +0530
 comments: true
 description: MySQL - Encryption at rest
-keywords: MySQL, Data Encryption at rest, DevOps
+keywords: MySQL, MySQL DEaR, Data Encryption at rest, DevOps
 categories:
   MySQL
+  MySQL&nbsp;DEaR
   Data&nbsp;Encryption&nbsp;at&nbsp;rest
   DevOps
 ---
