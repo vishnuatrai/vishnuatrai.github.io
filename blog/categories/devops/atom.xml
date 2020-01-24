@@ -4,7 +4,7 @@
   <title><![CDATA[Category: DevOps | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.in/blog/categories/devops/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.in/"/>
-  <updated>2020-01-20T12:40:13+05:30</updated>
+  <updated>2020-01-24T17:25:55+05:30</updated>
   <id>http://vishnuatrai.in/</id>
   <author>
     <name><![CDATA[vishnuatrai.in]]></name>
@@ -12,6 +12,79 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[MySQL - Encryption at Rest]]></title>
+    <link href="http://vishnuatrai.in/blog/2020/01/11/mysql-encryption-at-rest/"/>
+    <updated>2020-01-11T18:20:46+05:30</updated>
+    <id>http://vishnuatrai.in/blog/2020/01/11/mysql-encryption-at-rest</id>
+    <content type="html"><![CDATA[<p>Without encryption of data at rest, system role with access to file system can view data even without proper database permissions. A proper authentication can be used to protect data used by an application but data sitting in file system has been area of risk.</p>
+
+<p>With encryption at rest, it has been possible to protect data in transit when moving over the network. Data at Rest Encryption is a requirement for HIPAA, PCI regulations. <!--more--></p>
+
+<h3>Data Files at Risk</h3>
+
+<p>When insert queries run to store data in tables, the data will be stored in respective <code>dataDir</code> ie <code>/usr/local/var/mysql</code>. A system user that has filesystem access can use <code>strings</code> or <code>xxd</code> commands to view content in data files, bin logs or redo logs.</p>
+
+<p>One way to avoid this risk either not to store sensitive data in database or encrypt sensitive data columns or encrypt the file system itself.</p>
+
+<p>Other way is to implement Data encryption at rest.</p>
+
+<h3>Implement Data Encryption at rest, MySQL</h3>
+
+<p>Frist step to create a key using <code>openssl</code> command</p>
+
+<pre><code>openssl enc -aes-256-cbc -md sha1 -k &lt;enc password or passphase&gt; -in keys.txt -out mysql.enc
+</code></pre>
+
+<p>Second, edit <code>/etc/my.cnf</code> and provide encryption configurations</p>
+
+<pre><code>plugin-load-add=file_key_management.so
+file-key-management-filename=/var/lib/mysql/keys.txt
+innodb-encrypt-tables
+innodb-encrypt-log
+encrypt-binlog
+</code></pre>
+
+<p><code>plugin-load-add</code> option will load the encryption plugin on mysql start.<br/>
+<code>file-key-management-filename</code> option to provide reference to encryption key file.<br/>
+<code>innodb-encrypt-tables</code> option will encrypt tables by default.<br/>
+<code>innodb-encrypt-log</code> option will encrypt redo logs by default.<br/>
+<code>encrypt-binlog</code> option will encrypt binlogs.</p>
+
+<p>Third, restart mysql</p>
+
+<pre><code>service mysql restart
+</code></pre>
+
+<p>Fourth, enable the same options on the replication slaves</p>
+
+<p>Fifth, verify tables are encrypted using below mysql query</p>
+
+<pre><code>select * from information_schema.INNODB_TABLESPACES_ENCRYPTION where ENCRYPTION_SCHEME=1;
+</code></pre>
+
+<br/>
+
+
+<h3>innodb-encrypt-tables modes</h3>
+
+<p>Three ways to encrypt tables<br/></p>
+
+<ol>
+<li><code>innodb-encrypt-tables</code> option in <code>my.cnf</code> will encrypt all tables unless table creation statement provided &ldquo;encrypted=no&rdquo; <br/></li>
+<li><code>innodb-encrypt-tables</code> option in <code>my.cnf</code> will encrypt all tables and will not allow table creation with &ldquo;encrypted=no&rdquo; <br/></li>
+<li><code>innodb-encrypt-tables</code> option is not provided in <code>my.cnf</code> but the plugin presents, it can explicitely encrypt a table by including &ldquo;encrypted=yes&rdquo; in table creation statement.<br/></li>
+</ol>
+
+
+<h3>Performance Overhead</h3>
+
+<p>~10% to ~20% performance overhead obeserved in previous MySQL deployments.</p>
+
+<p>Database-level encryption can be a better option than the filesystem-level encryption if the application can not be changed.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Dive Into Docker Image Layers]]></title>
@@ -174,125 +247,6 @@ and <strong>launch agents via ssh</strong> for linux agents</p>
 <p><img src="/images//posts/Jenkins3.png" alt="" /></p>
 
 <p>With above command agent is authorized and registered with jenkins master. Now agent is successfully configured and launched, which can be verified on master nodes. Jenkins master can delegate jobs to agent node.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[ProxySQL - MySQL High Availability Load Balancing]]></title>
-    <link href="http://vishnuatrai.in/blog/2018/11/12/proxysql-mysql-high-availability-load-balancing/"/>
-    <updated>2018-11-12T22:59:40+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2018/11/12/proxysql-mysql-high-availability-load-balancing</id>
-    <content type="html"><![CDATA[<h3>What is ProxySQL?</h3>
-
-<ul>
-<li>Lightweight Proxy layer for MySQL</li>
-<li>Its protocol aware that we put between application and database server</li>
-<li>Improve database operations <!--more--></li>
-<li>Understand and solve performance issues</li>
-<li>A proxy layer to shield the database</li>
-<li>Add high availability to database topology</li>
-</ul>
-
-
-<h3>Why ProxySQL/HAProxy?</h3>
-
-<p>ProxySQL provides below advantages if included in deployment stack</p>
-
-<ul>
-<li>Scalability
-
-<ul>
-<li>Connection Pooling and multiplexing</li>
-<li>Read/Write split</li>
-<li>Read/Write sharding</li>
-</ul>
-</li>
-<li>High Availability
-
-<ul>
-<li>Seamless failover</li>
-<li>Load balancing</li>
-<li>Cluster aware</li>
-</ul>
-</li>
-<li>Advance query and support
-
-<ul>
-<li>Query caching</li>
-<li>Query rewrite</li>
-<li>Query blocking</li>
-<li>Query mirroring</li>
-<li>Query throttling</li>
-<li>Query timeout</li>
-</ul>
-</li>
-<li>Manageability
-
-<ul>
-<li>Admin Utility</li>
-<li>Runtime reconfiguration</li>
-<li>Monitoring</li>
-</ul>
-</li>
-</ul>
-
-
-<h3>ProxySQL Configurations Options</h3>
-
-<pre><code>mysql_replication_hostgroups
-mysql_servers
-mysql_server_connect_log
-mysql_server_ping_log
-mysql_server_replication_lag_log
-mysql_server_read_only_log
-stats_mysql_connection_pool
-stats_mysql_commands_counters
-mysql_query_rules
-stats_mysql_query_digest
-</code></pre>
-
-<h3>Deploying with Kubernetes/Openshift &ndash; The Sidecar Pattern</h3>
-
-<p>We can deploy the <code>proxysql</code> image in same pod as application image but data base references we will need to provide as <code>localhost</code> or <code>127.0.0.1</code> and port will be <code>6033</code> (the default proxysql port). The application will connect to proxysql server and it will then redirect database queries to mysql database cluster.</p>
-
-<p>Openshift/kubernetes template spec &ndash;</p>
-
-<pre><code>spec:
- template:
-  spce:
-   volumes:
-    -
-   name: "proxysql-configiguration-file"
-     secret:
-      secretName: "proxysql-configuration"
-   containers:
-    -
-   name: "proxysql-service"
-     image: "docker.com/proxysql/proxysql:1.0"
-     ports:
-      -
-   containerPort: 6033
-       protocal: TCP
-   env:
-   resources:
-   volumeMounts:
-    -
-   name: "proxysql-configuration"
-     readOnly: true
-     mountPath: "/etc/prosysql-config"
-</code></pre>
-
-<h3>References</h3>
-
-<p><a href="https://www.proxysql.com/">https://www.proxysql.com/</a></p>
-
-<p>docker sandbox</p>
-
-<p><a href="https://github.com/vishnuatrai/MySQLSandbox">https://github.com/vishnuatrai/MySQLSandbox</a></p>
-
-<p>github</p>
-
-<p><a href="https://github.com/sysown/proxysql">https://github.com/sysown/proxysql</a></p>
 ]]></content>
   </entry>
   

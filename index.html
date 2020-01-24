@@ -112,6 +112,19 @@ $(function(){
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name"><a href="/blog/2020/01/11/mysql-encryption-at-rest/" itemprop="url">MySQL - Encryption at Rest</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Without encryption of data at rest, system role with access to file system can view data even without proper database permissions. A proper authentication can be used to protect data used by an application but data sitting in file system has been area of risk.</p>
+
+<p>With encryption at rest, it has been possible to protect data in transit when moving over the network. Data at Rest Encryption is a requirement for HIPAA, PCI regulations. 
+		
+		<a href="/blog/2020/01/11/mysql-encryption-at-rest/" class="more-link">Read on &rarr;</a>
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
 	<h1 class="title" itemprop="name"><a href="/blog/2019/12/26/dive-into-docker-image-layers/" itemprop="url">Dive Into Docker Image Layers</a></h1>
 	<div class="entry-content" itemprop="articleBody">
 		<p>I recently used a tool named <a href="https://github.com/wagoodman/dive"><code>dive</code></a> to explore docker images developed and maintained by teammates or opensourced docker images. I used to look into <code>Dockerfile</code> steps to explore image layes. <code>dive</code> brings cli-ui and using arrow and tab keys we can explore each layer in left pane while layer contents listed in right pane.
@@ -154,22 +167,6 @@ $(function(){
 		<p>If it is required to run Jenkins master in an isolated network and master should not be allowed to connected to its nodes(agents), we can use JNLP method to add agents to master to process jobs in distributed manner. In this scenario, its not desirable to have master connections with slave(agent) nodes but agent to master connections only required. 
 		
 		<a href="/blog/2019/04/15/jenkins-add-slave-nodes-as-jnlp-agents/" class="more-link">Read on &rarr;</a>
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<h1 class="title" itemprop="name"><a href="/blog/2018/11/12/proxysql-mysql-high-availability-load-balancing/" itemprop="url">ProxySQL - MySQL High Availability Load Balancing</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<h3>What is ProxySQL?</h3>
-
-<ul>
-<li>Lightweight Proxy layer for MySQL</li>
-<li>Its protocol aware that we put between application and database server</li>
-<li>Improve database operations 
-		
-		<a href="/blog/2018/11/12/proxysql-mysql-high-availability-load-balancing/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>

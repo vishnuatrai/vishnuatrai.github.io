@@ -4,7 +4,7 @@
   <title><![CDATA[@vishnuatrai]]></title>
   <link href="http://vishnuatrai.in/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.in/"/>
-  <updated>2020-01-20T12:40:13+05:30</updated>
+  <updated>2020-01-24T17:25:55+05:30</updated>
   <id>http://vishnuatrai.in/</id>
   <author>
     <name><![CDATA[vishnuatrai.in]]></name>
@@ -12,6 +12,79 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[MySQL - Encryption at rest]]></title>
+    <link href="http://vishnuatrai.in/blog/2020/01/11/mysql-encryption-at-rest/"/>
+    <updated>2020-01-11T18:20:46+05:30</updated>
+    <id>http://vishnuatrai.in/blog/2020/01/11/mysql-encryption-at-rest</id>
+    <content type="html"><![CDATA[<p>Without encryption of data at rest, system role with access to file system can view data even without proper database permissions. A proper authentication can be used to protect data used by an application but data sitting in file system has been area of risk.</p>
+
+<p>With encryption at rest, it has been possible to protect data in transit when moving over the network. Data at Rest Encryption is a requirement for HIPAA, PCI regulations. <!--more--></p>
+
+<h3>Data Files at Risk</h3>
+
+<p>When insert queries run to store data in tables, the data will be stored in respective <code>dataDir</code> ie <code>/usr/local/var/mysql</code>. A system user that has filesystem access can use <code>strings</code> or <code>xxd</code> commands to view content in data files, bin logs or redo logs.</p>
+
+<p>One way to avoid this risk either not to store sensitive data in database or encrypt sensitive data columns or encrypt the file system itself.</p>
+
+<p>Other way is to implement Data encryption at rest.</p>
+
+<h3>Implement Data Encryption at rest, MySQL</h3>
+
+<p>Frist step to create a key using <code>openssl</code> command</p>
+
+<pre><code>openssl enc -aes-256-cbc -md sha1 -k &lt;enc password or passphase&gt; -in keys.txt -out mysql.enc
+</code></pre>
+
+<p>Second, edit <code>/etc/my.cnf</code> and provide encryption configurations</p>
+
+<pre><code>plugin-load-add=file_key_management.so
+file-key-management-filename=/var/lib/mysql/keys.txt
+innodb-encrypt-tables
+innodb-encrypt-log
+encrypt-binlog
+</code></pre>
+
+<p><code>plugin-load-add</code> option will load the encryption plugin on mysql start.<br/>
+<code>file-key-management-filename</code> option to provide reference to encryption key file.<br/>
+<code>innodb-encrypt-tables</code> option will encrypt tables by default.<br/>
+<code>innodb-encrypt-log</code> option will encrypt redo logs by default.<br/>
+<code>encrypt-binlog</code> option will encrypt binlogs.</p>
+
+<p>Third, restart mysql</p>
+
+<pre><code>service mysql restart
+</code></pre>
+
+<p>Fourth, enable the same options on the replication slaves</p>
+
+<p>Fifth, verify tables are encrypted using below mysql query</p>
+
+<pre><code>select * from information_schema.INNODB_TABLESPACES_ENCRYPTION where ENCRYPTION_SCHEME=1;
+</code></pre>
+
+<br/>
+
+
+<h3>innodb-encrypt-tables modes</h3>
+
+<p>Three ways to encrypt tables<br/></p>
+
+<ol>
+<li><code>innodb-encrypt-tables</code> option in <code>my.cnf</code> will encrypt all tables unless table creation statement provided &ldquo;encrypted=no&rdquo; <br/></li>
+<li><code>innodb-encrypt-tables</code> option in <code>my.cnf</code> will encrypt all tables and will not allow table creation with &ldquo;encrypted=no&rdquo; <br/></li>
+<li><code>innodb-encrypt-tables</code> option is not provided in <code>my.cnf</code> but the plugin presents, it can explicitely encrypt a table by including &ldquo;encrypted=yes&rdquo; in table creation statement.<br/></li>
+</ol>
+
+
+<h3>Performance Overhead</h3>
+
+<p>~10% to ~20% performance overhead obeserved in previous MySQL deployments.</p>
+
+<p>Database-level encryption can be a better option than the filesystem-level encryption if the application can not be changed.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Dive into Docker Image Layers]]></title>
@@ -1250,66 +1323,6 @@ version then ruby 1.9.3. Major developments are below &ndash;</p>
 <h3>Models Concerns</h3>
 
 <h3>vendor/plugins and Ruby 1.9.3 Lesser Banned!</h3>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Rails 4 - ActiveSupport::Concern]]></title>
-    <link href="http://vishnuatrai.in/blog/2013/06/24/rails-4-activesupport-concern/"/>
-    <updated>2013-06-24T18:00:23+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2013/06/24/rails-4-activesupport-concern</id>
-    <content type="html"><![CDATA[<p>Rails 4 ActiveSupport::Concern is a very cool feature to organize your module in such a way
-that when you include module in a class you don&rsquo;t need to write extra callbacks to extend or
-include methods in your class. This feature is a great way to keep your code organized and DRY. This handles module dependencies also.</p>
-
-<!--more-->
-
-
-<p>You just need to require activesupport/concern and need to extend your module with ActiveSupport::Concern.
-When you include your module in a class, included block will be executed with in class
-context, ClassMethods block will be added to class itself and methods inside will become
-class methods, other methods outside included and ClassMethods block will be included as
-instance methods. eg.</p>
-
-<pre><code>module Commentable
-  extend ActiveSupport::Concern
-
-  included do         # This block will be executed within class itself
-    has_many :comments, as: :commentable, dependent: :destroy
-    scope :with_comments, -&gt;{ joins(:comments) }
-  end 
-
-  module ClassMethods # Methods within this black will be added to class methods
-    def comment_search(params)
-      .....
-    end
-  end
-
-  def comment_titles  # This method will be added to instance methods
-    comments.map(&amp;:title) 
-  end      
-  def comment_users   # This method will be added to instance methods
-    comments.map(&amp;:username)
-  end
-
-end
-</code></pre>
-
-<p>This should be your module structure and when you include your module in class it will work.
-No method will break. eg.</p>
-
-<pre><code>Class Post
-  include Commentable
-end
-
-Post.with_comments  
-Post.comment_search({}) 
-
-p = Post.find(1)
-p.comments
-p.comment_titles
-p.comment_users
-</code></pre>
 ]]></content>
   </entry>
   
