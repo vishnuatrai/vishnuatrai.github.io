@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: MongoDB | @vishnuatrai]]></title>
+  <title><![CDATA[Category: MongoDb | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.in/blog/categories/mongodb/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.in/"/>
-  <updated>2020-01-24T17:25:55+05:30</updated>
+  <updated>2020-01-24T20:30:50+05:30</updated>
   <id>http://vishnuatrai.in/</id>
   <author>
     <name><![CDATA[vishnuatrai.in]]></name>
@@ -14,60 +14,49 @@
 
   
   <entry>
-    <title type="html"><![CDATA[MongoDB Change Streams - Real Time Oplog Notifications]]></title>
-    <link href="http://vishnuatrai.in/blog/2018/07/05/mongodb-change-streams-real-time-notifications-to-subscribers-for-data-updates/"/>
-    <updated>2018-07-05T17:19:31+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2018/07/05/mongodb-change-streams-real-time-notifications-to-subscribers-for-data-updates</id>
-    <content type="html"><![CDATA[<p>Change Stream is easiest way to subscribe database changes realtime, its based on mongoDB oplog(Operation Log) technology. An ideal use case would be ETL operational data to a reporting and visualization data store via kafka data pipeline.</p>
+    <title type="html"><![CDATA[MongoDB v/s CouchDB]]></title>
+    <link href="http://vishnuatrai.in/blog/2011/01/12/mongodb-vs-couchdb/"/>
+    <updated>2011-01-12T22:44:11+05:30</updated>
+    <id>http://vishnuatrai.in/blog/2011/01/12/mongodb-vs-couchdb</id>
+    <content type="html"><![CDATA[<p>Both MongoDB and CouchDB are document oriented databases with JSON style object data storage.  They have their pros and cons in different situations.<!--more--></p>
 
-<h3>MongoDB real time data sync technologies</h3>
+<h4>1) Map Reduce</h4>
 
-<ol>
-<li>mongodb oplog technology based changestream enable applications to stream real-time data changes</li>
-<li>changestream can notify your application of all writes to documents (including deletes) without polling.</li>
-<li>changestream advantages over oplog</li>
-</ol>
+<p>Mongo uses map reduce for data processing jobs, Couch uses map reduce for build all views.</p>
 
+<h4>2) Atomicity</h4>
 
-<h2>Use case</h2>
+<p>Both support concurrent modifications of single documents.  Both forego complex transactions involving large numbers of objects.</p>
 
-<p>MongoDB changestream (operation logs, create, update, delete) will be as data source. Java springboot based application to subscribe changes and push to kafka topic. Kafka data pipeline can refine data, transform, filter and sync in to a big data storage for reporting, visualization or many other purpose.</p>
+<h4>3) Interface</h4>
 
-<pre><code>###Java sample
-import com.mongodb.Block;
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.model.changestream.FullDocument;
-import com.mongodb.client.model.changestream.ChangeStreamDocument;
-import org.bson.Document;
+<p>Couch uses REST as its interface to the database. Mongo relies on language specific database drivers.</p>
 
+<h4>4) Query Expression</h4>
 
-MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017,localhost:27018,localhost:27019"));
-MongoDatabase database = mongoClient.getDatabase("test");
-MongoCollection&lt;Document&gt; collection = database.getCollection("restaurants");
+<p>Couch uses index building schemes to generate indexes those support particular queries. Mongo uses traditional dynamic queries and query optimizer to determine whether index exists or not.</p>
 
-Block&lt;ChangeStreamDocument&lt;Document&gt;&gt; printBlock = new Block&lt;&gt;() {
-@Override
-    public void apply(final ChangeStreamDocument&lt;Document&gt; changeStreamDocument) {
-        System.out.println(changeStreamDocument);
-    }
-};
+<h4>5) Horizontal Scalability</h4>
 
-collection.watch().forEach(printBlock);
+<p>Couch uses replication as a way to scale, instead Mongo uses sharding as a way to scale that is similar to Google&rsquo;s BigTable.</p>
+
+<h4>6) Storage strategy</h4>
+
+<p>Couch MVCC based, Mongo uses traditional approach and updates an object in place when possible.</p>
+
+<h3>Use cases</h3>
+
+<p>Couch is very good for certain classes of problems:
+   problems which need intense versioning; problems with offline databases that resync later;
+   problems where you want a large amount of master-master replication happening.</p>
+
+<p>Mongo is very good for different kind of problems:</p>
+
+<pre><code>problems requiring high update rates of objects are a great fit; compaction is not necessary.
 </code></pre>
 
-<h3>changestream advantages over oplog</h3>
-
-<ol>
-<li><strong><em>Use access control</em></strong> (no admin user required to access changestream)</li>
-<li><strong><em>Present a Defined API</em></strong>, API syntax takes advantage of the established MongoDB query language, and are independent of the underlying oplog format.</li>
-<li><strong><em>Total Ordering</em></strong>, subscriber applications will always receive changes in the order they were applied to the database.</li>
-<li><strong><em>Filters</em></strong>, Changes can be filtered to provide relevant and targeted changes to listening applications. As an example, filters can be on operation type or fields within the document.</li>
-<li><strong><em>Power of aggregation</em></strong>, define change streams on any collection just like any other normal aggregation operators using <code>$changeStream</code> operator and <code>watch()</code> method</li>
-</ol>
-
+<p>Mongo is more oriented towards master/slave and auto failover configurations than to complex master-master setups.   <br/>
+With MongoDB you should see high write performance, especially for updates.</p>
 ]]></content>
   </entry>
   

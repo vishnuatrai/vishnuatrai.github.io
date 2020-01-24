@@ -135,54 +135,9 @@ $(function(){
 <h3>MongoDB real time data sync technologies</h3>
 
 <ol>
-<li>mongodb oplog technology based changestream enable applications to stream real-time data changes</li>
-<li>changestream can notify your application of all writes to documents (including deletes) without polling.</li>
-<li>changestream advantages over oplog</li>
-</ol>
-
-
-<h2>Use case</h2>
-
-<p>MongoDB changestream (operation logs, create, update, delete) will be as data source. Java springboot based application to subscribe changes and push to kafka topic. Kafka data pipeline can refine data, transform, filter and sync in to a big data storage for reporting, visualization or many other purpose.</p>
-
-<pre><code>###Java sample
-import com.mongodb.Block;
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import com.mongodb.client.model.changestream.FullDocument;
-import com.mongodb.client.model.changestream.ChangeStreamDocument;
-import org.bson.Document;
-
-
-MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017,localhost:27018,localhost:27019"));
-MongoDatabase database = mongoClient.getDatabase("test");
-MongoCollection&lt;Document&gt; collection = database.getCollection("restaurants");
-
-Block&lt;ChangeStreamDocument&lt;Document&gt;&gt; printBlock = new Block&lt;&gt;() {
-@Override
-    public void apply(final ChangeStreamDocument&lt;Document&gt; changeStreamDocument) {
-        System.out.println(changeStreamDocument);
-    }
-};
-
-collection.watch().forEach(printBlock);
-</code></pre>
-
-<h3>changestream advantages over oplog</h3>
-
-<ol>
-<li><strong><em>Use access control</em></strong> (no admin user required to access changestream)</li>
-<li><strong><em>Present a Defined API</em></strong>, API syntax takes advantage of the established MongoDB query language, and are independent of the underlying oplog format.</li>
-<li><strong><em>Total Ordering</em></strong>, subscriber applications will always receive changes in the order they were applied to the database.</li>
-<li><strong><em>Filters</em></strong>, Changes can be filtered to provide relevant and targeted changes to listening applications. As an example, filters can be on operation type or fields within the document.</li>
-<li><strong><em>Power of aggregation</em></strong>, define change streams on any collection just like any other normal aggregation operators using <code>$changeStream</code> operator and <code>watch()</code> method</li>
-</ol>
-
-
+<li>mongodb oplog technology based changestream enable applications to stream real-time data changes
 		
-		
+		<a href="/blog/2018/07/05/mongodb-change-streams-real-time-notifications-to-subscribers-for-data-updates/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>
@@ -213,13 +168,32 @@ collection.watch().forEach(printBlock);
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<h1 class="title" itemprop="name"><a href="/blog/2016/07/05/what-is-new-in-rails-5/" itemprop="url">What Is New in Rails 5</a></h1>
+	<h1 class="title" itemprop="name"><a href="/blog/2017/04/21/mongodb-replica-set-localhost-and-ops-manager/" itemprop="url">MongoDB Replica Set - Localhost and Ops Manager</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		<h3>ActionCable</h3>
+		<h3>Setup Local DevEnv Replica Set</h3>
 
-<p>Action Cable can integrates websocket with rails application. Action Cable server can handle multiple connection instances. It has only one instance per websocket connection. The client websocker connection(consumer) can subscribe to multiple cable channels.
+<ol>
+<li><p>update <code>mongod.conf</code> for replication</p>
+
+<pre><code> #edit /usr/local/etc/mongod.conf
+ systemLog:
+     destination: file
+     path: /usr/local/var/log/mongodb/mongo.log
+     logAppend: true
+ storage:
+     dbPath: /usr/local/var/mongodb
+ net:
+     bindIp: 127.0.0.1
+ replication:
+     replSetName: rs0
+     oplogSizeMB: 100
+</code></pre></li>
+</ol>
+
+
+
 		
-		<a href="/blog/2016/07/05/what-is-new-in-rails-5/" class="more-link">Read on &rarr;</a>
+		<a href="/blog/2017/04/21/mongodb-replica-set-localhost-and-ops-manager/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>

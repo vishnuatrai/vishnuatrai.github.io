@@ -4,7 +4,7 @@
   <title><![CDATA[@vishnuatrai]]></title>
   <link href="http://vishnuatrai.in/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.in/"/>
-  <updated>2020-01-24T17:25:55+05:30</updated>
+  <updated>2020-01-24T20:30:50+05:30</updated>
   <id>http://vishnuatrai.in/</id>
   <author>
     <name><![CDATA[vishnuatrai.in]]></name>
@@ -379,7 +379,7 @@ stats_mysql_query_digest
 <h3>MongoDB real time data sync technologies</h3>
 
 <ol>
-<li>mongodb oplog technology based changestream enable applications to stream real-time data changes</li>
+<li>mongodb oplog technology based changestream enable applications to stream real-time data changes<!--more--></li>
 <li>changestream can notify your application of all writes to documents (including deletes) without polling.</li>
 <li>changestream advantages over oplog</li>
 </ol>
@@ -562,6 +562,65 @@ end
 <p><img src="http://vishnuatrai.in/images//posts/elasticsearch5.png" alt="" /></p>
 
 <p>Still investigating on better solution or way to work on this issue.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[MongoDB Replica Set - localhost and Ops Manager]]></title>
+    <link href="http://vishnuatrai.in/blog/2017/04/21/mongodb-replica-set-localhost-and-ops-manager/"/>
+    <updated>2017-04-21T17:28:18+05:30</updated>
+    <id>http://vishnuatrai.in/blog/2017/04/21/mongodb-replica-set-localhost-and-ops-manager</id>
+    <content type="html"><![CDATA[<h3>Setup Local DevEnv Replica Set</h3>
+
+<ol>
+<li><p>update <code>mongod.conf</code> for replication</p>
+
+<pre><code> #edit /usr/local/etc/mongod.conf
+ systemLog:
+     destination: file
+     path: /usr/local/var/log/mongodb/mongo.log
+     logAppend: true
+ storage:
+     dbPath: /usr/local/var/mongodb
+ net:
+     bindIp: 127.0.0.1
+ replication:
+     replSetName: rs0
+     oplogSizeMB: 100
+</code></pre></li>
+</ol>
+
+
+<!--more-->
+
+
+<ol>
+<li><p>Restart mongodb service</p>
+
+<pre><code> brew services restart mongodb
+</code></pre>
+
+<p> <br/></p></li>
+<li><p>log on to <code>mongo</code> shell and initiate replica set</p>
+
+<pre><code> rs.initiate({_id: "rs0", members: [{_id: 0, host: "127.0.0.1:27017"}] })
+</code></pre>
+
+<p>verify replication members with <code>rs.status()</code></p></li>
+</ol>
+
+
+<h3>Mongodb Ops Manager</h3>
+
+<p>Ops Manager is a management application from mongodb and its available as part of MongoDB Enterprise. Ops Manager enables to configure and maintain MongoDB nodes and clusters.</p>
+
+<p><strong><em>Server Pool</em></strong></p>
+
+<p>Ops Manager Server Pool allows Ops Manager users with administrative privileges, i.e. Ops Manager Administrators, to maintain a pool of provisioned servers that already have installed. When users in a project want to create a new MongoDB deployment, they can request servers from this pool to host the MongoDB deployment.</p>
+
+<p>If you manage large or multiple MongoDB clusters, you probably find yourself scaling them up, and perhaps down, on demand. And if you’re providing MongoDB as a service to your developer teams, scaling requirements might come with little to no notice.</p>
+
+<p>With a few clicks in the Ops Manager GUI, or via a simple API call, you can add new nodes to a cluster, and remove then when they are no longer needed. MongoDB automatically rebalances data as your topology changes, all without service impact.</p>
 ]]></content>
   </entry>
   
@@ -1267,62 +1326,6 @@ gem 'typhoeus'
 </code></pre>
 
 <p>You can use JSON responses for all your APIs.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[What is new in Rails 4.0]]></title>
-    <link href="http://vishnuatrai.in/blog/2013/07/18/what-is-new-in-rails-4-dot-0/"/>
-    <updated>2013-07-18T19:58:40+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2013/07/18/what-is-new-in-rails-4-dot-0</id>
-    <content type="html"><![CDATA[<p>Rails 4.0 and newer version will support ruby 1.9.3+ only. It wont work with lessor
-version then ruby 1.9.3. Major developments are below &ndash;</p>
-
-<h3>Ruby 2.0 preferred; 1.9.3+ required</h3>
-
-<h3>Strong Parameters</h3>
-
-<h3>Turbolinks</h3>
-
-<h3>Russian Doll Caching</h3>
-
-<h3>Live Streaming</h3>
-
-<h3>Rails Queue</h3>
-
-<h3>Asynchronous Action Mailer</h3>
-
-<h3>Barebone Models &ndash; ActiveModel::Model</h3>
-
-<h3>Http PATCH</h3>
-
-<h3>Custom Flash Types</h3>
-
-<h3>Flush content_for blocks</h3>
-
-<h3>Rounting Concerns</h3>
-
-<h3>Multiple Route Files</h3>
-
-<h3>PostgreSQL Array Support</h3>
-
-<h3>Page and Action Caching</h3>
-
-<h3>Cache Digest</h3>
-
-<h3>Controller Wise ETags</h3>
-
-<h3>where.not and Chainable relation.none and Relation._!</h3>
-
-<h3>Action Callbacks Renamed</h3>
-
-<h3>Default Index Page</h3>
-
-<h3>HTML5 Input Helpers</h3>
-
-<h3>Models Concerns</h3>
-
-<h3>vendor/plugins and Ruby 1.9.3 Lesser Banned!</h3>
 ]]></content>
   </entry>
   

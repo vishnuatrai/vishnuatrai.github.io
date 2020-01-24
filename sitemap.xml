@@ -122,7 +122,13 @@
     </url>
     <url>
         <loc>http://vishnuatrai.in/blog/2016/07/05/what-is-new-in-rails-5/</loc>
-        <lastmod>2020-01-24T16:13:47+05:30</lastmod>
+        <lastmod>2020-01-24T17:29:51+05:30</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://vishnuatrai.in/blog/2017/04/21/mongodb-replica-set-localhost-and-ops-manager/
+        </loc>
+        <lastmod>2020-01-24T20:29:02+05:30</lastmod>
     </url>
     <url>
         <loc>http://vishnuatrai.in/blog/2017/12/20/elasticsearch-mapper-parsing-exception/</loc>
@@ -130,13 +136,13 @@
     </url>
     <url>
         <loc>http://vishnuatrai.in/blog/2018/01/20/what-is-new-in-rails-5-dot-2/</loc>
-        <lastmod>2020-01-24T16:13:47+05:30</lastmod>
+        <lastmod>2020-01-24T17:29:51+05:30</lastmod>
     </url>
     <url>
         <loc>
             http://vishnuatrai.in/blog/2018/07/05/mongodb-change-streams-real-time-notifications-to-subscribers-for-data-updates/
         </loc>
-        <lastmod>2020-01-24T16:13:47+05:30</lastmod>
+        <lastmod>2020-01-24T20:27:07+05:30</lastmod>
     </url>
     <url>
         <loc>
@@ -154,7 +160,7 @@
     </url>
     <url>
         <loc>http://vishnuatrai.in/blog/2019/11/11/jmeter-optimize-for-load-testing/</loc>
-        <lastmod>2020-01-24T16:13:47+05:30</lastmod>
+        <lastmod>2020-01-24T17:29:51+05:30</lastmod>
     </url>
     <url>
         <loc>http://vishnuatrai.in/blog/2019/12/26/dive-into-docker-image-layers/</loc>
@@ -162,19 +168,19 @@
     </url>
     <url>
         <loc>http://vishnuatrai.in/blog/2020/01/11/mysql-encryption-at-rest/</loc>
-        <lastmod>2020-01-24T17:24:45+05:30</lastmod>
+        <lastmod>2020-01-24T17:32:53+05:30</lastmod>
     </url>
     <url>
         <loc>http://vishnuatrai.in/</loc>
-        <lastmod>2020-01-24T17:24:45+05:30</lastmod>
+        <lastmod>2020-01-24T20:29:02+05:30</lastmod>
     </url>
     <url>
         <loc>http://vishnuatrai.in/about/</loc>
-        <lastmod>2020-01-24T16:13:47+05:30</lastmod>
+        <lastmod>2020-01-24T17:29:51+05:30</lastmod>
     </url>
     <url>
         <loc>http://vishnuatrai.in/blog/archives/</loc>
-        <lastmod>2020-01-24T17:24:45+05:30</lastmod>
+        <lastmod>2020-01-24T20:29:02+05:30</lastmod>
     </url>
     <url>
         <loc>http://vishnuatrai.in/robots.txt</loc>

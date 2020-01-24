@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Replica&nbsp;Set | @vishnuatrai]]></title>
+  <link href="http://vishnuatrai.in/blog/categories/replica-set/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.in/"/>
+  <updated>2020-01-24T20:30:50+05:30</updated>
+  <id>http://vishnuatrai.in/</id>
+  <author>
+    <name><![CDATA[vishnuatrai.in]]></name>
+    <email><![CDATA[vishnu.atrai@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[MongoDB Replica Set - Localhost and Ops Manager]]></title>
+    <link href="http://vishnuatrai.in/blog/2017/04/21/mongodb-replica-set-localhost-and-ops-manager/"/>
+    <updated>2017-04-21T17:28:18+05:30</updated>
+    <id>http://vishnuatrai.in/blog/2017/04/21/mongodb-replica-set-localhost-and-ops-manager</id>
+    <content type="html"><![CDATA[<h3>Setup Local DevEnv Replica Set</h3>
+
+<ol>
+<li><p>update <code>mongod.conf</code> for replication</p>
+
+<pre><code> #edit /usr/local/etc/mongod.conf
+ systemLog:
+     destination: file
+     path: /usr/local/var/log/mongodb/mongo.log
+     logAppend: true
+ storage:
+     dbPath: /usr/local/var/mongodb
+ net:
+     bindIp: 127.0.0.1
+ replication:
+     replSetName: rs0
+     oplogSizeMB: 100
+</code></pre></li>
+</ol>
+
+
+<!--more-->
+
+
+<ol>
+<li><p>Restart mongodb service</p>
+
+<pre><code> brew services restart mongodb
+</code></pre>
+
+<p> <br/></p></li>
+<li><p>log on to <code>mongo</code> shell and initiate replica set</p>
+
+<pre><code> rs.initiate({_id: "rs0", members: [{_id: 0, host: "127.0.0.1:27017"}] })
+</code></pre>
+
+<p>verify replication members with <code>rs.status()</code></p></li>
+</ol>
+
+
+<h3>Mongodb Ops Manager</h3>
+
+<p>Ops Manager is a management application from mongodb and its available as part of MongoDB Enterprise. Ops Manager enables to configure and maintain MongoDB nodes and clusters.</p>
+
+<p><strong><em>Server Pool</em></strong></p>
+
+<p>Ops Manager Server Pool allows Ops Manager users with administrative privileges, i.e. Ops Manager Administrators, to maintain a pool of provisioned servers that already have installed. When users in a project want to create a new MongoDB deployment, they can request servers from this pool to host the MongoDB deployment.</p>
+
+<p>If you manage large or multiple MongoDB clusters, you probably find yourself scaling them up, and perhaps down, on demand. And if you’re providing MongoDB as a service to your developer teams, scaling requirements might come with little to no notice.</p>
+
+<p>With a few clicks in the Ops Manager GUI, or via a simple API call, you can add new nodes to a cluster, and remove then when they are no longer needed. MongoDB automatically rebalances data as your topology changes, all without service impact.</p>
+]]></content>
+  </entry>
+  
+</feed>
