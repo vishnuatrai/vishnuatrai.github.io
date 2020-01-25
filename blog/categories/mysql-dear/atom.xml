@@ -4,7 +4,7 @@
   <title><![CDATA[Category: MySQL&nbsp;DEaR | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.in/blog/categories/mysql-dear/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.in/"/>
-  <updated>2020-01-24T20:30:50+05:30</updated>
+  <updated>2020-01-25T21:08:43+05:30</updated>
   <id>http://vishnuatrai.in/</id>
   <author>
     <name><![CDATA[vishnuatrai.in]]></name>
@@ -32,7 +32,7 @@
 
 <h3>Implement Data Encryption at rest, MySQL</h3>
 
-<p>Frist step to create a key using <code>openssl</code> command</p>
+<p>First step to create a key using <code>openssl</code> command</p>
 
 <pre><code>openssl enc -aes-256-cbc -md sha1 -k &lt;enc password or passphase&gt; -in keys.txt -out mysql.enc
 </code></pre>
@@ -80,9 +80,9 @@ encrypt-binlog
 
 <h3>Performance Overhead</h3>
 
-<p>~10% to ~20% performance overhead obeserved in previous MySQL deployments.</p>
+<p>~5% to ~10% performance overhead observed in previous MySQL deployments with database enforced encryption mode.</p>
 
-<p>Database-level encryption can be a better option than the filesystem-level encryption if the application can not be changed.</p>
+<p>Database-level encryption and selective tables encryption can be a better option than the filesystem-level encryption.</p>
 ]]></content>
   </entry>
   

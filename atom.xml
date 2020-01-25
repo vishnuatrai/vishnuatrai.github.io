@@ -4,7 +4,7 @@
   <title><![CDATA[@vishnuatrai]]></title>
   <link href="http://vishnuatrai.in/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.in/"/>
-  <updated>2020-01-24T20:30:50+05:30</updated>
+  <updated>2020-01-25T21:08:43+05:30</updated>
   <id>http://vishnuatrai.in/</id>
   <author>
     <name><![CDATA[vishnuatrai.in]]></name>
@@ -32,7 +32,7 @@
 
 <h3>Implement Data Encryption at rest, MySQL</h3>
 
-<p>Frist step to create a key using <code>openssl</code> command</p>
+<p>First step to create a key using <code>openssl</code> command</p>
 
 <pre><code>openssl enc -aes-256-cbc -md sha1 -k &lt;enc password or passphase&gt; -in keys.txt -out mysql.enc
 </code></pre>
@@ -80,9 +80,9 @@ encrypt-binlog
 
 <h3>Performance Overhead</h3>
 
-<p>~10% to ~20% performance overhead obeserved in previous MySQL deployments.</p>
+<p>~5% to ~10% performance overhead observed in previous MySQL deployments with database enforced encryption mode.</p>
 
-<p>Database-level encryption can be a better option than the filesystem-level encryption if the application can not be changed.</p>
+<p>Database-level encryption and selective tables encryption can be a better option than the filesystem-level encryption.</p>
 ]]></content>
   </entry>
   
@@ -625,6 +625,195 @@ end
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[Rails Applicatoin - Openshift 3.0 deployment]]></title>
+    <link href="http://vishnuatrai.in/blog/2016/12/05/rails-applicatoin-openshift-3-dot-0-deployment/"/>
+    <updated>2016-12-05T18:34:50+05:30</updated>
+    <id>http://vishnuatrai.in/blog/2016/12/05/rails-applicatoin-openshift-3-dot-0-deployment</id>
+    <content type="html"><![CDATA[<h3>Prepare helper scripts for application setup, app start and httpd config</h3>
+
+<p>Helper scripts can be stored as part of application code in directory <code>scripts</code> in project root directory.</p>
+
+<p>Sample application setup script</p>
+
+<pre><code># scripts/application_setup.sh
+
+#! /bin/bash
+bundle exec rake db:migrate
+bundle exec rake db:seed
+</code></pre>
+
+<!--more-->
+
+
+<p></p>
+
+<p>Sample applicaiton startup script</p>
+
+<pre><code># scripts/appStartup.sh
+
+#!/bin/bash
+bundle exec rake assets:precompile
+
+config-httpd
+exec httpd -D FOREGROUND
+</code></pre>
+
+<p>Sample script to configure httpd.conf</p>
+
+<pre><code># scripts/config_httpd.sh
+
+#! /bin/sh
+
+sed -i "s/RailsEnv RAILS_ENV/RailsEnv ${RAILS_ENV}/" /etc/httpd/conf/httpd.conf
+echo "PassengerMinInstances 12" &gt;&gt; /etc/httpd/conf/httpd.conf
+echo "PassengerMaxPoolSize 12" &gt;&gt; /etc/httpd/conf/httpd.conf
+ruby -S passenger-config build-native-support
+</code></pre>
+
+<p><code>httpd.conf</code> for passenger apache config will include VirtualHost and passenger configs ie. PassengerRoot, PassengerRuby etc.</p>
+
+<h3>Docker Image build with Rails application setup</h3>
+
+<p>Sample Dockerfile to build image with rails app. Dockerfile will reside in project root directory.</p>
+
+<pre><code>FROM centos/passenger-40-centos7
+RUN mkdir -p /opt/app-root/bundle
+COPY ./Gemfile /opt/app-root/bundle/Gemfile
+COPY ./Gemfile.lock /opt/app-root/bundle/Gemfile.lock
+
+# install sqlite3 on same app image as db, this should be run as seperate docker container service
+RUN sudo apt-get install -y sqlite3 libsqlite3-dev
+
+WORKDIR /opt/app-root/bundle
+RUN scl enable rh-ruby25 'bundle install --deployment --without capistrano:development:test:int_test --jobs=4'
+RUN chmod -R g+w /opt/app-root/bundle/
+
+# Copy application code
+COPY . /opt/app-root/src
+
+WORKDIR /opt/app-root/src
+# Ensure log directory writable, move in the bundle, 
+# set app's default group as root, and put the app startup script in place
+RUN chmod -R g+w /opt/app-root/src/log /opt/app-root/src/db /opt/app-root/src/config /opt/app-root/src/public
+RUN mkdir -p /opt/app-root/src/tmp
+RUN chmod 777 /opt/app-root/src/tmp /opt/app-root/src/log /opt/app-root/src/public
+RUN ln -s /opt/app-root/bundle/.bundle /opt/app-root/src/.bundle
+RUN mkdir -p /opt/app-root/src/vendor
+RUN ln -s /opt/app-root/bundle/vendor/bundle /opt/app-root/src/vendor/bundle
+
+COPY scripts/application_setup.sh /usr/bin/application_setup.sh
+COPY scripts/appStartup.sh /usr/bin/appStartup.sh
+COPY scripts/config_httpd.sh /usr/bin/config_httpd.sh
+
+COPY scripts/httpd.conf /etc/httpd/conf/httpd.conf
+
+CMD ["/usr/bin/appStartup.sh"]
+</code></pre>
+
+<h3>Build Docker image using Dockerfile and push the image to docker image registry</h3>
+
+<h3>Openshift Deployment config</h3>
+
+<p>Using this deployment template we can build a deployment on openshift, these template files can be part of source code in template direcotry of project root dir.</p>
+
+<pre><code>     oc process -f templates/deployment_config.yml | oc create -f -
+</code></pre>
+
+<p>Sample  <code>DeploymentConfig</code> template</p>
+
+<pre><code>  # templates/deployment_config.yml
+
+  apiVersion: v1
+  kind: DeploymentConfig
+  metadata:
+    name: sample-rails-app
+    labels:
+      app: sample-rails-app
+  spec:
+    strategy:
+      type: Recreate
+      recreateParams:
+        timeoutSeconds: 600
+        mid:
+          failurePolicy: Abort
+          execNewPod:
+            command:
+            - application_setup.sh
+            containerName: sample-rails-app
+    triggers:
+    - type: ConfigChange
+    - type: ImageChange
+    replicas: 1
+    selector:
+      app: sample-rails-app
+      deploymentconfig: sample-rails-app
+    template:
+      metadata:
+        name: sample-rails-app
+        labels:
+          app: sample-rails-app
+          deploymentconfig: sample-rails-app
+      spec:
+        containers:
+        - name: sample-rails-app
+          image: 'docker.hub.com/railsapp/sample-rails-app:0.1'
+          ports:
+          - containerPort: 8080
+          env:
+          - name: RAILS_ENV
+            value: dev
+        restartPolicy: Always
+</code></pre>
+
+<p>Using service template a service can be created that will be mapped to deployment pods.</p>
+
+<pre><code>    oc process -f templates/service_config.yml | oc create -f -
+</code></pre>
+
+<p>sample <code>Service</code> template</p>
+
+<pre><code>  # templates/service_config.yml    
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: sample-rails-app
+    labels:
+      app: sample-rails-app
+  spec:
+    ports:
+    - name: web
+      port: 8080
+      targetPort: 8080
+    selector:
+      app: sample-rails-app
+      deploymentconfig: sample-rails-app
+</code></pre>
+
+<p>Using routes services will be exposed to external clients, service will be mapped to a route and route will be available to external world.</p>
+
+<pre><code>oc process -f templates/route_config.yml | oc create -f -
+</code></pre>
+
+<p>sample <code>Route</code> template</p>
+
+<pre><code>  # templates/route_config.yml
+  apiVersion: v1
+  kind: Route
+  apiVersion: v1
+  metadata:
+    name: sample-rails-app
+    labels:
+      app: sample-rails-app
+  spec:
+    host: sample-rails-app.openshift-cluster.com
+    to:
+      kind: Service
+      name: sample-rails-app
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[What is new in Rails 5]]></title>
     <link href="http://vishnuatrai.in/blog/2016/07/05/what-is-new-in-rails-5/"/>
     <updated>2016-07-05T17:34:19+05:30</updated>
@@ -704,6 +893,199 @@ end
 <h3>References</h3>
 
 <p><a href="https://guides.rubyonrails.org/5_0_release_notes.html">https://guides.rubyonrails.org/5_0_release_notes.html</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Docker, Docker compose and Dockerfile]]></title>
+    <link href="http://vishnuatrai.in/blog/2015/06/10/docker-docker-compose-dockerfile/"/>
+    <updated>2015-06-10T18:29:15+05:30</updated>
+    <id>http://vishnuatrai.in/blog/2015/06/10/docker-docker-compose-dockerfile</id>
+    <content type="html"><![CDATA[<h3>What is Docker</h3>
+
+<p>The Docker uses the Linux kernel and features of the kernel, like Cgroups and namespaces, to segregate processes so they can run independently. This independence is the intention of containers‐the ability to run multiple processes and apps separately from one another to make better use of your infrastructure while retaining the security you would have with separate systems.</p>
+
+<p>Containers are the organizational units of Docker. When we build an image and start running it; we are running in a container.<!--more--></p>
+
+<p>Unlike the VMs which can communicate with the hardware of the host (ex: Ethernet adapter to create more virtual adapters) Docker containers run in an isolated environment on top of the host&rsquo;s OS.</p>
+
+<h3>What is Docker Compose</h3>
+
+<p>Docker Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.</p>
+
+<p>Docker Compose lets you bring up a complete development environment with only one command: docker-compose up, and tear it down just as easily using docker-compose down. This allows us developers to keep our development environment in one central place and helps us to easily deploy our applications.</p>
+
+<p>Compose works in all environments: production, staging, development, testing, as well as CI workflows. You can learn more about each case in Common Use Cases.</p>
+
+<p>Using Compose is basically a three-step process:</p>
+
+<pre><code>Define your app’s environment with a Dockerfile so it can be reproduced anywhere.
+
+Define the services that make up your app in docker-compose.yml so they can be run together in an isolated environment.
+
+Run docker-compose up and Compose starts and runs your entire app.
+</code></pre>
+
+<p>A docker-compose.yml looks like this:</p>
+
+<pre><code>version: '3'
+services:
+  web:
+    build: .
+    ports:
+    - "5000:5000"
+    volumes:
+    - .:/code
+    - logvolume01:/var/log
+    links:
+    - redis
+  redis:
+    image: redis
+volumes:
+  logvolume01: {}
+</code></pre>
+
+<p>Docker Compose commands &ndash;</p>
+
+<pre><code>$ docker-compose up -d
+$ docker-compose down
+$ docker-compose start
+$ docker-compose stop
+$ docker-compose build
+$ docker-compose logs -f db
+$ docker-compose scale db=4
+$ docker-compose events
+$ docker-compose exec db bash
+</code></pre>
+
+<h3>What is Dockerfile</h3>
+
+<p>Docker can build images automatically by reading the instructions from a Dockerfile. A Dockerfile is a text document that contains all the commands a user could call on the command line to assemble an image.</p>
+
+<p>The docker build command builds an image from a Dockerfile and a context. The build’s context is the set of files at a specified location PATH or URL. The PATH is a directory on your local filesystem. The URL is a Git repository location.</p>
+
+<p>A context is processed recursively. So, a PATH includes any subdirectories and the URL includes the repository and its submodules. This example shows a build command that uses the current directory as context:</p>
+
+<pre><code>$ docker build .
+</code></pre>
+
+<p>The build is run by the Docker daemon, not by the CLI. The first thing a build process does is send the entire context (recursively) to the daemon. In most cases, it’s best to start with an empty directory as context and keep your Dockerfile in that directory. Add only the files needed for building the Dockerfile.</p>
+
+<p>To use a file in the build context, the Dockerfile refers to the file specified in an instruction, for example, a COPY instruction. To increase the build’s performance, exclude files and directories by adding a .dockerignore file to the context directory.</p>
+
+<p>You use the -f flag with docker build to point to a Dockerfile anywhere in your file system.</p>
+
+<pre><code>$ docker build -f /path/to/a/Dockerfile .
+</code></pre>
+
+<p><strong><em>Dockerfile Instructions and Commands</em></strong></p>
+
+<p><code>FROM</code>, It defines the base image to use to start the build process.</p>
+
+<p><code>LABEL</code>, add labels to your image to help organize images by project, record licensing information</p>
+
+<p><code>RUN</code>, takes a command as its argument and runs it to form the image. it actually is used to build the image</p>
+
+<p><code>EXPOSE</code>, used to indicate the ports on which a container listens for connections, Its used to associate a specified port to enable networking between the running process inside the container and the outside world.</p>
+
+<p><code>ENV</code>, used to set the environment variables (one or more). These variables consist of “key value” pairs.</p>
+
+<p><code>ADD</code> or <code>COPY</code>, these commands gets two arguments: a source and a destination. It basically copies the files from the source on the host into the container’s own filesystem at the set destination. Although ADD and COPY are functionally similar, COPY is preferred. That’s because it’s more transparent than ADD.</p>
+
+<p><code>CMD</code>, can be used for executing a specific command. it&rsquo;s executed when a container is instantiated using the image being built. It should be considered as an initial, default command that gets executed with the creation of containers based on the image.</p>
+
+<pre><code># Usage 1: CMD application "argument", "argument", ..
+FROM ubuntu
+CMD echo "This is a test."
+</code></pre>
+
+<p><code>ENTRYPOINT</code>, argument sets the concrete default application that is used every time a container is created using the image. For example, if you have installed a specific application inside an image and you will use this image to only run that application, you can state it with ENTRYPOINT and whenever a container is created from that image, your application will be the target.</p>
+
+<p>If you couple ENTRYPOINT with CMD, you can remove “application” from CMD and just leave “arguments” which will be passed to the ENTRYPOINT.</p>
+
+<pre><code># Usage: ENTRYPOINT application "argument", "argument", ..
+# Remember: arguments are optional. They can be provided by CMD
+#           or during the creation of a container.
+ENTRYPOINT echo
+
+# Usage example with CMD:
+# Arguments set with CMD can be overridden during *run*
+CMD "This is a test."
+ENTRYPOINT echo  
+</code></pre>
+
+<p>The best use for ENTRYPOINT is to set the image’s main command, allowing that image to be run as though it was that command (and then use CMD as the default flags).</p>
+
+<p>Let’s start with an example of an image for the command line tool s3cmd:</p>
+
+<pre><code>ENTRYPOINT ["s3cmd"]
+CMD ["--help"]
+</code></pre>
+
+<p>The ENTRYPOINT instruction can also be used in combination with a helper script, allowing it to function in a similar way to the command above, even when starting the tool may require more than one step.</p>
+
+<p>For example, the Postgres Official Image uses the following script as its ENTRYPOINT:</p>
+
+<pre><code>#!/bin/bash
+set -e
+
+if [ "$1" = 'postgres' ]; then
+    chown -R postgres "$PGDATA"
+
+    if [ -z "$(ls -A "$PGDATA")" ]; then
+        gosu postgres initdb
+    fi
+
+    exec gosu postgres "$@"
+fi
+
+exec "$@"
+</code></pre>
+
+<p>The helper script is copied into the container and run via ENTRYPOINT on container start:</p>
+
+<pre><code>COPY ./docker-entrypoint.sh /
+ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["postgres"]
+</code></pre>
+
+<p>This script allows the user to interact with Postgres in several ways.</p>
+
+<p>It can simply start Postgres:</p>
+
+<pre><code>$ docker run postgres
+</code></pre>
+
+<p>Or, it can be used to run Postgres and pass parameters to the server:</p>
+
+<pre><code>$ docker run postgres postgres --help
+</code></pre>
+
+<p>Lastly, it could also be used to start a totally different tool, such as Bash:</p>
+
+<pre><code>$ docker run --rm -it postgres bash
+</code></pre>
+
+<p><code>VOLUME</code>, used to expose any storage area, configuration storage, or files/folders created by docker container</p>
+
+<p><code>USER</code>, used to set the UID (or username) which is to run the container based on the image being built.
+If a service can run without privileges, use USER to change to a non-root user. Start by creating the user and group in the Dockerfile with something like RUN groupadd -r postgres &amp;&amp; useradd &mdash;no-log-init -r -g postgres postgres.</p>
+
+<pre><code># Usage: USER [UID]
+USER 800
+</code></pre>
+
+<p>To reduce layers and complexity, avoid switching USER back and forth frequently.</p>
+
+<p><code>WORKDIR</code>, used to set where the command defined with CMD is to be executed</p>
+
+<h3>What is Docker Hub</h3>
+
+<p>Docker Hub is a cloud-hosted version of Docker Registry. A Docker user can opt for Docker Registry, which is a stateless, open source and scalable server-side application, if they prefer to maintain the storage and distribution of Docker images instead of relying on Docker&rsquo;s service.</p>
+
+<h2>References</h2>
+
+<p><a href="https://docs.docker.com/">https://docs.docker.com/</a></p>
 ]]></content>
   </entry>
   
@@ -1229,103 +1611,6 @@ http://vishnuatrai.in/?p=132, http://vishnuatrai.in/blog/2010/11/01/why-nosql/
 <p>  <a href="http://everythingisgray.com/2013/06/15/on-migrating-from-wordpress-to-octopress">http://everythingisgray.com/2013/06/15/on-migrating-from-wordpress-to-octopress</a></p>
 
 <p>  <a href="http://zhen.org/blog/migrating-40000-posts-from-wordpress-to-octopress/">http://zhen.org/blog/migrating-40000-posts-from-wordpress-to-octopress/</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Javascript Object Oriented Programming]]></title>
-    <link href="http://vishnuatrai.in/blog/2013/10/15/javascript-object-oriented-programming/"/>
-    <updated>2013-10-15T18:00:18+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2013/10/15/javascript-object-oriented-programming</id>
-    <content type="html"><![CDATA[<p>JavaScript is a prototype-based OOP language in which behaviour reuse
-(inheritance) is achieved using existing objects which serve as prototypes. Whenever you
-assign a object as prototype of other object, properties and methods will be available to
-that object. <!--more-->You can override method or property in child object.</p>
-
-<p>&ldquo;Everything&rdquo; in JavaScript is an Object. JavaScript allows you to define your own objects.
-Objects are just data, with added properties and methods. This looks something similar to
-ruby for me. Also root level prototype of a object is &ldquo;Object&rdquo; and prototype of &ldquo;Object&rdquo;
-is null.</p>
-
-<p>In this type of OOP languages there is no existences of classes like java. c#, ruby etc.
-Here you create objects and inheritance you can achieve using prototype assignment.
-Since only one prototype you can assign to a object so Javascript dosen&rsquo;t provide multiple
-inheritence. Using prototype assignment chain to nexted level, it will provide multi-level
-inheritence. eg</p>
-
-<pre><code># A super class animal
-function Animal(){
-  this.legs = 0,
-  this.word = '',
-  this.walk = function(){
-    var i = 0, s = '';
-    for(; i &lt; this.legs; i++){
-      s += ' step '
-    }
-    console.log(s);
-  },
-  this.speak = function(){
-    console.log(this.word);
-  }
-};
-
-a = new Animal();
-a.walk()               =&gt; 
-a.speak()              =&gt; 
-
-# A child class human
-function Human(){
-  this.legs = 2,
-  this.word = 'Hi'
-};
-
-Human.prototype = new Animal();
-
-h = new Human();
-h.walk()                =&gt; step step 
-h.speak()               =&gt; Hi
-</code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ruby for Multi-tenant SOA platform]]></title>
-    <link href="http://vishnuatrai.in/blog/2013/08/02/multi-tenant-soa-platform-on-ruby-on-rails/"/>
-    <updated>2013-08-02T18:03:45+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2013/08/02/multi-tenant-soa-platform-on-ruby-on-rails</id>
-    <content type="html"><![CDATA[<p>After cloud computing, Multi-tenancy and SOA become a buzzword for tech companies those provide B2B solutions.</p>
-
-<p>Multi-tenancy will reduce the cost and simplifies the release management.<!--more--></p>
-
-<p>On the other hand, SOA is to divide single monolithic application to multiple loosely coupled self contained independent applications aka services. SOA will benefit to develop new functions rapidly and scale platform in specific areas.</p>
-
-<h3>Tools &amp; Tips for Multi-tenancy</h3>
-
-<p>Database seperation for each client we are using apartment gem. That gives very easy interface
-to manage seperate databases for different clients. To run background tasks we are using
-apartment-sidekiq gem. That will automatically take care of database connection for a background
-job initiated.</p>
-
-<p>You add these gems in your Gemfile and good to go.</p>
-
-<pre><code>gem 'apartment'
-gem 'apartment-sidekiq'
-</code></pre>
-
-<h3>Tools and Tips for SOA (Service Oriented Architucture)</h3>
-
-<p>To expose APIs you can use ruby lightwaight framework sinatra. ActiveRecord for ORM to backend
-You can use rspec for testing framework. Sometimes you make multiple requests to different
-services for a action, in these scenerios you can make parallel requests using typhoeus gem.
-That will make a block call, get the response from different services, process those
-responses and give back the result to end user. In your Gemfile you can add typhoeus.</p>
-
-<pre><code>gem 'sinatra'
-gem 'activerecord'
-gem 'typhoeus'
-</code></pre>
-
-<p>You can use JSON responses for all your APIs.</p>
 ]]></content>
   </entry>
   

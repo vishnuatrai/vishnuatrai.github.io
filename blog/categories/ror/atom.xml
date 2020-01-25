@@ -4,7 +4,7 @@
   <title><![CDATA[Category: RoR | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.in/blog/categories/ror/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.in/"/>
-  <updated>2020-01-24T20:30:50+05:30</updated>
+  <updated>2020-01-25T21:08:43+05:30</updated>
   <id>http://vishnuatrai.in/</id>
   <author>
     <name><![CDATA[vishnuatrai.in]]></name>
@@ -117,6 +117,195 @@ end
 
 
 <p>References: <a href="https://guides.rubyonrails.org/5_2_release_notes.html">https://guides.rubyonrails.org/5_2_release_notes.html</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Rails Applicatoin - Openshift 3.0 Deployment]]></title>
+    <link href="http://vishnuatrai.in/blog/2016/12/05/rails-applicatoin-openshift-3-dot-0-deployment/"/>
+    <updated>2016-12-05T18:34:50+05:30</updated>
+    <id>http://vishnuatrai.in/blog/2016/12/05/rails-applicatoin-openshift-3-dot-0-deployment</id>
+    <content type="html"><![CDATA[<h3>Prepare helper scripts for application setup, app start and httpd config</h3>
+
+<p>Helper scripts can be stored as part of application code in directory <code>scripts</code> in project root directory.</p>
+
+<p>Sample application setup script</p>
+
+<pre><code># scripts/application_setup.sh
+
+#! /bin/bash
+bundle exec rake db:migrate
+bundle exec rake db:seed
+</code></pre>
+
+<!--more-->
+
+
+<p></p>
+
+<p>Sample applicaiton startup script</p>
+
+<pre><code># scripts/appStartup.sh
+
+#!/bin/bash
+bundle exec rake assets:precompile
+
+config-httpd
+exec httpd -D FOREGROUND
+</code></pre>
+
+<p>Sample script to configure httpd.conf</p>
+
+<pre><code># scripts/config_httpd.sh
+
+#! /bin/sh
+
+sed -i "s/RailsEnv RAILS_ENV/RailsEnv ${RAILS_ENV}/" /etc/httpd/conf/httpd.conf
+echo "PassengerMinInstances 12" &gt;&gt; /etc/httpd/conf/httpd.conf
+echo "PassengerMaxPoolSize 12" &gt;&gt; /etc/httpd/conf/httpd.conf
+ruby -S passenger-config build-native-support
+</code></pre>
+
+<p><code>httpd.conf</code> for passenger apache config will include VirtualHost and passenger configs ie. PassengerRoot, PassengerRuby etc.</p>
+
+<h3>Docker Image build with Rails application setup</h3>
+
+<p>Sample Dockerfile to build image with rails app. Dockerfile will reside in project root directory.</p>
+
+<pre><code>FROM centos/passenger-40-centos7
+RUN mkdir -p /opt/app-root/bundle
+COPY ./Gemfile /opt/app-root/bundle/Gemfile
+COPY ./Gemfile.lock /opt/app-root/bundle/Gemfile.lock
+
+# install sqlite3 on same app image as db, this should be run as seperate docker container service
+RUN sudo apt-get install -y sqlite3 libsqlite3-dev
+
+WORKDIR /opt/app-root/bundle
+RUN scl enable rh-ruby25 'bundle install --deployment --without capistrano:development:test:int_test --jobs=4'
+RUN chmod -R g+w /opt/app-root/bundle/
+
+# Copy application code
+COPY . /opt/app-root/src
+
+WORKDIR /opt/app-root/src
+# Ensure log directory writable, move in the bundle, 
+# set app's default group as root, and put the app startup script in place
+RUN chmod -R g+w /opt/app-root/src/log /opt/app-root/src/db /opt/app-root/src/config /opt/app-root/src/public
+RUN mkdir -p /opt/app-root/src/tmp
+RUN chmod 777 /opt/app-root/src/tmp /opt/app-root/src/log /opt/app-root/src/public
+RUN ln -s /opt/app-root/bundle/.bundle /opt/app-root/src/.bundle
+RUN mkdir -p /opt/app-root/src/vendor
+RUN ln -s /opt/app-root/bundle/vendor/bundle /opt/app-root/src/vendor/bundle
+
+COPY scripts/application_setup.sh /usr/bin/application_setup.sh
+COPY scripts/appStartup.sh /usr/bin/appStartup.sh
+COPY scripts/config_httpd.sh /usr/bin/config_httpd.sh
+
+COPY scripts/httpd.conf /etc/httpd/conf/httpd.conf
+
+CMD ["/usr/bin/appStartup.sh"]
+</code></pre>
+
+<h3>Build Docker image using Dockerfile and push the image to docker image registry</h3>
+
+<h3>Openshift Deployment config</h3>
+
+<p>Using this deployment template we can build a deployment on openshift, these template files can be part of source code in template direcotry of project root dir.</p>
+
+<pre><code>     oc process -f templates/deployment_config.yml | oc create -f -
+</code></pre>
+
+<p>Sample  <code>DeploymentConfig</code> template</p>
+
+<pre><code>  # templates/deployment_config.yml
+
+  apiVersion: v1
+  kind: DeploymentConfig
+  metadata:
+    name: sample-rails-app
+    labels:
+      app: sample-rails-app
+  spec:
+    strategy:
+      type: Recreate
+      recreateParams:
+        timeoutSeconds: 600
+        mid:
+          failurePolicy: Abort
+          execNewPod:
+            command:
+            - application_setup.sh
+            containerName: sample-rails-app
+    triggers:
+    - type: ConfigChange
+    - type: ImageChange
+    replicas: 1
+    selector:
+      app: sample-rails-app
+      deploymentconfig: sample-rails-app
+    template:
+      metadata:
+        name: sample-rails-app
+        labels:
+          app: sample-rails-app
+          deploymentconfig: sample-rails-app
+      spec:
+        containers:
+        - name: sample-rails-app
+          image: 'docker.hub.com/railsapp/sample-rails-app:0.1'
+          ports:
+          - containerPort: 8080
+          env:
+          - name: RAILS_ENV
+            value: dev
+        restartPolicy: Always
+</code></pre>
+
+<p>Using service template a service can be created that will be mapped to deployment pods.</p>
+
+<pre><code>    oc process -f templates/service_config.yml | oc create -f -
+</code></pre>
+
+<p>sample <code>Service</code> template</p>
+
+<pre><code>  # templates/service_config.yml    
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: sample-rails-app
+    labels:
+      app: sample-rails-app
+  spec:
+    ports:
+    - name: web
+      port: 8080
+      targetPort: 8080
+    selector:
+      app: sample-rails-app
+      deploymentconfig: sample-rails-app
+</code></pre>
+
+<p>Using routes services will be exposed to external clients, service will be mapped to a route and route will be available to external world.</p>
+
+<pre><code>oc process -f templates/route_config.yml | oc create -f -
+</code></pre>
+
+<p>sample <code>Route</code> template</p>
+
+<pre><code>  # templates/route_config.yml
+  apiVersion: v1
+  kind: Route
+  apiVersion: v1
+  metadata:
+    name: sample-rails-app
+    labels:
+      app: sample-rails-app
+  spec:
+    host: sample-rails-app.openshift-cluster.com
+    to:
+      kind: Service
+      name: sample-rails-app
+</code></pre>
 ]]></content>
   </entry>
   
@@ -364,47 +553,6 @@ Rails.application.message_verifier(:remember_me).verify(tampered_token)
 <p><a href="http://weblog.rubyonrails.org/2014/4/8/Rails-4-1/">http://weblog.rubyonrails.org/2014/4/8/Rails-4-1/</a></p>
 
 <p><a href="http://edgeguides.rubyonrails.org/4_1_release_notes.html">http://edgeguides.rubyonrails.org/4_1_release_notes.html</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ruby for Multi-tenant SOA Platform]]></title>
-    <link href="http://vishnuatrai.in/blog/2013/08/02/multi-tenant-soa-platform-on-ruby-on-rails/"/>
-    <updated>2013-08-02T18:03:45+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2013/08/02/multi-tenant-soa-platform-on-ruby-on-rails</id>
-    <content type="html"><![CDATA[<p>After cloud computing, Multi-tenancy and SOA become a buzzword for tech companies those provide B2B solutions.</p>
-
-<p>Multi-tenancy will reduce the cost and simplifies the release management.<!--more--></p>
-
-<p>On the other hand, SOA is to divide single monolithic application to multiple loosely coupled self contained independent applications aka services. SOA will benefit to develop new functions rapidly and scale platform in specific areas.</p>
-
-<h3>Tools &amp; Tips for Multi-tenancy</h3>
-
-<p>Database seperation for each client we are using apartment gem. That gives very easy interface
-to manage seperate databases for different clients. To run background tasks we are using
-apartment-sidekiq gem. That will automatically take care of database connection for a background
-job initiated.</p>
-
-<p>You add these gems in your Gemfile and good to go.</p>
-
-<pre><code>gem 'apartment'
-gem 'apartment-sidekiq'
-</code></pre>
-
-<h3>Tools and Tips for SOA (Service Oriented Architucture)</h3>
-
-<p>To expose APIs you can use ruby lightwaight framework sinatra. ActiveRecord for ORM to backend
-You can use rspec for testing framework. Sometimes you make multiple requests to different
-services for a action, in these scenerios you can make parallel requests using typhoeus gem.
-That will make a block call, get the response from different services, process those
-responses and give back the result to end user. In your Gemfile you can add typhoeus.</p>
-
-<pre><code>gem 'sinatra'
-gem 'activerecord'
-gem 'typhoeus'
-</code></pre>
-
-<p>You can use JSON responses for all your APIs.</p>
 ]]></content>
   </entry>
   

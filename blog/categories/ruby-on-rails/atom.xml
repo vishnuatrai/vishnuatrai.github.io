@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Ruby on Rails | @vishnuatrai]]></title>
+  <title><![CDATA[Category: Ruby&nbsp;on&nbsp;Rails | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.in/blog/categories/ruby-on-rails/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.in/"/>
-  <updated>2020-01-24T20:30:50+05:30</updated>
+  <updated>2020-01-25T21:08:43+05:30</updated>
   <id>http://vishnuatrai.in/</id>
   <author>
     <name><![CDATA[vishnuatrai.in]]></name>
@@ -14,62 +14,190 @@
 
   
   <entry>
-    <title type="html"><![CDATA[Rails::Railtie – Hook Everything]]></title>
-    <link href="http://vishnuatrai.in/blog/2011/07/31/railsrailtie-e28093-hook-everything/"/>
-    <updated>2011-07-31T17:33:44+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2011/07/31/railsrailtie-e28093-hook-everything</id>
-    <content type="html"><![CDATA[<p>After Rails 3 released I have been trying to find major and important changes in rails framework over 2.x version. The change I like most is Rails Railtie. Using Railtie you can configure your own gem or plugin in a rails application according to your choice in boot process. <!--more-->  If you are a plugin developer, you can use Railtie class that is capable of loading generators, tasks, middlewares and adding subscribers.</p>
+    <title type="html"><![CDATA[Rails Applicatoin - Openshift 3.0 Deployment]]></title>
+    <link href="http://vishnuatrai.in/blog/2016/12/05/rails-applicatoin-openshift-3-dot-0-deployment/"/>
+    <updated>2016-12-05T18:34:50+05:30</updated>
+    <id>http://vishnuatrai.in/blog/2016/12/05/rails-applicatoin-openshift-3-dot-0-deployment</id>
+    <content type="html"><![CDATA[<h3>Prepare helper scripts for application setup, app start and httpd config</h3>
 
-<p>Rails::Engine is nothing more than a Railtie and it has some initializers already set and Rails::Application and Rails::Plugin are also engines. Any subclass of Railtie can be use to initialize rails application, so your plugin can be a first class member of rails application.</p>
+<p>Helper scripts can be stored as part of application code in directory <code>scripts</code> in project root directory.</p>
 
-<p>Here is sample plugin Railtie that will be loaded when your rails application boots.</p>
+<p>Sample application setup script</p>
 
-<pre><code>require 'rails'
-class MyPlugin &lt; Rails::Railtie
-  # railtie code goes here
-end
+<pre><code># scripts/application_setup.sh
+
+#! /bin/bash
+bundle exec rake db:migrate
+bundle exec rake db:seed
 </code></pre>
 
-<p>Here I will give you some examples of Railtie methods, how to customize and extend your rails application using your plugin or gem library.</p>
+<!--more-->
 
-<h4>1) generators</h4>
 
-<p>Rails will require any generators if you have require generator path in your Railtie class within generators block.</p>
+<p></p>
 
-<pre><code>generators do
-  require 'lib/to/generator.rb'
-end
+<p>Sample applicaiton startup script</p>
+
+<pre><code># scripts/appStartup.sh
+
+#!/bin/bash
+bundle exec rake assets:precompile
+
+config-httpd
+exec httpd -D FOREGROUND
 </code></pre>
 
-<h4>2) rake_tasks</h4>
+<p>Sample script to configure httpd.conf</p>
 
-<p>You can ship rake tasks of your plugin in rails application if you require in Railtie</p>
+<pre><code># scripts/config_httpd.sh
 
-<pre><code>rake_tasks do 
-  require 'lib/to/rake_task.rb'
-end
+#! /bin/sh
+
+sed -i "s/RailsEnv RAILS_ENV/RailsEnv ${RAILS_ENV}/" /etc/httpd/conf/httpd.conf
+echo "PassengerMinInstances 12" &gt;&gt; /etc/httpd/conf/httpd.conf
+echo "PassengerMaxPoolSize 12" &gt;&gt; /etc/httpd/conf/httpd.conf
+ruby -S passenger-config build-native-support
 </code></pre>
 
-<h4>3) initializer</h4>
+<p><code>httpd.conf</code> for passenger apache config will include VirtualHost and passenger configs ie. PassengerRoot, PassengerRuby etc.</p>
 
-<p>Railtie initializer method can create initializers that can run during the Rails boot process. It has the options to run a initializer before or after a specific initializer.</p>
+<h3>Docker Image build with Rails application setup</h3>
 
-<pre><code>initializer "plugin_railtie.boot_plugin" do
-  Plugin.boot(NewPlugin)
-end
+<p>Sample Dockerfile to build image with rails app. Dockerfile will reside in project root directory.</p>
 
-initializer "new_plugin_railtie.boot_new_plugin", :before =&gt; "plugin_railtie.boot_plugin" do
-    NewPlugin.boot!
-end
+<pre><code>FROM centos/passenger-40-centos7
+RUN mkdir -p /opt/app-root/bundle
+COPY ./Gemfile /opt/app-root/bundle/Gemfile
+COPY ./Gemfile.lock /opt/app-root/bundle/Gemfile.lock
+
+# install sqlite3 on same app image as db, this should be run as seperate docker container service
+RUN sudo apt-get install -y sqlite3 libsqlite3-dev
+
+WORKDIR /opt/app-root/bundle
+RUN scl enable rh-ruby25 'bundle install --deployment --without capistrano:development:test:int_test --jobs=4'
+RUN chmod -R g+w /opt/app-root/bundle/
+
+# Copy application code
+COPY . /opt/app-root/src
+
+WORKDIR /opt/app-root/src
+# Ensure log directory writable, move in the bundle, 
+# set app's default group as root, and put the app startup script in place
+RUN chmod -R g+w /opt/app-root/src/log /opt/app-root/src/db /opt/app-root/src/config /opt/app-root/src/public
+RUN mkdir -p /opt/app-root/src/tmp
+RUN chmod 777 /opt/app-root/src/tmp /opt/app-root/src/log /opt/app-root/src/public
+RUN ln -s /opt/app-root/bundle/.bundle /opt/app-root/src/.bundle
+RUN mkdir -p /opt/app-root/src/vendor
+RUN ln -s /opt/app-root/bundle/vendor/bundle /opt/app-root/src/vendor/bundle
+
+COPY scripts/application_setup.sh /usr/bin/application_setup.sh
+COPY scripts/appStartup.sh /usr/bin/appStartup.sh
+COPY scripts/config_httpd.sh /usr/bin/config_httpd.sh
+
+COPY scripts/httpd.conf /etc/httpd/conf/httpd.conf
+
+CMD ["/usr/bin/appStartup.sh"]
 </code></pre>
 
-<h4>4) console</h4>
+<h3>Build Docker image using Dockerfile and push the image to docker image registry</h3>
 
-<p>console method allows to add code that will run when Rails console starts.</p>
+<h3>Openshift Deployment config</h3>
 
-<pre><code> console do
-   puts "my plugin loaded."
- end
+<p>Using this deployment template we can build a deployment on openshift, these template files can be part of source code in template direcotry of project root dir.</p>
+
+<pre><code>     oc process -f templates/deployment_config.yml | oc create -f -
+</code></pre>
+
+<p>Sample  <code>DeploymentConfig</code> template</p>
+
+<pre><code>  # templates/deployment_config.yml
+
+  apiVersion: v1
+  kind: DeploymentConfig
+  metadata:
+    name: sample-rails-app
+    labels:
+      app: sample-rails-app
+  spec:
+    strategy:
+      type: Recreate
+      recreateParams:
+        timeoutSeconds: 600
+        mid:
+          failurePolicy: Abort
+          execNewPod:
+            command:
+            - application_setup.sh
+            containerName: sample-rails-app
+    triggers:
+    - type: ConfigChange
+    - type: ImageChange
+    replicas: 1
+    selector:
+      app: sample-rails-app
+      deploymentconfig: sample-rails-app
+    template:
+      metadata:
+        name: sample-rails-app
+        labels:
+          app: sample-rails-app
+          deploymentconfig: sample-rails-app
+      spec:
+        containers:
+        - name: sample-rails-app
+          image: 'docker.hub.com/railsapp/sample-rails-app:0.1'
+          ports:
+          - containerPort: 8080
+          env:
+          - name: RAILS_ENV
+            value: dev
+        restartPolicy: Always
+</code></pre>
+
+<p>Using service template a service can be created that will be mapped to deployment pods.</p>
+
+<pre><code>    oc process -f templates/service_config.yml | oc create -f -
+</code></pre>
+
+<p>sample <code>Service</code> template</p>
+
+<pre><code>  # templates/service_config.yml    
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: sample-rails-app
+    labels:
+      app: sample-rails-app
+  spec:
+    ports:
+    - name: web
+      port: 8080
+      targetPort: 8080
+    selector:
+      app: sample-rails-app
+      deploymentconfig: sample-rails-app
+</code></pre>
+
+<p>Using routes services will be exposed to external clients, service will be mapped to a route and route will be available to external world.</p>
+
+<pre><code>oc process -f templates/route_config.yml | oc create -f -
+</code></pre>
+
+<p>sample <code>Route</code> template</p>
+
+<pre><code>  # templates/route_config.yml
+  apiVersion: v1
+  kind: Route
+  apiVersion: v1
+  metadata:
+    name: sample-rails-app
+    labels:
+      app: sample-rails-app
+  spec:
+    host: sample-rails-app.openshift-cluster.com
+    to:
+      kind: Service
+      name: sample-rails-app
 </code></pre>
 ]]></content>
   </entry>
