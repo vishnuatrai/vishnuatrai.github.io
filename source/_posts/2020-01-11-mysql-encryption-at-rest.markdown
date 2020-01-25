@@ -27,7 +27,7 @@ Other way is to implement Data encryption at rest.
 
 ###Implement Data Encryption at rest, MySQL
 
-Frist step to create a key using `openssl` command
+First step to create a key using `openssl` command
 
 	openssl enc -aes-256-cbc -md sha1 -k <enc password or passphase> -in keys.txt -out mysql.enc
 
@@ -71,9 +71,9 @@ Three ways to encrypt tables<br/>
 
 
 ###Performance Overhead
-~10% to ~20% performance overhead obeserved in previous MySQL deployments.
+~5% to ~10% performance overhead observed in previous MySQL deployments with database enforced encryption mode.
 
-Database-level encryption can be a better option than the filesystem-level encryption if the application can not be changed.
+Database-level encryption and selective tables encryption can be a better option than the filesystem-level encryption.
 
 
 
