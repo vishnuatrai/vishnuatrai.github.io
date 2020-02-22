@@ -4,7 +4,7 @@
   <title><![CDATA[@vishnuatrai]]></title>
   <link href="http://vishnuatrai.in/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.in/"/>
-  <updated>2020-01-25T21:08:43+05:30</updated>
+  <updated>2020-02-22T11:13:37+05:30</updated>
   <id>http://vishnuatrai.in/</id>
   <author>
     <name><![CDATA[vishnuatrai.in]]></name>
@@ -247,6 +247,48 @@ and <strong>launch agents via ssh</strong> for linux agents</p>
 <p><img src="http://vishnuatrai.in/images//posts/Jenkins3.png" alt="" /></p>
 
 <p>With above command agent is authorized and registered with jenkins master. Now agent is successfully configured and launched, which can be verified on master nodes. Jenkins master can delegate jobs to agent node.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[MongoDB 4.0 - Support for ACID transactions]]></title>
+    <link href="http://vishnuatrai.in/blog/2018/12/20/mongodb-4-dot-0-support-for-acid-transactions/"/>
+    <updated>2018-12-20T17:41:34+05:30</updated>
+    <id>http://vishnuatrai.in/blog/2018/12/20/mongodb-4-dot-0-support-for-acid-transactions</id>
+    <content type="html"><![CDATA[<h3>Support for Single-Shard multi document ACID transactions</h3>
+
+<p>To support benefits of ACID transactions with fully-denormalized document data modeling, MongoDB added single-shard ACID transaction support in the released 4.0. These single-shard transactions apply ACID properties on updates across multiple documents those are present in the same shard. Multi-shard transactions supposed to implement in release 4.2.</p>
+
+<h4>Scenario, how it works?</h4>
+
+<ol>
+<li>Client application will get a database session</li>
+<li><p>Database session initiate transaction block using <code>start_transaction</code> statement with <code>majority</code> <code>writeConcern</code> in <code>try</code> block. The only <code>writeConcern</code> thats suitable for high data durability is that of majority. This means a majority of replicas should commit the changes before the primary acknowledges the success of the write to the client. The transaction will remain blocked till at least 1 of the 2 secondaries pulls the update from the primary using asynchronous replication which is susceptible to unpredictable replication lag especially under heavy load.</p></li>
+<li><p>Within transaction block multiple insert/update/remove statements can be made.</p></li>
+<li>At end of transaction block <code>commit_transaction</code> required to commit data in database.</li>
+<li>If any exception occurs in transaction block, client application should <code>abort_transaction</code> in <code>catch</code> block to roll back updates.</li>
+<li>Finally the database client session can be closed in <code>finally</code> block</li>
+</ol>
+
+
+<p>Sample Java code to mimic same scenario,</p>
+
+<pre><code>###Java sample
+private void multiDocumentTransactions() {
+    ClientSession session = client.startSession();
+    try {
+        session.startTransaction(TransactionOptions.builder().writeConcern(WriteConcern.MAJORITY).build());
+        orders.updateOne(session, {..filter..}, {..updates..});
+        stock.updateOne(session, {..filter..}, {..updates..});
+        session.commitTransaction();
+    } catch (MongoCommandException e) {
+        session.abortTransaction();
+        //ROLLBACK TRANSACTION
+    } finally {
+        session.close();
+    }
+}
+</code></pre>
 ]]></content>
   </entry>
   
@@ -1574,43 +1616,6 @@ http://vishnuatrai.in/?p=132, http://vishnuatrai.in/blog/2010/11/01/why-nosql/
 <h3>Reference</h3>
 
 <p><a href="http://help.disqus.com/customer/portal/articles/286778-using-the-migration-tools">http://help.disqus.com/customer/portal/articles/286778-using-the-migration-tools</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Octopress: Programmer Friendly Blogging]]></title>
-    <link href="http://vishnuatrai.in/blog/2014/03/27/octopress-programmer-friendly-blogging/"/>
-    <updated>2014-03-27T13:39:53+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2014/03/27/octopress-programmer-friendly-blogging</id>
-    <content type="html"><![CDATA[<p>Nowadays blogs I am reading are mostly running with jekyll and using octopress to publish. Lot of my friends migrated from WordPress to Octopress. I was curious why they are doing so and what is the advantege with Octopress over WordPress.<!--more--> As an experiment I started developing a gihub pages application using Octopress and I found it very simple and easy to write. Good fit for my blog application.</p>
-
-<h3>Why I like?</h3>
-
-<p>  1) Free github/heroku hosting and easy deploy</p>
-
-<p>  2) No database required( even for comments )</p>
-
-<p>  3) Easy to intigrate and restore comments with disqus( till it is free )</p>
-
-<p>  4) Don&rsquo;t need to move from your terminal to publish a blog</p>
-
-<p>  5) Skill required &ndash; git, markdown, vim/emacs( any text editor )</p>
-
-<p>  6) Lightweight and Fast running</p>
-
-<p>  7) Lots of themes available</p>
-
-<p>  8) etc etc etc ( still exploring )</p>
-
-<h3>Reference</h3>
-
-<p>  <a href="http://octopress.org/">http://octopress.org/</a></p>
-
-<p>  <a href="http://opthemes.com/">http://opthemes.com/</a></p>
-
-<p>  <a href="http://everythingisgray.com/2013/06/15/on-migrating-from-wordpress-to-octopress">http://everythingisgray.com/2013/06/15/on-migrating-from-wordpress-to-octopress</a></p>
-
-<p>  <a href="http://zhen.org/blog/migrating-40000-posts-from-wordpress-to-octopress/">http://zhen.org/blog/migrating-40000-posts-from-wordpress-to-octopress/</a></p>
 ]]></content>
   </entry>
   

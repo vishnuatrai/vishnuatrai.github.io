@@ -122,23 +122,23 @@
     </url>
     <url>
         <loc>http://vishnuatrai.in/blog/2015/06/10/docker-docker-compose-dockerfile/</loc>
-        <lastmod>2020-01-25T13:52:57+05:30</lastmod>
+        <lastmod>2020-02-21T16:03:59+05:30</lastmod>
     </url>
     <url>
         <loc>http://vishnuatrai.in/blog/2016/07/05/what-is-new-in-rails-5/</loc>
-        <lastmod>2020-01-24T20:50:42+05:30</lastmod>
+        <lastmod>2020-02-21T16:03:59+05:30</lastmod>
     </url>
     <url>
         <loc>
             http://vishnuatrai.in/blog/2016/12/05/rails-applicatoin-openshift-3-dot-0-deployment/
         </loc>
-        <lastmod>2020-01-25T21:05:47+05:30</lastmod>
+        <lastmod>2020-02-21T16:03:59+05:30</lastmod>
     </url>
     <url>
         <loc>
             http://vishnuatrai.in/blog/2017/04/21/mongodb-replica-set-localhost-and-ops-manager/
         </loc>
-        <lastmod>2020-01-24T20:50:42+05:30</lastmod>
+        <lastmod>2020-02-21T16:03:59+05:30</lastmod>
     </url>
     <url>
         <loc>http://vishnuatrai.in/blog/2017/12/20/elasticsearch-mapper-parsing-exception/</loc>
@@ -146,19 +146,25 @@
     </url>
     <url>
         <loc>http://vishnuatrai.in/blog/2018/01/20/what-is-new-in-rails-5-dot-2/</loc>
-        <lastmod>2020-01-24T20:50:42+05:30</lastmod>
+        <lastmod>2020-02-21T16:03:59+05:30</lastmod>
     </url>
     <url>
         <loc>
             http://vishnuatrai.in/blog/2018/07/05/mongodb-change-streams-real-time-notifications-to-subscribers-for-data-updates/
         </loc>
-        <lastmod>2020-01-24T20:50:42+05:30</lastmod>
+        <lastmod>2020-02-21T16:03:59+05:30</lastmod>
     </url>
     <url>
         <loc>
             http://vishnuatrai.in/blog/2018/11/12/proxysql-mysql-high-availability-load-balancing/
         </loc>
         <lastmod>2020-01-05T11:01:45+05:30</lastmod>
+    </url>
+    <url>
+        <loc>
+            http://vishnuatrai.in/blog/2018/12/20/mongodb-4-dot-0-support-for-acid-transactions/
+        </loc>
+        <lastmod>2020-02-22T11:12:43+05:30</lastmod>
     </url>
     <url>
         <loc>http://vishnuatrai.in/blog/2019/04/15/jenkins-add-slave-nodes-as-jnlp-agents/</loc>
@@ -170,7 +176,7 @@
     </url>
     <url>
         <loc>http://vishnuatrai.in/blog/2019/11/11/jmeter-optimize-for-load-testing/</loc>
-        <lastmod>2020-01-24T20:50:42+05:30</lastmod>
+        <lastmod>2020-02-21T16:03:59+05:30</lastmod>
     </url>
     <url>
         <loc>http://vishnuatrai.in/blog/2019/12/26/dive-into-docker-image-layers/</loc>
@@ -178,19 +184,19 @@
     </url>
     <url>
         <loc>http://vishnuatrai.in/blog/2020/01/11/mysql-encryption-at-rest/</loc>
-        <lastmod>2020-01-25T12:45:00+05:30</lastmod>
+        <lastmod>2020-02-21T16:03:59+05:30</lastmod>
     </url>
     <url>
         <loc>http://vishnuatrai.in/</loc>
-        <lastmod>2020-01-25T21:05:47+05:30</lastmod>
+        <lastmod>2020-02-22T11:12:43+05:30</lastmod>
     </url>
     <url>
         <loc>http://vishnuatrai.in/about/</loc>
-        <lastmod>2020-01-24T20:50:42+05:30</lastmod>
+        <lastmod>2020-02-21T16:03:59+05:30</lastmod>
     </url>
     <url>
         <loc>http://vishnuatrai.in/blog/archives/</loc>
-        <lastmod>2020-01-25T21:05:47+05:30</lastmod>
+        <lastmod>2020-02-22T11:12:43+05:30</lastmod>
     </url>
     <url>
         <loc>http://vishnuatrai.in/robots.txt</loc>
