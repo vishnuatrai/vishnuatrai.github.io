@@ -16,7 +16,7 @@ categories:
 
 ###ApplicationRecord - Multiple databases support
 Active Record supports switching between multiple databases with a minimal change in codebase but a major impact on multiple replica set db. With multiple db support, rails application can have a read-only version of your database to use in areas known for having slow queries, or if it need to write to different databases depending on which controller request.
-This requires a change in `database.yml` setup, ie. 
+This requires a change in `database.yml` setup, ie. <!--more-->
 `
 	development:
   	  primary:
@@ -93,3 +93,5 @@ Action Cable testing tools allow you to test your Action Cable functionality at 
 ###Zeitwerk
 Zeitwerk is a new and improved, thread-safe code loader for Rails, Configuration to enable - 
 	config.autoloader = :zeitwerk
+
+https://edgeguides.rubyonrails.org/6_0_release_notes.html	
