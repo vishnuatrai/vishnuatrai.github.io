@@ -16,7 +16,7 @@ categories:
 To support benefits of ACID transactions with fully-denormalized document data modeling, MongoDB added single-shard ACID transaction support in the released 4.0. These single-shard transactions apply ACID properties on updates across multiple documents those are present in the same shard. Multi-shard transactions supposed to implement in release 4.2.
 
 ####Scenario, how it works?
-1. Client application will get a database session 
+1. Client application will get a database session <!--more-->
 2. Database session initiate transaction block using `start_transaction` statement with `majority` `writeConcern` in `try` block. The only `writeConcern` thats suitable for high data durability is that of majority. This means a majority of replicas should commit the changes before the primary acknowledges the success of the write to the client. The transaction will remain blocked till at least 1 of the 2 secondaries pulls the update from the primary using asynchronous replication which is susceptible to unpredictable replication lag especially under heavy load. 
 
 3. Within transaction block multiple insert/update/remove statements can be made.
