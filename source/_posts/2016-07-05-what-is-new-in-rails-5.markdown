@@ -10,6 +10,14 @@ categories:
   Rails
   RoR 
 ---
+###ApplicationRecord
+Similar to `ApplicationController` which is the common base class for all controllers that you get with new Rails apps, `ApplicationRecord` will provide a base class for your ActiveRecord models. This provides a common place to put any base model concerns.
+`app/models/application_record.rb` file will be automatically added to models in Rails 5 applications.
+
+	# app/models/application_record.rb
+	class ApplicationRecord < ActiveRecord::Base
+		self.abstract_class = true
+	end
 
 ###ActionCable
 Action Cable can integrates websocket with rails application. Action Cable server can handle multiple connection instances. It has only one instance per websocket connection. The client websocker connection(consumer) can subscribe to multiple cable channels.<!--more-->For example Action Cable server can have a `ChatChannel` and an `AppearancesChannel` and a consumer(websocket) can subscribe to either one or both of channels.
