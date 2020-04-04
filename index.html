@@ -151,22 +151,27 @@ $(function(){
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<h1 class="title" itemprop="name"><a href="/blog/2019/08/08/jenkins-slave-with-docker-executors/" itemprop="url">Jenkins Slave With Docker Executors</a></h1>
+	<h1 class="title" itemprop="name"><a href="/blog/2019/09/15/what-is-new-in-rails-6/" itemprop="url">What Is New in Rails 6</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		<p><a href="https://wiki.jenkins.io/display/JENKINS/Docker+Plugin">Docker Plugin</a> enables jenkins to run jobs as docker container. In such case we dont need to setup jenkins nodes(agents) with specific binaries, instead docker images will be used to run jobs.
+		<h4>Rails 6 require Ruby version 2.5 or greater. Upgrade to at least rails 5.2 or later versions and make sure application run properly without any failure, then attempt to upgrade to 6.0, follow <a href="https://edgeguides.rubyonrails.org/upgrading_ruby_on_rails.html#upgrading-from-rails-5-2-to-rails-6-0">upgrade guide</a>.</h4>
+
+<h3>ApplicationRecord &ndash; Multiple databases support</h3>
+
+<p>Active Record supports switching between multiple databases with a minimal change in codebase but a major impact on multiple replica set db. With multiple db support, rails application can have a read-only version of your database to use in areas known for having slow queries, or if it need to write to different databases depending on which controller request.
+This requires a change in <code>database.yml</code> setup, ie. 
 		
-		<a href="/blog/2019/08/08/jenkins-slave-with-docker-executors/" class="more-link">Read on &rarr;</a>
+		<a href="/blog/2019/09/15/what-is-new-in-rails-6/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<h1 class="title" itemprop="name"><a href="/blog/2019/04/15/jenkins-add-slave-nodes-as-jnlp-agents/" itemprop="url">Jenkins - Add Slave Nodes as JNLP Agents</a></h1>
+	<h1 class="title" itemprop="name"><a href="/blog/2019/08/08/jenkins-slave-with-docker-executors/" itemprop="url">Jenkins Slave With Docker Executors</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		<p>If it is required to run Jenkins master in an isolated network and master should not be allowed to connected to its nodes(agents), we can use JNLP method to add agents to master to process jobs in distributed manner. In this scenario, its not desirable to have master connections with slave(agent) nodes but agent to master connections only required. 
+		<p><a href="https://wiki.jenkins.io/display/JENKINS/Docker+Plugin">Docker Plugin</a> enables jenkins to run jobs as docker container. In such case we dont need to setup jenkins nodes(agents) with specific binaries, instead docker images will be used to run jobs.
 		
-		<a href="/blog/2019/04/15/jenkins-add-slave-nodes-as-jnlp-agents/" class="more-link">Read on &rarr;</a>
+		<a href="/blog/2019/08/08/jenkins-slave-with-docker-executors/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>

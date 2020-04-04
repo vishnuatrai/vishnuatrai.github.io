@@ -4,7 +4,7 @@
   <title><![CDATA[Category: MongoDB&nbsp;4.0 | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.in/blog/categories/mongodb-4-dot-0/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.in/"/>
-  <updated>2020-02-22T11:13:37+05:30</updated>
+  <updated>2020-04-04T16:37:47+05:30</updated>
   <id>http://vishnuatrai.in/</id>
   <author>
     <name><![CDATA[vishnuatrai.in]]></name>
@@ -25,7 +25,7 @@
 <h4>Scenario, how it works?</h4>
 
 <ol>
-<li>Client application will get a database session</li>
+<li>Client application will get a database session <!--more--></li>
 <li><p>Database session initiate transaction block using <code>start_transaction</code> statement with <code>majority</code> <code>writeConcern</code> in <code>try</code> block. The only <code>writeConcern</code> thats suitable for high data durability is that of majority. This means a majority of replicas should commit the changes before the primary acknowledges the success of the write to the client. The transaction will remain blocked till at least 1 of the 2 secondaries pulls the update from the primary using asynchronous replication which is susceptible to unpredictable replication lag especially under heavy load.</p></li>
 <li><p>Within transaction block multiple insert/update/remove statements can be made.</p></li>
 <li>At end of transaction block <code>commit_transaction</code> required to commit data in database.</li>

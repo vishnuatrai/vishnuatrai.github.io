@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Rails&nbsp;5 | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.in/blog/categories/rails-5/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.in/"/>
-  <updated>2020-02-22T11:13:37+05:30</updated>
+  <updated>2020-04-04T16:37:47+05:30</updated>
   <id>http://vishnuatrai.in/</id>
   <author>
     <name><![CDATA[vishnuatrai.in]]></name>
@@ -18,7 +18,18 @@
     <link href="http://vishnuatrai.in/blog/2016/07/05/what-is-new-in-rails-5/"/>
     <updated>2016-07-05T17:34:19+05:30</updated>
     <id>http://vishnuatrai.in/blog/2016/07/05/what-is-new-in-rails-5</id>
-    <content type="html"><![CDATA[<h3>ActionCable</h3>
+    <content type="html"><![CDATA[<h3>ApplicationRecord</h3>
+
+<p>Similar to <code>ApplicationController</code> which is the common base class for all controllers that you get with new Rails apps, <code>ApplicationRecord</code> will provide a base class for your ActiveRecord models. This provides a common place to put any base model concerns.
+<code>app/models/application_record.rb</code> file will be automatically added to models in Rails 5 applications.</p>
+
+<pre><code># app/models/application_record.rb
+class ApplicationRecord &lt; ActiveRecord::Base
+    self.abstract_class = true
+end
+</code></pre>
+
+<h3>ActionCable</h3>
 
 <p>Action Cable can integrates websocket with rails application. Action Cable server can handle multiple connection instances. It has only one instance per websocket connection. The client websocker connection(consumer) can subscribe to multiple cable channels.<!--more-->For example Action Cable server can have a <code>ChatChannel</code> and an <code>AppearancesChannel</code> and a consumer(websocket) can subscribe to either one or both of channels.</p>
 

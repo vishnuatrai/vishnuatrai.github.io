@@ -112,6 +112,17 @@ $(function(){
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name"><a href="/blog/2019/04/15/jenkins-add-slave-nodes-as-jnlp-agents/" itemprop="url">Jenkins - Add Slave Nodes as JNLP Agents</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>If it is required to run Jenkins master in an isolated network and master should not be allowed to connected to its nodes(agents), we can use JNLP method to add agents to master to process jobs in distributed manner. In this scenario, its not desirable to have master connections with slave(agent) nodes but agent to master connections only required. 
+		
+		<a href="/blog/2019/04/15/jenkins-add-slave-nodes-as-jnlp-agents/" class="more-link">Read on &rarr;</a>
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
 	<h1 class="title" itemprop="name"><a href="/blog/2018/12/20/mongodb-4-dot-0-support-for-acid-transactions/" itemprop="url">MongoDB 4.0 - Support for ACID Transactions</a></h1>
 	<div class="entry-content" itemprop="articleBody">
 		<h3>Support for Single-Shard multi document ACID transactions</h3>
@@ -121,36 +132,9 @@ $(function(){
 <h4>Scenario, how it works?</h4>
 
 <ol>
-<li>Client application will get a database session</li>
-<li><p>Database session initiate transaction block using <code>start_transaction</code> statement with <code>majority</code> <code>writeConcern</code> in <code>try</code> block. The only <code>writeConcern</code> thats suitable for high data durability is that of majority. This means a majority of replicas should commit the changes before the primary acknowledges the success of the write to the client. The transaction will remain blocked till at least 1 of the 2 secondaries pulls the update from the primary using asynchronous replication which is susceptible to unpredictable replication lag especially under heavy load.</p></li>
-<li><p>Within transaction block multiple insert/update/remove statements can be made.</p></li>
-<li>At end of transaction block <code>commit_transaction</code> required to commit data in database.</li>
-<li>If any exception occurs in transaction block, client application should <code>abort_transaction</code> in <code>catch</code> block to roll back updates.</li>
-<li>Finally the database client session can be closed in <code>finally</code> block</li>
-</ol>
-
-
-<p>Sample Java code to mimic same scenario,</p>
-
-<pre><code>###Java sample
-private void multiDocumentTransactions() {
-    ClientSession session = client.startSession();
-    try {
-        session.startTransaction(TransactionOptions.builder().writeConcern(WriteConcern.MAJORITY).build());
-        orders.updateOne(session, {..filter..}, {..updates..});
-        stock.updateOne(session, {..filter..}, {..updates..});
-        session.commitTransaction();
-    } catch (MongoCommandException e) {
-        session.abortTransaction();
-        //ROLLBACK TRANSACTION
-    } finally {
-        session.close();
-    }
-}
-</code></pre>
-
+<li>Client application will get a database session 
 		
-		
+		<a href="/blog/2018/12/20/mongodb-4-dot-0-support-for-acid-transactions/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>
@@ -196,17 +180,6 @@ private void multiDocumentTransactions() {
 <p>Active Storage supports modern approach for file uploading to Amazon S3, Google Cloud Storage, Microsoft Azure Cloud file storage. It will also provide references to active record database tables <code>active_storage_blobs</code> and <code>active_storage_attachments</code>. <code>rails active_storage:install</code> will install initial setup for active storage.
 		
 		<a href="/blog/2018/01/20/what-is-new-in-rails-5-dot-2/" class="more-link">Read on &rarr;</a>
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<h1 class="title" itemprop="name"><a href="/blog/2017/12/20/elasticsearch-mapper-parsing-exception/" itemprop="url">Elasticsearch - Mapper_parsing_exception, Failed to Parse Field</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<p>We have recently faced issue with Elasticsearch field types and mapping, when if a field is mapped with a type other type can not be indexed for the same field. Elasticsearch indesing mechanism ristrict that. for example we have created a index named <code>users</code> and inserted a record with <code>text</code> type field <code>name</code>. 
-		
-		<a href="/blog/2017/12/20/elasticsearch-mapper-parsing-exception/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>

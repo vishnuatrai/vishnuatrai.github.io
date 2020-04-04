@@ -112,6 +112,17 @@ $(function(){
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name"><a href="/blog/2017/12/20/elasticsearch-mapper-parsing-exception/" itemprop="url">Elasticsearch - Mapper_parsing_exception, Failed to Parse Field</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>We have recently faced issue with Elasticsearch field types and mapping, when if a field is mapped with a type other type can not be indexed for the same field. Elasticsearch indesing mechanism ristrict that. for example we have created a index named <code>users</code> and inserted a record with <code>text</code> type field <code>name</code>. 
+		
+		<a href="/blog/2017/12/20/elasticsearch-mapper-parsing-exception/" class="more-link">Read on &rarr;</a>
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
 	<h1 class="title" itemprop="name"><a href="/blog/2017/04/21/mongodb-replica-set-localhost-and-ops-manager/" itemprop="url">MongoDB Replica Set - Localhost and Ops Manager</a></h1>
 	<div class="entry-content" itemprop="articleBody">
 		<h3>Setup Local DevEnv Replica Set</h3>
@@ -170,7 +181,18 @@ bundle exec rake db:seed
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
 	<h1 class="title" itemprop="name"><a href="/blog/2016/07/05/what-is-new-in-rails-5/" itemprop="url">What Is New in Rails 5</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		<h3>ActionCable</h3>
+		<h3>ApplicationRecord</h3>
+
+<p>Similar to <code>ApplicationController</code> which is the common base class for all controllers that you get with new Rails apps, <code>ApplicationRecord</code> will provide a base class for your ActiveRecord models. This provides a common place to put any base model concerns.
+<code>app/models/application_record.rb</code> file will be automatically added to models in Rails 5 applications.</p>
+
+<pre><code># app/models/application_record.rb
+class ApplicationRecord &lt; ActiveRecord::Base
+    self.abstract_class = true
+end
+</code></pre>
+
+<h3>ActionCable</h3>
 
 <p>Action Cable can integrates websocket with rails application. Action Cable server can handle multiple connection instances. It has only one instance per websocket connection. The client websocker connection(consumer) can subscribe to multiple cable channels.
 		
@@ -190,19 +212,6 @@ bundle exec rake db:seed
 <p>Containers are the organizational units of Docker. When we build an image and start running it; we are running in a container.
 		
 		<a href="/blog/2015/06/10/docker-docker-compose-dockerfile/" class="more-link">Read on &rarr;</a>
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<h1 class="title" itemprop="name"><a href="/blog/2015/01/15/what-is-new-in-rails-4-dot-2/" itemprop="url">What Is New in Rails 4.2</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<h3>Active Job</h3>
-
-<p>Active Job is a framework for declaring jobs and making them run on a variety of queueing backends. These jobs can be everything from regularly scheduled clean-ups, to billing charges, to mailings. Anything that can be chopped up into small units of work and run in parallel.
-		
-		<a href="/blog/2015/01/15/what-is-new-in-rails-4-dot-2/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>

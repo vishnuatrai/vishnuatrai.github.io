@@ -4,7 +4,7 @@
   <title><![CDATA[@vishnuatrai]]></title>
   <link href="http://vishnuatrai.in/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.in/"/>
-  <updated>2020-02-22T11:13:37+05:30</updated>
+  <updated>2020-04-04T16:37:47+05:30</updated>
   <id>http://vishnuatrai.in/</id>
   <author>
     <name><![CDATA[vishnuatrai.in]]></name>
@@ -157,6 +157,129 @@ We can use available memory and CPU to optimize jMeter configuration.</p>
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[What is new in Rails 6]]></title>
+    <link href="http://vishnuatrai.in/blog/2019/09/15/what-is-new-in-rails-6/"/>
+    <updated>2019-09-15T14:09:12+05:30</updated>
+    <id>http://vishnuatrai.in/blog/2019/09/15/what-is-new-in-rails-6</id>
+    <content type="html"><![CDATA[<h4>Rails 6 require Ruby version 2.5 or greater. Upgrade to at least rails 5.2 or later versions and make sure application run properly without any failure, then attempt to upgrade to 6.0, follow <a href="https://edgeguides.rubyonrails.org/upgrading_ruby_on_rails.html#upgrading-from-rails-5-2-to-rails-6-0">upgrade guide</a>.</h4>
+
+<h3>ApplicationRecord &ndash; Multiple databases support</h3>
+
+<p>Active Record supports switching between multiple databases with a minimal change in codebase but a major impact on multiple replica set db. With multiple db support, rails application can have a read-only version of your database to use in areas known for having slow queries, or if it need to write to different databases depending on which controller request.
+This requires a change in <code>database.yml</code> setup, ie. <!--more-->
+`</p>
+
+<pre><code>development:
+  primary:
+    database: primary_db
+    user: rw_user
+  primary_replica:
+    database: primary_db
+    user: ro_user
+    replica: true
+  animals:
+    database: animals_db
+    user: rw_user
+  animals_replica
+    database: animals_db
+    user: ro_user
+    replica: true
+</code></pre>
+
+<p>`
+You can then specify at the model-level which database(s) you want to use:</p>
+
+<pre><code>class Animal &lt; ApplicationRecord
+    connects_to database: { writing: :animals, reading: :animals_replica }
+end
+</code></pre>
+
+<p>And then it’s just one line of code to temporarily switch between databases inside a block!</p>
+
+<pre><code>Aminal.connected_to(role: :reading) do
+    #Slow queries in jobs can be performaed here
+end
+</code></pre>
+
+<h3>Action Mailbox</h3>
+
+<p>ActionMailbox provides a set of tools that will allow applications to route incoming mail into controller-like mailboxes for processing. Action Mailbox requires Active Job and Active Storage as part of it’s and a database table <code>InboundEmail</code>.</p>
+
+<h4>Setup</h4>
+
+<pre><code>bin/rails action_mailbox:install
+bin/rails db:migrate
+</code></pre>
+
+<h4>Routing and Processing</h4>
+
+<pre><code># app/mailboxes/application_mailbox.rb
+class ApplicationMailbox &lt; ActionMailbox::Base
+    routing /^comment\+(.+)@example\.com/i =&gt; :comments
+end
+# app/mailboxes/comments_mailbox.rb
+class CommentsMailbox &lt; ApplicationMailbox
+    def process
+        user = User.find_by(email: mail.from)
+        post_uuid = COMMENTS_REGEX.match(mail.to)[1]
+
+        post = Post.find_by(uuid: post_uuid)
+        post.comments.create(user: user, content: mail.body)
+    end
+end
+</code></pre>
+
+<h3>Action Text</h3>
+
+<p>ActionText is am implementation of rich-text support(Trix editor by Basecamp). Run bin/rails action_text:install to add the Yarn package and copy over the necessary migration. Also, you need to set up Active Storage for embedded images and other attachments. Both trix and @rails/actiontext should be required in your JavaScript pack.</p>
+
+<pre><code>// application.js
+require("trix")
+require("@rails/actiontext")
+</code></pre>
+
+<p>It exposes a has_rich_text method that we can apply to models and Action Text will take care of the rest.</p>
+
+<pre><code># app/models/article.rb
+class Article &lt; ApplicationRecord
+    has_rich_text :content
+end
+</code></pre>
+
+<h3>Parallel Testing</h3>
+
+<p>Rails 6 adds parallel test to Rails applications by default. It parallelize test suite and enable faster test suite run times and efficiency. Configuration via parent test class</p>
+
+<pre><code>class ActiveSupport::TestCase
+    parallelize(workers: 2, with: :processes) # or :threads
+end
+</code></pre>
+
+<p>or through environment variable PARALLEL_WORKERS and it’ll create the database with a numbered suffix.</p>
+
+<pre><code>PARALLEL_WORKERS=2 rails test
+</code></pre>
+
+<h3>Action Cable Testing</h3>
+
+<p>Action Cable testing tools allow you to test your Action Cable functionality at any level: connections, channels, broadcasts. By default, when you generate new Rails application with Action Cable, a test for the base connection class (<code>ApplicationCable::Connection</code>) is generated as well under <code>test/channels/application_cable</code> directory.</p>
+
+<h3>Webpack</h3>
+
+<p><code>webpacker</code> gem, replacing the previously-default Rails Asset Pipeline and providing for better interoperability with modern JavaScript libraries and coding standards. Using webpacker gem, all StyleSheets, images and JS libraries wrap into a single bundle with a single access point.</p>
+
+<h3>Zeitwerk</h3>
+
+<p>Zeitwerk is a new and improved, thread-safe code loader for Rails, Configuration to enable &ndash;</p>
+
+<pre><code>config.autoloader = :zeitwerk
+</code></pre>
+
+<p><a href="https://edgeguides.rubyonrails.org/6_0_release_notes.html">https://edgeguides.rubyonrails.org/6_0_release_notes.html</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Jenkins Slave with Docker Executors]]></title>
     <link href="http://vishnuatrai.in/blog/2019/08/08/jenkins-slave-with-docker-executors/"/>
     <updated>2019-08-08T16:35:25+05:30</updated>
@@ -262,7 +385,7 @@ and <strong>launch agents via ssh</strong> for linux agents</p>
 <h4>Scenario, how it works?</h4>
 
 <ol>
-<li>Client application will get a database session</li>
+<li>Client application will get a database session <!--more--></li>
 <li><p>Database session initiate transaction block using <code>start_transaction</code> statement with <code>majority</code> <code>writeConcern</code> in <code>try</code> block. The only <code>writeConcern</code> thats suitable for high data durability is that of majority. This means a majority of replicas should commit the changes before the primary acknowledges the success of the write to the client. The transaction will remain blocked till at least 1 of the 2 secondaries pulls the update from the primary using asynchronous replication which is susceptible to unpredictable replication lag especially under heavy load.</p></li>
 <li><p>Within transaction block multiple insert/update/remove statements can be made.</p></li>
 <li>At end of transaction block <code>commit_transaction</code> required to commit data in database.</li>
@@ -860,7 +983,18 @@ CMD ["/usr/bin/appStartup.sh"]
     <link href="http://vishnuatrai.in/blog/2016/07/05/what-is-new-in-rails-5/"/>
     <updated>2016-07-05T17:34:19+05:30</updated>
     <id>http://vishnuatrai.in/blog/2016/07/05/what-is-new-in-rails-5</id>
-    <content type="html"><![CDATA[<h3>ActionCable</h3>
+    <content type="html"><![CDATA[<h3>ApplicationRecord</h3>
+
+<p>Similar to <code>ApplicationController</code> which is the common base class for all controllers that you get with new Rails apps, <code>ApplicationRecord</code> will provide a base class for your ActiveRecord models. This provides a common place to put any base model concerns.
+<code>app/models/application_record.rb</code> file will be automatically added to models in Rails 5 applications.</p>
+
+<pre><code># app/models/application_record.rb
+class ApplicationRecord &lt; ActiveRecord::Base
+    self.abstract_class = true
+end
+</code></pre>
+
+<h3>ActionCable</h3>
 
 <p>Action Cable can integrates websocket with rails application. Action Cable server can handle multiple connection instances. It has only one instance per websocket connection. The client websocker connection(consumer) can subscribe to multiple cable channels.<!--more-->For example Action Cable server can have a <code>ChatChannel</code> and an <code>AppearancesChannel</code> and a consumer(websocket) can subscribe to either one or both of channels.</p>
 
@@ -1591,31 +1725,6 @@ ln -s /usr/local/ssl/bin/openssl /usr/bin/openssl
 <p>  9) Restart the web and app servers</p>
 
 <p>  10) You can ask your application users to change their password</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Octopress: Migrate Disqus Comments from WordPress]]></title>
-    <link href="http://vishnuatrai.in/blog/2014/04/02/octopress-migrate-disqus-comments-from-wordpress/"/>
-    <updated>2014-04-02T12:08:35+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2014/04/02/octopress-migrate-disqus-comments-from-wordpress</id>
-    <content type="html"><![CDATA[<p>Last week I migrated my blog from WordPress to Octopress and find it very cool blogging engine. Though, migraiton of posts and pages was quite easy but migration or you can say linking of Disqus comments from WorlPress pages to Octopress was difficult.<!--more--> I tried lot of different options but could not relink the Disqus comments.</p>
-
-<p>Then I read the Disqus documentation and advanced migration options, and I found a options using that we can relink our comments properly to new bloging urls.</p>
-
-<p>If you read Tools option under Discussion tab, you will find a option &ldquo;Upload a URL Map&rdquo;. There it says if your blog urls or slug was changed you can provide a CSV file which maps your old urls to new urls.( Left side old urls, Right side new urls)
-In my case CSV file format was similar to given below format.</p>
-
-<pre><code>http://vishnuatrai.in/?page_id=2, http://vishnuatrai.in/about/index.html
-http://vishnuatrai.in/?p=115, http://vishnuatrai.in/blog/2010/10/12/managed-rake-tasks-rake-migration/
-http://vishnuatrai.in/?p=132, http://vishnuatrai.in/blog/2010/11/01/why-nosql/
-</code></pre>
-
-<p>The Disqus Crawler runs and relink your comments to new urls.</p>
-
-<h3>Reference</h3>
-
-<p><a href="http://help.disqus.com/customer/portal/articles/286778-using-the-migration-tools">http://help.disqus.com/customer/portal/articles/286778-using-the-migration-tools</a></p>
 ]]></content>
   </entry>
   

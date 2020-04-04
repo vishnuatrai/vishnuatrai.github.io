@@ -4,12 +4,12 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>MongoDB 4.0 - Support for ACID transactions - @vishnuatrai</title>
+	<title>What is new in Rails 6 - @vishnuatrai</title>
 	<meta name="author" content="vishnuatrai.in">
 
 	
-	<meta name="description" content="MongoDB 4.0 - Support for ACID transactions">
-	<meta name="keywords" content="MongoDB, MongoDB ACID, DevOps">
+	<meta name="description" content="What is new in Rails 6">
+	<meta name="keywords" content="Rails 6, Rails, RoR, Ruby on Rails">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +18,7 @@
 
 	<link href="/atom.xml" rel="alternate" title="@vishnuatrai" type="application/atom+xml">
 	
-	<link rel="canonical" href="http://vishnuatrai.in/blog/2018/12/20/mongodb-4-dot-0-support-for-acid-transactions/">
+	<link rel="canonical" href="http://vishnuatrai.in/blog/2019/09/15/what-is-new-in-rails-6/">
   <link href="/favicon.gif" rel="shortcut icon" type="image/x-icon" >
   <link rel="icon" href="/favicon.gif" type="image/x-icon">
 
@@ -109,7 +109,7 @@ $(function(){
         </div>
 				<div id="content" class="article-inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
   
-	<h1 class="title" itemprop="name">MongoDB 4.0 - Support for ACID Transactions</h1>
+	<h1 class="title" itemprop="name">What Is New in Rails 6</h1>
   
 
 
@@ -123,41 +123,122 @@ $(function(){
 
 
 
-  <div class="post-date"><time datetime="2018-12-20T17:41:34+05:30" data-updated="true" itemprop="datePublished">Dec 20<span>th</span>, 2018</time></div>
-	<div class="entry-content" itemprop="articleBody"><h3>Support for Single-Shard multi document ACID transactions</h3>
+  <div class="post-date"><time datetime="2019-09-15T14:09:12+05:30" data-updated="true" itemprop="datePublished">Sep 15<span>th</span>, 2019</time></div>
+	<div class="entry-content" itemprop="articleBody"><h4>Rails 6 require Ruby version 2.5 or greater. Upgrade to at least rails 5.2 or later versions and make sure application run properly without any failure, then attempt to upgrade to 6.0, follow <a href="https://edgeguides.rubyonrails.org/upgrading_ruby_on_rails.html#upgrading-from-rails-5-2-to-rails-6-0">upgrade guide</a>.</h4>
 
-<p>To support benefits of ACID transactions with fully-denormalized document data modeling, MongoDB added single-shard ACID transaction support in the released 4.0. These single-shard transactions apply ACID properties on updates across multiple documents those are present in the same shard. Multi-shard transactions supposed to implement in release 4.2.</p>
+<h3>ApplicationRecord &ndash; Multiple databases support</h3>
 
-<h4>Scenario, how it works?</h4>
+<p>Active Record supports switching between multiple databases with a minimal change in codebase but a major impact on multiple replica set db. With multiple db support, rails application can have a read-only version of your database to use in areas known for having slow queries, or if it need to write to different databases depending on which controller request.
+This requires a change in <code>database.yml</code> setup, ie. <!--more-->
+`</p>
 
-<ol>
-<li>Client application will get a database session <!--more--></li>
-<li><p>Database session initiate transaction block using <code>start_transaction</code> statement with <code>majority</code> <code>writeConcern</code> in <code>try</code> block. The only <code>writeConcern</code> thats suitable for high data durability is that of majority. This means a majority of replicas should commit the changes before the primary acknowledges the success of the write to the client. The transaction will remain blocked till at least 1 of the 2 secondaries pulls the update from the primary using asynchronous replication which is susceptible to unpredictable replication lag especially under heavy load.</p></li>
-<li><p>Within transaction block multiple insert/update/remove statements can be made.</p></li>
-<li>At end of transaction block <code>commit_transaction</code> required to commit data in database.</li>
-<li>If any exception occurs in transaction block, client application should <code>abort_transaction</code> in <code>catch</code> block to roll back updates.</li>
-<li>Finally the database client session can be closed in <code>finally</code> block</li>
-</ol>
-
-
-<p>Sample Java code to mimic same scenario,</p>
-
-<pre><code>###Java sample
-private void multiDocumentTransactions() {
-    ClientSession session = client.startSession();
-    try {
-        session.startTransaction(TransactionOptions.builder().writeConcern(WriteConcern.MAJORITY).build());
-        orders.updateOne(session, {..filter..}, {..updates..});
-        stock.updateOne(session, {..filter..}, {..updates..});
-        session.commitTransaction();
-    } catch (MongoCommandException e) {
-        session.abortTransaction();
-        //ROLLBACK TRANSACTION
-    } finally {
-        session.close();
-    }
-}
+<pre><code>development:
+  primary:
+    database: primary_db
+    user: rw_user
+  primary_replica:
+    database: primary_db
+    user: ro_user
+    replica: true
+  animals:
+    database: animals_db
+    user: rw_user
+  animals_replica
+    database: animals_db
+    user: ro_user
+    replica: true
 </code></pre>
+
+<p>`
+You can then specify at the model-level which database(s) you want to use:</p>
+
+<pre><code>class Animal &lt; ApplicationRecord
+    connects_to database: { writing: :animals, reading: :animals_replica }
+end
+</code></pre>
+
+<p>And then it’s just one line of code to temporarily switch between databases inside a block!</p>
+
+<pre><code>Aminal.connected_to(role: :reading) do
+    #Slow queries in jobs can be performaed here
+end
+</code></pre>
+
+<h3>Action Mailbox</h3>
+
+<p>ActionMailbox provides a set of tools that will allow applications to route incoming mail into controller-like mailboxes for processing. Action Mailbox requires Active Job and Active Storage as part of it’s and a database table <code>InboundEmail</code>.</p>
+
+<h4>Setup</h4>
+
+<pre><code>bin/rails action_mailbox:install
+bin/rails db:migrate
+</code></pre>
+
+<h4>Routing and Processing</h4>
+
+<pre><code># app/mailboxes/application_mailbox.rb
+class ApplicationMailbox &lt; ActionMailbox::Base
+    routing /^comment\+(.+)@example\.com/i =&gt; :comments
+end
+# app/mailboxes/comments_mailbox.rb
+class CommentsMailbox &lt; ApplicationMailbox
+    def process
+        user = User.find_by(email: mail.from)
+        post_uuid = COMMENTS_REGEX.match(mail.to)[1]
+
+        post = Post.find_by(uuid: post_uuid)
+        post.comments.create(user: user, content: mail.body)
+    end
+end
+</code></pre>
+
+<h3>Action Text</h3>
+
+<p>ActionText is am implementation of rich-text support(Trix editor by Basecamp). Run bin/rails action_text:install to add the Yarn package and copy over the necessary migration. Also, you need to set up Active Storage for embedded images and other attachments. Both trix and @rails/actiontext should be required in your JavaScript pack.</p>
+
+<pre><code>// application.js
+require("trix")
+require("@rails/actiontext")
+</code></pre>
+
+<p>It exposes a has_rich_text method that we can apply to models and Action Text will take care of the rest.</p>
+
+<pre><code># app/models/article.rb
+class Article &lt; ApplicationRecord
+    has_rich_text :content
+end
+</code></pre>
+
+<h3>Parallel Testing</h3>
+
+<p>Rails 6 adds parallel test to Rails applications by default. It parallelize test suite and enable faster test suite run times and efficiency. Configuration via parent test class</p>
+
+<pre><code>class ActiveSupport::TestCase
+    parallelize(workers: 2, with: :processes) # or :threads
+end
+</code></pre>
+
+<p>or through environment variable PARALLEL_WORKERS and it’ll create the database with a numbered suffix.</p>
+
+<pre><code>PARALLEL_WORKERS=2 rails test
+</code></pre>
+
+<h3>Action Cable Testing</h3>
+
+<p>Action Cable testing tools allow you to test your Action Cable functionality at any level: connections, channels, broadcasts. By default, when you generate new Rails application with Action Cable, a test for the base connection class (<code>ApplicationCable::Connection</code>) is generated as well under <code>test/channels/application_cable</code> directory.</p>
+
+<h3>Webpack</h3>
+
+<p><code>webpacker</code> gem, replacing the previously-default Rails Asset Pipeline and providing for better interoperability with modern JavaScript libraries and coding standards. Using webpacker gem, all StyleSheets, images and JS libraries wrap into a single bundle with a single access point.</p>
+
+<h3>Zeitwerk</h3>
+
+<p>Zeitwerk is a new and improved, thread-safe code loader for Rails, Configuration to enable &ndash;</p>
+
+<pre><code>config.autoloader = :zeitwerk
+</code></pre>
+
+<p><a href="https://edgeguides.rubyonrails.org/6_0_release_notes.html">https://edgeguides.rubyonrails.org/6_0_release_notes.html</a></p>
 </div>
 
 </article>
@@ -201,9 +282,9 @@ private void multiDocumentTransactions() {
         
 
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://vishnuatrai.in/blog/2018/12/20/mongodb-4-dot-0-support-for-acid-transactions/';
+        var disqus_identifier = 'http://vishnuatrai.in/blog/2019/09/15/what-is-new-in-rails-6/';
 
-        var disqus_url = 'http://vishnuatrai.in/blog/2018/12/20/mongodb-4-dot-0-support-for-acid-transactions/';
+        var disqus_url = 'http://vishnuatrai.in/blog/2019/09/15/what-is-new-in-rails-6/';
         var disqus_script = 'embed.js';
       
     (function () {
