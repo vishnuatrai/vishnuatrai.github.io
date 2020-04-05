@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Front&nbsp;End | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.in/blog/categories/front-end/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.in/"/>
-  <updated>2020-04-05T16:47:54+05:30</updated>
+  <updated>2020-04-05T16:56:03+05:30</updated>
   <id>http://vishnuatrai.in/</id>
   <author>
     <name><![CDATA[vishnuatrai.in]]></name>
@@ -18,17 +18,17 @@
     <link href="http://vishnuatrai.in/blog/2020/02/02/react-dot-js-hocs-vs-render-props-vs-custom-hooks-patterns/"/>
     <updated>2020-02-02T11:57:42+05:30</updated>
     <id>http://vishnuatrai.in/blog/2020/02/02/react-dot-js-hocs-vs-render-props-vs-custom-hooks-patterns</id>
-    <content type="html"><![CDATA[<p>Higher-Order Components(HOCs), Render Props and Custom Hooks are techniques to share comman functionality between components. It&rsquo;s recommended to always go with hooks wherever possible. HOCs and render props patterns require you to restructure your components when you use them, which can be cumbersome and make code harder to follow.</p>
+    <content type="html"><![CDATA[<p>Higher-Order Components(HOCs), Render Props and Custom Hooks are techniques to share common functionality between components. It&rsquo;s recommended to always go with hooks wherever possible. HOCs and render props patterns require you to restructure your components when you use them, which can be cumbersome and make code harder to follow.</p>
 
 <h3>Higher-Order Components</h3>
 
-<p>Higher-order component is a function that takes a component as an argument and returns a new component. HOC adds additional data and functionality to original component so new component also refered to as Enhanced component.<!--more--></p>
+<p>Higher-order component is a function that takes a component as an argument and returns a new component. HOC adds additional data and functionality to original component so new component also referred to as Enhanced component.<!--more--></p>
 
 <pre><code>const NewComponent = higherOrderComponent(OriginalComponent)
 const EnhancedComponent = higherOrderComponent(WrappedComponent)
 </code></pre>
 
-<p>Other possibilties with HOCs,<br />
+<p>Other possibilities with HOCs,<br />
 1. Passing down the props using spread operator <br />
 2. Passing parameters to higher order functions</p>
 
