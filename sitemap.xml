@@ -191,8 +191,14 @@
         <lastmod>2020-04-04T16:37:02+05:30</lastmod>
     </url>
     <url>
+        <loc>
+            http://vishnuatrai.in/blog/2020/02/02/react-dot-js-hocs-vs-render-props-vs-custom-hooks-patterns/
+        </loc>
+        <lastmod>2020-04-05T16:46:04+05:30</lastmod>
+    </url>
+    <url>
         <loc>http://vishnuatrai.in/</loc>
-        <lastmod>2020-04-04T16:37:02+05:30</lastmod>
+        <lastmod>2020-04-05T16:46:04+05:30</lastmod>
     </url>
     <url>
         <loc>http://vishnuatrai.in/about/</loc>
@@ -200,7 +206,7 @@
     </url>
     <url>
         <loc>http://vishnuatrai.in/blog/archives/</loc>
-        <lastmod>2020-04-04T16:37:02+05:30</lastmod>
+        <lastmod>2020-04-05T16:46:04+05:30</lastmod>
     </url>
     <url>
         <loc>http://vishnuatrai.in/robots.txt</loc>

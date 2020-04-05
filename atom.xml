@@ -4,7 +4,7 @@
   <title><![CDATA[@vishnuatrai]]></title>
   <link href="http://vishnuatrai.in/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.in/"/>
-  <updated>2020-04-04T16:37:47+05:30</updated>
+  <updated>2020-04-05T16:47:54+05:30</updated>
   <id>http://vishnuatrai.in/</id>
   <author>
     <name><![CDATA[vishnuatrai.in]]></name>
@@ -12,6 +12,113 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[React.js - HOCs vs Render Props vs Custom Hooks Patterns]]></title>
+    <link href="http://vishnuatrai.in/blog/2020/02/02/react-dot-js-hocs-vs-render-props-vs-custom-hooks-patterns/"/>
+    <updated>2020-02-02T11:57:42+05:30</updated>
+    <id>http://vishnuatrai.in/blog/2020/02/02/react-dot-js-hocs-vs-render-props-vs-custom-hooks-patterns</id>
+    <content type="html"><![CDATA[<p>Higher-Order Components(HOCs), Render Props and Custom Hooks are techniques to share comman functionality between components. It&rsquo;s recommended to always go with hooks wherever possible. HOCs and render props patterns require you to restructure your components when you use them, which can be cumbersome and make code harder to follow.</p>
+
+<h3>Higher-Order Components</h3>
+
+<p>Higher-order component is a function that takes a component as an argument and returns a new component. HOC adds additional data and functionality to original component so new component also refered to as Enhanced component.<!--more--></p>
+
+<pre><code>const NewComponent = higherOrderComponent(OriginalComponent)
+const EnhancedComponent = higherOrderComponent(WrappedComponent)
+</code></pre>
+
+<p>Other possibilties with HOCs,<br />
+1. Passing down the props using spread operator <br />
+2. Passing parameters to higher order functions</p>
+
+<pre><code>#example 
+const withAdditionalFunctionality = (WrappedComponent, additionalArgs) =&gt; {
+    class WithAdditionalFunctionality extends React.Component {
+        constructor(props){
+            super(props)
+            this.state = { 
+                state1: 'value1'
+                ... 
+            }
+        }
+        additionalFunctionality = () =&gt; { 
+            //additionalArgs can be use here 
+            ... 
+        }
+        render(){
+            return( &lt;WrappedComponent
+                        state1={this.state.state1} 
+                        additionalFunctionality={this.additionalFunctionality} 
+                        {...this.props} 
+                    /&gt; )
+        }
+    }
+    return WithAdditionalFunctionality;
+}
+export default withAdditionalFunctionality;
+</code></pre>
+
+<h3>Render Props Pattern</h3>
+
+<p>Render Props is another pattern for sharing code between React components using a prop whose value is a function.</p>
+
+<pre><code>class RenderProps extends React.Component {
+        constructor(props){
+            super(props)
+            this.state = { 
+                state1: 'value1'
+                ... 
+            }
+        }
+        additionalFunctionality = () =&gt; { 
+            //props.additionalArgs
+            ... 
+        }
+        render(){
+            return(&lt;div&gt;
+                    { this.props.render( state1={this.state.state1}
+                        additionalFunctionality={this.additionalFunctionality} ) }
+                &lt;/div&gt;)
+        }
+    }
+    export default RenderProps;
+    #Usage
+    &lt;RenderProps 
+        render={ (state1, additionalFunctionality) =&gt; { return &lt;div&gt; .... &lt;/div&gt; } } 
+    /&gt;
+    &lt;RenderProps 
+        render={ (state1, additionalFunctionality) =&gt; { return &lt;p&gt; .... &lt;/p&gt; } } 
+    /&gt;
+</code></pre>
+
+<h3>Custom Hooks</h3>
+
+<p>Simpler alternative to HOCs and Render Props to share the common logic between components. A custom hook can also call other hooks if required. With Hooks, you can extract stateful logic from a component so it can be tested independently and reused. Hooks allow you to reuse stateful logic without changing your component hierarchy.</p>
+
+<pre><code>import {useState} from 'react'
+function useCustomHook(arguments){
+    const [state1, setState1] = useState(arguments.initialState)
+    const additionalFunctionality = () =&gt; {
+       //arguments can be used here
+       .....
+    }
+    ....
+    return [state1, additionalFunctionality];
+}
+export default useCustomHook;
+#Usage
+function ConsumerComponent {
+    const [state1, additionalFunctionality] = useCustomHook(initialValues and args...)
+    render(
+        &lt;div&gt;
+            ....
+        &lt;/div&gt;
+    )
+}
+</code></pre>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[MySQL - Encryption at rest]]></title>
@@ -1679,52 +1786,6 @@ irb(main):002:0&gt; post.permalink
 irb(main):023:0&gt; "ruby on rails".permalinkify
 NoMethodError: undefined method `permalinkify' for "ruby on rails":String
 </code></pre>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Critical Heartbleed fix for SSL]]></title>
-    <link href="http://vishnuatrai.in/blog/2014/04/11/critical-heartbleed-fix-for-ssl/"/>
-    <updated>2014-04-11T15:30:33+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2014/04/11/critical-heartbleed-fix-for-ssl</id>
-    <content type="html"><![CDATA[<p>OpenSSL heartbleed bug allows hackers to untraceably read server traffic and some server memory. This implementation mistake leads to the leak of memory information from the server to the client and from the client to the server. <!--more--></p>
-
-<p>For my Ruby on Rails application deployed on AWS, the minimal steps I took to upgrade fixed OpenSSL version given below &ndash;</p>
-
-<p>  1) Update OpenSSL to 1.0.1g</p>
-
-<pre><code>download source from here http://www.openssl.org/source/openssl-1.0.1g.tar.gz
-tar -zxf openssl-1.0.1g.tar.gz 
-cd openssl-1.0.1g
-./config
-make
-make test
-make install
-
-openssl version
-
-if this will show older version then do below steps
-
-ln -s /usr/local/ssl/bin/openssl /usr/bin/openssl
-</code></pre>
-
-<p>  2) Recompile/reinstall ruby with new openssl version</p>
-
-<p>  3) Recompile/reinstall libriaries or gems those are related to openssl</p>
-
-<p>  4) Reboot the server</p>
-
-<p>  5) Regenerate new private key and csr to generate new SSL certificate</p>
-
-<p>  6) Change server access keys and passwords</p>
-
-<p>  7) Change API keys, passwords, tokens</p>
-
-<p>  8) Cahnge session secret key for cookie based session store</p>
-
-<p>  9) Restart the web and app servers</p>
-
-<p>  10) You can ask your application users to change their password</p>
 ]]></content>
   </entry>
   
