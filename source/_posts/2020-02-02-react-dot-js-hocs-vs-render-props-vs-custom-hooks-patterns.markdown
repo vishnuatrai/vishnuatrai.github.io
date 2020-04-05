@@ -15,12 +15,12 @@ categories:
   Front&nbsp;End
 ---
 
-Higher-Order Components(HOCs), Render Props and Custom Hooks are techniques to share comman functionality between components. It's recommended to always go with hooks wherever possible. HOCs and render props patterns require you to restructure your components when you use them, which can be cumbersome and make code harder to follow.
+Higher-Order Components(HOCs), Render Props and Custom Hooks are techniques to share common functionality between components. It's recommended to always go with hooks wherever possible. HOCs and render props patterns require you to restructure your components when you use them, which can be cumbersome and make code harder to follow.
 ###Higher-Order Components
-Higher-order component is a function that takes a component as an argument and returns a new component. HOC adds additional data and functionality to original component so new component also refered to as Enhanced component.<!--more-->
+Higher-order component is a function that takes a component as an argument and returns a new component. HOC adds additional data and functionality to original component so new component also referred to as Enhanced component.<!--more-->
 	const NewComponent = higherOrderComponent(OriginalComponent)
 	const EnhancedComponent = higherOrderComponent(WrappedComponent)
-Other possibilties with HOCs,<br />
+Other possibilities with HOCs,<br />
 1. Passing down the props using spread operator <br />
 2. Passing parameters to higher order functions
 	#example 
