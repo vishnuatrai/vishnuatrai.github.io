@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Front&nbsp;End | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.in/blog/categories/front-end/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.in/"/>
-  <updated>2020-04-05T16:56:03+05:30</updated>
+  <updated>2020-04-10T12:39:34+05:30</updated>
   <id>http://vishnuatrai.in/</id>
   <author>
     <name><![CDATA[vishnuatrai.in]]></name>
@@ -117,6 +117,83 @@ function ConsumerComponent {
     )
 }
 </code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[React.js - Ways to Bind Events]]></title>
+    <link href="http://vishnuatrai.in/blog/2019/10/12/react-dot-js-ways-to-bind-events/"/>
+    <updated>2019-10-12T11:47:20+05:30</updated>
+    <id>http://vishnuatrai.in/blog/2019/10/12/react-dot-js-ways-to-bind-events</id>
+    <content type="html"><![CDATA[<h3>Background</h3>
+
+<p>Event binding in ReactJs components required because of <code>this</code> keyword works in JavaScript, within click handler function <code>this</code> keyword will lost its context (component instance) or value.</p>
+
+<h3>1. <code>bind</code> the handler in JSX render<!--more--></h3>
+
+<pre><code>class BindHandler extends React.Component {
+        constructor(props){
+            ...
+        }
+        handlerFunction() { 
+            console.log(this)
+        }
+        render(){
+            return(&lt;button onClick={this.handlerFunction.bind(this)}&gt;Click Event&lt;/button&gt;)
+        }
+    }
+</code></pre>
+
+<h3>2. Arrow function in JSX render callback(<code>this</code> is bound lexically)</h3>
+
+<pre><code>class ArrowFunctionBinding extends React.Component {
+        constructor(props){
+            ...
+        }
+        handlerFunction() { 
+            console.log(this)
+        }
+        render(){
+            return(&lt;button onClick={() =&gt; this.handlerFunction()}&gt;Click Event&lt;/button&gt;)
+        }
+    }
+</code></pre>
+
+<h3>3. <code>bind</code> in <code>constructor()</code></h3>
+
+<pre><code>class ConstructorBinding extends React.Component {
+        constructor(props){
+            ...
+            this.handlerFunction = this.handlerFunction.bind(this)
+        }
+        handlerFunction() { 
+            console.log(this)
+        }
+        render(){
+            return(&lt;button onClick={this.handlerFunction}&gt;Click Event&lt;/button&gt;)
+        }
+    }
+</code></pre>
+
+<h3>4. Define handler function as class property using Arrow function</h3>
+
+<pre><code>class EventHandlerClassProperty extends React.Component {
+        constructor(props){
+            ...
+            this.handlerFunction = this.handlerFunction.bind(this)
+        }
+        handlerFunction = () =&gt; { 
+            console.log(this)
+        }
+        render(){
+            return(&lt;button onClick={this.handlerFunction}&gt;Click Event&lt;/button&gt;)
+        }
+    }
+</code></pre>
+
+<h3>Recommendations</h3>
+
+<p>React documentation suggests binding events in constructor. But if need to use <strong>arrow function in JSX render callback</strong> for its simplicity or when need to pass arguments, we should consider caching the handlers if the bindings become a performance issue.</p>
 ]]></content>
   </entry>
   

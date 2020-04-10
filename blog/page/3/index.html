@@ -112,6 +112,22 @@ $(function(){
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name"><a href="/blog/2018/07/05/mongodb-change-streams-real-time-notifications-to-subscribers-for-data-updates/" itemprop="url">MongoDB Change Streams - Real Time Oplog Notifications</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Change Stream is easiest way to subscribe database changes realtime, its based on mongoDB oplog(Operation Log) technology. An ideal use case would be ETL operational data to a reporting and visualization data store via kafka data pipeline.</p>
+
+<h3>MongoDB real time data sync technologies</h3>
+
+<ol>
+<li>mongodb oplog technology based changestream enable applications to stream real-time data changes
+		
+		<a href="/blog/2018/07/05/mongodb-change-streams-real-time-notifications-to-subscribers-for-data-updates/" class="more-link">Read on &rarr;</a>
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
 	<h1 class="title" itemprop="name"><a href="/blog/2018/01/20/what-is-new-in-rails-5-dot-2/" itemprop="url">What Is New in Rails 5.2</a></h1>
 	<div class="entry-content" itemprop="articleBody">
 		<h3>Active Storage</h3>
@@ -186,30 +202,6 @@ bundle exec rake db:seed
 
 		
 		<a href="/blog/2016/12/05/rails-applicatoin-openshift-3-dot-0-deployment/" class="more-link">Read on &rarr;</a>
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<h1 class="title" itemprop="name"><a href="/blog/2016/07/05/what-is-new-in-rails-5/" itemprop="url">What Is New in Rails 5</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<h3>ApplicationRecord</h3>
-
-<p>Similar to <code>ApplicationController</code> which is the common base class for all controllers that you get with new Rails apps, <code>ApplicationRecord</code> will provide a base class for your ActiveRecord models. This provides a common place to put any base model concerns.
-<code>app/models/application_record.rb</code> file will be automatically added to models in Rails 5 applications.</p>
-
-<pre><code># app/models/application_record.rb
-class ApplicationRecord &lt; ActiveRecord::Base
-    self.abstract_class = true
-end
-</code></pre>
-
-<h3>ActionCable</h3>
-
-<p>Action Cable can integrates websocket with rails application. Action Cable server can handle multiple connection instances. It has only one instance per websocket connection. The client websocker connection(consumer) can subscribe to multiple cable channels.
-		
-		<a href="/blog/2016/07/05/what-is-new-in-rails-5/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>
