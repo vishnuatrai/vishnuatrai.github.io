@@ -24,25 +24,14 @@ categories:
 ###Why ProxySQL/HAProxy?
 ProxySQL provides below advantages if included in deployment stack 
 
-- Scalability
-	- Connection Pooling and multiplexing
-	- Read/Write split
-	- Read/Write sharding
-- High Availability
-	- Seamless failover
-	- Load balancing
-	- Cluster aware
-- Advance query and support
-	- Query caching
-	- Query rewrite
-	- Query blocking
-	- Query mirroring
-	- Query throttling
-	- Query timeout
-- Manageability
-	- Admin Utility
-	- Runtime reconfiguration
-	- Monitoring
+- Scalability <br />
+	Connection Pooling and multiplexing,  Read/Write split,  Read/Write sharding
+- High Availability <br />
+	Seamless failover,  Load balancing,  Cluster aware
+- Advance query and support <br />
+	Query caching,  Query rewrite,  Query blocking,  Query mirroring,  Query throttling,  Query timeout
+- Manageability <br />
+	Admin Utility,  Runtime reconfiguration,  Monitoring
 
 ###ProxySQL Configurations Options
 	mysql_replication_hostgroups
