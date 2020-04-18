@@ -4,7 +4,7 @@
   <title><![CDATA[Category: MySQL&nbsp;HAProxy | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.in/blog/categories/mysql-haproxy/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.in/"/>
-  <updated>2020-04-10T12:39:34+05:30</updated>
+  <updated>2020-04-18T17:30:14+05:30</updated>
   <id>http://vishnuatrai.in/</id>
   <author>
     <name><![CDATA[vishnuatrai.in]]></name>
@@ -35,41 +35,14 @@
 <p>ProxySQL provides below advantages if included in deployment stack</p>
 
 <ul>
-<li>Scalability
-
-<ul>
-<li>Connection Pooling and multiplexing</li>
-<li>Read/Write split</li>
-<li>Read/Write sharding</li>
-</ul>
-</li>
-<li>High Availability
-
-<ul>
-<li>Seamless failover</li>
-<li>Load balancing</li>
-<li>Cluster aware</li>
-</ul>
-</li>
-<li>Advance query and support
-
-<ul>
-<li>Query caching</li>
-<li>Query rewrite</li>
-<li>Query blocking</li>
-<li>Query mirroring</li>
-<li>Query throttling</li>
-<li>Query timeout</li>
-</ul>
-</li>
-<li>Manageability
-
-<ul>
-<li>Admin Utility</li>
-<li>Runtime reconfiguration</li>
-<li>Monitoring</li>
-</ul>
-</li>
+<li>Scalability <br />
+  Connection Pooling and multiplexing,  Read/Write split,  Read/Write sharding</li>
+<li>High Availability <br />
+  Seamless failover,  Load balancing,  Cluster aware</li>
+<li>Advance query and support <br />
+  Query caching,  Query rewrite,  Query blocking,  Query mirroring,  Query throttling,  Query timeout</li>
+<li>Manageability <br />
+  Admin Utility,  Runtime reconfiguration,  Monitoring</li>
 </ul>
 
 
