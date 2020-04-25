@@ -24,9 +24,9 @@ Returns `1` if the lock was obtained successfully, `0` if the attempt timed out 
 A lock obtained with `GET_LOCK()` is released explicitly by executing `RELEASE_LOCK()` or implicitly when your session terminates (either normally or abnormally). Locks obtained with `GET_LOCK()` are not released when transactions commit or roll back.
 
 
-###USE CASE 1: Elimiate SPOF of background jobs or scheduled/cron job
+###USE CASE 1: Eliminate SPOF of background jobs or scheduled/cron job
 
-###USE CASE 2: A process that allowed to run only once on a given time however the process is deployed on multiple hosts as part of different microservices, ie. scheduled jobs
+###USE CASE 2: A process that allowed to run only once on a given time however the process is deployed on multiple hosts as part of different micro-services, ie. scheduled jobs
 
 <br />
 
