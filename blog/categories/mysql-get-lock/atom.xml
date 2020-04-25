@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: MySQL&nbsp;GET_LOCK | @vishnuatrai]]></title>
+  <link href="http://vishnuatrai.in/blog/categories/mysql-get-lock/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.in/"/>
+  <updated>2020-04-25T16:49:12+05:30</updated>
+  <id>http://vishnuatrai.in/</id>
+  <author>
+    <name><![CDATA[vishnuatrai.in]]></name>
+    <email><![CDATA[vishnu.atrai@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[MySQL - Distributed GET_LOCK]]></title>
+    <link href="http://vishnuatrai.in/blog/2017/10/15/mysql-distributed-GET_LOCK/"/>
+    <updated>2017-10-15T17:52:24+05:30</updated>
+    <id>http://vishnuatrai.in/blog/2017/10/15/mysql-distributed-GET_LOCK</id>
+    <content type="html"><![CDATA[<p>Distributed global locking using <code>mysql get_lock()</code>, ensures releasing orphaned lock.</p>
+
+<p><strong><em><code>GET_LOCK(str,timeout)</code></em></strong> <br /></p>
+
+<p>Tries to obtain a lock with a name given by the string <code>str</code>, using a timeout of <code>timeout</code> seconds. A negative <code>timeout</code> value means infinite timeout. The lock is exclusive. While held by one session, other sessions cannot <!--more--> obtain a lock of the same name.</p>
+
+<p>Returns <code>1</code> if the lock was obtained successfully, <code>0</code> if the attempt timed out (for example, because another client has previously locked the name), or <code>NULL</code> if an error occurred (such as running out of memory or the thread was killed with mysqladmin kill).</p>
+
+<p>A lock obtained with <code>GET_LOCK()</code> is released explicitly by executing <code>RELEASE_LOCK()</code> or implicitly when your session terminates (either normally or abnormally). Locks obtained with <code>GET_LOCK()</code> are not released when transactions commit or roll back.</p>
+
+<h3>USE CASE 1: Elimiate SPOF of background jobs or scheduled/cron job</h3>
+
+<h3>USE CASE 2: A process that allowed to run only once on a given time however the process is deployed on multiple hosts as part of different microservices, ie. scheduled jobs</h3>
+
+<br />
+
+
+<h4>Sample Java snippets</h4>
+
+<pre><code>import java.sql.DriverManager;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+.....
+Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/" + dbName, "root", "");
+PreparedStatement sth = connection.prepareStatement("SELECT GET_LOCK(?, ?)")
+sth.setString(1, "distributed_lock");
+sth.setInt(2, 2);
+
+ResultSet resultSet = sth.executeQuery();
+resultSet.next();
+Integer status = resultSet.getInt(1);
+
+if (resultSet.wasNull()) {
+   throw new Exception("Can not obtain lock");
+}
+if (status == 0) {
+  throw new Exception("Already locked `distributed_lock`");
+}
+if (status == 1) {
+    //successfully get lock.. do something here ...
+}
+.....
+</code></pre>
+
+<p>Reference &ndash; <a href="https://dev.mysql.com/doc/refman/5.7/en/locking-functions.html#function_get-lock">MySQL GET_LOCK</a></p>
+]]></content>
+  </entry>
+  
+</feed>

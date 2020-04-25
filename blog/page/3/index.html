@@ -152,6 +152,21 @@ $(function(){
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name"><a href="/blog/2017/10/15/mysql-distributed-GET_LOCK/" itemprop="url">MySQL - Distributed GET_LOCK</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Distributed global locking using <code>mysql get_lock()</code>, ensures releasing orphaned lock.</p>
+
+<p><strong><em><code>GET_LOCK(str,timeout)</code></em></strong> <br /></p>
+
+<p>Tries to obtain a lock with a name given by the string <code>str</code>, using a timeout of <code>timeout</code> seconds. A negative <code>timeout</code> value means infinite timeout. The lock is exclusive. While held by one session, other sessions cannot 
+		
+		<a href="/blog/2017/10/15/mysql-distributed-GET_LOCK/" class="more-link">Read on &rarr;</a>
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
 	<h1 class="title" itemprop="name"><a href="/blog/2017/04/21/mongodb-replica-set-localhost-and-ops-manager/" itemprop="url">MongoDB Replica Set - Localhost and Ops Manager</a></h1>
 	<div class="entry-content" itemprop="articleBody">
 		<h3>Setup Local DevEnv Replica Set</h3>
@@ -178,30 +193,6 @@ $(function(){
 
 		
 		<a href="/blog/2017/04/21/mongodb-replica-set-localhost-and-ops-manager/" class="more-link">Read on &rarr;</a>
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<h1 class="title" itemprop="name"><a href="/blog/2016/12/05/rails-applicatoin-openshift-3-dot-0-deployment/" itemprop="url">Rails Applicatoin - Openshift 3.0 Deployment</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<h3>Prepare helper scripts for application setup, app start and httpd config</h3>
-
-<p>Helper scripts can be stored as part of application code in directory <code>scripts</code> in project root directory.</p>
-
-<p>Sample application setup script</p>
-
-<pre><code># scripts/application_setup.sh
-
-#! /bin/bash
-bundle exec rake db:migrate
-bundle exec rake db:seed
-</code></pre>
-
-
-		
-		<a href="/blog/2016/12/05/rails-applicatoin-openshift-3-dot-0-deployment/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>
