@@ -4,7 +4,7 @@
   <title><![CDATA[Category: MySQL&nbsp;GET_LOCK | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.in/blog/categories/mysql-get-lock/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.in/"/>
-  <updated>2020-04-25T16:55:33+05:30</updated>
+  <updated>2020-04-29T19:54:44+05:30</updated>
   <id>http://vishnuatrai.in/</id>
   <author>
     <name><![CDATA[vishnuatrai.in]]></name>
@@ -20,6 +20,17 @@
     <id>http://vishnuatrai.in/blog/2017/10/15/mysql-distributed-GET_LOCK</id>
     <content type="html"><![CDATA[<p>Distributed global locking using <code>mysql get_lock()</code>, ensures releasing orphaned lock.</p>
 
+<h3>USE CASE 1:</h3>
+
+<h4>Eliminate SPOF of background jobs or scheduled/cron job</h4>
+
+<h3>USE CASE 2:</h3>
+
+<h4>A process that allowed to run only once on a given time however the process is deployed on multiple hosts as part of different micro-services, ie. scheduled jobs</h4>
+
+<br />
+
+
 <p><strong><em><code>GET_LOCK(str,timeout)</code></em></strong> <br /></p>
 
 <p>Tries to obtain a lock with a name given by the string <code>str</code>, using a timeout of <code>timeout</code> seconds. A negative <code>timeout</code> value means infinite timeout. The lock is exclusive. While held by one session, other sessions cannot <!--more--> obtain a lock of the same name.</p>
@@ -27,13 +38,6 @@
 <p>Returns <code>1</code> if the lock was obtained successfully, <code>0</code> if the attempt timed out (for example, because another client has previously locked the name), or <code>NULL</code> if an error occurred (such as running out of memory or the thread was killed with mysqladmin kill).</p>
 
 <p>A lock obtained with <code>GET_LOCK()</code> is released explicitly by executing <code>RELEASE_LOCK()</code> or implicitly when your session terminates (either normally or abnormally). Locks obtained with <code>GET_LOCK()</code> are not released when transactions commit or roll back.</p>
-
-<h3>USE CASE 1: Eliminate SPOF of background jobs or scheduled/cron job</h3>
-
-<h3>USE CASE 2: A process that allowed to run only once on a given time however the process is deployed on multiple hosts as part of different micro-services, ie. scheduled jobs</h3>
-
-<br />
-
 
 <h4>Sample Java snippets</h4>
 

@@ -126,6 +126,17 @@ $(function(){
   <div class="post-date"><time datetime="2017-10-15T17:52:24+05:30" data-updated="true" itemprop="datePublished">Oct 15<span>th</span>, 2017</time></div>
 	<div class="entry-content" itemprop="articleBody"><p>Distributed global locking using <code>mysql get_lock()</code>, ensures releasing orphaned lock.</p>
 
+<h3>USE CASE 1:</h3>
+
+<h4>Eliminate SPOF of background jobs or scheduled/cron job</h4>
+
+<h3>USE CASE 2:</h3>
+
+<h4>A process that allowed to run only once on a given time however the process is deployed on multiple hosts as part of different micro-services, ie. scheduled jobs</h4>
+
+<br />
+
+
 <p><strong><em><code>GET_LOCK(str,timeout)</code></em></strong> <br /></p>
 
 <p>Tries to obtain a lock with a name given by the string <code>str</code>, using a timeout of <code>timeout</code> seconds. A negative <code>timeout</code> value means infinite timeout. The lock is exclusive. While held by one session, other sessions cannot <!--more--> obtain a lock of the same name.</p>
@@ -133,13 +144,6 @@ $(function(){
 <p>Returns <code>1</code> if the lock was obtained successfully, <code>0</code> if the attempt timed out (for example, because another client has previously locked the name), or <code>NULL</code> if an error occurred (such as running out of memory or the thread was killed with mysqladmin kill).</p>
 
 <p>A lock obtained with <code>GET_LOCK()</code> is released explicitly by executing <code>RELEASE_LOCK()</code> or implicitly when your session terminates (either normally or abnormally). Locks obtained with <code>GET_LOCK()</code> are not released when transactions commit or roll back.</p>
-
-<h3>USE CASE 1: Eliminate SPOF of background jobs or scheduled/cron job</h3>
-
-<h3>USE CASE 2: A process that allowed to run only once on a given time however the process is deployed on multiple hosts as part of different micro-services, ie. scheduled jobs</h3>
-
-<br />
-
 
 <h4>Sample Java snippets</h4>
 
