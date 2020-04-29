@@ -15,6 +15,14 @@ categories:
 
 Distributed global locking using `mysql get_lock()`, ensures releasing orphaned lock.
 
+###USE CASE 1: 
+####Eliminate SPOF of background jobs or scheduled/cron job
+
+###USE CASE 2: 
+####A process that allowed to run only once on a given time however the process is deployed on multiple hosts as part of different micro-services, ie. scheduled jobs
+
+<br />
+
 ***`GET_LOCK(str,timeout)`*** <br /> 
 
 Tries to obtain a lock with a name given by the string `str`, using a timeout of `timeout` seconds. A negative `timeout` value means infinite timeout. The lock is exclusive. While held by one session, other sessions cannot <!--more--> obtain a lock of the same name.
@@ -23,12 +31,6 @@ Returns `1` if the lock was obtained successfully, `0` if the attempt timed out 
 
 A lock obtained with `GET_LOCK()` is released explicitly by executing `RELEASE_LOCK()` or implicitly when your session terminates (either normally or abnormally). Locks obtained with `GET_LOCK()` are not released when transactions commit or roll back.
 
-
-###USE CASE 1: Eliminate SPOF of background jobs or scheduled/cron job
-
-###USE CASE 2: A process that allowed to run only once on a given time however the process is deployed on multiple hosts as part of different micro-services, ie. scheduled jobs
-
-<br />
 
 ####Sample Java snippets
 	import java.sql.DriverManager;
