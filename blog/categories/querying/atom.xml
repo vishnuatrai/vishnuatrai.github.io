@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Querying | @vishnuatrai]]></title>
+  <link href="http://vishnuatrai.in/blog/categories/querying/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.in/"/>
+  <updated>2020-05-03T14:48:30+05:30</updated>
+  <id>http://vishnuatrai.in/</id>
+  <author>
+    <name><![CDATA[vishnuatrai.in]]></name>
+    <email><![CDATA[vishnu.atrai@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[MapR-DB - Querying Pro-tips]]></title>
+    <link href="http://vishnuatrai.in/blog/2020/05/03/mapr-db-querying-pro-tips/"/>
+    <updated>2020-05-03T13:09:15+05:30</updated>
+    <id>http://vishnuatrai.in/blog/2020/05/03/mapr-db-querying-pro-tips</id>
+    <content type="html"><![CDATA[<h3>What is MapR?</h3>
+
+<p>MapR is a complete enterprise-grade distribution for Apache Hadoop. The MapR Data Platform has been developed to improve Hadoop’s reliability, performance, and ease of use. The MapR provides a full Hadoop stack that includes the MapR File System (MapR-FS), the MapR-DB NoSQL database management system, MapR Streams, the MapR Control System (MCS) user interface, and a full family of Hadoop ecosystem projects.<!--more--></p>
+
+<h3>Querying</h3>
+
+<p>MapR provides native JSON (JavaScript Object Notation) support to MapR Database. The JSON access layer is known as OJAI(Open JSON Application Interface).</p>
+
+<h4>Querying dependency</h4>
+
+<p>The workstation must setup MapR client and its certificates and should be able to login to <code>mapr dbshell</code></p>
+
+<h4>Java program setup</h4>
+
+<p>The workstation must setup MapR client and its certificates</p>
+
+<pre><code>pom.xml
+&lt;dependency&gt;
+    &lt;groupId&gt;org.ojai&lt;/groupId&gt;
+    &lt;artifactId&gt;ojai&lt;/artifactId&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;com.mapr.db&lt;/groupId&gt;
+    &lt;artifactId&gt;maprdb&lt;/artifactId&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<h4>1. Find by id</h4>
+
+<pre><code>mapr dbshell&gt; find /datalake/path/to/table/users --c {"$eq":{"_id":"5e1dcaaea97bd2004c3caccf"}}
+or 
+mapr dbshell&gt; find /datalake/path/to/table/users --q {"$where":{"$and":[{"$eq":{"_id":"5e1dcaaea97bd2004c3caccf"}}]}}
+#Sample Java snippets
+....
+com.mapr.db.Admin admin = MapRDB.newAdmin();
+com.mapr.db.Table maprTable = MapRDB.getTable("/datalake/path/to/table/users");
+org.ojai.Document doc = maprTable.findById("5e1dcaaea97bd2004c3caccf", fieldPaths={"_id","username","fullname","age","dob"});
+....
+</code></pre>
+
+<h4>2. Query with <code>$and</code> and <code>select</code> fields</h4>
+
+<pre><code>mapr dbshell&gt; find /datalake/path/to/table/users --q {"$select":["_id","username","fullname","age","dob"],"$where":{"$and":[{"$eq":{"_id":"5e1dcaaea97bd2004c3caccf"}}]}}
+#Sample Java snippets
+....
+import org.ojai.store.QueryCondition.Op;
+org.ojai.store.QueryCondition query = MapRDB.newCondition().and().is("_id", Op.EQUAL, "5e1dcaaea97bd2004c3caccf").close().build();
+org.ojai.DocumentStream doc = maprTable.find(query, fieldPaths={"_id","username","fullname","age","dob"});
+....
+</code></pre>
+
+<h4>3. Query with conditions and <code>orderBy</code></h4>
+
+<pre><code>mapr dbshell&gt; find /datalake/path/to/table/users --q {"$where":{"$and":[{"$ge":{"dob":{"$date":"2000-01-15"}}}]},"$orderby":{"username":"desc"}}
+#Sample Java snippets
+org.ojai.types.OTimestamp ojaiDOB = new org.ojai.types.OTimestamp("2000-01-15");
+org.ojai.store.QueryCondition condition = MapRDB.newCondition().and().is("dob", Op.GREATER_OR_EQUAL, ojaiDOB).close().build();
+org.ojai.store.Query query = MapRDB.newQuery().where(condition).orderBy("username","DESC")
+org.ojai.DocumentStream docs = maprTable.findQuery(query, fieldPaths={"_id","username","fullname","age","dob"});
+</code></pre>
+
+<h4>4. Query with conditions and <code>limit</code> results</h4>
+
+<pre><code>mapr dbshell&gt; find /datalake/path/to/table/users --q {"$where":{"$and":[{"$ge":{"dob":{"$date":"2000-01-15"}}}]},"$limit":10}
+#Sample Java snippets
+org.ojai.types.OTimestamp ojaiDOB = new org.ojai.types.OTimestamp("2000-01-15");
+org.ojai.store.QueryCondition condition = MapRDB.newCondition().and().is("dob", Op.GREATER_OR_EQUAL, ojaiDOB).close().build();
+org.ojai.store.Query query = MapRDB.newQuery().where(condition).limit(10)
+org.ojai.DocumentStream docs = maprTable.findQuery(query, fieldPaths={"_id","username","fullname","age","dob"});
+</code></pre>
+
+<h4>5. Query with range conditions with <code>$ge</code>,<code>$gt</code>,<code>$le</code>,<code>$lt</code></h4>
+
+<pre><code>mapr dbshell&gt; find /datalake/path/to/table/users --q {"$where":{"$and":[{"$ge":{"dob":{"$date":"2000-01-15"}}},{"$le":{"dob":{"$date":"2005-01-15"}}}]},"$orderby":{"username":"desc"},"$limit":10}
+#Sample Java snippets
+org.ojai.types.OTimestamp ojaiFromDOB = new org.ojai.types.OTimestamp("2000-01-15");
+org.ojai.types.OTimestamp ojaiToDOB = new org.ojai.types.OTimestamp("2005-01-15");
+org.ojai.store.QueryCondition condition = MapRDB.newCondition().and().is("dob", Op.GREATER_OR_EQUAL, ojaiFromDOB).is("dob", Op.LESS_OR_EQUAL, ojaiToDOB).close().build();
+org.ojai.store.Query query = MapRDB.newQuery().where(condition).orderBy("username","DESC").limit(10)
+org.ojai.DocumentStream docs = maprTable.findQuery(query, fieldPaths={"_id","username","fullname","age","dob"});    
+</code></pre>
+
+<h4>6. Query with <code>$or</code></h4>
+
+<pre><code>mapr dbshell&gt; find /datalake/path/to/table/users --q {"$where":{"$or":[{"$le":{"dob":{"$date":"2000-01-15"}}},{"$ge":{"age":{"$number":"20"}}}]},"$orderby":{"username":"desc"},"$limit":10}
+#Sample Java snippets
+org.ojai.types.OTimestamp ojaiFromDOB = new org.ojai.types.OTimestamp("2000-01-15");
+org.ojai.store.QueryCondition condition = MapRDB.newCondition().or().is("dob", Op.GREATER_OR_EQUAL, ojaiFromDOB).is("age", Op.LESS_OR_EQUAL, 20).close().build();
+org.ojai.store.Query query = MapRDB.newQuery().where(condition).orderBy("username","DESC").limit(10)
+org.ojai.DocumentStream docs = maprTable.findQuery(query, fieldPaths={"_id","username","fullname","age","dob"});    
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

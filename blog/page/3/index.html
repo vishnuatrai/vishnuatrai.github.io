@@ -112,6 +112,22 @@ $(function(){
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name"><a href="/blog/2018/11/12/proxysql-mysql-high-availability-load-balancing/" itemprop="url">ProxySQL - MySQL High Availability Load Balancing</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<h3>What is ProxySQL?</h3>
+
+<ul>
+<li>Lightweight Proxy layer for MySQL</li>
+<li>Its protocol aware that we put between application and database server</li>
+<li>Improve database operations 
+		
+		<a href="/blog/2018/11/12/proxysql-mysql-high-availability-load-balancing/" class="more-link">Read on &rarr;</a>
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
 	<h1 class="title" itemprop="name"><a href="/blog/2018/07/05/mongodb-change-streams-real-time-notifications-to-subscribers-for-data-updates/" itemprop="url">MongoDB Change Streams - Real Time Oplog Notifications</a></h1>
 	<div class="entry-content" itemprop="articleBody">
 		<p>Change Stream is easiest way to subscribe database changes realtime, its based on mongoDB oplog(Operation Log) technology. An ideal use case would be ETL operational data to a reporting and visualization data store via kafka data pipeline.</p>
@@ -172,38 +188,6 @@ $(function(){
 <p>Tries to obtain a lock with a name given by the string <code>str</code>, using a timeout of <code>timeout</code> seconds. A negative <code>timeout</code> value means infinite timeout. The lock is exclusive. While held by one session, other sessions cannot 
 		
 		<a href="/blog/2017/10/15/mysql-distributed-GET_LOCK/" class="more-link">Read on &rarr;</a>
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<h1 class="title" itemprop="name"><a href="/blog/2017/04/21/mongodb-replica-set-localhost-and-ops-manager/" itemprop="url">MongoDB Replica Set - Localhost and Ops Manager</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<h3>Setup Local DevEnv Replica Set</h3>
-
-<ol>
-<li><p>update <code>mongod.conf</code> for replication</p>
-
-<pre><code> #edit /usr/local/etc/mongod.conf
- systemLog:
-     destination: file
-     path: /usr/local/var/log/mongodb/mongo.log
-     logAppend: true
- storage:
-     dbPath: /usr/local/var/mongodb
- net:
-     bindIp: 127.0.0.1
- replication:
-     replSetName: rs0
-     oplogSizeMB: 100
-</code></pre></li>
-</ol>
-
-
-
-		
-		<a href="/blog/2017/04/21/mongodb-replica-set-localhost-and-ops-manager/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>
