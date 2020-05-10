@@ -112,6 +112,32 @@ $(function(){
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name"><a href="/blog/2017/10/15/mysql-distributed-GET_LOCK/" itemprop="url">MySQL - Distributed GET_LOCK</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Distributed global locking using <code>mysql get_lock()</code>, ensures releasing orphaned lock.</p>
+
+<h3>USE CASE 1:</h3>
+
+<h4>Eliminate SPOF of background jobs or scheduled/cron job</h4>
+
+<h3>USE CASE 2:</h3>
+
+<h4>A process that allowed to run only once on a given time however the process is deployed on multiple hosts as part of different micro-services, ie. scheduled jobs</h4>
+
+<br />
+
+
+<p><strong><em><code>GET_LOCK(str,timeout)</code></em></strong> <br /></p>
+
+<p>Tries to obtain a lock with a name given by the string <code>str</code>, using a timeout of <code>timeout</code> seconds. A negative <code>timeout</code> value means infinite timeout. The lock is exclusive. While held by one session, other sessions cannot 
+		
+		<a href="/blog/2017/10/15/mysql-distributed-GET_LOCK/" class="more-link">Read on &rarr;</a>
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
 	<h1 class="title" itemprop="name"><a href="/blog/2017/04/21/mongodb-replica-set-localhost-and-ops-manager/" itemprop="url">MongoDB Replica Set - Localhost and Ops Manager</a></h1>
 	<div class="entry-content" itemprop="articleBody">
 		<h3>Setup Local DevEnv Replica Set</h3>
@@ -201,19 +227,6 @@ end
 <p>Containers are the organizational units of Docker. When we build an image and start running it; we are running in a container.
 		
 		<a href="/blog/2015/06/10/docker-docker-compose-dockerfile/" class="more-link">Read on &rarr;</a>
-	</div>
-
-</article>
-
-
-    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<h1 class="title" itemprop="name"><a href="/blog/2015/01/15/what-is-new-in-rails-4-dot-2/" itemprop="url">What Is New in Rails 4.2</a></h1>
-	<div class="entry-content" itemprop="articleBody">
-		<h3>Active Job</h3>
-
-<p>Active Job is a framework for declaring jobs and making them run on a variety of queueing backends. These jobs can be everything from regularly scheduled clean-ups, to billing charges, to mailings. Anything that can be chopped up into small units of work and run in parallel.
-		
-		<a href="/blog/2015/01/15/what-is-new-in-rails-4-dot-2/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>

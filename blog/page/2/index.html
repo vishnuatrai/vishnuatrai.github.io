@@ -154,29 +154,38 @@ This requires a change in <code>database.yml</code> setup, ie.
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<h1 class="title" itemprop="name"><a href="/blog/2019/04/15/jenkins-add-slave-nodes-as-jnlp-agents/" itemprop="url">Jenkins - Add Slave Nodes as JNLP Agents</a></h1>
+	<h1 class="title" itemprop="name"><a href="/blog/2019/06/10/kafka-consumer-commitfailedexception-for-revoked-partition/" itemprop="url">Kafka - Consumer CommitFailedException for Revoked Partition</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		<p>If it is required to run Jenkins master in an isolated network and master should not be allowed to connected to its nodes(agents), we can use JNLP method to add agents to master to process jobs in distributed manner. In this scenario, its not desirable to have master connections with slave(agent) nodes but agent to master connections only required. 
+		<h4>Error Trace</h4>
+
+<pre><code>06-10 01:15:05 131 pool-9-thread-5 ERROR [] -
+commit failed
+org.apache.kafka.clients.consumer.CommitFailedException: Commit cannot be completed since the group has already rebalanced and assigned the partitions to another member. This means that the time between subsequent calls to poll() was longer than the configured max.poll.interval.ms, which typically implies that the poll loop is spending too much time message processing. You can address this either by increasing the session timeout or by reducing the maximum size of batches returned in poll() with max.poll.records.
+at org.apache.kafka.clients.consumer.internals.ConsumerCoordinator.sendOffsetCommitRequest(ConsumerCoordinator.java:713) ~[MsgAgent-jar-with-dependencies.jar:na]
+at org.apache.kafka.clients.consumer.internals.ConsumerCoordinator.commitOffsetsSync(ConsumerCoordinator.java:596) ~[MsgAgent-jar-with-dependencies.jar:na]
+at org.apache.kafka.clients.consumer.KafkaConsumer.commitSync(KafkaConsumer.java:1218) ~[ConsumerService-jar-with-dependencies.jar:na]
+at com.vatrai.consumer.service.ConsumerServiceImpl.consume(ConsumerServiceImpl.java:67) ~[ConsumerService-jar-with-dependencies.jar:na]
+at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149) [na:1.8.0_161]
+at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624) [na:1.8.0_161]
+at java.lang.Thread.run(Thread.java:748) [na:1.8.0_161]
+</code></pre>
+
+<h4>Reason</h4>
+
+<p>Consumer invoked the polling method to obtain the messages.
 		
-		<a href="/blog/2019/04/15/jenkins-add-slave-nodes-as-jnlp-agents/" class="more-link">Read on &rarr;</a>
+		<a href="/blog/2019/06/10/kafka-consumer-commitfailedexception-for-revoked-partition/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-	<h1 class="title" itemprop="name"><a href="/blog/2018/12/20/mongodb-4-dot-0-support-for-acid-transactions/" itemprop="url">MongoDB 4.0 - Support for ACID Transactions</a></h1>
+	<h1 class="title" itemprop="name"><a href="/blog/2019/04/15/jenkins-add-slave-nodes-as-jnlp-agents/" itemprop="url">Jenkins - Add Slave Nodes as JNLP Agents</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		<h3>Support for Single-Shard multi document ACID transactions</h3>
-
-<p>To support benefits of ACID transactions with fully-denormalized document data modeling, MongoDB added single-shard ACID transaction support in the released 4.0. These single-shard transactions apply ACID properties on updates across multiple documents those are present in the same shard. Multi-shard transactions supposed to implement in release 4.2.</p>
-
-<h4>Scenario, how it works?</h4>
-
-<ol>
-<li>Client application will get a database session 
+		<p>If it is required to run Jenkins master in an isolated network and master should not be allowed to connected to its nodes(agents), we can use JNLP method to add agents to master to process jobs in distributed manner. In this scenario, its not desirable to have master connections with slave(agent) nodes but agent to master connections only required. 
 		
-		<a href="/blog/2018/12/20/mongodb-4-dot-0-support-for-acid-transactions/" class="more-link">Read on &rarr;</a>
+		<a href="/blog/2019/04/15/jenkins-add-slave-nodes-as-jnlp-agents/" class="more-link">Read on &rarr;</a>
 	</div>
 
 </article>
