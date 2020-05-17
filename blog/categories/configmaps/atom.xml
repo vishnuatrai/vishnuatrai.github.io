@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: ConfigMaps | @vishnuatrai]]></title>
+  <link href="http://vishnuatrai.in/blog/categories/configmaps/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.in/"/>
+  <updated>2020-05-17T21:07:55+05:30</updated>
+  <id>http://vishnuatrai.in/</id>
+  <author>
+    <name><![CDATA[vishnuatrai.in]]></name>
+    <email><![CDATA[vishnu.atrai@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Kubernetes - Secrets vs ConfigMaps]]></title>
+    <link href="http://vishnuatrai.in/blog/2018/08/16/kubernetes-secrets-vs-configmaps/"/>
+    <updated>2018-08-16T16:28:34+05:30</updated>
+    <id>http://vishnuatrai.in/blog/2018/08/16/kubernetes-secrets-vs-configmaps</id>
+    <content type="html"><![CDATA[<h3>Secrets</h3>
+
+<p>Serets are k8s object to manage small amount of sensitive data like password, keys and tokens with less than 1mb size. Secrets encoded and stored inside k8s master etcd data store. Since Secrets will be created outside of pods and containers, these can be used any number of times.</p>
+
+<h4>1. Create <code>secret</code> using <code>kubectl</code><!--more--></h4>
+
+<pre><code>#syntax
+kubectl create secret &lt;type of secret (generic)&gt; &lt;name of secret&gt; &lt;data from-file|from-literal&gt;
+echo -n 'admin' &gt; ./username.txt
+echo -n '1f2d1e2e67df' &gt; ./password.txt
+kubectl create secret generic db-user-pass --from-file=./username.txt --from-file=./password.txt
+kubectl create secret generic dev-db-secret --from-literal=username=user --from-literal=password='S!B\*d$zDsb='
+</code></pre>
+
+<h4>2. Create <code>Secret</code> using yaml menifesto files</h4>
+
+<pre><code>#sample yaml menifesto secret.yaml file 
+apiVersion: v1
+kind: Secret
+metadata:
+    name: mysecret
+type: Opaque
+data:
+    username: appuser
+    password: MWYyZDFlMmU2N2Rm
+</code></pre>
+
+<p>create using kubectl apply</p>
+
+<pre><code>kubectl apply -f ./secret.yaml
+</code></pre>
+
+<h4>Deploy Secrets in Pods</h4>
+
+<h4>1. Through Volumes</h4>
+
+<pre><code>#sample pod manifesto yaml file
+apiVersion: v1
+kind: Pod
+metadata:
+    name: nginx
+spec:
+    containers:
+    - name: nginx
+      image: nginx
+      volumeMounts:
+      - name: secret-volumn
+        mountPath: /etc/secret
+        readOnly: true
+    volumes:
+    - name: secret-volumn
+      secret:
+        secretName: mysecret
+</code></pre>
+
+<p>Add a volume section with type <code>secret</code> and with <code>secretName</code>(ie. mysecret already created) and then mount the secret volumn to container target location that is similar to mounting any other volumes.</p>
+
+<h4>2. Through environment variables</h4>
+
+<pre><code>#sample pod manifesto yaml file
+apiVersion: v1
+kind: Pod
+metadata:
+    name: nginx
+spec:
+    containers:
+    - name: nginx
+      image: nginx
+      env:
+      - name: SECRET_USERNAME
+        valueFrom:
+            secretKeyRef:
+                name: mysecret
+                key: username
+      - name: SECRET_PASSWORD
+        valueFrom:
+            secretKeyRef:
+                name: mysecret
+                key: password
+</code></pre>
+
+<p>Instead of volume mapping use environment variables and use secret(ie. mysecret) to assign values. Verify the environment variables.</p>
+
+<pre><code>kubectl exec nginx env | grep SECRET
+    =&gt; SECRET_PASSWORD=MWYyZDFlMmU2N2Rm
+    =&gt; SECRET_USERNAME=appuser
+</code></pre>
+
+<h3>ConfigMaps</h3>
+
+<p>ConfigMaps used to seperate container images and its custom configurations so that images are portable and can be run in any environment providing appropriate configuration. <code>ConfigMap</code> stores data in key, value format. If any configuration values are sensitive the use <code>Secret</code> instead <code>ConfigMap</code>. Its must to create <code>ConfigMap</code> before hand if we need to refer in pod spec.</p>
+
+<h4>1. Create <code>configmap</code> using <code>kubectl</code><!--more--></h4>
+
+<pre><code>#syntax
+kubectl create configmap &lt;name of configmap&gt; &lt;data from-file|from-literal&gt;
+path/to/config/file/application.yaml
+path/to/config/file/application-prod.properties
+kubectl create configmap app-config --from-file=path/to/config/file/
+kubectl get configmaps app-config -o wide #list the content of properties and yml file configuration
+kubectl create configmap custom-config --from-literal port=8080 --from-literal https=false
+</code></pre>
+
+<h4>2. Create <code>ConfigMap</code> using yaml menifesto files</h4>
+
+<pre><code>#sample yaml menifesto configmap.yaml file 
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: myconfig
+type: Opaque
+data:
+    port: 8080
+    https: false
+</code></pre>
+
+<p>create using kubectl apply</p>
+
+<pre><code>kubectl apply -f ./configmap.yaml
+</code></pre>
+
+<h4>Deploy ConfigMaps in Pods</h4>
+
+<h4>1. Through Volumes</h4>
+
+<pre><code>#sample pod manifesto yaml file
+apiVersion: v1
+kind: Pod
+metadata:
+    name: nginx
+spec:
+    containers:
+    - name: nginx
+      image: nginx
+      volumeMounts:
+      - mountPath: /target/
+        name: custom-config
+    volumes:
+    - name: custom-config
+      configMap:
+        name: app-config
+        items:
+        - key: application.yaml  
+          path: application.yaml
+        - key: application-prod.properties
+          path: application-prod.properties
+</code></pre>
+
+<p>In <code>volumes</code> section <code>key</code> is file name created while configMap, <code>path</code> is target location where data will be present inside the pod.
+in <code>volumeMounts</code> we provide the mountPath the target directory to mount the configMap volume.</p>
+
+<h4>2. Through environment variables</h4>
+
+<pre><code>#sample pod manifesto yaml file
+apiVersion: v1
+kind: Pod
+metadata:
+    name: nginx
+spec:
+    containers:
+    - name: nginx
+      image: nginx
+      env:
+      - name: CONFIG_PORT
+        valueFrom:
+            configMapKeyRef:
+                name: myconfig
+                key: port
+</code></pre>
+
+<p>Instead of volume mapping use environment variables and use configmap(ie. myconfig) to assign values. Verify the environment variables.</p>
+
+<pre><code>kubectl exec nginx env | grep CONFIG
+    =&gt; CONFIG_PORT=8080
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

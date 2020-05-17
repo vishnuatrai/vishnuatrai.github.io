@@ -4,7 +4,7 @@
   <title><![CDATA[@vishnuatrai]]></title>
   <link href="http://vishnuatrai.in/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.in/"/>
-  <updated>2020-05-10T17:13:48+05:30</updated>
+  <updated>2020-05-17T21:07:55+05:30</updated>
   <id>http://vishnuatrai.in/</id>
   <author>
     <name><![CDATA[vishnuatrai.in]]></name>
@@ -826,6 +826,189 @@ stats_mysql_query_digest
   </entry>
   
   <entry>
+    <title type="html"><![CDATA[Kubernetes - Secrets vs ConfigMaps]]></title>
+    <link href="http://vishnuatrai.in/blog/2018/08/16/kubernetes-secrets-vs-configmaps/"/>
+    <updated>2018-08-16T16:28:34+05:30</updated>
+    <id>http://vishnuatrai.in/blog/2018/08/16/kubernetes-secrets-vs-configmaps</id>
+    <content type="html"><![CDATA[<h3>Secrets</h3>
+
+<p>Serets are k8s object to manage small amount of sensitive data like password, keys and tokens with less than 1mb size. Secrets encoded and stored inside k8s master etcd data store. Since Secrets will be created outside of pods and containers, these can be used any number of times.</p>
+
+<h4>1. Create <code>secret</code> using <code>kubectl</code><!--more--></h4>
+
+<pre><code>#syntax
+kubectl create secret &lt;type of secret (generic)&gt; &lt;name of secret&gt; &lt;data from-file|from-literal&gt;
+echo -n 'admin' &gt; ./username.txt
+echo -n '1f2d1e2e67df' &gt; ./password.txt
+kubectl create secret generic db-user-pass --from-file=./username.txt --from-file=./password.txt
+kubectl create secret generic dev-db-secret --from-literal=username=user --from-literal=password='S!B\*d$zDsb='
+</code></pre>
+
+<h4>2. Create <code>Secret</code> using yaml menifesto files</h4>
+
+<pre><code>#sample yaml menifesto secret.yaml file 
+apiVersion: v1
+kind: Secret
+metadata:
+    name: mysecret
+type: Opaque
+data:
+    username: appuser
+    password: MWYyZDFlMmU2N2Rm
+</code></pre>
+
+<p>create using kubectl apply</p>
+
+<pre><code>kubectl apply -f ./secret.yaml
+</code></pre>
+
+<h4>Deploy Secrets in Pods</h4>
+
+<h4>1. Through Volumes</h4>
+
+<pre><code>#sample pod manifesto yaml file
+apiVersion: v1
+kind: Pod
+metadata:
+    name: nginx
+spec:
+    containers:
+    - name: nginx
+      image: nginx
+      volumeMounts:
+      - name: secret-volumn
+        mountPath: /etc/secret
+        readOnly: true
+    volumes:
+    - name: secret-volumn
+      secret:
+        secretName: mysecret
+</code></pre>
+
+<p>Add a volume section with type <code>secret</code> and with <code>secretName</code>(ie. mysecret already created) and then mount the secret volumn to container target location that is similar to mounting any other volumes.</p>
+
+<h4>2. Through environment variables</h4>
+
+<pre><code>#sample pod manifesto yaml file
+apiVersion: v1
+kind: Pod
+metadata:
+    name: nginx
+spec:
+    containers:
+    - name: nginx
+      image: nginx
+      env:
+      - name: SECRET_USERNAME
+        valueFrom:
+            secretKeyRef:
+                name: mysecret
+                key: username
+      - name: SECRET_PASSWORD
+        valueFrom:
+            secretKeyRef:
+                name: mysecret
+                key: password
+</code></pre>
+
+<p>Instead of volume mapping use environment variables and use secret(ie. mysecret) to assign values. Verify the environment variables.</p>
+
+<pre><code>kubectl exec nginx env | grep SECRET
+    =&gt; SECRET_PASSWORD=MWYyZDFlMmU2N2Rm
+    =&gt; SECRET_USERNAME=appuser
+</code></pre>
+
+<h3>ConfigMaps</h3>
+
+<p>ConfigMaps used to seperate container images and its custom configurations so that images are portable and can be run in any environment providing appropriate configuration. <code>ConfigMap</code> stores data in key, value format. If any configuration values are sensitive the use <code>Secret</code> instead <code>ConfigMap</code>. Its must to create <code>ConfigMap</code> before hand if we need to refer in pod spec.</p>
+
+<h4>1. Create <code>configmap</code> using <code>kubectl</code><!--more--></h4>
+
+<pre><code>#syntax
+kubectl create configmap &lt;name of configmap&gt; &lt;data from-file|from-literal&gt;
+path/to/config/file/application.yaml
+path/to/config/file/application-prod.properties
+kubectl create configmap app-config --from-file=path/to/config/file/
+kubectl get configmaps app-config -o wide #list the content of properties and yml file configuration
+kubectl create configmap custom-config --from-literal port=8080 --from-literal https=false
+</code></pre>
+
+<h4>2. Create <code>ConfigMap</code> using yaml menifesto files</h4>
+
+<pre><code>#sample yaml menifesto configmap.yaml file 
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: myconfig
+type: Opaque
+data:
+    port: 8080
+    https: false
+</code></pre>
+
+<p>create using kubectl apply</p>
+
+<pre><code>kubectl apply -f ./configmap.yaml
+</code></pre>
+
+<h4>Deploy ConfigMaps in Pods</h4>
+
+<h4>1. Through Volumes</h4>
+
+<pre><code>#sample pod manifesto yaml file
+apiVersion: v1
+kind: Pod
+metadata:
+    name: nginx
+spec:
+    containers:
+    - name: nginx
+      image: nginx
+      volumeMounts:
+      - mountPath: /target/
+        name: custom-config
+    volumes:
+    - name: custom-config
+      configMap:
+        name: app-config
+        items:
+        - key: application.yaml  
+          path: application.yaml
+        - key: application-prod.properties
+          path: application-prod.properties
+</code></pre>
+
+<p>In <code>volumes</code> section <code>key</code> is file name created while configMap, <code>path</code> is target location where data will be present inside the pod.
+in <code>volumeMounts</code> we provide the mountPath the target directory to mount the configMap volume.</p>
+
+<h4>2. Through environment variables</h4>
+
+<pre><code>#sample pod manifesto yaml file
+apiVersion: v1
+kind: Pod
+metadata:
+    name: nginx
+spec:
+    containers:
+    - name: nginx
+      image: nginx
+      env:
+      - name: CONFIG_PORT
+        valueFrom:
+            configMapKeyRef:
+                name: myconfig
+                key: port
+</code></pre>
+
+<p>Instead of volume mapping use environment variables and use configmap(ie. myconfig) to assign values. Verify the environment variables.</p>
+
+<pre><code>kubectl exec nginx env | grep CONFIG
+    =&gt; CONFIG_PORT=8080
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[MongoDB Change Streams - Real time oplog notifications]]></title>
     <link href="http://vishnuatrai.in/blog/2018/07/05/mongodb-change-streams-real-time-notifications-to-subscribers-for-data-updates/"/>
     <updated>2018-07-05T17:19:31+05:30</updated>
@@ -1419,199 +1602,6 @@ end
 <h3>References</h3>
 
 <p><a href="https://guides.rubyonrails.org/5_0_release_notes.html">https://guides.rubyonrails.org/5_0_release_notes.html</a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Docker, Docker compose and Dockerfile]]></title>
-    <link href="http://vishnuatrai.in/blog/2015/06/10/docker-docker-compose-dockerfile/"/>
-    <updated>2015-06-10T18:29:15+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2015/06/10/docker-docker-compose-dockerfile</id>
-    <content type="html"><![CDATA[<h3>What is Docker</h3>
-
-<p>The Docker uses the Linux kernel and features of the kernel, like Cgroups and namespaces, to segregate processes so they can run independently. This independence is the intention of containers‐the ability to run multiple processes and apps separately from one another to make better use of your infrastructure while retaining the security you would have with separate systems.</p>
-
-<p>Containers are the organizational units of Docker. When we build an image and start running it; we are running in a container.<!--more--></p>
-
-<p>Unlike the VMs which can communicate with the hardware of the host (ex: Ethernet adapter to create more virtual adapters) Docker containers run in an isolated environment on top of the host&rsquo;s OS.</p>
-
-<h3>What is Docker Compose</h3>
-
-<p>Docker Compose is a tool for defining and running multi-container Docker applications. With Compose, you use a YAML file to configure your application’s services. Then, with a single command, you create and start all the services from your configuration.</p>
-
-<p>Docker Compose lets you bring up a complete development environment with only one command: docker-compose up, and tear it down just as easily using docker-compose down. This allows us developers to keep our development environment in one central place and helps us to easily deploy our applications.</p>
-
-<p>Compose works in all environments: production, staging, development, testing, as well as CI workflows. You can learn more about each case in Common Use Cases.</p>
-
-<p>Using Compose is basically a three-step process:</p>
-
-<pre><code>Define your app’s environment with a Dockerfile so it can be reproduced anywhere.
-
-Define the services that make up your app in docker-compose.yml so they can be run together in an isolated environment.
-
-Run docker-compose up and Compose starts and runs your entire app.
-</code></pre>
-
-<p>A docker-compose.yml looks like this:</p>
-
-<pre><code>version: '3'
-services:
-  web:
-    build: .
-    ports:
-    - "5000:5000"
-    volumes:
-    - .:/code
-    - logvolume01:/var/log
-    links:
-    - redis
-  redis:
-    image: redis
-volumes:
-  logvolume01: {}
-</code></pre>
-
-<p>Docker Compose commands &ndash;</p>
-
-<pre><code>$ docker-compose up -d
-$ docker-compose down
-$ docker-compose start
-$ docker-compose stop
-$ docker-compose build
-$ docker-compose logs -f db
-$ docker-compose scale db=4
-$ docker-compose events
-$ docker-compose exec db bash
-</code></pre>
-
-<h3>What is Dockerfile</h3>
-
-<p>Docker can build images automatically by reading the instructions from a Dockerfile. A Dockerfile is a text document that contains all the commands a user could call on the command line to assemble an image.</p>
-
-<p>The docker build command builds an image from a Dockerfile and a context. The build’s context is the set of files at a specified location PATH or URL. The PATH is a directory on your local filesystem. The URL is a Git repository location.</p>
-
-<p>A context is processed recursively. So, a PATH includes any subdirectories and the URL includes the repository and its submodules. This example shows a build command that uses the current directory as context:</p>
-
-<pre><code>$ docker build .
-</code></pre>
-
-<p>The build is run by the Docker daemon, not by the CLI. The first thing a build process does is send the entire context (recursively) to the daemon. In most cases, it’s best to start with an empty directory as context and keep your Dockerfile in that directory. Add only the files needed for building the Dockerfile.</p>
-
-<p>To use a file in the build context, the Dockerfile refers to the file specified in an instruction, for example, a COPY instruction. To increase the build’s performance, exclude files and directories by adding a .dockerignore file to the context directory.</p>
-
-<p>You use the -f flag with docker build to point to a Dockerfile anywhere in your file system.</p>
-
-<pre><code>$ docker build -f /path/to/a/Dockerfile .
-</code></pre>
-
-<p><strong><em>Dockerfile Instructions and Commands</em></strong></p>
-
-<p><code>FROM</code>, It defines the base image to use to start the build process.</p>
-
-<p><code>LABEL</code>, add labels to your image to help organize images by project, record licensing information</p>
-
-<p><code>RUN</code>, takes a command as its argument and runs it to form the image. it actually is used to build the image</p>
-
-<p><code>EXPOSE</code>, used to indicate the ports on which a container listens for connections, Its used to associate a specified port to enable networking between the running process inside the container and the outside world.</p>
-
-<p><code>ENV</code>, used to set the environment variables (one or more). These variables consist of “key value” pairs.</p>
-
-<p><code>ADD</code> or <code>COPY</code>, these commands gets two arguments: a source and a destination. It basically copies the files from the source on the host into the container’s own filesystem at the set destination. Although ADD and COPY are functionally similar, COPY is preferred. That’s because it’s more transparent than ADD.</p>
-
-<p><code>CMD</code>, can be used for executing a specific command. it&rsquo;s executed when a container is instantiated using the image being built. It should be considered as an initial, default command that gets executed with the creation of containers based on the image.</p>
-
-<pre><code># Usage 1: CMD application "argument", "argument", ..
-FROM ubuntu
-CMD echo "This is a test."
-</code></pre>
-
-<p><code>ENTRYPOINT</code>, argument sets the concrete default application that is used every time a container is created using the image. For example, if you have installed a specific application inside an image and you will use this image to only run that application, you can state it with ENTRYPOINT and whenever a container is created from that image, your application will be the target.</p>
-
-<p>If you couple ENTRYPOINT with CMD, you can remove “application” from CMD and just leave “arguments” which will be passed to the ENTRYPOINT.</p>
-
-<pre><code># Usage: ENTRYPOINT application "argument", "argument", ..
-# Remember: arguments are optional. They can be provided by CMD
-#           or during the creation of a container.
-ENTRYPOINT echo
-
-# Usage example with CMD:
-# Arguments set with CMD can be overridden during *run*
-CMD "This is a test."
-ENTRYPOINT echo  
-</code></pre>
-
-<p>The best use for ENTRYPOINT is to set the image’s main command, allowing that image to be run as though it was that command (and then use CMD as the default flags).</p>
-
-<p>Let’s start with an example of an image for the command line tool s3cmd:</p>
-
-<pre><code>ENTRYPOINT ["s3cmd"]
-CMD ["--help"]
-</code></pre>
-
-<p>The ENTRYPOINT instruction can also be used in combination with a helper script, allowing it to function in a similar way to the command above, even when starting the tool may require more than one step.</p>
-
-<p>For example, the Postgres Official Image uses the following script as its ENTRYPOINT:</p>
-
-<pre><code>#!/bin/bash
-set -e
-
-if [ "$1" = 'postgres' ]; then
-    chown -R postgres "$PGDATA"
-
-    if [ -z "$(ls -A "$PGDATA")" ]; then
-        gosu postgres initdb
-    fi
-
-    exec gosu postgres "$@"
-fi
-
-exec "$@"
-</code></pre>
-
-<p>The helper script is copied into the container and run via ENTRYPOINT on container start:</p>
-
-<pre><code>COPY ./docker-entrypoint.sh /
-ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["postgres"]
-</code></pre>
-
-<p>This script allows the user to interact with Postgres in several ways.</p>
-
-<p>It can simply start Postgres:</p>
-
-<pre><code>$ docker run postgres
-</code></pre>
-
-<p>Or, it can be used to run Postgres and pass parameters to the server:</p>
-
-<pre><code>$ docker run postgres postgres --help
-</code></pre>
-
-<p>Lastly, it could also be used to start a totally different tool, such as Bash:</p>
-
-<pre><code>$ docker run --rm -it postgres bash
-</code></pre>
-
-<p><code>VOLUME</code>, used to expose any storage area, configuration storage, or files/folders created by docker container</p>
-
-<p><code>USER</code>, used to set the UID (or username) which is to run the container based on the image being built.
-If a service can run without privileges, use USER to change to a non-root user. Start by creating the user and group in the Dockerfile with something like RUN groupadd -r postgres &amp;&amp; useradd &mdash;no-log-init -r -g postgres postgres.</p>
-
-<pre><code># Usage: USER [UID]
-USER 800
-</code></pre>
-
-<p>To reduce layers and complexity, avoid switching USER back and forth frequently.</p>
-
-<p><code>WORKDIR</code>, used to set where the command defined with CMD is to be executed</p>
-
-<h3>What is Docker Hub</h3>
-
-<p>Docker Hub is a cloud-hosted version of Docker Registry. A Docker user can opt for Docker Registry, which is a stateless, open source and scalable server-side application, if they prefer to maintain the storage and distribution of Docker images instead of relying on Docker&rsquo;s service.</p>
-
-<h2>References</h2>
-
-<p><a href="https://docs.docker.com/">https://docs.docker.com/</a></p>
 ]]></content>
   </entry>
   
