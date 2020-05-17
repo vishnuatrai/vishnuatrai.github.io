@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Kubernetes | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.in/blog/categories/kubernetes/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.in/"/>
-  <updated>2020-05-17T21:07:55+05:30</updated>
+  <updated>2020-05-17T21:14:49+05:30</updated>
   <id>http://vishnuatrai.in/</id>
   <author>
     <name><![CDATA[vishnuatrai.in]]></name>
@@ -20,7 +20,7 @@
     <id>http://vishnuatrai.in/blog/2018/08/16/kubernetes-secrets-vs-configmaps</id>
     <content type="html"><![CDATA[<h3>Secrets</h3>
 
-<p>Serets are k8s object to manage small amount of sensitive data like password, keys and tokens with less than 1mb size. Secrets encoded and stored inside k8s master etcd data store. Since Secrets will be created outside of pods and containers, these can be used any number of times.</p>
+<p>Secrets are k8s object to manage small amount of sensitive data like password, keys and tokens with less than 1mb size. Secrets encoded and stored inside k8s master etcd data store. Since Secrets will be created outside of pods and containers, these can be used any number of times.</p>
 
 <h4>1. Create <code>secret</code> using <code>kubectl</code><!--more--></h4>
 
@@ -32,9 +32,9 @@ kubectl create secret generic db-user-pass --from-file=./username.txt --from-fil
 kubectl create secret generic dev-db-secret --from-literal=username=user --from-literal=password='S!B\*d$zDsb='
 </code></pre>
 
-<h4>2. Create <code>Secret</code> using yaml menifesto files</h4>
+<h4>2. Create <code>Secret</code> using yaml manifesto files</h4>
 
-<pre><code>#sample yaml menifesto secret.yaml file 
+<pre><code>#sample yaml manifesto secret.yaml file 
 apiVersion: v1
 kind: Secret
 metadata:
@@ -64,16 +64,16 @@ spec:
     - name: nginx
       image: nginx
       volumeMounts:
-      - name: secret-volumn
+      - name: secret-volume
         mountPath: /etc/secret
         readOnly: true
     volumes:
-    - name: secret-volumn
+    - name: secret-volume
       secret:
         secretName: mysecret
 </code></pre>
 
-<p>Add a volume section with type <code>secret</code> and with <code>secretName</code>(ie. mysecret already created) and then mount the secret volumn to container target location that is similar to mounting any other volumes.</p>
+<p>Add a volume section with type <code>secret</code> and with <code>secretName</code>(ie. mysecret already created) and then mount the secret volume to container target location that is similar to mounting any other volumes.</p>
 
 <h4>2. Through environment variables</h4>
 
@@ -121,9 +121,9 @@ kubectl get configmaps app-config -o wide #list the content of properties and ym
 kubectl create configmap custom-config --from-literal port=8080 --from-literal https=false
 </code></pre>
 
-<h4>2. Create <code>ConfigMap</code> using yaml menifesto files</h4>
+<h4>2. Create <code>ConfigMap</code> using yaml manifesto files</h4>
 
-<pre><code>#sample yaml menifesto configmap.yaml file 
+<pre><code>#sample yaml manifesto configmap.yaml file 
 apiVersion: v1
 kind: ConfigMap
 metadata:
