@@ -13,7 +13,7 @@ categories:
 ---
 
 ###Secrets
-Serets are k8s object to manage small amount of sensitive data like password, keys and tokens with less than 1mb size. Secrets encoded and stored inside k8s master etcd data store. Since Secrets will be created outside of pods and containers, these can be used any number of times.
+Secrets are k8s object to manage small amount of sensitive data like password, keys and tokens with less than 1mb size. Secrets encoded and stored inside k8s master etcd data store. Since Secrets will be created outside of pods and containers, these can be used any number of times.
 ####1. Create `secret` using `kubectl`<!--more-->
 	#syntax
 	kubectl create secret <type of secret (generic)> <name of secret> <data from-file|from-literal>
@@ -21,8 +21,8 @@ Serets are k8s object to manage small amount of sensitive data like password, ke
 	echo -n '1f2d1e2e67df' > ./password.txt
 	kubectl create secret generic db-user-pass --from-file=./username.txt --from-file=./password.txt
 	kubectl create secret generic dev-db-secret --from-literal=username=user --from-literal=password='S!B\*d$zDsb='
-####2. Create `Secret` using yaml menifesto files
-	#sample yaml menifesto secret.yaml file 
+####2. Create `Secret` using yaml manifesto files
+	#sample yaml manifesto secret.yaml file 
 	apiVersion: v1
 	kind: Secret
 	metadata:
@@ -46,14 +46,14 @@ create using kubectl apply
 		- name: nginx
 		  image: nginx
 		  volumeMounts:
-		  - name: secret-volumn
+		  - name: secret-volume
 		    mountPath: /etc/secret
 		    readOnly: true
 		volumes:
-		- name: secret-volumn
+		- name: secret-volume
 		  secret:
 		  	secretName: mysecret
-Add a volume section with type `secret` and with `secretName`(ie. mysecret already created) and then mount the secret volumn to container target location that is similar to mounting any other volumes.
+Add a volume section with type `secret` and with `secretName`(ie. mysecret already created) and then mount the secret volume to container target location that is similar to mounting any other volumes.
 ####2. Through environment variables
 	#sample pod manifesto yaml file
 	apiVersion: v1
@@ -92,8 +92,8 @@ ConfigMaps used to seperate container images and its custom configurations so th
 	kubectl create configmap app-config --from-file=path/to/config/file/
 	kubectl get configmaps app-config -o wide #list the content of properties and yml file configuration
 	kubectl create configmap custom-config --from-literal port=8080 --from-literal https=false
-####2. Create `ConfigMap` using yaml menifesto files
-	#sample yaml menifesto configmap.yaml file 
+####2. Create `ConfigMap` using yaml manifesto files
+	#sample yaml manifesto configmap.yaml file 
 	apiVersion: v1
 	kind: ConfigMap
 	metadata:
