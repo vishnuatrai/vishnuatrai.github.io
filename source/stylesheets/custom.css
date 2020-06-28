@@ -1,0 +1,38 @@
+.kubtable{
+	border: solid 1px; border-collapse: collapse; vertical-align: top; font-size: 0.9em;
+}
+
+table.kubtable, th, td {
+  border: 1px solid black;
+  vertical-align: top;
+  padding: 0.5em;
+}
+
+table.kubtable th{
+  padding: 0.5em;
+}
+
+span.syntax{
+	font-size: 0.7em;
+}
+
+p.syntax{
+	font-size: 0.7em;
+}
+
+.entry-content table.kubtable td {
+    text-align: justify; 
+}
+
+
+span.syntax pre{
+	margin-top: 0px;
+	padding: 0px;
+	background: transparent;
+	border: none;
+	font-family:inherit;
+}
+
+strong.feature{
+	font-size: 0.9em;
+}
