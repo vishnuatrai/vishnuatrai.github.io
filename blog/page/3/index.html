@@ -23,6 +23,8 @@
   <link rel="icon" href="/favicon.gif" type="image/x-icon">
 
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/stylesheets/custom.css" media="screen, projection" rel="stylesheet" type="text/css">
+
 	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
@@ -148,11 +150,7 @@ $(function(){
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
 	<h1 class="title" itemprop="name"><a href="/blog/2018/08/16/kubernetes-secrets-vs-configmaps/" itemprop="url">Kubernetes - Secrets vs ConfigMaps</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		<h3>Secrets</h3>
-
-<p>Secrets are k8s object to manage small amount of sensitive data like password, keys and tokens with less than 1mb size. Secrets encoded and stored inside k8s master etcd data store. Since Secrets will be created outside of pods and containers, these can be used any number of times.</p>
-
-<h4>1. Create <code>secret</code> using <code>kubectl</code>
+		
 		
 		<a href="/blog/2018/08/16/kubernetes-secrets-vs-configmaps/" class="more-link">Read on &rarr;</a>
 	</div>
