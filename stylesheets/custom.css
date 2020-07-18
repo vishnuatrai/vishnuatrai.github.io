@@ -36,3 +36,5 @@ span.syntax pre{
 strong.feature{
 	font-size: 0.9em;
 }
+
+.social a.stackoverflow{background:url('/images/social/stackoverflow.png') center no-repeat #005a87;border:1px solid #005A87}#sub-nav .social a.stackoverflow:hover{border:1px solid #003854}
