@@ -16,7 +16,8 @@ description:
 date_format: "ordinal"
 
 # RSS / Email (optional) subscription links (change if using something like Feedburner)
-subscribe_rss: /atom.xml
+subscribe_rss: false
+#subscribe_rss: /atom.xml
 subscribe_email: vishnu.atrai@gmail.com
 # RSS feeds can list your email address if you like
 email: vishnu.atrai@gmail.com
@@ -74,6 +75,7 @@ twitter_tweet_button: true
 
 #linkedin
 linkedin_user: vishnuatrai
+stackoverflow_user: 585675
 
 # Google +1
 #google_plus_one: true
