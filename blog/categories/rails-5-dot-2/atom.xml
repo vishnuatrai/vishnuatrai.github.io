@@ -2,12 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Rails&nbsp;5.2 | @vishnuatrai]]></title>
-  <link href="http://vishnuatrai.in/blog/categories/rails-5-dot-2/atom.xml" rel="self"/>
-  <link href="http://vishnuatrai.in/"/>
-  <updated>2021-01-03T18:45:42+05:30</updated>
-  <id>http://vishnuatrai.in/</id>
+  <link href="http://vishnuatrai.com/blog/categories/rails-5-dot-2/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.com/"/>
+  <updated>2021-01-03T21:17:51+05:30</updated>
+  <id>http://vishnuatrai.com/</id>
   <author>
-    <name><![CDATA[vishnuatrai.in]]></name>
+    <name><![CDATA[vishnuatrai.com]]></name>
     <email><![CDATA[vishnu.atrai@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[What Is New in Rails 5.2]]></title>
-    <link href="http://vishnuatrai.in/blog/2018/01/20/what-is-new-in-rails-5-dot-2/"/>
+    <link href="http://vishnuatrai.com/blog/2018/01/20/what-is-new-in-rails-5-dot-2/"/>
     <updated>2018-01-20T16:02:51+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2018/01/20/what-is-new-in-rails-5-dot-2</id>
+    <id>http://vishnuatrai.com/blog/2018/01/20/what-is-new-in-rails-5-dot-2</id>
     <content type="html"><![CDATA[<h3>Active Storage</h3>
 
 <p>Active Storage supports modern approach for file uploading to Amazon S3, Google Cloud Storage, Microsoft Azure Cloud file storage. It will also provide references to active record database tables <code>active_storage_blobs</code> and <code>active_storage_attachments</code>. <code>rails active_storage:install</code> will install initial setup for active storage.<!--more-->Configure and setup <code>config/storage.yml</code> cloud credentials and storage buckets.</p>

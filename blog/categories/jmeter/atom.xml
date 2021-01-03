@@ -2,12 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: jMeter | @vishnuatrai]]></title>
-  <link href="http://vishnuatrai.in/blog/categories/jmeter/atom.xml" rel="self"/>
-  <link href="http://vishnuatrai.in/"/>
-  <updated>2021-01-03T18:45:42+05:30</updated>
-  <id>http://vishnuatrai.in/</id>
+  <link href="http://vishnuatrai.com/blog/categories/jmeter/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.com/"/>
+  <updated>2021-01-03T21:17:51+05:30</updated>
+  <id>http://vishnuatrai.com/</id>
   <author>
-    <name><![CDATA[vishnuatrai.in]]></name>
+    <name><![CDATA[vishnuatrai.com]]></name>
     <email><![CDATA[vishnu.atrai@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[jMeter - Optimize for Load Testing]]></title>
-    <link href="http://vishnuatrai.in/blog/2019/11/11/jmeter-optimize-for-load-testing/"/>
+    <link href="http://vishnuatrai.com/blog/2019/11/11/jmeter-optimize-for-load-testing/"/>
     <updated>2019-11-11T17:40:57+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2019/11/11/jmeter-optimize-for-load-testing</id>
+    <id>http://vishnuatrai.com/blog/2019/11/11/jmeter-optimize-for-load-testing</id>
     <content type="html"><![CDATA[<p>These are the jMeter optimization steps we have taken to simulate 1M request per second concurrency test for REST application deployed on Kubernetes cluster.</p>
 
 <h3>Use a High Capacity Jenkins Slave to run jMeter jmx script</h3>

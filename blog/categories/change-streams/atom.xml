@@ -2,12 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Change&nbsp;Streams | @vishnuatrai]]></title>
-  <link href="http://vishnuatrai.in/blog/categories/change-streams/atom.xml" rel="self"/>
-  <link href="http://vishnuatrai.in/"/>
-  <updated>2021-01-03T18:45:42+05:30</updated>
-  <id>http://vishnuatrai.in/</id>
+  <link href="http://vishnuatrai.com/blog/categories/change-streams/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.com/"/>
+  <updated>2021-01-03T21:17:51+05:30</updated>
+  <id>http://vishnuatrai.com/</id>
   <author>
-    <name><![CDATA[vishnuatrai.in]]></name>
+    <name><![CDATA[vishnuatrai.com]]></name>
     <email><![CDATA[vishnu.atrai@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[MongoDB Change Streams - Real Time Oplog Notifications]]></title>
-    <link href="http://vishnuatrai.in/blog/2018/07/05/mongodb-change-streams-real-time-notifications-to-subscribers-for-data-updates/"/>
+    <link href="http://vishnuatrai.com/blog/2018/07/05/mongodb-change-streams-real-time-notifications-to-subscribers-for-data-updates/"/>
     <updated>2018-07-05T17:19:31+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2018/07/05/mongodb-change-streams-real-time-notifications-to-subscribers-for-data-updates</id>
+    <id>http://vishnuatrai.com/blog/2018/07/05/mongodb-change-streams-real-time-notifications-to-subscribers-for-data-updates</id>
     <content type="html"><![CDATA[<p>Change Stream is easiest way to subscribe database changes realtime, its based on mongoDB oplog(Operation Log) technology. An ideal use case would be ETL operational data to a reporting and visualization data store via kafka data pipeline.</p>
 
 <h3>MongoDB real time data sync technologies</h3>

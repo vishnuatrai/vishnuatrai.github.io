@@ -2,12 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Data&nbsp;Encryption&nbsp;at&nbsp;rest | @vishnuatrai]]></title>
-  <link href="http://vishnuatrai.in/blog/categories/data-encryption-at-rest/atom.xml" rel="self"/>
-  <link href="http://vishnuatrai.in/"/>
-  <updated>2021-01-03T18:45:42+05:30</updated>
-  <id>http://vishnuatrai.in/</id>
+  <link href="http://vishnuatrai.com/blog/categories/data-encryption-at-rest/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.com/"/>
+  <updated>2021-01-03T21:17:51+05:30</updated>
+  <id>http://vishnuatrai.com/</id>
   <author>
-    <name><![CDATA[vishnuatrai.in]]></name>
+    <name><![CDATA[vishnuatrai.com]]></name>
     <email><![CDATA[vishnu.atrai@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[MySQL - Encryption at Rest]]></title>
-    <link href="http://vishnuatrai.in/blog/2020/01/11/mysql-encryption-at-rest/"/>
+    <link href="http://vishnuatrai.com/blog/2020/01/11/mysql-encryption-at-rest/"/>
     <updated>2020-01-11T18:20:46+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2020/01/11/mysql-encryption-at-rest</id>
+    <id>http://vishnuatrai.com/blog/2020/01/11/mysql-encryption-at-rest</id>
     <content type="html"><![CDATA[<p>Without encryption of data at rest, system role with access to file system can view data even without proper database permissions. A proper authentication can be used to protect data used by an application but data sitting in file system has been area of risk.</p>
 
 <p>With encryption at rest, it has been possible to protect data in transit when moving over the network. Data at Rest Encryption is a requirement for HIPAA, PCI regulations. <!--more--></p>

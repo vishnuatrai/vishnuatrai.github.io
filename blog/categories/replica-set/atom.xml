@@ -2,12 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Replica&nbsp;Set | @vishnuatrai]]></title>
-  <link href="http://vishnuatrai.in/blog/categories/replica-set/atom.xml" rel="self"/>
-  <link href="http://vishnuatrai.in/"/>
-  <updated>2021-01-03T18:45:42+05:30</updated>
-  <id>http://vishnuatrai.in/</id>
+  <link href="http://vishnuatrai.com/blog/categories/replica-set/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.com/"/>
+  <updated>2021-01-03T21:17:51+05:30</updated>
+  <id>http://vishnuatrai.com/</id>
   <author>
-    <name><![CDATA[vishnuatrai.in]]></name>
+    <name><![CDATA[vishnuatrai.com]]></name>
     <email><![CDATA[vishnu.atrai@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[MongoDB Replica Set - Localhost and Ops Manager]]></title>
-    <link href="http://vishnuatrai.in/blog/2017/04/21/mongodb-replica-set-localhost-and-ops-manager/"/>
+    <link href="http://vishnuatrai.com/blog/2017/04/21/mongodb-replica-set-localhost-and-ops-manager/"/>
     <updated>2017-04-21T17:28:18+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2017/04/21/mongodb-replica-set-localhost-and-ops-manager</id>
+    <id>http://vishnuatrai.com/blog/2017/04/21/mongodb-replica-set-localhost-and-ops-manager</id>
     <content type="html"><![CDATA[<h3>Setup Local DevEnv Replica Set</h3>
 
 <ol>

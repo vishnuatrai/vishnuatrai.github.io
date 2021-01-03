@@ -2,12 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Elasticsearch | @vishnuatrai]]></title>
-  <link href="http://vishnuatrai.in/blog/categories/elasticsearch/atom.xml" rel="self"/>
-  <link href="http://vishnuatrai.in/"/>
-  <updated>2021-01-03T18:45:42+05:30</updated>
-  <id>http://vishnuatrai.in/</id>
+  <link href="http://vishnuatrai.com/blog/categories/elasticsearch/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.com/"/>
+  <updated>2021-01-03T21:17:51+05:30</updated>
+  <id>http://vishnuatrai.com/</id>
   <author>
-    <name><![CDATA[vishnuatrai.in]]></name>
+    <name><![CDATA[vishnuatrai.com]]></name>
     <email><![CDATA[vishnu.atrai@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Elasticsearch - Mapper_parsing_exception, Failed to Parse Field]]></title>
-    <link href="http://vishnuatrai.in/blog/2017/12/20/elasticsearch-mapper-parsing-exception/"/>
+    <link href="http://vishnuatrai.com/blog/2017/12/20/elasticsearch-mapper-parsing-exception/"/>
     <updated>2017-12-20T15:37:59+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2017/12/20/elasticsearch-mapper-parsing-exception</id>
+    <id>http://vishnuatrai.com/blog/2017/12/20/elasticsearch-mapper-parsing-exception</id>
     <content type="html"><![CDATA[<p>We have recently faced issue with Elasticsearch field types and mapping, when if a field is mapped with a type other type can not be indexed for the same field. Elasticsearch indesing mechanism ristrict that. for example we have created a index named <code>users</code> and inserted a record with <code>text</code> type field <code>name</code>. <!--more--></p>
 
 <p><img src="/images//posts/elasticsearch1.png" alt="" /></p>

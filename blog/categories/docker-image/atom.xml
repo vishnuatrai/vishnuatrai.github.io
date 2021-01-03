@@ -2,12 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Docker&nbsp;Image | @vishnuatrai]]></title>
-  <link href="http://vishnuatrai.in/blog/categories/docker-image/atom.xml" rel="self"/>
-  <link href="http://vishnuatrai.in/"/>
-  <updated>2021-01-03T18:45:42+05:30</updated>
-  <id>http://vishnuatrai.in/</id>
+  <link href="http://vishnuatrai.com/blog/categories/docker-image/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.com/"/>
+  <updated>2021-01-03T21:17:51+05:30</updated>
+  <id>http://vishnuatrai.com/</id>
   <author>
-    <name><![CDATA[vishnuatrai.in]]></name>
+    <name><![CDATA[vishnuatrai.com]]></name>
     <email><![CDATA[vishnu.atrai@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Dive Into Docker Image Layers]]></title>
-    <link href="http://vishnuatrai.in/blog/2019/12/26/dive-into-docker-image-layers/"/>
+    <link href="http://vishnuatrai.com/blog/2019/12/26/dive-into-docker-image-layers/"/>
     <updated>2019-12-26T20:48:58+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2019/12/26/dive-into-docker-image-layers</id>
+    <id>http://vishnuatrai.com/blog/2019/12/26/dive-into-docker-image-layers</id>
     <content type="html"><![CDATA[<p>I recently used a tool named <a href="https://github.com/wagoodman/dive"><code>dive</code></a> to explore docker images developed and maintained by teammates or opensourced docker images. I used to look into <code>Dockerfile</code> steps to explore image layes. <code>dive</code> brings cli-ui and using arrow and tab keys we can explore each layer in left pane while layer contents listed in right pane.<!--more--></p>
 
 <p>Essentially <code>dive</code> based on docker api and its cache contents and provides commands to explore layer contents and minimize the size of images.</p>
@@ -38,9 +38,9 @@
   
   <entry>
     <title type="html"><![CDATA[Jenkins Slave With Docker Executors]]></title>
-    <link href="http://vishnuatrai.in/blog/2019/08/08/jenkins-slave-with-docker-executors/"/>
+    <link href="http://vishnuatrai.com/blog/2019/08/08/jenkins-slave-with-docker-executors/"/>
     <updated>2019-08-08T16:35:25+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2019/08/08/jenkins-slave-with-docker-executors</id>
+    <id>http://vishnuatrai.com/blog/2019/08/08/jenkins-slave-with-docker-executors</id>
     <content type="html"><![CDATA[<p><a href="https://wiki.jenkins.io/display/JENKINS/Docker+Plugin">Docker Plugin</a> enables jenkins to run jobs as docker container. In such case we dont need to setup jenkins nodes(agents) with specific binaries, instead docker images will be used to run jobs.<!--more-->Jenkins master needs to be configured with docker host where we can push docker images, those will be used by agents to execute jobs.</p>
 
 <h3>Global Configuration</h3>

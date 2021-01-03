@@ -2,12 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Jenkins | @vishnuatrai]]></title>
-  <link href="http://vishnuatrai.in/blog/categories/jenkins/atom.xml" rel="self"/>
-  <link href="http://vishnuatrai.in/"/>
-  <updated>2021-01-03T18:45:42+05:30</updated>
-  <id>http://vishnuatrai.in/</id>
+  <link href="http://vishnuatrai.com/blog/categories/jenkins/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.com/"/>
+  <updated>2021-01-03T21:17:51+05:30</updated>
+  <id>http://vishnuatrai.com/</id>
   <author>
-    <name><![CDATA[vishnuatrai.in]]></name>
+    <name><![CDATA[vishnuatrai.com]]></name>
     <email><![CDATA[vishnu.atrai@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Jenkins - Add Slave Nodes as JNLP Agents]]></title>
-    <link href="http://vishnuatrai.in/blog/2019/04/15/jenkins-add-slave-nodes-as-jnlp-agents/"/>
+    <link href="http://vishnuatrai.com/blog/2019/04/15/jenkins-add-slave-nodes-as-jnlp-agents/"/>
     <updated>2019-04-15T15:36:54+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2019/04/15/jenkins-add-slave-nodes-as-jnlp-agents</id>
+    <id>http://vishnuatrai.com/blog/2019/04/15/jenkins-add-slave-nodes-as-jnlp-agents</id>
     <content type="html"><![CDATA[<p>If it is required to run Jenkins master in an isolated network and master should not be allowed to connected to its nodes(agents), we can use JNLP method to add agents to master to process jobs in distributed manner. In this scenario, its not desirable to have master connections with slave(agent) nodes but agent to master connections only required. <!--more--></p>
 
 <h3>Only Agent to master connections</h3>

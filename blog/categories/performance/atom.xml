@@ -2,12 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Performance | @vishnuatrai]]></title>
-  <link href="http://vishnuatrai.in/blog/categories/performance/atom.xml" rel="self"/>
-  <link href="http://vishnuatrai.in/"/>
-  <updated>2021-01-03T18:45:42+05:30</updated>
-  <id>http://vishnuatrai.in/</id>
+  <link href="http://vishnuatrai.com/blog/categories/performance/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.com/"/>
+  <updated>2021-01-03T21:17:51+05:30</updated>
+  <id>http://vishnuatrai.com/</id>
   <author>
-    <name><![CDATA[vishnuatrai.in]]></name>
+    <name><![CDATA[vishnuatrai.com]]></name>
     <email><![CDATA[vishnu.atrai@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[MySql DB Indexing]]></title>
-    <link href="http://vishnuatrai.in/blog/2010/09/20/indexing-basic-mysql-queries/"/>
+    <link href="http://vishnuatrai.com/blog/2010/09/20/indexing-basic-mysql-queries/"/>
     <updated>2010-09-20T19:33:35+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2010/09/20/indexing-basic-mysql-queries</id>
+    <id>http://vishnuatrai.com/blog/2010/09/20/indexing-basic-mysql-queries</id>
     <content type="html"><![CDATA[<p>Working with a online tutorial with a huge amount of data, product owners always used to  raise issues for application performance. After looking in to different scenerios like apache configurations, hardware, network issues, and mysql performance as a backend server, we got to know that there are a lot of opportunities to improve mysql db performance. <!--more--> To see why db performance slow I turned on slow quiry logging in my.cnf:</p>
 
 <p>log-slow-queries

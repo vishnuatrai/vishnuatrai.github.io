@@ -2,12 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Ubuntu | @vishnuatrai]]></title>
-  <link href="http://vishnuatrai.in/blog/categories/ubuntu/atom.xml" rel="self"/>
-  <link href="http://vishnuatrai.in/"/>
-  <updated>2021-01-03T18:45:42+05:30</updated>
-  <id>http://vishnuatrai.in/</id>
+  <link href="http://vishnuatrai.com/blog/categories/ubuntu/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.com/"/>
+  <updated>2021-01-03T21:17:51+05:30</updated>
+  <id>http://vishnuatrai.com/</id>
   <author>
-    <name><![CDATA[vishnuatrai.in]]></name>
+    <name><![CDATA[vishnuatrai.com]]></name>
     <email><![CDATA[vishnu.atrai@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[#After Ubuntu Installation Part I]]></title>
-    <link href="http://vishnuatrai.in/blog/2010/08/15/todo-with-ubuntu-installation/"/>
+    <link href="http://vishnuatrai.com/blog/2010/08/15/todo-with-ubuntu-installation/"/>
     <updated>2010-08-15T22:19:56+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2010/08/15/todo-with-ubuntu-installation</id>
+    <id>http://vishnuatrai.com/blog/2010/08/15/todo-with-ubuntu-installation</id>
     <content type="html"><![CDATA[<p>After installation of Ubuntu you may need to set up your system for some basic requirements. For these requirements you can follow these steps :<!--more--></p>
 
 <p>1 – Expand the Software Repository List</p>
@@ -182,9 +182,9 @@ sudo apt-get install python-nautilus meld python-svn python-configobj ipython
   
   <entry>
     <title type="html"><![CDATA[#After Ubuntu Installation Part II]]></title>
-    <link href="http://vishnuatrai.in/blog/2010/08/14/iind/"/>
+    <link href="http://vishnuatrai.com/blog/2010/08/14/iind/"/>
     <updated>2010-08-14T13:39:03+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2010/08/14/iind</id>
+    <id>http://vishnuatrai.com/blog/2010/08/14/iind</id>
     <content type="html"><![CDATA[<p>11 – Graphical web browser</p>
 
 <p>Windows equivalent : Internet explorer, firefox, opera</p>
@@ -344,9 +344,9 @@ chmod +x ./AdobeAIRInstaller.bin</p>
   
   <entry>
     <title type="html"><![CDATA[#After Ubuntu Installation Part III]]></title>
-    <link href="http://vishnuatrai.in/blog/2010/08/13/iiird/"/>
+    <link href="http://vishnuatrai.com/blog/2010/08/13/iiird/"/>
     <updated>2010-08-13T13:40:57+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2010/08/13/iiird</id>
+    <id>http://vishnuatrai.com/blog/2010/08/13/iiird</id>
     <content type="html"><![CDATA[<p>21 – Image Editor</p>
 
 <p>Windows equivalent : Adobe Photoshop</p>
@@ -505,9 +505,9 @@ killall nautilus</p>
   
   <entry>
     <title type="html"><![CDATA[#After Ubuntu Installation Part IV]]></title>
-    <link href="http://vishnuatrai.in/blog/2010/08/12/iv/"/>
+    <link href="http://vishnuatrai.com/blog/2010/08/12/iv/"/>
     <updated>2010-08-12T13:42:18+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2010/08/12/iv</id>
+    <id>http://vishnuatrai.com/blog/2010/08/12/iv</id>
     <content type="html"><![CDATA[<p>31 – Programs for CD burning with GUI</p>
 
 <p>Windows equivalent : Nero, Roxio Easy CD Creator</p>
@@ -623,9 +623,9 @@ If you are concern about your security, then it is pertinent that you  activate 
   
   <entry>
     <title type="html"><![CDATA[Dell Studio - 1558 ALSA Sound Problem ubuntu9.4 Fix]]></title>
-    <link href="http://vishnuatrai.in/blog/2010/06/22/dell-studio-1558-alsa-sound-problem-ubuntu9-4-fix/"/>
+    <link href="http://vishnuatrai.com/blog/2010/06/22/dell-studio-1558-alsa-sound-problem-ubuntu9-4-fix/"/>
     <updated>2010-06-22T22:06:57+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2010/06/22/dell-studio-1558-alsa-sound-problem-ubuntu9-4-fix</id>
+    <id>http://vishnuatrai.com/blog/2010/06/22/dell-studio-1558-alsa-sound-problem-ubuntu9-4-fix</id>
     <content type="html"><![CDATA[<p>I had the problem and the Laptop, Dell Studio 1558:
 just exec as root: &ldquo;nano /etc/modprobe.d/alsa-base.conf</p>
 

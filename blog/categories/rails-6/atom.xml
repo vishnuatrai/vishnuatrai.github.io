@@ -2,12 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Rails&nbsp;6 | @vishnuatrai]]></title>
-  <link href="http://vishnuatrai.in/blog/categories/rails-6/atom.xml" rel="self"/>
-  <link href="http://vishnuatrai.in/"/>
-  <updated>2021-01-03T18:45:42+05:30</updated>
-  <id>http://vishnuatrai.in/</id>
+  <link href="http://vishnuatrai.com/blog/categories/rails-6/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.com/"/>
+  <updated>2021-01-03T21:17:51+05:30</updated>
+  <id>http://vishnuatrai.com/</id>
   <author>
-    <name><![CDATA[vishnuatrai.in]]></name>
+    <name><![CDATA[vishnuatrai.com]]></name>
     <email><![CDATA[vishnu.atrai@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[What Is New in Rails 6]]></title>
-    <link href="http://vishnuatrai.in/blog/2019/09/15/what-is-new-in-rails-6/"/>
+    <link href="http://vishnuatrai.com/blog/2019/09/15/what-is-new-in-rails-6/"/>
     <updated>2019-09-15T14:09:12+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2019/09/15/what-is-new-in-rails-6</id>
+    <id>http://vishnuatrai.com/blog/2019/09/15/what-is-new-in-rails-6</id>
     <content type="html"><![CDATA[<h4>Rails 6 require Ruby version 2.5 or greater. Upgrade to at least rails 5.2 or later versions and make sure application run properly without any failure, then attempt to upgrade to 6.0, follow <a href="https://edgeguides.rubyonrails.org/upgrading_ruby_on_rails.html#upgrading-from-rails-5-2-to-rails-6-0">upgrade guide</a>.</h4>
 
 <h3>ApplicationRecord &ndash; Multiple databases support</h3>

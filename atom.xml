@@ -2,12 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[@vishnuatrai]]></title>
-  <link href="http://vishnuatrai.in/atom.xml" rel="self"/>
-  <link href="http://vishnuatrai.in/"/>
-  <updated>2021-01-03T18:45:42+05:30</updated>
-  <id>http://vishnuatrai.in/</id>
+  <link href="http://vishnuatrai.com/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.com/"/>
+  <updated>2021-01-03T21:17:51+05:30</updated>
+  <id>http://vishnuatrai.com/</id>
   <author>
-    <name><![CDATA[vishnuatrai.in]]></name>
+    <name><![CDATA[vishnuatrai.com]]></name>
     <email><![CDATA[vishnu.atrai@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[MapR-DB - Querying Pro-tips]]></title>
-    <link href="http://vishnuatrai.in/blog/2020/05/03/mapr-db-querying-pro-tips/"/>
+    <link href="http://vishnuatrai.com/blog/2020/05/03/mapr-db-querying-pro-tips/"/>
     <updated>2020-05-03T13:09:15+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2020/05/03/mapr-db-querying-pro-tips</id>
+    <id>http://vishnuatrai.com/blog/2020/05/03/mapr-db-querying-pro-tips</id>
     <content type="html"><![CDATA[<h3>What is MapR?</h3>
 
 <p>MapR is a complete enterprise-grade distribution for Apache Hadoop. The MapR Data Platform has been developed to improve Hadoop’s reliability, performance, and ease of use. The MapR provides a full Hadoop stack that includes the MapR File System (MapR-FS), the MapR-DB NoSQL database management system, MapR Streams, the MapR Control System (MCS) user interface, and a full family of Hadoop ecosystem projects.<!--more--></p>
@@ -114,9 +114,9 @@ org.ojai.DocumentStream docs = maprTable.findQuery(query, fieldPaths={"_id","use
   
   <entry>
     <title type="html"><![CDATA[React.js - HOCs vs Render Props vs Custom Hooks Patterns]]></title>
-    <link href="http://vishnuatrai.in/blog/2020/02/02/react-dot-js-hocs-vs-render-props-vs-custom-hooks-patterns/"/>
+    <link href="http://vishnuatrai.com/blog/2020/02/02/react-dot-js-hocs-vs-render-props-vs-custom-hooks-patterns/"/>
     <updated>2020-02-02T11:57:42+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2020/02/02/react-dot-js-hocs-vs-render-props-vs-custom-hooks-patterns</id>
+    <id>http://vishnuatrai.com/blog/2020/02/02/react-dot-js-hocs-vs-render-props-vs-custom-hooks-patterns</id>
     <content type="html"><![CDATA[<p>Higher-Order Components(HOCs), Render Props and Custom Hooks are techniques to share common functionality between components. It&rsquo;s recommended to always go with hooks wherever possible. HOCs and render props patterns require you to restructure your components when you use them, which can be cumbersome and make code harder to follow.</p>
 
 <h3>Higher-Order Components</h3>
@@ -221,9 +221,9 @@ function ConsumerComponent {
   
   <entry>
     <title type="html"><![CDATA[MySQL - Encryption at rest]]></title>
-    <link href="http://vishnuatrai.in/blog/2020/01/11/mysql-encryption-at-rest/"/>
+    <link href="http://vishnuatrai.com/blog/2020/01/11/mysql-encryption-at-rest/"/>
     <updated>2020-01-11T18:20:46+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2020/01/11/mysql-encryption-at-rest</id>
+    <id>http://vishnuatrai.com/blog/2020/01/11/mysql-encryption-at-rest</id>
     <content type="html"><![CDATA[<p>Without encryption of data at rest, system role with access to file system can view data even without proper database permissions. A proper authentication can be used to protect data used by an application but data sitting in file system has been area of risk.</p>
 
 <p>With encryption at rest, it has been possible to protect data in transit when moving over the network. Data at Rest Encryption is a requirement for HIPAA, PCI regulations. <!--more--></p>
@@ -294,9 +294,9 @@ encrypt-binlog
   
   <entry>
     <title type="html"><![CDATA[Dive into Docker Image Layers]]></title>
-    <link href="http://vishnuatrai.in/blog/2019/12/26/dive-into-docker-image-layers/"/>
+    <link href="http://vishnuatrai.com/blog/2019/12/26/dive-into-docker-image-layers/"/>
     <updated>2019-12-26T20:48:58+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2019/12/26/dive-into-docker-image-layers</id>
+    <id>http://vishnuatrai.com/blog/2019/12/26/dive-into-docker-image-layers</id>
     <content type="html"><![CDATA[<p>I recently used a tool named <a href="https://github.com/wagoodman/dive"><code>dive</code></a> to explore docker images developed and maintained by teammates or opensourced docker images. I used to look into <code>Dockerfile</code> steps to explore image layes. <code>dive</code> brings cli-ui and using arrow and tab keys we can explore each layer in left pane while layer contents listed in right pane.<!--more--></p>
 
 <p>Essentially <code>dive</code> based on docker api and its cache contents and provides commands to explore layer contents and minimize the size of images.</p>
@@ -317,9 +317,9 @@ encrypt-binlog
   
   <entry>
     <title type="html"><![CDATA[jMeter - Optimize for load testing]]></title>
-    <link href="http://vishnuatrai.in/blog/2019/11/11/jmeter-optimize-for-load-testing/"/>
+    <link href="http://vishnuatrai.com/blog/2019/11/11/jmeter-optimize-for-load-testing/"/>
     <updated>2019-11-11T17:40:57+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2019/11/11/jmeter-optimize-for-load-testing</id>
+    <id>http://vishnuatrai.com/blog/2019/11/11/jmeter-optimize-for-load-testing</id>
     <content type="html"><![CDATA[<p>These are the jMeter optimization steps we have taken to simulate 1M request per second concurrency test for REST application deployed on Kubernetes cluster.</p>
 
 <h3>Use a High Capacity Jenkins Slave to run jMeter jmx script</h3>
@@ -364,9 +364,9 @@ We can use available memory and CPU to optimize jMeter configuration.</p>
   
   <entry>
     <title type="html"><![CDATA[React.js - Ways to Bind Events]]></title>
-    <link href="http://vishnuatrai.in/blog/2019/10/12/react-dot-js-ways-to-bind-events/"/>
+    <link href="http://vishnuatrai.com/blog/2019/10/12/react-dot-js-ways-to-bind-events/"/>
     <updated>2019-10-12T11:47:20+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2019/10/12/react-dot-js-ways-to-bind-events</id>
+    <id>http://vishnuatrai.com/blog/2019/10/12/react-dot-js-ways-to-bind-events</id>
     <content type="html"><![CDATA[<h3>Background</h3>
 
 <p>Event binding in ReactJs components required because of <code>this</code> keyword works in JavaScript, within click handler function <code>this</code> keyword will lost its context (component instance) or value.</p>
@@ -441,9 +441,9 @@ We can use available memory and CPU to optimize jMeter configuration.</p>
   
   <entry>
     <title type="html"><![CDATA[What is new in Rails 6]]></title>
-    <link href="http://vishnuatrai.in/blog/2019/09/15/what-is-new-in-rails-6/"/>
+    <link href="http://vishnuatrai.com/blog/2019/09/15/what-is-new-in-rails-6/"/>
     <updated>2019-09-15T14:09:12+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2019/09/15/what-is-new-in-rails-6</id>
+    <id>http://vishnuatrai.com/blog/2019/09/15/what-is-new-in-rails-6</id>
     <content type="html"><![CDATA[<h4>Rails 6 require Ruby version 2.5 or greater. Upgrade to at least rails 5.2 or later versions and make sure application run properly without any failure, then attempt to upgrade to 6.0, follow <a href="https://edgeguides.rubyonrails.org/upgrading_ruby_on_rails.html#upgrading-from-rails-5-2-to-rails-6-0">upgrade guide</a>.</h4>
 
 <h3>ApplicationRecord &ndash; Multiple databases support</h3>
@@ -564,9 +564,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Jenkins Slave with Docker Executors]]></title>
-    <link href="http://vishnuatrai.in/blog/2019/08/08/jenkins-slave-with-docker-executors/"/>
+    <link href="http://vishnuatrai.com/blog/2019/08/08/jenkins-slave-with-docker-executors/"/>
     <updated>2019-08-08T16:35:25+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2019/08/08/jenkins-slave-with-docker-executors</id>
+    <id>http://vishnuatrai.com/blog/2019/08/08/jenkins-slave-with-docker-executors</id>
     <content type="html"><![CDATA[<p><a href="https://wiki.jenkins.io/display/JENKINS/Docker+Plugin">Docker Plugin</a> enables jenkins to run jobs as docker container. In such case we dont need to setup jenkins nodes(agents) with specific binaries, instead docker images will be used to run jobs.<!--more-->Jenkins master needs to be configured with docker host where we can push docker images, those will be used by agents to execute jobs.</p>
 
 <h3>Global Configuration</h3>
@@ -577,7 +577,7 @@ end
 <strong>Name</strong>    Name of docker slave to be used in job configuration  <br />
 <strong>Docker Url</strong>    docker engine url and port  <br /></p>
 
-<p><img src="http://vishnuatrai.in/images//posts/Jenkins7.png" alt="" /></p>
+<p><img src="http://vishnuatrai.com/images//posts/Jenkins7.png" alt="" /></p>
 
 <p><strong>Docker Template</strong>    docker template is an executor, we can add multiple templates and it will enable multiple executors  <br />
 Fill below configurations to setup docker template <br /></p>
@@ -591,9 +591,9 @@ Fill below configurations to setup docker template <br /></p>
 </ul>
 
 
-<p><img src="http://vishnuatrai.in/images//posts/Jenkins4.png" alt="" />
-<img src="http://vishnuatrai.in/images//posts/Jenkins5.png" alt="" />
-<img src="http://vishnuatrai.in/images//posts/Jenkins6.png" alt="" /></p>
+<p><img src="http://vishnuatrai.com/images//posts/Jenkins4.png" alt="" />
+<img src="http://vishnuatrai.com/images//posts/Jenkins5.png" alt="" />
+<img src="http://vishnuatrai.com/images//posts/Jenkins6.png" alt="" /></p>
 
 <h3>Job Configuration</h3>
 
@@ -603,9 +603,9 @@ Fill below configurations to setup docker template <br /></p>
   
   <entry>
     <title type="html"><![CDATA[Kafka - Consumer CommitFailedException for revoked partition]]></title>
-    <link href="http://vishnuatrai.in/blog/2019/06/10/kafka-consumer-commitfailedexception-for-revoked-partition/"/>
+    <link href="http://vishnuatrai.com/blog/2019/06/10/kafka-consumer-commitfailedexception-for-revoked-partition/"/>
     <updated>2019-06-10T16:30:34+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2019/06/10/kafka-consumer-commitfailedexception-for-revoked-partition</id>
+    <id>http://vishnuatrai.com/blog/2019/06/10/kafka-consumer-commitfailedexception-for-revoked-partition</id>
     <content type="html"><![CDATA[<h4>Error Trace</h4>
 
 <pre><code>06-10 01:15:05 131 pool-9-thread-5 ERROR [] -
@@ -638,9 +638,9 @@ at java.lang.Thread.run(Thread.java:748) [na:1.8.0_161]
   
   <entry>
     <title type="html"><![CDATA[Jenkins - Add Slave nodes as JNLP agents]]></title>
-    <link href="http://vishnuatrai.in/blog/2019/04/15/jenkins-add-slave-nodes-as-jnlp-agents/"/>
+    <link href="http://vishnuatrai.com/blog/2019/04/15/jenkins-add-slave-nodes-as-jnlp-agents/"/>
     <updated>2019-04-15T15:36:54+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2019/04/15/jenkins-add-slave-nodes-as-jnlp-agents</id>
+    <id>http://vishnuatrai.com/blog/2019/04/15/jenkins-add-slave-nodes-as-jnlp-agents</id>
     <content type="html"><![CDATA[<p>If it is required to run Jenkins master in an isolated network and master should not be allowed to connected to its nodes(agents), we can use JNLP method to add agents to master to process jobs in distributed manner. In this scenario, its not desirable to have master connections with slave(agent) nodes but agent to master connections only required. <!--more--></p>
 
 <h3>Only Agent to master connections</h3>
@@ -653,7 +653,7 @@ at java.lang.Thread.run(Thread.java:748) [na:1.8.0_161]
 
 <p>Go to <strong>Manage Jenkins</strong> &ndash;> <strong>Configure Global Security</strong> &ndash;> under <strong>Agents</strong> section &ndash;> <strong>TCP port for inbound agents</strong> &ndash;> select <strong>Random</strong> &ndash;><strong>Save</strong>.</p>
 
-<p><img src="http://vishnuatrai.in/images//posts/Jenkins1.png" alt="" /></p>
+<p><img src="http://vishnuatrai.com/images//posts/Jenkins1.png" alt="" /></p>
 
 <h4>Setup slave agent node</h4>
 
@@ -676,7 +676,7 @@ at java.lang.Thread.run(Thread.java:748) [na:1.8.0_161]
 <p>Select <strong>launch agent by Connecting it to the master</strong> for windows agents  <br />
 and <strong>launch agents via ssh</strong> for linux agents</p>
 
-<p><img src="http://vishnuatrai.in/images//posts/Jenkins2.png" alt="" /></p>
+<p><img src="http://vishnuatrai.com/images//posts/Jenkins2.png" alt="" /></p>
 
 <p>To Launch the slave agent via command line  <br />
 <strong>Download the agent.jar file and copy to agent node</strong>  <br />
@@ -685,7 +685,7 @@ and <strong>launch agents via ssh</strong> for linux agents</p>
 <pre><code>java --jar agent.jar -jnlpUrl &lt;jenkins master url&gt; -secret &lt;secret given on node configuration&gt; -workDir "/user/agent/home/workspace"
 </code></pre>
 
-<p><img src="http://vishnuatrai.in/images//posts/Jenkins3.png" alt="" /></p>
+<p><img src="http://vishnuatrai.com/images//posts/Jenkins3.png" alt="" /></p>
 
 <p>With above command agent is authorized and registered with jenkins master. Now agent is successfully configured and launched, which can be verified on master nodes. Jenkins master can delegate jobs to agent node.</p>
 ]]></content>
@@ -693,9 +693,9 @@ and <strong>launch agents via ssh</strong> for linux agents</p>
   
   <entry>
     <title type="html"><![CDATA[MongoDB 4.0 - Support for ACID transactions]]></title>
-    <link href="http://vishnuatrai.in/blog/2018/12/20/mongodb-4-dot-0-support-for-acid-transactions/"/>
+    <link href="http://vishnuatrai.com/blog/2018/12/20/mongodb-4-dot-0-support-for-acid-transactions/"/>
     <updated>2018-12-20T17:41:34+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2018/12/20/mongodb-4-dot-0-support-for-acid-transactions</id>
+    <id>http://vishnuatrai.com/blog/2018/12/20/mongodb-4-dot-0-support-for-acid-transactions</id>
     <content type="html"><![CDATA[<h3>Support for Single-Shard multi document ACID transactions</h3>
 
 <p>To support benefits of ACID transactions with fully-denormalized document data modeling, MongoDB added single-shard ACID transaction support in the released 4.0. These single-shard transactions apply ACID properties on updates across multiple documents those are present in the same shard. Multi-shard transactions supposed to implement in release 4.2.</p>
@@ -735,9 +735,9 @@ private void multiDocumentTransactions() {
   
   <entry>
     <title type="html"><![CDATA[ProxySQL - MySQL High Availability Load Balancing]]></title>
-    <link href="http://vishnuatrai.in/blog/2018/11/12/proxysql-mysql-high-availability-load-balancing/"/>
+    <link href="http://vishnuatrai.com/blog/2018/11/12/proxysql-mysql-high-availability-load-balancing/"/>
     <updated>2018-11-12T22:59:40+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2018/11/12/proxysql-mysql-high-availability-load-balancing</id>
+    <id>http://vishnuatrai.com/blog/2018/11/12/proxysql-mysql-high-availability-load-balancing</id>
     <content type="html"><![CDATA[<h3>What is ProxySQL?</h3>
 
 <ul>
@@ -827,9 +827,9 @@ stats_mysql_query_digest
   
   <entry>
     <title type="html"><![CDATA[Kubernetes - Secrets vs ConfigMaps]]></title>
-    <link href="http://vishnuatrai.in/blog/2018/08/16/kubernetes-secrets-vs-configmaps/"/>
+    <link href="http://vishnuatrai.com/blog/2018/08/16/kubernetes-secrets-vs-configmaps/"/>
     <updated>2018-08-16T16:28:34+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2018/08/16/kubernetes-secrets-vs-configmaps</id>
+    <id>http://vishnuatrai.com/blog/2018/08/16/kubernetes-secrets-vs-configmaps</id>
     <content type="html"><![CDATA[<!--more-->
 
 
@@ -1056,9 +1056,9 @@ Verify the environment variables.
   
   <entry>
     <title type="html"><![CDATA[MongoDB Change Streams - Real time oplog notifications]]></title>
-    <link href="http://vishnuatrai.in/blog/2018/07/05/mongodb-change-streams-real-time-notifications-to-subscribers-for-data-updates/"/>
+    <link href="http://vishnuatrai.com/blog/2018/07/05/mongodb-change-streams-real-time-notifications-to-subscribers-for-data-updates/"/>
     <updated>2018-07-05T17:19:31+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2018/07/05/mongodb-change-streams-real-time-notifications-to-subscribers-for-data-updates</id>
+    <id>http://vishnuatrai.com/blog/2018/07/05/mongodb-change-streams-real-time-notifications-to-subscribers-for-data-updates</id>
     <content type="html"><![CDATA[<p>Change Stream is easiest way to subscribe database changes realtime, its based on mongoDB oplog(Operation Log) technology. An ideal use case would be ETL operational data to a reporting and visualization data store via kafka data pipeline.</p>
 
 <h3>MongoDB real time data sync technologies</h3>
@@ -1114,9 +1114,9 @@ collection.watch().forEach(printBlock);
   
   <entry>
     <title type="html"><![CDATA[What is new in Rails 5.2]]></title>
-    <link href="http://vishnuatrai.in/blog/2018/01/20/what-is-new-in-rails-5-dot-2/"/>
+    <link href="http://vishnuatrai.com/blog/2018/01/20/what-is-new-in-rails-5-dot-2/"/>
     <updated>2018-01-20T16:02:51+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2018/01/20/what-is-new-in-rails-5-dot-2</id>
+    <id>http://vishnuatrai.com/blog/2018/01/20/what-is-new-in-rails-5-dot-2</id>
     <content type="html"><![CDATA[<h3>Active Storage</h3>
 
 <p>Active Storage supports modern approach for file uploading to Amazon S3, Google Cloud Storage, Microsoft Azure Cloud file storage. It will also provide references to active record database tables <code>active_storage_blobs</code> and <code>active_storage_attachments</code>. <code>rails active_storage:install</code> will install initial setup for active storage.<!--more-->Configure and setup <code>config/storage.yml</code> cloud credentials and storage buckets.</p>
@@ -1221,30 +1221,30 @@ end
   
   <entry>
     <title type="html"><![CDATA[Elasticsearch - mapper_parsing_exception, failed to parse field]]></title>
-    <link href="http://vishnuatrai.in/blog/2017/12/20/elasticsearch-mapper-parsing-exception/"/>
+    <link href="http://vishnuatrai.com/blog/2017/12/20/elasticsearch-mapper-parsing-exception/"/>
     <updated>2017-12-20T15:37:59+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2017/12/20/elasticsearch-mapper-parsing-exception</id>
+    <id>http://vishnuatrai.com/blog/2017/12/20/elasticsearch-mapper-parsing-exception</id>
     <content type="html"><![CDATA[<p>We have recently faced issue with Elasticsearch field types and mapping, when if a field is mapped with a type other type can not be indexed for the same field. Elasticsearch indesing mechanism ristrict that. for example we have created a index named <code>users</code> and inserted a record with <code>text</code> type field <code>name</code>. <!--more--></p>
 
-<p><img src="http://vishnuatrai.in/images//posts/elasticsearch1.png" alt="" /></p>
+<p><img src="http://vishnuatrai.com/images//posts/elasticsearch1.png" alt="" /></p>
 
 <p>Second record we want to insert same field with another type per say <code>object</code>, it will raise exceptation <code>mapper_parsing_exception, failed to parse field</code>.</p>
 
-<p><img src="http://vishnuatrai.in/images//posts/Elasticsearch2.png" alt="" /></p>
+<p><img src="http://vishnuatrai.com/images//posts/Elasticsearch2.png" alt="" /></p>
 
 <p>Because with insertation of first record the index will create a mapping and provide the field type <code>text</code> with second record insertation where the type is an object it will not match with the mapping and raise exceptation.</p>
 
-<p><img src="http://vishnuatrai.in/images//posts/elasticsearch3.png" alt="" /></p>
+<p><img src="http://vishnuatrai.com/images//posts/elasticsearch3.png" alt="" /></p>
 
 <h3>Simple Hack But Many pitfalls</h3>
 
 <p>Since by nature Elasticsearch doesn&rsquo;t support above scenario, once the mapping is created and type is assigned to a field it will not allow indexing of other type. However in my case we have to store the data in elasticsearch engine, so converted the object to string and that worked. But it will not support query on the converted object and on client side also we will need to convert back to object type.</p>
 
-<p><img src="http://vishnuatrai.in/images//posts/elasticsearch4.png" alt="" /></p>
+<p><img src="http://vishnuatrai.com/images//posts/elasticsearch4.png" alt="" /></p>
 
 <p>After converting the object to text it will indexed as a text field only and will look like a escaped string object.</p>
 
-<p><img src="http://vishnuatrai.in/images//posts/elasticsearch5.png" alt="" /></p>
+<p><img src="http://vishnuatrai.com/images//posts/elasticsearch5.png" alt="" /></p>
 
 <p>Still investigating on better solution or way to work on this issue.</p>
 ]]></content>
@@ -1252,9 +1252,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[MySQL - Distributed GET_LOCK]]></title>
-    <link href="http://vishnuatrai.in/blog/2017/10/15/mysql-distributed-GET_LOCK/"/>
+    <link href="http://vishnuatrai.com/blog/2017/10/15/mysql-distributed-GET_LOCK/"/>
     <updated>2017-10-15T17:52:24+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2017/10/15/mysql-distributed-GET_LOCK</id>
+    <id>http://vishnuatrai.com/blog/2017/10/15/mysql-distributed-GET_LOCK</id>
     <content type="html"><![CDATA[<p>Distributed global locking using <code>mysql get_lock()</code>, ensures releasing orphaned lock.</p>
 
 <h3>USE CASE 1:</h3>
@@ -1311,9 +1311,9 @@ if (status == 1) {
   
   <entry>
     <title type="html"><![CDATA[MongoDB Replica Set - localhost and Ops Manager]]></title>
-    <link href="http://vishnuatrai.in/blog/2017/04/21/mongodb-replica-set-localhost-and-ops-manager/"/>
+    <link href="http://vishnuatrai.com/blog/2017/04/21/mongodb-replica-set-localhost-and-ops-manager/"/>
     <updated>2017-04-21T17:28:18+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2017/04/21/mongodb-replica-set-localhost-and-ops-manager</id>
+    <id>http://vishnuatrai.com/blog/2017/04/21/mongodb-replica-set-localhost-and-ops-manager</id>
     <content type="html"><![CDATA[<h3>Setup Local DevEnv Replica Set</h3>
 
 <ol>
@@ -1370,9 +1370,9 @@ if (status == 1) {
   
   <entry>
     <title type="html"><![CDATA[Rails Applicatoin - Openshift 3.0 deployment]]></title>
-    <link href="http://vishnuatrai.in/blog/2016/12/05/rails-applicatoin-openshift-3-dot-0-deployment/"/>
+    <link href="http://vishnuatrai.com/blog/2016/12/05/rails-applicatoin-openshift-3-dot-0-deployment/"/>
     <updated>2016-12-05T18:34:50+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2016/12/05/rails-applicatoin-openshift-3-dot-0-deployment</id>
+    <id>http://vishnuatrai.com/blog/2016/12/05/rails-applicatoin-openshift-3-dot-0-deployment</id>
     <content type="html"><![CDATA[<h3>Prepare helper scripts for application setup, app start and httpd config</h3>
 
 <p>Helper scripts can be stored as part of application code in directory <code>scripts</code> in project root directory.</p>
@@ -1559,9 +1559,9 @@ CMD ["/usr/bin/appStartup.sh"]
   
   <entry>
     <title type="html"><![CDATA[What is new in Rails 5]]></title>
-    <link href="http://vishnuatrai.in/blog/2016/07/05/what-is-new-in-rails-5/"/>
+    <link href="http://vishnuatrai.com/blog/2016/07/05/what-is-new-in-rails-5/"/>
     <updated>2016-07-05T17:34:19+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2016/07/05/what-is-new-in-rails-5</id>
+    <id>http://vishnuatrai.com/blog/2016/07/05/what-is-new-in-rails-5</id>
     <content type="html"><![CDATA[<h3>ApplicationRecord</h3>
 
 <p>Similar to <code>ApplicationController</code> which is the common base class for all controllers that you get with new Rails apps, <code>ApplicationRecord</code> will provide a base class for your ActiveRecord models. This provides a common place to put any base model concerns.

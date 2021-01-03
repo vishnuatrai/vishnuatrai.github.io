@@ -2,12 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Rails&nbsp;3 | @vishnuatrai]]></title>
-  <link href="http://vishnuatrai.in/blog/categories/rails-3/atom.xml" rel="self"/>
-  <link href="http://vishnuatrai.in/"/>
-  <updated>2021-01-03T18:45:42+05:30</updated>
-  <id>http://vishnuatrai.in/</id>
+  <link href="http://vishnuatrai.com/blog/categories/rails-3/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.com/"/>
+  <updated>2021-01-03T21:17:51+05:30</updated>
+  <id>http://vishnuatrai.com/</id>
   <author>
-    <name><![CDATA[vishnuatrai.in]]></name>
+    <name><![CDATA[vishnuatrai.com]]></name>
     <email><![CDATA[vishnu.atrai@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Moving to Ruby and Rails Edge]]></title>
-    <link href="http://vishnuatrai.in/blog/2012/01/18/moving-to-ruby-and-rails-edge/"/>
+    <link href="http://vishnuatrai.com/blog/2012/01/18/moving-to-ruby-and-rails-edge/"/>
     <updated>2012-01-18T15:25:34+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2012/01/18/moving-to-ruby-and-rails-edge</id>
+    <id>http://vishnuatrai.com/blog/2012/01/18/moving-to-ruby-and-rails-edge</id>
     <content type="html"><![CDATA[<p>Since our team always works with technology edge whether it is rails or ruby, from last week we started moving to ruby 1.9.3 and rails 3.1.3. I am sharing our experiences we found during migrating our product to rails and ruby latest release.<!--more--></p>
 
 <h5>Ruby-1.9.3 Upgrade</h5>
@@ -145,9 +145,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Rails::Railtie – Hook Everything]]></title>
-    <link href="http://vishnuatrai.in/blog/2011/07/31/railsrailtie-e28093-hook-everything/"/>
+    <link href="http://vishnuatrai.com/blog/2011/07/31/railsrailtie-e28093-hook-everything/"/>
     <updated>2011-07-31T17:33:44+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2011/07/31/railsrailtie-e28093-hook-everything</id>
+    <id>http://vishnuatrai.com/blog/2011/07/31/railsrailtie-e28093-hook-everything</id>
     <content type="html"><![CDATA[<p>After Rails 3 released I have been trying to find major and important changes in rails framework over 2.x version. The change I like most is Rails Railtie. Using Railtie you can configure your own gem or plugin in a rails application according to your choice in boot process. <!--more-->  If you are a plugin developer, you can use Railtie class that is capable of loading generators, tasks, middlewares and adding subscribers.</p>
 
 <p>Rails::Engine is nothing more than a Railtie and it has some initializers already set and Rails::Application and Rails::Plugin are also engines. Any subclass of Railtie can be use to initialize rails application, so your plugin can be a first class member of rails application.</p>
@@ -206,9 +206,9 @@ end
   
   <entry>
     <title type="html"><![CDATA[Rails 3 – ActiveModel Basics]]></title>
-    <link href="http://vishnuatrai.in/blog/2011/03/17/rails-3-e28093-activemodel/"/>
+    <link href="http://vishnuatrai.com/blog/2011/03/17/rails-3-e28093-activemodel/"/>
     <updated>2011-03-17T22:55:31+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2011/03/17/rails-3-e28093-activemodel</id>
+    <id>http://vishnuatrai.com/blog/2011/03/17/rails-3-e28093-activemodel</id>
     <content type="html"><![CDATA[<p>Hey Guys,</p>
 
 <p>It is long time to write something, since I was busy with some open-source stuff. Over last two weeks we were migrating an application from rails 2.x version to rails 3.x. In that application we had lot of ActiveResource classes and other classes, and in those classes we need to validate some attributes and also we need to wrap call backs around some methods in ActiveRecord style. <!--more--> In earlier 2.x rails version we had to write some code for validation and  call back that was written us.</p>

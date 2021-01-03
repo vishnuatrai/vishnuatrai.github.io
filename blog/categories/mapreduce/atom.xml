@@ -2,12 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: MapReduce | @vishnuatrai]]></title>
-  <link href="http://vishnuatrai.in/blog/categories/mapreduce/atom.xml" rel="self"/>
-  <link href="http://vishnuatrai.in/"/>
-  <updated>2021-01-03T18:45:42+05:30</updated>
-  <id>http://vishnuatrai.in/</id>
+  <link href="http://vishnuatrai.com/blog/categories/mapreduce/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.com/"/>
+  <updated>2021-01-03T21:17:51+05:30</updated>
+  <id>http://vishnuatrai.com/</id>
   <author>
-    <name><![CDATA[vishnuatrai.in]]></name>
+    <name><![CDATA[vishnuatrai.com]]></name>
     <email><![CDATA[vishnu.atrai@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[MapReduce: Reduce Analytical Data Processing]]></title>
-    <link href="http://vishnuatrai.in/blog/2011/02/16/mapreduce-tool-to-reduce-analytical-data-processing/"/>
+    <link href="http://vishnuatrai.com/blog/2011/02/16/mapreduce-tool-to-reduce-analytical-data-processing/"/>
     <updated>2011-02-16T22:54:29+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2011/02/16/mapreduce-tool-to-reduce-analytical-data-processing</id>
+    <id>http://vishnuatrai.com/blog/2011/02/16/mapreduce-tool-to-reduce-analytical-data-processing</id>
     <content type="html"><![CDATA[<p>Today every human being is rapidly increasing online activities and as a result web applications are having a huge amounts of data, now it is a challenge for organizations to quickly analyze the huge amounts of data their customers and audiences generate to better understand and serve them.<!--more--> MapReduce is the tool that is helping those organizations.</p>
 
 <p>MapReduce is a programming framework popularized by Google and used to simplify data processing across massive data sets.</p>

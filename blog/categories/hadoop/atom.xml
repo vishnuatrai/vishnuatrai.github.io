@@ -2,12 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Hadoop | @vishnuatrai]]></title>
-  <link href="http://vishnuatrai.in/blog/categories/hadoop/atom.xml" rel="self"/>
-  <link href="http://vishnuatrai.in/"/>
-  <updated>2021-01-03T18:45:42+05:30</updated>
-  <id>http://vishnuatrai.in/</id>
+  <link href="http://vishnuatrai.com/blog/categories/hadoop/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.com/"/>
+  <updated>2021-01-03T21:17:51+05:30</updated>
+  <id>http://vishnuatrai.com/</id>
   <author>
-    <name><![CDATA[vishnuatrai.in]]></name>
+    <name><![CDATA[vishnuatrai.com]]></name>
     <email><![CDATA[vishnu.atrai@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[MapR-DB - Querying Pro-tips]]></title>
-    <link href="http://vishnuatrai.in/blog/2020/05/03/mapr-db-querying-pro-tips/"/>
+    <link href="http://vishnuatrai.com/blog/2020/05/03/mapr-db-querying-pro-tips/"/>
     <updated>2020-05-03T13:09:15+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2020/05/03/mapr-db-querying-pro-tips</id>
+    <id>http://vishnuatrai.com/blog/2020/05/03/mapr-db-querying-pro-tips</id>
     <content type="html"><![CDATA[<h3>What is MapR?</h3>
 
 <p>MapR is a complete enterprise-grade distribution for Apache Hadoop. The MapR Data Platform has been developed to improve Hadoop’s reliability, performance, and ease of use. The MapR provides a full Hadoop stack that includes the MapR File System (MapR-FS), the MapR-DB NoSQL database management system, MapR Streams, the MapR Control System (MCS) user interface, and a full family of Hadoop ecosystem projects.<!--more--></p>

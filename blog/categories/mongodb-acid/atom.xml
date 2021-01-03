@@ -2,12 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: MongoDB&nbsp;ACID | @vishnuatrai]]></title>
-  <link href="http://vishnuatrai.in/blog/categories/mongodb-acid/atom.xml" rel="self"/>
-  <link href="http://vishnuatrai.in/"/>
-  <updated>2021-01-03T18:45:42+05:30</updated>
-  <id>http://vishnuatrai.in/</id>
+  <link href="http://vishnuatrai.com/blog/categories/mongodb-acid/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.com/"/>
+  <updated>2021-01-03T21:17:51+05:30</updated>
+  <id>http://vishnuatrai.com/</id>
   <author>
-    <name><![CDATA[vishnuatrai.in]]></name>
+    <name><![CDATA[vishnuatrai.com]]></name>
     <email><![CDATA[vishnu.atrai@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[MongoDB 4.0 - Support for ACID Transactions]]></title>
-    <link href="http://vishnuatrai.in/blog/2018/12/20/mongodb-4-dot-0-support-for-acid-transactions/"/>
+    <link href="http://vishnuatrai.com/blog/2018/12/20/mongodb-4-dot-0-support-for-acid-transactions/"/>
     <updated>2018-12-20T17:41:34+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2018/12/20/mongodb-4-dot-0-support-for-acid-transactions</id>
+    <id>http://vishnuatrai.com/blog/2018/12/20/mongodb-4-dot-0-support-for-acid-transactions</id>
     <content type="html"><![CDATA[<h3>Support for Single-Shard multi document ACID transactions</h3>
 
 <p>To support benefits of ACID transactions with fully-denormalized document data modeling, MongoDB added single-shard ACID transaction support in the released 4.0. These single-shard transactions apply ACID properties on updates across multiple documents those are present in the same shard. Multi-shard transactions supposed to implement in release 4.2.</p>

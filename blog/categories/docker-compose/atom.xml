@@ -2,12 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Docker&nbsp;compose | @vishnuatrai]]></title>
-  <link href="http://vishnuatrai.in/blog/categories/docker-compose/atom.xml" rel="self"/>
-  <link href="http://vishnuatrai.in/"/>
-  <updated>2021-01-03T18:45:42+05:30</updated>
-  <id>http://vishnuatrai.in/</id>
+  <link href="http://vishnuatrai.com/blog/categories/docker-compose/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.com/"/>
+  <updated>2021-01-03T21:17:51+05:30</updated>
+  <id>http://vishnuatrai.com/</id>
   <author>
-    <name><![CDATA[vishnuatrai.in]]></name>
+    <name><![CDATA[vishnuatrai.com]]></name>
     <email><![CDATA[vishnu.atrai@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Docker, Docker Compose and Dockerfile]]></title>
-    <link href="http://vishnuatrai.in/blog/2015/06/10/docker-docker-compose-dockerfile/"/>
+    <link href="http://vishnuatrai.com/blog/2015/06/10/docker-docker-compose-dockerfile/"/>
     <updated>2015-06-10T18:29:15+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2015/06/10/docker-docker-compose-dockerfile</id>
+    <id>http://vishnuatrai.com/blog/2015/06/10/docker-docker-compose-dockerfile</id>
     <content type="html"><![CDATA[<h3>What is Docker</h3>
 
 <p>The Docker uses the Linux kernel and features of the kernel, like Cgroups and namespaces, to segregate processes so they can run independently. This independence is the intention of containers‐the ability to run multiple processes and apps separately from one another to make better use of your infrastructure while retaining the security you would have with separate systems.</p>

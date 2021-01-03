@@ -2,12 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: ConfigMaps | @vishnuatrai]]></title>
-  <link href="http://vishnuatrai.in/blog/categories/configmaps/atom.xml" rel="self"/>
-  <link href="http://vishnuatrai.in/"/>
-  <updated>2021-01-03T18:45:42+05:30</updated>
-  <id>http://vishnuatrai.in/</id>
+  <link href="http://vishnuatrai.com/blog/categories/configmaps/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.com/"/>
+  <updated>2021-01-03T21:17:51+05:30</updated>
+  <id>http://vishnuatrai.com/</id>
   <author>
-    <name><![CDATA[vishnuatrai.in]]></name>
+    <name><![CDATA[vishnuatrai.com]]></name>
     <email><![CDATA[vishnu.atrai@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Kubernetes - Secrets vs ConfigMaps]]></title>
-    <link href="http://vishnuatrai.in/blog/2018/08/16/kubernetes-secrets-vs-configmaps/"/>
+    <link href="http://vishnuatrai.com/blog/2018/08/16/kubernetes-secrets-vs-configmaps/"/>
     <updated>2018-08-16T16:28:34+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2018/08/16/kubernetes-secrets-vs-configmaps</id>
+    <id>http://vishnuatrai.com/blog/2018/08/16/kubernetes-secrets-vs-configmaps</id>
     <content type="html"><![CDATA[<!--more-->
 
 

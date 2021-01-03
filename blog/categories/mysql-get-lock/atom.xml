@@ -2,12 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: MySQL&nbsp;GET_LOCK | @vishnuatrai]]></title>
-  <link href="http://vishnuatrai.in/blog/categories/mysql-get-lock/atom.xml" rel="self"/>
-  <link href="http://vishnuatrai.in/"/>
-  <updated>2021-01-03T18:45:42+05:30</updated>
-  <id>http://vishnuatrai.in/</id>
+  <link href="http://vishnuatrai.com/blog/categories/mysql-get-lock/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.com/"/>
+  <updated>2021-01-03T21:17:51+05:30</updated>
+  <id>http://vishnuatrai.com/</id>
   <author>
-    <name><![CDATA[vishnuatrai.in]]></name>
+    <name><![CDATA[vishnuatrai.com]]></name>
     <email><![CDATA[vishnu.atrai@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[MySQL - Distributed GET_LOCK]]></title>
-    <link href="http://vishnuatrai.in/blog/2017/10/15/mysql-distributed-GET_LOCK/"/>
+    <link href="http://vishnuatrai.com/blog/2017/10/15/mysql-distributed-GET_LOCK/"/>
     <updated>2017-10-15T17:52:24+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2017/10/15/mysql-distributed-GET_LOCK</id>
+    <id>http://vishnuatrai.com/blog/2017/10/15/mysql-distributed-GET_LOCK</id>
     <content type="html"><![CDATA[<p>Distributed global locking using <code>mysql get_lock()</code>, ensures releasing orphaned lock.</p>
 
 <h3>USE CASE 1:</h3>

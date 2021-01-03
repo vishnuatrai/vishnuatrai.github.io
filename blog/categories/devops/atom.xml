@@ -2,12 +2,12 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: DevOps | @vishnuatrai]]></title>
-  <link href="http://vishnuatrai.in/blog/categories/devops/atom.xml" rel="self"/>
-  <link href="http://vishnuatrai.in/"/>
-  <updated>2021-01-03T18:45:42+05:30</updated>
-  <id>http://vishnuatrai.in/</id>
+  <link href="http://vishnuatrai.com/blog/categories/devops/atom.xml" rel="self"/>
+  <link href="http://vishnuatrai.com/"/>
+  <updated>2021-01-03T21:17:51+05:30</updated>
+  <id>http://vishnuatrai.com/</id>
   <author>
-    <name><![CDATA[vishnuatrai.in]]></name>
+    <name><![CDATA[vishnuatrai.com]]></name>
     <email><![CDATA[vishnu.atrai@gmail.com]]></email>
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[MySQL - Encryption at Rest]]></title>
-    <link href="http://vishnuatrai.in/blog/2020/01/11/mysql-encryption-at-rest/"/>
+    <link href="http://vishnuatrai.com/blog/2020/01/11/mysql-encryption-at-rest/"/>
     <updated>2020-01-11T18:20:46+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2020/01/11/mysql-encryption-at-rest</id>
+    <id>http://vishnuatrai.com/blog/2020/01/11/mysql-encryption-at-rest</id>
     <content type="html"><![CDATA[<p>Without encryption of data at rest, system role with access to file system can view data even without proper database permissions. A proper authentication can be used to protect data used by an application but data sitting in file system has been area of risk.</p>
 
 <p>With encryption at rest, it has been possible to protect data in transit when moving over the network. Data at Rest Encryption is a requirement for HIPAA, PCI regulations. <!--more--></p>
@@ -88,9 +88,9 @@ encrypt-binlog
   
   <entry>
     <title type="html"><![CDATA[Dive Into Docker Image Layers]]></title>
-    <link href="http://vishnuatrai.in/blog/2019/12/26/dive-into-docker-image-layers/"/>
+    <link href="http://vishnuatrai.com/blog/2019/12/26/dive-into-docker-image-layers/"/>
     <updated>2019-12-26T20:48:58+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2019/12/26/dive-into-docker-image-layers</id>
+    <id>http://vishnuatrai.com/blog/2019/12/26/dive-into-docker-image-layers</id>
     <content type="html"><![CDATA[<p>I recently used a tool named <a href="https://github.com/wagoodman/dive"><code>dive</code></a> to explore docker images developed and maintained by teammates or opensourced docker images. I used to look into <code>Dockerfile</code> steps to explore image layes. <code>dive</code> brings cli-ui and using arrow and tab keys we can explore each layer in left pane while layer contents listed in right pane.<!--more--></p>
 
 <p>Essentially <code>dive</code> based on docker api and its cache contents and provides commands to explore layer contents and minimize the size of images.</p>
@@ -111,9 +111,9 @@ encrypt-binlog
   
   <entry>
     <title type="html"><![CDATA[jMeter - Optimize for Load Testing]]></title>
-    <link href="http://vishnuatrai.in/blog/2019/11/11/jmeter-optimize-for-load-testing/"/>
+    <link href="http://vishnuatrai.com/blog/2019/11/11/jmeter-optimize-for-load-testing/"/>
     <updated>2019-11-11T17:40:57+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2019/11/11/jmeter-optimize-for-load-testing</id>
+    <id>http://vishnuatrai.com/blog/2019/11/11/jmeter-optimize-for-load-testing</id>
     <content type="html"><![CDATA[<p>These are the jMeter optimization steps we have taken to simulate 1M request per second concurrency test for REST application deployed on Kubernetes cluster.</p>
 
 <h3>Use a High Capacity Jenkins Slave to run jMeter jmx script</h3>
@@ -158,9 +158,9 @@ We can use available memory and CPU to optimize jMeter configuration.</p>
   
   <entry>
     <title type="html"><![CDATA[Jenkins Slave With Docker Executors]]></title>
-    <link href="http://vishnuatrai.in/blog/2019/08/08/jenkins-slave-with-docker-executors/"/>
+    <link href="http://vishnuatrai.com/blog/2019/08/08/jenkins-slave-with-docker-executors/"/>
     <updated>2019-08-08T16:35:25+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2019/08/08/jenkins-slave-with-docker-executors</id>
+    <id>http://vishnuatrai.com/blog/2019/08/08/jenkins-slave-with-docker-executors</id>
     <content type="html"><![CDATA[<p><a href="https://wiki.jenkins.io/display/JENKINS/Docker+Plugin">Docker Plugin</a> enables jenkins to run jobs as docker container. In such case we dont need to setup jenkins nodes(agents) with specific binaries, instead docker images will be used to run jobs.<!--more-->Jenkins master needs to be configured with docker host where we can push docker images, those will be used by agents to execute jobs.</p>
 
 <h3>Global Configuration</h3>
@@ -197,9 +197,9 @@ Fill below configurations to setup docker template <br /></p>
   
   <entry>
     <title type="html"><![CDATA[Jenkins - Add Slave Nodes as JNLP Agents]]></title>
-    <link href="http://vishnuatrai.in/blog/2019/04/15/jenkins-add-slave-nodes-as-jnlp-agents/"/>
+    <link href="http://vishnuatrai.com/blog/2019/04/15/jenkins-add-slave-nodes-as-jnlp-agents/"/>
     <updated>2019-04-15T15:36:54+05:30</updated>
-    <id>http://vishnuatrai.in/blog/2019/04/15/jenkins-add-slave-nodes-as-jnlp-agents</id>
+    <id>http://vishnuatrai.com/blog/2019/04/15/jenkins-add-slave-nodes-as-jnlp-agents</id>
     <content type="html"><![CDATA[<p>If it is required to run Jenkins master in an isolated network and master should not be allowed to connected to its nodes(agents), we can use JNLP method to add agents to master to process jobs in distributed manner. In this scenario, its not desirable to have master connections with slave(agent) nodes but agent to master connections only required. <!--more--></p>
 
 <h3>Only Agent to master connections</h3>
