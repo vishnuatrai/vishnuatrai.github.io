@@ -4,7 +4,7 @@
   <title><![CDATA[Category: BDD | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/blog/categories/bdd/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2021-04-26T15:53:49+05:30</updated>
+  <updated>2021-05-01T16:55:13+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -18,7 +18,7 @@
     <link href="http://vishnuatrai.com/blog/2012/04/06/jasmine-ajax-and-spies/"/>
     <updated>2012-04-06T11:12:46+05:30</updated>
     <id>http://vishnuatrai.com/blog/2012/04/06/jasmine-ajax-and-spies</id>
-    <content type="html"><![CDATA[<p>In continuation of previous post for Jasmine, here I want to share my experience with Jasmine and Ajax. I want to show how cool it is with jasmine to test ajax calls in javascript. <!--more--> Jasmine spies can be used for mock the ajax call with fake data. Spy replaces the function it is spying on. For example my javascript function have an ajax call &ndash;</p>
+    <content type="html"><![CDATA[<p>In continuation of previous post for Jasmine, here I want to share my experience with Jasmine and Ajax. I want to show how cool it is with jasmine to test ajax calls in javascript. <!--more--> Jasmine spies can be used for mock the ajax call with fake data. Spy replaces the function it is spying on. For example my javascript function have an ajax call -</p>
 
 <pre><code>function myprofiledetails(){
     $.ajax({
@@ -133,7 +133,7 @@ calls passed function when spy is called
 
 <h4>4. Matchers</h4>
 
-<p>Given few of the matches you can use for assertions &ndash;</p>
+<p>Given few of the matches you can use for assertions -</p>
 
 <pre><code>toContain
    expect(["linux", "mac", "windows"]).toContain("linux");  

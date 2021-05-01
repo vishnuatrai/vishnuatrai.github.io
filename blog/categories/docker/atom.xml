@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Docker | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/blog/categories/docker/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2021-04-26T15:53:49+05:30</updated>
+  <updated>2021-05-01T16:55:13+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -47,7 +47,7 @@
 
 <p>After installation of <code>Docker Plugin</code> from manage plugins options, we will need to configure docker host and templates to create docker executers in Global Configuration option.</p>
 
-<p>Go to <strong>Global Configurations</strong> &ndash;> <strong>Docker</strong> &ndash;> fill the below configuration options to setup docker host <br />
+<p>Go to <strong>Global Configurations</strong> -> <strong>Docker</strong> -> fill the below configuration options to setup docker host <br />
 <strong>Name</strong>    Name of docker slave to be used in job configuration  <br />
 <strong>Docker Url</strong>    docker engine url and port  <br /></p>
 
@@ -124,7 +124,7 @@ volumes:
   logvolume01: {}
 </code></pre>
 
-<p>Docker Compose commands &ndash;</p>
+<p>Docker Compose commands -</p>
 
 <pre><code>$ docker-compose up -d
 $ docker-compose down
@@ -248,7 +248,7 @@ CMD ["postgres"]
 <p><code>VOLUME</code>, used to expose any storage area, configuration storage, or files/folders created by docker container</p>
 
 <p><code>USER</code>, used to set the UID (or username) which is to run the container based on the image being built.
-If a service can run without privileges, use USER to change to a non-root user. Start by creating the user and group in the Dockerfile with something like RUN groupadd -r postgres &amp;&amp; useradd &mdash;no-log-init -r -g postgres postgres.</p>
+If a service can run without privileges, use USER to change to a non-root user. Start by creating the user and group in the Dockerfile with something like RUN groupadd -r postgres &amp;&amp; useradd &ndash;no-log-init -r -g postgres postgres.</p>
 
 <pre><code># Usage: USER [UID]
 USER 800

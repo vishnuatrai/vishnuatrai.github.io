@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Rails&nbsp;4 | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/blog/categories/rails-4/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2021-04-26T15:53:49+05:30</updated>
+  <updated>2021-05-01T16:55:13+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -18,7 +18,7 @@
     <link href="http://vishnuatrai.com/blog/2014/05/31/what-is-new-in-rails-4-dot-1/"/>
     <updated>2014-05-31T19:59:28+05:30</updated>
     <id>http://vishnuatrai.com/blog/2014/05/31/what-is-new-in-rails-4-dot-1</id>
-    <content type="html"><![CDATA[<p>Rails 4.1 is a minor release but includes interesting features below &ndash;</p>
+    <content type="html"><![CDATA[<p>Rails 4.1 is a minor release but includes interesting features below -</p>
 
 <h3>Spring</h3>
 
@@ -87,7 +87,7 @@ Rails.application.message_verifier(:remember_me).verify(tampered_token)
     <updated>2013-07-18T19:58:40+05:30</updated>
     <id>http://vishnuatrai.com/blog/2013/07/18/what-is-new-in-rails-4-dot-0</id>
     <content type="html"><![CDATA[<p>Rails 4.0 and newer version will support ruby 1.9.3+ only. It wont work with lessor
-version then ruby 1.9.3. Major developments are below &ndash;</p>
+version then ruby 1.9.3. Major developments are below -</p>
 
 <h3>Ruby 2.0 preferred; 1.9.3+ required</h3>
 
@@ -103,7 +103,7 @@ version then ruby 1.9.3. Major developments are below &ndash;</p>
 
 <h3>Asynchronous Action Mailer</h3>
 
-<h3>Barebone Models &ndash; ActiveModel::Model</h3>
+<h3>Barebone Models - ActiveModel::Model</h3>
 
 <h3>Http PATCH</h3>
 

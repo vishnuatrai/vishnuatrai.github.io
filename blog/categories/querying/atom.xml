@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Querying | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/blog/categories/querying/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2021-04-26T15:53:49+05:30</updated>
+  <updated>2021-05-01T16:55:13+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -32,18 +32,16 @@
 
 <h4>Java program setup</h4>
 
-<p>The workstation must setup MapR client and its certificates</p>
-
-<pre><code>pom.xml
-&lt;dependency&gt;
-    &lt;groupId&gt;org.ojai&lt;/groupId&gt;
-    &lt;artifactId&gt;ojai&lt;/artifactId&gt;
-&lt;/dependency&gt;
-&lt;dependency&gt;
-    &lt;groupId&gt;com.mapr.db&lt;/groupId&gt;
-    &lt;artifactId&gt;maprdb&lt;/artifactId&gt;
-&lt;/dependency&gt;
-</code></pre>
+<p>The workstation must setup MapR client and its certificates
+    pom.xml
+    <dependency>
+        <groupId>org.ojai</groupId>
+        <artifactId>ojai</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>com.mapr.db</groupId>
+        <artifactId>maprdb</artifactId>
+    </dependency></p>
 
 <h4>1. Find by id</h4>
 

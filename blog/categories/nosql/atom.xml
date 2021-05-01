@@ -4,7 +4,7 @@
   <title><![CDATA[Category: NoSQL | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/blog/categories/nosql/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2021-04-26T15:53:49+05:30</updated>
+  <updated>2021-05-01T16:55:13+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -50,12 +50,9 @@
    problems which need intense versioning; problems with offline databases that resync later;
    problems where you want a large amount of master-master replication happening.</p>
 
-<p>Mongo is very good for different kind of problems:</p>
-
-<pre><code>problems requiring high update rates of objects are a great fit; compaction is not necessary.
-</code></pre>
-
-<p>Mongo is more oriented towards master/slave and auto failover configurations than to complex master-master setups.   <br/>
+<p>Mongo is very good for different kind of problems:
+    problems requiring high update rates of objects are a great fit; compaction is not necessary.
+Mongo is more oriented towards master/slave and auto failover configurations than to complex master-master setups.   <br/>
 With MongoDB you should see high write performance, especially for updates.</p>
 ]]></content>
   </entry>

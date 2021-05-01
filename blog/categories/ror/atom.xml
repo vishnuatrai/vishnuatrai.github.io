@@ -4,7 +4,7 @@
   <title><![CDATA[Category: RoR | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/blog/categories/ror/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2021-04-26T15:53:49+05:30</updated>
+  <updated>2021-05-01T16:55:13+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -20,43 +20,36 @@
     <id>http://vishnuatrai.com/blog/2019/09/15/what-is-new-in-rails-6</id>
     <content type="html"><![CDATA[<h4>Rails 6 require Ruby version 2.5 or greater. Upgrade to at least rails 5.2 or later versions and make sure application run properly without any failure, then attempt to upgrade to 6.0, follow <a href="https://edgeguides.rubyonrails.org/upgrading_ruby_on_rails.html#upgrading-from-rails-5-2-to-rails-6-0">upgrade guide</a>.</h4>
 
-<h3>ApplicationRecord &ndash; Multiple databases support</h3>
+<h3>ApplicationRecord - Multiple databases support</h3>
 
 <p>Active Record supports switching between multiple databases with a minimal change in codebase but a major impact on multiple replica set db. With multiple db support, rails application can have a read-only version of your database to use in areas known for having slow queries, or if it need to write to different databases depending on which controller request.
 This requires a change in <code>database.yml</code> setup, ie. <!--more-->
-`</p>
+<code>
+    development:
+      primary:
+        database: primary_db
+        user: rw_user
+      primary_replica:
+        database: primary_db
+        user: ro_user
+        replica: true
+      animals:
+        database: animals_db
+        user: rw_user
+      animals_replica
+        database: animals_db
+        user: ro_user
+        replica: true
+</code>
+You can then specify at the model-level which database(s) you want to use:
+    class Animal &lt; ApplicationRecord
+        connects_to database: { writing: :animals, reading: :animals_replica }
+    end</p>
 
-<pre><code>development:
-  primary:
-    database: primary_db
-    user: rw_user
-  primary_replica:
-    database: primary_db
-    user: ro_user
-    replica: true
-  animals:
-    database: animals_db
-    user: rw_user
-  animals_replica
-    database: animals_db
-    user: ro_user
-    replica: true
-</code></pre>
-
-<p>`
-You can then specify at the model-level which database(s) you want to use:</p>
-
-<pre><code>class Animal &lt; ApplicationRecord
-    connects_to database: { writing: :animals, reading: :animals_replica }
-end
-</code></pre>
-
-<p>And then it’s just one line of code to temporarily switch between databases inside a block!</p>
-
-<pre><code>Aminal.connected_to(role: :reading) do
-    #Slow queries in jobs can be performaed here
-end
-</code></pre>
+<p>And then it’s just one line of code to temporarily switch between databases inside a block!
+    Aminal.connected_to(role: :reading) do
+        #Slow queries in jobs can be performaed here
+    end</p>
 
 <h3>Action Mailbox</h3>
 
@@ -88,34 +81,24 @@ end
 
 <h3>Action Text</h3>
 
-<p>ActionText is am implementation of rich-text support(Trix editor by Basecamp). Run bin/rails action_text:install to add the Yarn package and copy over the necessary migration. Also, you need to set up Active Storage for embedded images and other attachments. Both trix and @rails/actiontext should be required in your JavaScript pack.</p>
-
-<pre><code>// application.js
-require("trix")
-require("@rails/actiontext")
-</code></pre>
-
-<p>It exposes a has_rich_text method that we can apply to models and Action Text will take care of the rest.</p>
-
-<pre><code># app/models/article.rb
-class Article &lt; ApplicationRecord
-    has_rich_text :content
-end
-</code></pre>
+<p>ActionText is am implementation of rich-text support(Trix editor by Basecamp). Run bin/rails action_text:install to add the Yarn package and copy over the necessary migration. Also, you need to set up Active Storage for embedded images and other attachments. Both trix and @rails/actiontext should be required in your JavaScript pack.
+    // application.js
+    require(&ldquo;trix&rdquo;)
+    require(&ldquo;@rails/actiontext&rdquo;)
+It exposes a has_rich_text method that we can apply to models and Action Text will take care of the rest.
+    # app/models/article.rb
+    class Article &lt; ApplicationRecord
+        has_rich_text :content
+    end</p>
 
 <h3>Parallel Testing</h3>
 
-<p>Rails 6 adds parallel test to Rails applications by default. It parallelize test suite and enable faster test suite run times and efficiency. Configuration via parent test class</p>
-
-<pre><code>class ActiveSupport::TestCase
-    parallelize(workers: 2, with: :processes) # or :threads
-end
-</code></pre>
-
-<p>or through environment variable PARALLEL_WORKERS and it’ll create the database with a numbered suffix.</p>
-
-<pre><code>PARALLEL_WORKERS=2 rails test
-</code></pre>
+<p>Rails 6 adds parallel test to Rails applications by default. It parallelize test suite and enable faster test suite run times and efficiency. Configuration via parent test class
+    class ActiveSupport::TestCase
+        parallelize(workers: 2, with: :processes) # or :threads
+    end
+or through environment variable PARALLEL_WORKERS and it’ll create the database with a numbered suffix.
+    PARALLEL_WORKERS=2 rails test</p>
 
 <h3>Action Cable Testing</h3>
 
@@ -127,10 +110,8 @@ end
 
 <h3>Zeitwerk</h3>
 
-<p>Zeitwerk is a new and improved, thread-safe code loader for Rails, Configuration to enable &ndash;</p>
-
-<pre><code>config.autoloader = :zeitwerk
-</code></pre>
+<p>Zeitwerk is a new and improved, thread-safe code loader for Rails, Configuration to enable -
+    config.autoloader = :zeitwerk</p>
 
 <p><a href="https://edgeguides.rubyonrails.org/6_0_release_notes.html">https://edgeguides.rubyonrails.org/6_0_release_notes.html</a></p>
 ]]></content>
@@ -185,12 +166,10 @@ amazon:
 
 <p>The secrets kept in credentials file are accessible via <code>Rails.application.credentials</code>. For example, with the following decrypted <code>config/credentials.yml.enc</code></p>
 
-<p>  #config/credentials.yml.enc</p>
-
-<pre><code>secret_key_base:&lt;secret key base&gt;
-api_client_key: &lt;secret key1&gt;
-api_client_secret: &lt;secret key2&gt;
-</code></pre>
+<p>  #config/credentials.yml.enc
+    secret_key_base:<secret key base>
+    api_client_key: <secret key1>
+    api_client_secret: <secret key2></p>
 
 <h3>Content Security Policy</h3>
 
@@ -198,18 +177,17 @@ api_client_secret: &lt;secret key2&gt;
 
 <p>The HTTP <code>Content-Security-Policy</code> response header allows web site administrators to control resources the user agent is allowed to load for a given page. With a few exceptions, policies mostly involve specifying server origins and script endpoints.</p>
 
-<p>Example &ndash;
-  # config/initializers/content_security_policy.rb</p>
+<p>Example -
+  # config/initializers/content_security_policy.rb
+    Rails.application.config.content_security_policy do |policy|
+      policy.default_src :self, :https
+      policy.font_src    :self, :https, :data
+      policy.img_src     :self, :https, :data
+      policy.object_src  :none
+      policy.script_src  :self, :https
+      policy.style_src   :self, :https</p>
 
-<pre><code>Rails.application.config.content_security_policy do |policy|
-  policy.default_src :self, :https
-  policy.font_src    :self, :https, :data
-  policy.img_src     :self, :https, :data
-  policy.object_src  :none
-  policy.script_src  :self, :https
-  policy.style_src   :self, :https
-
-  # Specify URI for violation reports
+<pre><code>  # Specify URI for violation reports
   policy.report_uri "/csp-violation-report-path"
 end
 </code></pre>
@@ -236,10 +214,8 @@ end
   end
 </code></pre>
 
-<br/>
-
-
-<p>References: <a href="https://guides.rubyonrails.org/5_2_release_notes.html">https://guides.rubyonrails.org/5_2_release_notes.html</a></p>
+<p><br/>
+References: <a href="https://guides.rubyonrails.org/5_2_release_notes.html">https://guides.rubyonrails.org/5_2_release_notes.html</a></p>
 ]]></content>
   </entry>
   
@@ -261,10 +237,8 @@ bundle exec rake db:migrate
 bundle exec rake db:seed
 </code></pre>
 
-<!--more-->
+<!--more--> 
 
-
-<p></p>
 
 <p>Sample applicaiton startup script</p>
 
@@ -501,7 +475,7 @@ model = Profile.new(field_without_db_column: ["1", "2", "3"])
 model.attributes # =&gt; {field_without_db_column: [1, 2, 3]}
 </code></pre>
 
-<h3>Rails API &ndash; ActionController::API</h3>
+<h3>Rails API - ActionController::API</h3>
 
 <p>To avoid middlewares used for browser based web applications and server public facing json APIs, we can create API only rails application here after 5.0. <code>rails new my_api --api</code> can be used to generate application which will be API only and will not generate assets and views.</p>
 
@@ -514,11 +488,8 @@ end
 
 <p>Ruby 2.2.2+ required version from Rails 5.0</p>
 
-<br />
-
-
-<br />
-
+<p><br />
+<br /></p>
 
 <h3>References</h3>
 
@@ -582,16 +553,14 @@ post.comments
 post.comments(true)
 </code></pre>
 
-<p>Caching is not used in the following scenarios:</p>
-
-<pre><code>- The model has a default scope
-- The model uses single table inheritance
-- find with a list of ids, eg.
-    Post.find(1, 2, 3)
-    Post.find([1,2])
-- find_by with SQL fragments, eg.
-    Post.find_by('published_at &lt; ?', 2.weeks.ago)
-</code></pre>
+<p>Caching is not used in the following scenarios:
+    - The model has a default scope
+    - The model uses single table inheritance
+    - find with a list of ids, eg.
+        Post.find(1, 2, 3)
+        Post.find([1,2])
+    - find_by with SQL fragments, eg.
+        Post.find_by(&lsquo;published_at &lt; ?&rsquo;, 2.weeks.ago)</p>
 
 <h3>Web Console</h3>
 

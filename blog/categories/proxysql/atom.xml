@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ProxySQL | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/blog/categories/proxysql/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2021-04-26T15:53:49+05:30</updated>
+  <updated>2021-05-01T16:55:13+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -60,11 +60,11 @@ mysql_query_rules
 stats_mysql_query_digest
 </code></pre>
 
-<h3>Deploying with Kubernetes/Openshift &ndash; The Sidecar Pattern</h3>
+<h3>Deploying with Kubernetes/Openshift - The Sidecar Pattern</h3>
 
 <p>We can deploy the <code>proxysql</code> image in same pod as application image but data base references we will need to provide as <code>localhost</code> or <code>127.0.0.1</code> and port will be <code>6033</code> (the default proxysql port). The application will connect to proxysql server and it will then redirect database queries to mysql database cluster.</p>
 
-<p>Openshift/kubernetes template spec &ndash;</p>
+<p>Openshift/kubernetes template spec -</p>
 
 <pre><code>spec:
  template:

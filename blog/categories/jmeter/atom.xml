@@ -4,7 +4,7 @@
   <title><![CDATA[Category: jMeter | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/blog/categories/jmeter/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2021-04-26T15:53:49+05:30</updated>
+  <updated>2021-05-01T16:55:13+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -31,10 +31,8 @@ We can use available memory and CPU to optimize jMeter configuration.</p>
 
 <h3>Increase the Java Heap Size</h3>
 
-<p>Run JMeter with higher value of memory.</p>
-
-<pre><code>`JVM_ARGS="-Xms512m -Xmx512m" jmeter.sh`
-</code></pre>
+<p>Run JMeter with higher value of memory.
+    <code>JVM_ARGS="-Xms512m -Xmx512m" jmeter.sh</code></p>
 
 <h3>Avoid Listeners</h3>
 
@@ -54,9 +52,9 @@ We can use available memory and CPU to optimize jMeter configuration.</p>
 
 <p><code>NEW="-XX:NewSize=128m -XX:MaxNewSize=128m"</code> line in the JMeter command script should match with values provided in HEAP.</p>
 
-<p><code>-XX:+UseConcMarkSweepGC</code> &ndash; this forces the usage of the CMS garbage collector. It will lower the overall throughput but leads to much shorter CPU intensive garbage collections.</p>
+<p><code>-XX:+UseConcMarkSweepGC</code> - this forces the usage of the CMS garbage collector. It will lower the overall throughput but leads to much shorter CPU intensive garbage collections.</p>
 
-<p><code>-server</code> &ndash; this switches JVM into “server” mode with runtime parameters optimization. In this mode JMeter starts more slowly, but your overall throughput will be higher</p>
+<p><code>-server</code> - this switches JVM into “server” mode with runtime parameters optimization. In this mode JMeter starts more slowly, but your overall throughput will be higher</p>
 ]]></content>
   </entry>
   

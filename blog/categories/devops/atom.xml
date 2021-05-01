@@ -4,7 +4,7 @@
   <title><![CDATA[Category: DevOps | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/blog/categories/devops/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2021-04-26T15:53:49+05:30</updated>
+  <updated>2021-05-01T16:55:13+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -64,8 +64,7 @@ encrypt-binlog
 <pre><code>select * from information_schema.INNODB_TABLESPACES_ENCRYPTION where ENCRYPTION_SCHEME=1;
 </code></pre>
 
-<br/>
-
+<p><br/></p>
 
 <h3>innodb-encrypt-tables modes</h3>
 
@@ -127,10 +126,8 @@ We can use available memory and CPU to optimize jMeter configuration.</p>
 
 <h3>Increase the Java Heap Size</h3>
 
-<p>Run JMeter with higher value of memory.</p>
-
-<pre><code>`JVM_ARGS="-Xms512m -Xmx512m" jmeter.sh`
-</code></pre>
+<p>Run JMeter with higher value of memory.
+    <code>JVM_ARGS="-Xms512m -Xmx512m" jmeter.sh</code></p>
 
 <h3>Avoid Listeners</h3>
 
@@ -150,9 +147,9 @@ We can use available memory and CPU to optimize jMeter configuration.</p>
 
 <p><code>NEW="-XX:NewSize=128m -XX:MaxNewSize=128m"</code> line in the JMeter command script should match with values provided in HEAP.</p>
 
-<p><code>-XX:+UseConcMarkSweepGC</code> &ndash; this forces the usage of the CMS garbage collector. It will lower the overall throughput but leads to much shorter CPU intensive garbage collections.</p>
+<p><code>-XX:+UseConcMarkSweepGC</code> - this forces the usage of the CMS garbage collector. It will lower the overall throughput but leads to much shorter CPU intensive garbage collections.</p>
 
-<p><code>-server</code> &ndash; this switches JVM into “server” mode with runtime parameters optimization. In this mode JMeter starts more slowly, but your overall throughput will be higher</p>
+<p><code>-server</code> - this switches JVM into “server” mode with runtime parameters optimization. In this mode JMeter starts more slowly, but your overall throughput will be higher</p>
 ]]></content>
   </entry>
   
@@ -167,7 +164,7 @@ We can use available memory and CPU to optimize jMeter configuration.</p>
 
 <p>After installation of <code>Docker Plugin</code> from manage plugins options, we will need to configure docker host and templates to create docker executers in Global Configuration option.</p>
 
-<p>Go to <strong>Global Configurations</strong> &ndash;> <strong>Docker</strong> &ndash;> fill the below configuration options to setup docker host <br />
+<p>Go to <strong>Global Configurations</strong> -> <strong>Docker</strong> -> fill the below configuration options to setup docker host <br />
 <strong>Name</strong>    Name of docker slave to be used in job configuration  <br />
 <strong>Docker Url</strong>    docker engine url and port  <br /></p>
 
@@ -210,13 +207,13 @@ Fill below configurations to setup docker template <br /></p>
 
 <p>In order to setup a slave agent in above scenario you need to first <strong>Enable the JNLP Agents</strong>:</p>
 
-<p>Go to <strong>Manage Jenkins</strong> &ndash;> <strong>Configure Global Security</strong> &ndash;> under <strong>Agents</strong> section &ndash;> <strong>TCP port for inbound agents</strong> &ndash;> select <strong>Random</strong> &ndash;><strong>Save</strong>.</p>
+<p>Go to <strong>Manage Jenkins</strong> -> <strong>Configure Global Security</strong> -> under <strong>Agents</strong> section -> <strong>TCP port for inbound agents</strong> -> select <strong>Random</strong> -><strong>Save</strong>.</p>
 
 <p><img src="/images//posts/Jenkins1.png" alt="" /></p>
 
 <h4>Setup slave agent node</h4>
 
-<p>Go to <strong>Manage Jenkins</strong> &ndash;> <strong>Manage Nodes</strong> &ndash;>click on <strong>New Node</strong> &ndash;> Enter the <strong>node name</strong> &ndash;> Select <strong>permanent agent</strong>.</p>
+<p>Go to <strong>Manage Jenkins</strong> -> <strong>Manage Nodes</strong> ->click on <strong>New Node</strong> -> Enter the <strong>node name</strong> -> Select <strong>permanent agent</strong>.</p>
 
 <p>Fill the below details to configure the slave agent</p>
 
@@ -239,10 +236,8 @@ and <strong>launch agents via ssh</strong> for linux agents</p>
 
 <p>To Launch the slave agent via command line  <br />
 <strong>Download the agent.jar file and copy to agent node</strong>  <br />
-<strong>Run agent.jar using command line</strong></p>
-
-<pre><code>java --jar agent.jar -jnlpUrl &lt;jenkins master url&gt; -secret &lt;secret given on node configuration&gt; -workDir "/user/agent/home/workspace"
-</code></pre>
+<strong>Run agent.jar using command line</strong>
+    java &ndash;jar agent.jar -jnlpUrl <jenkins master url> -secret <secret given on node configuration> -workDir &ldquo;/user/agent/home/workspace&rdquo;</p>
 
 <p><img src="/images//posts/Jenkins3.png" alt="" /></p>
 

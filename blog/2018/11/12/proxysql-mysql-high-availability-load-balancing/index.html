@@ -170,11 +170,11 @@ mysql_query_rules
 stats_mysql_query_digest
 </code></pre>
 
-<h3>Deploying with Kubernetes/Openshift &ndash; The Sidecar Pattern</h3>
+<h3>Deploying with Kubernetes/Openshift - The Sidecar Pattern</h3>
 
 <p>We can deploy the <code>proxysql</code> image in same pod as application image but data base references we will need to provide as <code>localhost</code> or <code>127.0.0.1</code> and port will be <code>6033</code> (the default proxysql port). The application will connect to proxysql server and it will then redirect database queries to mysql database cluster.</p>
 
-<p>Openshift/kubernetes template spec &ndash;</p>
+<p>Openshift/kubernetes template spec -</p>
 
 <pre><code>spec:
  template:

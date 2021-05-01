@@ -179,16 +179,14 @@ post.comments
 post.comments(true)
 </code></pre>
 
-<p>Caching is not used in the following scenarios:</p>
-
-<pre><code>- The model has a default scope
-- The model uses single table inheritance
-- find with a list of ids, eg.
-    Post.find(1, 2, 3)
-    Post.find([1,2])
-- find_by with SQL fragments, eg.
-    Post.find_by('published_at &lt; ?', 2.weeks.ago)
-</code></pre>
+<p>Caching is not used in the following scenarios:
+    - The model has a default scope
+    - The model uses single table inheritance
+    - find with a list of ids, eg.
+        Post.find(1, 2, 3)
+        Post.find([1,2])
+    - find_by with SQL fragments, eg.
+        Post.find_by(&lsquo;published_at &lt; ?&rsquo;, 2.weeks.ago)</p>
 
 <h3>Web Console</h3>
 
