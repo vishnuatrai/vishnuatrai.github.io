@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Migration | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/blog/categories/migration/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2021-05-01T16:55:13+05:30</updated>
+  <updated>2021-05-06T15:22:52+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -36,7 +36,7 @@
 
 <p>To generate simple ruby file use:</p>
 
-<p><strong> ruby script/generate rake_migration <file_name></strong></p>
+<p><strong> ruby script/generate rake_migration &lt;file_name></strong></p>
 
 <p>This command creates a blank ruby file in<strong> {RAILS_ROOT}/rake/migrate </strong>directory.  Write ruby code or invoke rake task in the generated ruby file.</p>
 

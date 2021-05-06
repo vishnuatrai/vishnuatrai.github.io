@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Rails&nbsp;4.2 | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/blog/categories/rails-4-dot-2/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2021-05-01T16:55:13+05:30</updated>
+  <updated>2021-05-06T15:22:52+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -69,14 +69,16 @@ post.comments
 post.comments(true)
 </code></pre>
 
-<p>Caching is not used in the following scenarios:
-    - The model has a default scope
-    - The model uses single table inheritance
-    - find with a list of ids, eg.
-        Post.find(1, 2, 3)
-        Post.find([1,2])
-    - find_by with SQL fragments, eg.
-        Post.find_by(&lsquo;published_at &lt; ?&rsquo;, 2.weeks.ago)</p>
+<p>Caching is not used in the following scenarios:</p>
+
+<pre><code>- The model has a default scope
+- The model uses single table inheritance
+- find with a list of ids, eg.
+    Post.find(1, 2, 3)
+    Post.find([1,2])
+- find_by with SQL fragments, eg.
+    Post.find_by('published_at &lt; ?', 2.weeks.ago)
+</code></pre>
 
 <h3>Web Console</h3>
 

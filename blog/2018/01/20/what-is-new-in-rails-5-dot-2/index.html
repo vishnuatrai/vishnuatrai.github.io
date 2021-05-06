@@ -172,10 +172,12 @@ amazon:
 
 <p>The secrets kept in credentials file are accessible via <code>Rails.application.credentials</code>. For example, with the following decrypted <code>config/credentials.yml.enc</code></p>
 
-<p>  #config/credentials.yml.enc
-    secret_key_base:<secret key base>
-    api_client_key: <secret key1>
-    api_client_secret: <secret key2></p>
+<p>  #config/credentials.yml.enc</p>
+
+<pre><code>secret_key_base:&lt;secret key base&gt;
+api_client_key: &lt;secret key1&gt;
+api_client_secret: &lt;secret key2&gt;
+</code></pre>
 
 <h3>Content Security Policy</h3>
 
@@ -183,17 +185,18 @@ amazon:
 
 <p>The HTTP <code>Content-Security-Policy</code> response header allows web site administrators to control resources the user agent is allowed to load for a given page. With a few exceptions, policies mostly involve specifying server origins and script endpoints.</p>
 
-<p>Example -
-  # config/initializers/content_security_policy.rb
-    Rails.application.config.content_security_policy do |policy|
-      policy.default_src :self, :https
-      policy.font_src    :self, :https, :data
-      policy.img_src     :self, :https, :data
-      policy.object_src  :none
-      policy.script_src  :self, :https
-      policy.style_src   :self, :https</p>
+<p>Example &ndash;
+  # config/initializers/content_security_policy.rb</p>
 
-<pre><code>  # Specify URI for violation reports
+<pre><code>Rails.application.config.content_security_policy do |policy|
+  policy.default_src :self, :https
+  policy.font_src    :self, :https, :data
+  policy.img_src     :self, :https, :data
+  policy.object_src  :none
+  policy.script_src  :self, :https
+  policy.style_src   :self, :https
+
+  # Specify URI for violation reports
   policy.report_uri "/csp-violation-report-path"
 end
 </code></pre>
@@ -220,8 +223,10 @@ end
   end
 </code></pre>
 
-<p><br/>
-References: <a href="https://guides.rubyonrails.org/5_2_release_notes.html">https://guides.rubyonrails.org/5_2_release_notes.html</a></p>
+<br/>
+
+
+<p>References: <a href="https://guides.rubyonrails.org/5_2_release_notes.html">https://guides.rubyonrails.org/5_2_release_notes.html</a></p>
 </div>
 
 </article>

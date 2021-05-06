@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Render&nbsp;Props | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/blog/categories/render-props/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2021-05-01T16:55:13+05:30</updated>
+  <updated>2021-05-06T15:22:52+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -22,92 +22,101 @@
 
 <h3>Higher-Order Components</h3>
 
-<p>Higher-order component is a function that takes a component as an argument and returns a new component. HOC adds additional data and functionality to original component so new component also referred to as Enhanced component.<!--more-->
-    const NewComponent = higherOrderComponent(OriginalComponent)
-    const EnhancedComponent = higherOrderComponent(WrappedComponent)
-Other possibilities with HOCs,<br />
+<p>Higher-order component is a function that takes a component as an argument and returns a new component. HOC adds additional data and functionality to original component so new component also referred to as Enhanced component.<!--more--></p>
+
+<pre><code>const NewComponent = higherOrderComponent(OriginalComponent)
+const EnhancedComponent = higherOrderComponent(WrappedComponent)
+</code></pre>
+
+<p>Other possibilities with HOCs,<br />
 1. Passing down the props using spread operator <br />
-2. Passing parameters to higher order functions
-    #example
-    const withAdditionalFunctionality = (WrappedComponent, additionalArgs) => {
-        class WithAdditionalFunctionality extends React.Component {
-            constructor(props){
-                super(props)
-                this.state = {
-                    state1: &lsquo;value1&rsquo;
-                    &hellip;
-                }
-            }
-            additionalFunctionality = () => {
-                //additionalArgs can be use here
-                &hellip;
-            }
-            render(){
-                return( <WrappedComponent
-                            state1={this.state.state1}
-                            additionalFunctionality={this.additionalFunctionality}
-                            {...this.props}
-                        /> )
+2. Passing parameters to higher order functions</p>
+
+<pre><code>#example 
+const withAdditionalFunctionality = (WrappedComponent, additionalArgs) =&gt; {
+    class WithAdditionalFunctionality extends React.Component {
+        constructor(props){
+            super(props)
+            this.state = { 
+                state1: 'value1'
+                ... 
             }
         }
-        return WithAdditionalFunctionality;
+        additionalFunctionality = () =&gt; { 
+            //additionalArgs can be use here 
+            ... 
+        }
+        render(){
+            return( &lt;WrappedComponent
+                        state1={this.state.state1} 
+                        additionalFunctionality={this.additionalFunctionality} 
+                        {...this.props} 
+                    /&gt; )
+        }
     }
-    export default withAdditionalFunctionality;</p>
+    return WithAdditionalFunctionality;
+}
+export default withAdditionalFunctionality;
+</code></pre>
 
 <h3>Render Props Pattern</h3>
 
-<p>Render Props is another pattern for sharing code between React components using a prop whose value is a function.
-    class RenderProps extends React.Component {
-            constructor(props){
-                super(props)
-                this.state = {
-                    state1: &lsquo;value1&rsquo;
-                    &hellip;
-                }
-            }
-            additionalFunctionality = () => {
-                //props.additionalArgs
-                &hellip;
-            }
-            render(){
-                return(<div>
-                        { this.props.render( state1={this.state.state1}
-                            additionalFunctionality={this.additionalFunctionality} ) }
-                    </div>)
+<p>Render Props is another pattern for sharing code between React components using a prop whose value is a function.</p>
+
+<pre><code>class RenderProps extends React.Component {
+        constructor(props){
+            super(props)
+            this.state = { 
+                state1: 'value1'
+                ... 
             }
         }
-        export default RenderProps;
-        #Usage
-        <RenderProps
-            render={ (state1, additionalFunctionality) => { return <div> &hellip;. </div> } }
-        />
-        <RenderProps
-            render={ (state1, additionalFunctionality) => { return <p> &hellip;. </p> } }
-        /></p>
+        additionalFunctionality = () =&gt; { 
+            //props.additionalArgs
+            ... 
+        }
+        render(){
+            return(&lt;div&gt;
+                    { this.props.render( state1={this.state.state1}
+                        additionalFunctionality={this.additionalFunctionality} ) }
+                &lt;/div&gt;)
+        }
+    }
+    export default RenderProps;
+    #Usage
+    &lt;RenderProps 
+        render={ (state1, additionalFunctionality) =&gt; { return &lt;div&gt; .... &lt;/div&gt; } } 
+    /&gt;
+    &lt;RenderProps 
+        render={ (state1, additionalFunctionality) =&gt; { return &lt;p&gt; .... &lt;/p&gt; } } 
+    /&gt;
+</code></pre>
 
 <h3>Custom Hooks</h3>
 
-<p>Simpler alternative to HOCs and Render Props to share the common logic between components. A custom hook can also call other hooks if required. With Hooks, you can extract stateful logic from a component so it can be tested independently and reused. Hooks allow you to reuse stateful logic without changing your component hierarchy.
-    import {useState} from &lsquo;react&rsquo;
-    function useCustomHook(arguments){
-        const [state1, setState1] = useState(arguments.initialState)
-        const additionalFunctionality = () => {
-           //arguments can be used here
-           &hellip;..
-        }
-        &hellip;.
-        return [state1, additionalFunctionality];
+<p>Simpler alternative to HOCs and Render Props to share the common logic between components. A custom hook can also call other hooks if required. With Hooks, you can extract stateful logic from a component so it can be tested independently and reused. Hooks allow you to reuse stateful logic without changing your component hierarchy.</p>
+
+<pre><code>import {useState} from 'react'
+function useCustomHook(arguments){
+    const [state1, setState1] = useState(arguments.initialState)
+    const additionalFunctionality = () =&gt; {
+       //arguments can be used here
+       .....
     }
-    export default useCustomHook;
-    #Usage
-    function ConsumerComponent {
-        const [state1, additionalFunctionality] = useCustomHook(initialValues and args&hellip;)
-        render(
-            <div>
-                &hellip;.
-            </div>
-        )
-    }</p>
+    ....
+    return [state1, additionalFunctionality];
+}
+export default useCustomHook;
+#Usage
+function ConsumerComponent {
+    const [state1, additionalFunctionality] = useCustomHook(initialValues and args...)
+    render(
+        &lt;div&gt;
+            ....
+        &lt;/div&gt;
+    )
+}
+</code></pre>
 ]]></content>
   </entry>
   

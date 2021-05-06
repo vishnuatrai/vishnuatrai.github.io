@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ubuntu | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/blog/categories/ubuntu/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2021-05-01T16:55:13+05:30</updated>
+  <updated>2021-05-06T15:22:52+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -30,7 +30,7 @@
 
 <p>Save it. Now import the necessary repositories keys to avoid “apt-get” crying about some missing keys, go to the terminal and type:</p>
 
-<p>sudo apt-key adv &ndash;recv-keys &ndash;keyserver keyserver.ubuntu.com <key></p>
+<p>sudo apt-key adv &mdash;recv-keys &mdash;keyserver keyserver.ubuntu.com <key></p>
 
 <p>Get your system up to date with :</p>
 
@@ -82,7 +82,7 @@
 
 <p>wget <a href="http://hacktolive.org/files/app_runner/App_Runner_0.2.deb">http://hacktolive.org/files/app_runner/App_Runner_0.2.deb</a> &amp;&amp; sudo dpkg -i App_Runner_0.2.deb</p>
 
-<p>Then right-click the file -> Scripts -> Run This App or Run This App (root)</p>
+<p>Then right-click the file &ndash;> Scripts &ndash;> Run This App or Run This App (root)</p>
 
 <p>6 – Multimedia</p>
 
@@ -562,7 +562,7 @@ killall nautilus</p>
 
 <p>Now similar tools already existed on Linux like beagle (supported by  novell ) , meta tracker etc . However Google Desktop search is not based  on any of these tools and uses its proprietary algorithms to search for  files on the computer ,also being 1.0 release and more stable then  these products it could be preferred over tools like beagle .</p>
 
-<p>To install Google Desktop Search type the following command in the terminal window : -</p>
+<p>To install Google Desktop Search type the following command in the terminal window : &ndash;</p>
 
 <p>sudo apt-get install google-desktop-linux</p>
 

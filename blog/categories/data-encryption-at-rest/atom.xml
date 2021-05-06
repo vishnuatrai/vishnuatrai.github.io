@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Data&nbsp;Encryption&nbsp;at&nbsp;rest | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/blog/categories/data-encryption-at-rest/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2021-05-01T16:55:13+05:30</updated>
+  <updated>2021-05-06T15:22:52+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -64,7 +64,8 @@ encrypt-binlog
 <pre><code>select * from information_schema.INNODB_TABLESPACES_ENCRYPTION where ENCRYPTION_SCHEME=1;
 </code></pre>
 
-<p><br/></p>
+<br/>
+
 
 <h3>innodb-encrypt-tables modes</h3>
 

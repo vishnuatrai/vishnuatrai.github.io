@@ -138,13 +138,13 @@ $(function(){
 
 <p>In order to setup a slave agent in above scenario you need to first <strong>Enable the JNLP Agents</strong>:</p>
 
-<p>Go to <strong>Manage Jenkins</strong> -> <strong>Configure Global Security</strong> -> under <strong>Agents</strong> section -> <strong>TCP port for inbound agents</strong> -> select <strong>Random</strong> -><strong>Save</strong>.</p>
+<p>Go to <strong>Manage Jenkins</strong> &ndash;> <strong>Configure Global Security</strong> &ndash;> under <strong>Agents</strong> section &ndash;> <strong>TCP port for inbound agents</strong> &ndash;> select <strong>Random</strong> &ndash;><strong>Save</strong>.</p>
 
 <p><img src="/images//posts/Jenkins1.png" alt="" /></p>
 
 <h4>Setup slave agent node</h4>
 
-<p>Go to <strong>Manage Jenkins</strong> -> <strong>Manage Nodes</strong> ->click on <strong>New Node</strong> -> Enter the <strong>node name</strong> -> Select <strong>permanent agent</strong>.</p>
+<p>Go to <strong>Manage Jenkins</strong> &ndash;> <strong>Manage Nodes</strong> &ndash;>click on <strong>New Node</strong> &ndash;> Enter the <strong>node name</strong> &ndash;> Select <strong>permanent agent</strong>.</p>
 
 <p>Fill the below details to configure the slave agent</p>
 
@@ -167,8 +167,10 @@ and <strong>launch agents via ssh</strong> for linux agents</p>
 
 <p>To Launch the slave agent via command line  <br />
 <strong>Download the agent.jar file and copy to agent node</strong>  <br />
-<strong>Run agent.jar using command line</strong>
-    java &ndash;jar agent.jar -jnlpUrl <jenkins master url> -secret <secret given on node configuration> -workDir &ldquo;/user/agent/home/workspace&rdquo;</p>
+<strong>Run agent.jar using command line</strong></p>
+
+<pre><code>java --jar agent.jar -jnlpUrl &lt;jenkins master url&gt; -secret &lt;secret given on node configuration&gt; -workDir "/user/agent/home/workspace"
+</code></pre>
 
 <p><img src="/images//posts/Jenkins3.png" alt="" /></p>
 
