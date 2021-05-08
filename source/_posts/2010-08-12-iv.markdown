@@ -119,6 +119,7 @@ sudo apt-get install gufw
 
 Gnome Do is a small application that allows you to search and do  things faster and more efficiently in your Ubuntu machine. It is similar  to QuickSilver in Mac and Launchy in Windows. For those who have not  tried Gnome Do before, it might take some time for you to get used to  it. But once you’re hooked to it, there will be no turning back for  you.Gnome Do also comes with a dock interface that you can use it like  any other docks.
 
-sudo apt-get install gnome-do
+`sudo apt-get install gnome-do`
 
-Now you can launch it from Application → Accessories → Gnome Do
+Now you can launch it from Application → Accessories → Gnome Do 
+
