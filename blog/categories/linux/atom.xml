@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2021-05-06T15:22:52+05:30</updated>
+  <updated>2021-05-08T17:47:01+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -644,6 +644,8 @@ and add this line:options snd-hda-intel model=dell-m6
 it works for me. modeprobe.conf files are empty.</p>
 
 <p>if modprob.conf files are not empty then add this line tooptions snd-hda-intel model=dell-m6 it will work</p>
+
+<h3>#</h3>
 ]]></content>
   </entry>
   
