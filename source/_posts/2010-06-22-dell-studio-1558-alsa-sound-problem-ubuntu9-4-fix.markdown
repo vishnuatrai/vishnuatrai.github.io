@@ -30,3 +30,5 @@ and add this line:options snd-hda-intel model=dell-m6
 it works for me. modeprobe.conf files are empty.
 
 if modprob.conf files are not empty then add this line tooptions snd-hda-intel model=dell-m6 it will work
+
+####
