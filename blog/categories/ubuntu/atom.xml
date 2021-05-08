@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ubuntu | @vishnuatrai]]></title>
   <link href="http://vishnuatrai.com/blog/categories/ubuntu/atom.xml" rel="self"/>
   <link href="http://vishnuatrai.com/"/>
-  <updated>2021-05-08T17:55:30+05:30</updated>
+  <updated>2021-05-08T17:57:02+05:30</updated>
   <id>http://vishnuatrai.com/</id>
   <author>
     <name><![CDATA[vishnuatrai.com]]></name>
@@ -615,7 +615,7 @@ If you are concern about your security, then it is pertinent that you  activate 
 
 <p>Gnome Do is a small application that allows you to search and do  things faster and more efficiently in your Ubuntu machine. It is similar  to QuickSilver in Mac and Launchy in Windows. For those who have not  tried Gnome Do before, it might take some time for you to get used to  it. But once you’re hooked to it, there will be no turning back for  you.Gnome Do also comes with a dock interface that you can use it like  any other docks.</p>
 
-<p>sudo apt-get install gnome-do</p>
+<p><code>sudo apt-get install gnome-do</code></p>
 
 <p>Now you can launch it from Application → Accessories → Gnome Do</p>
 ]]></content>
