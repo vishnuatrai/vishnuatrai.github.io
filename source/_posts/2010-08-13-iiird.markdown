@@ -162,6 +162,6 @@ Emule Donkey Clients
 
 Amule
 
-sudo apt-get install amule
+`sudo apt-get install amule`
 
 Access it through Applications → Internet → aMule.
